@@ -15,7 +15,6 @@ LiquidCrystal_I2C lcd(LCD_ADDRESS, LCD_COLUMNS, LCD_ROWS);
 
 void setup() {
   Serial.begin(9600);
-  // while (!Serial);   // optional, helps on some boards
 
   // Init LCD
   lcd.init();
