@@ -3,14 +3,14 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#define SS_PIN 15 // SDA, GPIO15, D8
+#define SDA_pin 15 // SDA, GPIO15, D8
 #define RST_PIN 16 // RST, GPIO16, D0 
 
 #define LCD_COLUMNS 16
 #define LCD_ROWS 2
 #define LCD_ADDRESS 0x27
 
-MFRC522 mfrc522(SS_PIN, RST_PIN);
+MFRC522 mfrc522(SDA_pin, RST_PIN);
 LiquidCrystal_I2C lcd(LCD_ADDRESS, LCD_COLUMNS, LCD_ROWS);
 
 void setup() {
