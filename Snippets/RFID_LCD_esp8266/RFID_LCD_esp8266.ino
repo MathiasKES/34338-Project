@@ -20,49 +20,114 @@
  * - Intended for long-running stability (no dynamic String allocation)
  */
 
-// Imported libraries:
+// -----------------------------------------------------------------------------
+// Imported libraries
+// -----------------------------------------------------------------------------
 #include <SPI.h>
 #include <MFRC522.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
-// ---- Pins (match your current wiring) ----
-// RC522 (SPI)
-constexpr uint8_t RFID_SS_PIN  = 15; // D8 / GPIO15
-constexpr uint8_t RFID_RST_PIN = 16; // D0 / GPIO16
+// -----------------------------------------------------------------------------
+// Pin configuration
+// -----------------------------------------------------------------------------
 
-// LCD (I2C) - NodeMCU defaults are SDA=D2(GPIO4), SCL=D1(GPIO5)
-constexpr uint8_t I2C_SDA_PIN = 4;   // D2 / GPIO4
-constexpr uint8_t I2C_SCL_PIN = 5;   // D1 / GPIO5
+/** @brief RC522 SPI Slave Select pin (D8 / GPIO15). */
+constexpr uint8_t RFID_SS_PIN  = 15;
 
-// Servo
-constexpr uint8_t SERVO_PIN = 2;     // D4 / GPIO2
+/** @brief RC522 Reset pin (D0 / GPIO16). */
+constexpr uint8_t RFID_RST_PIN = 16;
 
-// LCD config
+/** @brief I2C SDA pin for LCD (D2 / GPIO4). */
+constexpr uint8_t I2C_SDA_PIN = 4;
+
+/** @brief I2C SCL pin for LCD (D1 / GPIO5). */
+constexpr uint8_t I2C_SCL_PIN = 5;
+
+/** @brief Servo signal pin (D4 / GPIO2). */
+constexpr uint8_t SERVO_PIN = 2;
+
+// -----------------------------------------------------------------------------
+// LCD configuration
+// -----------------------------------------------------------------------------
+
+/** @brief Number of LCD columns. */
 constexpr uint8_t LCD_COLUMNS = 16;
+
+/** @brief Number of LCD rows. */
 constexpr uint8_t LCD_ROWS    = 2;
+
+/** @brief I2C address of the LCD module. */
 constexpr uint8_t LCD_ADDRESS = 0x27;
 
-// Timing
+// -----------------------------------------------------------------------------
+// Timing configuration
+// -----------------------------------------------------------------------------
+
+/** @brief Duration (ms) to display access result before resetting. */
 constexpr uint32_t DISPLAY_MS = 3000;
+
+/** @brief Main loop polling delay (ms). */
 constexpr uint32_t POLL_MS    = 30;
 
-// Allowed UID
+// -----------------------------------------------------------------------------
+// RFID configuration
+// -----------------------------------------------------------------------------
+
+/**
+ * @brief Allowed RFID UID.
+ *
+ * Only cards matching this UID are granted access.
+ */
 constexpr uint8_t ALLOWED_UID[] = { 0xE3, 0x0C, 0x0F, 0xDA };
+
+/** @brief Length of the allowed UID in bytes. */
 constexpr uint8_t ALLOWED_UID_LEN = sizeof(ALLOWED_UID);
 
+// -----------------------------------------------------------------------------
+// Global objects
+// -----------------------------------------------------------------------------
+
+/** @brief MFRC522 RFID reader instance. */
 MFRC522 mfrc522(RFID_SS_PIN, RFID_RST_PIN);
+
+/** @brief I2C LCD instance. */
 LiquidCrystal_I2C lcd(LCD_ADDRESS, LCD_COLUMNS, LCD_ROWS);
+
+/** @brief Servo instance controlling the lock mechanism. */
 Servo myservo;
 
-enum class AccessResult : uint8_t { Denied, Granted };
+// -----------------------------------------------------------------------------
+// Global state
+// -----------------------------------------------------------------------------
 
+/**
+ * @brief Access result enumeration.
+ */
+enum class AccessResult : uint8_t {
+  Denied,   /**< Access denied */
+  Granted   /**< Access granted */
+};
+
+/** @brief Indicates whether a result is currently being displayed. */
 bool displaying = false;
+
+/** @brief Indicates whether the servo is currently in the open position. */
 bool servoOpen  = false;
+
+/** @brief Timestamp (ms) when the display should reset to idle. */
 uint32_t displayUntil = 0;
 
-///////////////////////////// Function /////////////////////////////
+// -----------------------------------------------------------------------------
+// Helper functions
+// -----------------------------------------------------------------------------
+
+/**
+ * @brief Clears LCD line 0 and prints a message.
+ *
+ * @param msg Flash-resident string to display (use F("...")).
+ */
 void lcdPrintLine0(const __FlashStringHelper* msg) {
   lcd.setCursor(0, 0);
   lcd.print("                ");
@@ -70,6 +135,11 @@ void lcdPrintLine0(const __FlashStringHelper* msg) {
   lcd.print(msg);
 }
 
+/**
+ * @brief Resets the system to the idle state.
+ *
+ * Clears the LCD, closes the servo if open, and stops displaying mode.
+ */
 static void resetIdle() {
   displaying = false;
   lcdPrintLine0(F("Scan RFID card"));
@@ -79,16 +149,25 @@ static void resetIdle() {
   }
 }
 
+/**
+ * @brief Prints the currently read RFID UID to the serial monitor in hex.
+ */
 static void printUIDHex() {
   Serial.print(F("UID: "));
   for (byte i = 0; i < mfrc522.uid.size; i++) {
     uint8_t b = mfrc522.uid.uidByte[i];
     if (b < 0x10) Serial.print('0');
-    Serial.print(b, HEX);  // typically prints A-F uppercase
+    Serial.print(b, HEX);
   }
   Serial.println();
 }
 
+/**
+ * @brief Checks whether the currently read UID is authorized.
+ *
+ * @return AccessResult::Granted if UID matches allowed UID,
+ *         AccessResult::Denied otherwise.
+ */
 static AccessResult checkUID() {
   if (mfrc522.uid.size != ALLOWED_UID_LEN) return AccessResult::Denied;
   return (memcmp(mfrc522.uid.uidByte, ALLOWED_UID, ALLOWED_UID_LEN) == 0)
@@ -96,6 +175,11 @@ static AccessResult checkUID() {
          : AccessResult::Denied;
 }
 
+/**
+ * @brief Displays access result and actuates servo if granted.
+ *
+ * @param r Result of the access check.
+ */
 static void showResult(AccessResult r) {
   displaying = true;
   displayUntil = millis() + DISPLAY_MS;
@@ -109,7 +193,15 @@ static void showResult(AccessResult r) {
   }
 }
 
-///////////////////////////// Setup /////////////////////////////
+// -----------------------------------------------------------------------------
+// Arduino setup
+// -----------------------------------------------------------------------------
+
+/**
+ * @brief Arduino setup function.
+ *
+ * Initializes Serial, I2C, LCD, SPI, RFID reader, and servo.
+ */
 void setup() {
   Serial.begin(9600);
 
@@ -129,8 +221,19 @@ void setup() {
   Serial.println(F("RC522 initialized"));
 }
 
+// -----------------------------------------------------------------------------
+// Arduino loop
+// -----------------------------------------------------------------------------
 
-///////////////////////////// Loop /////////////////////////////
+/**
+ * @brief Arduino main loop.
+ *
+ * Handles:
+ * - Display timeout logic
+ * - RFID card detection and reading
+ * - UID verification
+ * - Servo and LCD updates
+ */
 void loop() {
   const uint32_t now = millis();
 
