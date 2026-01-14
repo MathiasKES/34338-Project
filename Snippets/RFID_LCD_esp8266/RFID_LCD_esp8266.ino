@@ -12,14 +12,18 @@
 #define LCD_ROWS 2
 #define LCD_ADDRESS 0x27
 
-#define SERVO_PIN 0 // GPIO0, D3
+#define SERVO_PIN 2 // GPIO0, D3
 
 MFRC522 mfrc522(SDA_pin, RST_PIN);
 LiquidCrystal_I2C lcd(LCD_ADDRESS, LCD_COLUMNS, LCD_ROWS);
 Servo myservo;
 
 // Global variables:
-bool accessGranted;
+uint8_t accessStatus; // 0: No card detected, 1: Denied card, 2: Accepted card
+bool displaying;
+bool turning;
+uint16_t timer;
+uint8_t pos;
 
 
 
@@ -28,21 +32,26 @@ bool accessGranted;
 
 /* Function: 
   display on LCD 'Access granted'/'Access denied' 
-  based on state of global variable accessGranted
+  based on state of global variable accessStatus
 */
 void displayResultOnLCD() {
   lcd.setCursor(0, 1);
   lcd.print("                ");
 
   lcd.setCursor(0, 0);
-  if (accessGranted) {
-    accessGranted = false;
+  if (accessStatus == 2) {
+    accessStatus = 0;
+    displaying = true;
+
     turning = true;
     lcd.print("Access granted  ");
   } 
-  else lcd.print("Access denied  ");
+  else if (accessStatus == 1) {
+    accessStatus = 0;
+    displaying = true;
 
-  displaying = true;
+    lcd.print("Access denied  ");
+  }
 }
 
 /* Function: takes a UID as argument and print to Serial Monitor*/
@@ -74,15 +83,25 @@ String getUID() {
   when a USER get access or not
 */
 void checkCardUID() {
-  accessGranted = false;
+  // accessStatus = 0;
 
-  if (mfrc522.uid.size == 4 && mfrc522.uid.uidByte[0] == 0xE3 && mfrc522.uid.uidByte[1] == 0x0C && mfrc522.uid.uidByte[2] == 0x0F && mfrc522.uid.uidByte[3] == 0xDA) {
-    accessGranted = true;
+  if (mfrc522.uid.size == 4 
+      && mfrc522.uid.uidByte[0] == 0xE3 
+      && mfrc522.uid.uidByte[1] == 0x0C 
+      && mfrc522.uid.uidByte[2] == 0x0F 
+      && mfrc522.uid.uidByte[3] == 0xDA) {
+    accessStatus = 2;
   }
 }
 
 ///////////////////////////// Setup /////////////////////////////
 void setup() {
+  accessStatus = 0;
+  displaying = false;
+  turning = false;
+  timer = 0;
+  pos = 0;
+
   Serial.begin(9600);
 
   // Init LCD
@@ -90,7 +109,7 @@ void setup() {
   lcd.backlight();
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Scan RFID card");
+  lcd.print("Scan RFID card  ");
 
   // Init SPI = (SCK MOSI MISO) + RFID
   SPI.begin();
@@ -102,11 +121,6 @@ void setup() {
   Serial.println("RC522 initialized");
 }
 
-bool accessGranted = false;
-bool turning = false;
-uint16_t timer = 0;
-bool displaying = false;
-
 
 ///////////////////////////// Loop /////////////////////////////
 void loop() {
@@ -116,16 +130,16 @@ void loop() {
       displaying = false;
       timer = 0;
       lcd.setCursor(0, 0);
-      lcd.print("                ");
+      lcd.print("Scan RFID card  ");
     }
   }
 
   if (turning) {
-    Serial.println(myservo.read());
-    if (myservo.read() < 180) {
-      myservo.write(180);
+    if (pos <= 180) {
+      myservo.write(pos++);
     } else {
-      myservo.write(0);
+      pos = 0;
+      // myservo.write(pos);
 
       // Reset
       turning = false;
@@ -134,6 +148,10 @@ void loop() {
     }
   }
 
+  Serial.println(mfrc522.PICC_IsNewCardPresent());
+  Serial.println(mfrc522.PICC_ReadCardSerial());
+
+  ///////////////////////////// Operations that should happen after card detected /////////////////////////////
   if (!mfrc522.PICC_IsNewCardPresent()) return;
   if (!mfrc522.PICC_ReadCardSerial()) return;
 
