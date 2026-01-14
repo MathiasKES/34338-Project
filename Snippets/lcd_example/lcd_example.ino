@@ -7,6 +7,8 @@
 #define LCD_ADDRESS 0x27
 
 LiquidCrystal_I2C lcd{LCD_ADDRESS, LCD_COLUMNS, LCD_ROWS};
+uint64_t counter;
+
 
 /*
  * @brief Arduino setup function
@@ -16,11 +18,11 @@ void setup() {
 
   lcd.init();
   lcd.backlight();
+  lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("  Hello world!  ");
+  counter = 0;
 }
-
-uint64_t counter = 0;
 
 /*
  * @brief Main Arduino loop
