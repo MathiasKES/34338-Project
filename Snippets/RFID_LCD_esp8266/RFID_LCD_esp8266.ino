@@ -226,7 +226,7 @@ void onMotionDetected(uint32_t now) {
 }
 
 void onMotionIdle(uint32_t now) {
-  if (motionActive && isDisplayActive(now)) {
+  if (motionActive && !isDisplayActive(now)) {
     motionActive = false;
     lcd.noBacklight();
   }
