@@ -7,7 +7,7 @@
  * - Compares against a predefined allowed UID
  * - Displays access status on a 16x2 I2C LCD
  * - Controls a servo to simulate door lock/unlock
- *
+ * 
  * Hardware:
  * - ESP8266 (NodeMCU 0.9)
  * - MFRC522 RFID reader (SPI)
@@ -16,7 +16,7 @@
  *
  * Notes:
  * - Uses non-blocking timing with millis()
- * - Ignores card reads while displaying a result
+ * - Ignores card reads while textshown a result
  * - Intended for long-running stability (no dynamic String allocation)
  */
 
@@ -48,6 +48,9 @@ constexpr uint8_t I2C_SCL_PIN = 5;
 /** @brief Servo signal pin (D4 / GPIO2). */
 constexpr uint8_t SERVO_PIN = 2;
 
+/** @brief Motion sensor pin (D3 / GPIO0) */
+constexpr uint8_t MOTION_PIN = 0;
+
 // -----------------------------------------------------------------------------
 // LCD configuration
 // -----------------------------------------------------------------------------
@@ -67,6 +70,9 @@ constexpr uint8_t LCD_ADDRESS = 0x27;
 
 /** @brief Duration (ms) to display access result before resetting. */
 constexpr uint32_t DISPLAY_MS = 3000;
+
+/** @brief Duration (ms) to display backlight before resetting. */
+constexpr uint32_t DISPLAY_BACKLIGHT_MS = 5000;
 
 /** @brief Main loop polling delay (ms). */
 constexpr uint32_t POLL_MS    = 30;
@@ -111,13 +117,23 @@ enum class AccessResult : uint8_t {
 };
 
 /** @brief Indicates whether a result is currently being displayed. */
-bool displaying = false;
+bool textshown = false;
 
 /** @brief Indicates whether the servo is currently in the open position. */
 bool servoOpen  = false;
 
-/** @brief Timestamp (ms) when the display should reset to idle. */
-uint32_t displayUntil = 0;
+/** @brief Timestamp (ms) when the display should reset to idle text. */
+uint32_t showTextUntil = 0;
+
+/** @brief Timestamp (ms) when the display should reset to idle backlight. */
+uint32_t showDisplayUntil = 0;
+
+/** @brief Indicates whether a person is near using sensory input */
+bool person_near = false;
+
+/** @brief Boolean to keep display active for a duration */
+bool motionActive = false;
+
 
 // -----------------------------------------------------------------------------
 // Helper functions
@@ -138,10 +154,10 @@ void lcdPrintLine0(const __FlashStringHelper* msg) {
 /**
  * @brief Resets the system to the idle state.
  *
- * Clears the LCD, closes the servo if open, and stops displaying mode.
+ * Clears the LCD, closes the servo if open, and stops textshown mode.
  */
 static void resetIdle() {
-  displaying = false;
+  textshown = false;
   lcdPrintLine0(F("Scan RFID card"));
   if (servoOpen) {
     myservo.write(0);
@@ -181,8 +197,8 @@ static AccessResult checkUID() {
  * @param r Result of the access check.
  */
 static void showResult(AccessResult r) {
-  displaying = true;
-  displayUntil = millis() + DISPLAY_MS;
+  textshown = true;
+  showTextUntil = millis() + DISPLAY_MS;
 
   if (r == AccessResult::Granted) {
     lcdPrintLine0(F("Access granted"));
@@ -192,10 +208,6 @@ static void showResult(AccessResult r) {
     lcdPrintLine0(F("Access denied"));
   }
 }
-
-// -----------------------------------------------------------------------------
-// Arduino setup
-// -----------------------------------------------------------------------------
 
 /**
  * @brief Arduino setup function.
@@ -208,7 +220,7 @@ void setup() {
   Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
 
   lcd.init();
-  lcd.backlight();
+  lcd.noBacklight();
   lcd.clear();
   lcdPrintLine0(F("Scan RFID card"));
 
@@ -218,12 +230,10 @@ void setup() {
   myservo.attach(SERVO_PIN);
   myservo.write(0);
 
+  pinMode(MOTION_PIN, INPUT);
+
   Serial.println(F("RC522 initialized"));
 }
-
-// -----------------------------------------------------------------------------
-// Arduino loop
-// -----------------------------------------------------------------------------
 
 /**
  * @brief Arduino main loop.
@@ -237,8 +247,32 @@ void setup() {
 void loop() {
   const uint32_t now = millis();
 
-  if (displaying) {
-    if ((int32_t)(now - displayUntil) >= 0) resetIdle();
+  if (textshown) {
+    if ((int32_t)(now - showTextUntil) >= 0) resetIdle();
+    delay(POLL_MS);
+    return;
+  }
+
+  person_near = digitalRead(MOTION_PIN);
+
+  if (person_near) {
+    if (!motionActive) {
+      // Motion just started
+      motionActive = true;
+      showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
+      lcd.backlight();
+      Serial.println(F("Motion detected"));
+    } else {
+      // Motion ongoing → refresh timeout
+      showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
+    }
+  } else if (motionActive && (int32_t)(now - showDisplayUntil) >= 0) {
+    motionActive = false;
+    lcd.noBacklight();
+  }
+
+  // RFID only allowed while display is active
+  if ((int32_t)(now - showDisplayUntil) >= 0) {
     delay(POLL_MS);
     return;
   }
