@@ -209,6 +209,57 @@ static void showResult(AccessResult r) {
   }
 }
 
+
+bool isDisplayActive(uint32_t now) {
+  return (int32_t)(now - showDisplayUntil) < 0;
+}
+
+void onMotionDetected(uint32_t now) {
+  if (!motionActive) {
+    motionActive = true;
+    Serial.println(F("Motion detected"));
+    lcd.backlight();
+  }
+
+  // Always refresh timeout while motion is present
+  showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
+}
+
+void onMotionIdle(uint32_t now) {
+  if (motionActive && isDisplayActive(now)) {
+    motionActive = false;
+    lcd.noBacklight();
+  }
+}
+
+void updateMotionState(uint32_t now) {
+  const bool motion = digitalRead(MOTION_PIN);
+
+  if (motion) {
+    onMotionDetected(now);
+  } else {
+    onMotionIdle(now);
+  }
+}
+
+void handleRFID() {
+  if (!mfrc522.PICC_IsNewCardPresent()) {
+    return;
+  }
+
+  if (!mfrc522.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  printUIDHex();
+
+  const AccessResult result = checkUID();
+  showResult(result);
+
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
+}
+
 /**
  * @brief Arduino setup function.
  *
@@ -253,47 +304,11 @@ void loop() {
     return;
   }
 
-  person_near = digitalRead(MOTION_PIN);
-
-  if (person_near) {
-    if (!motionActive) {
-      // Motion just started
-      motionActive = true;
-      showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
-      lcd.backlight();
-      Serial.println(F("Motion detected"));
-    } else {
-      // Motion ongoing → refresh timeout
-      showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
-    }
-  } else if (motionActive && (int32_t)(now - showDisplayUntil) >= 0) {
-    motionActive = false;
-    lcd.noBacklight();
-  }
+  updateMotionState(now);
 
   // RFID only allowed while display is active
-  if ((int32_t)(now - showDisplayUntil) >= 0) {
-    delay(POLL_MS);
-    return;
-  }
-
-  if (!mfrc522.PICC_IsNewCardPresent()) {
-    delay(POLL_MS);
-    return;
-  }
-
-  if (!mfrc522.PICC_ReadCardSerial()) {
-    delay(POLL_MS);
-    return;
-  }
-
-  printUIDHex();
-
-  const AccessResult result = checkUID();
-  showResult(result);
-
-  mfrc522.PICC_HaltA();
-  mfrc522.PCD_StopCrypto1();
+  if (isDisplayActive(now))
+    handleRFID();
 
   delay(POLL_MS);
 }
