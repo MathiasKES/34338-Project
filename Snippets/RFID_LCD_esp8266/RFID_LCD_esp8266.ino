@@ -209,11 +209,22 @@ static void showResult(AccessResult r) {
   }
 }
 
-
+/**
+ * @brief Checks if display is active
+ * 
+ * @param now Time (ms) to take difference against
+ * @return true if display is active
+ * @return false if display is inactive
+ */
 bool isDisplayActive(uint32_t now) {
   return (int32_t)(now - showDisplayUntil) < 0;
 }
 
+/**
+ * @brief Handles motion detected event
+ * 
+ * @param now Time (ms) to take difference against
+ */
 void onMotionDetected(uint32_t now) {
   if (!motionActive) {
     motionActive = true;
@@ -225,6 +236,11 @@ void onMotionDetected(uint32_t now) {
   showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
 }
 
+/**
+ * @brief Handles motion idle event
+ * 
+ * @param now Time (ms) to take difference against
+ */
 void onMotionIdle(uint32_t now) {
   if (motionActive && !isDisplayActive(now)) {
     motionActive = false;
@@ -232,6 +248,11 @@ void onMotionIdle(uint32_t now) {
   }
 }
 
+/**
+ * @brief Updates motion state based on sensor input
+ * 
+ * @param now Time (ms) to take difference against
+ */
 void updateMotionState(uint32_t now) {
   const bool motion = digitalRead(MOTION_PIN);
 
@@ -242,6 +263,12 @@ void updateMotionState(uint32_t now) {
   }
 }
 
+/**
+ * @brief Handles RFID card detection and processing.
+ *
+ * Reads the card UID, checks authorization, displays result,
+ * and resets the card state.
+ */
 void handleRFID() {
   if (!mfrc522.PICC_IsNewCardPresent()) {
     return;
