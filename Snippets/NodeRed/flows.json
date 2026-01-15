@@ -1,0 +1,366 @@
+[
+    {
+        "id": "c25e398bee450a74",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dd06bd64ae73d0c9",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7114781344af6368",
+        "type": "mqtt in",
+        "z": "c25e398bee450a74",
+        "name": "Access Request",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2a97809dab94d9f0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "930d7c090eb9bbec"
+            ]
+        ]
+    },
+    {
+        "id": "a26d9382ae773c17",
+        "type": "comment",
+        "z": "c25e398bee450a74",
+        "name": "Access decision + logging",
+        "info": "",
+        "x": 230,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "930d7c090eb9bbec",
+        "type": "json",
+        "z": "c25e398bee450a74",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "791c427a7d9992e6",
+                "26ccc2f6e6e3fee4"
+            ]
+        ]
+    },
+    {
+        "id": "791c427a7d9992e6",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Build select",
+        "func": "const p = msg.payload;\n\nmsg._device_id = p.device_id || \"unknown_device\";\nmsg._uid = String(p.uid || \"\");\n\nmsg.topic = \"SELECT enabled FROM cards WHERE uid = ? LIMIT 1\";\nmsg.payload = [msg._uid];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "ef7ecdd764ec24c8",
+                "dd06bd64ae73d0c9"
+            ]
+        ]
+    },
+    {
+        "id": "ef7ecdd764ec24c8",
+        "type": "mysql",
+        "z": "c25e398bee450a74",
+        "mydb": "058b7f4ef3234ad6",
+        "name": "",
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "22a7a97e333e5ad5",
+                "6e7d3b5d127133b7"
+            ]
+        ]
+    },
+    {
+        "id": "22a7a97e333e5ad5",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Build response and log",
+        "func": "const rows = msg.payload || [];\nconst enabled = rows.length > 0 && Number(rows[0].enabled) === 1;\n\nconst response = {\n  uid: msg._uid,\n  authorized: enabled,\n  reason: enabled ? \"allowlist\" : \"not_found\",\n  ts: Math.floor(Date.now() / 1000)\n};\n\nconst logMsg = {\n  topic: \"INSERT INTO access_log (device_id, uid, authorized, reason) VALUES (?, ?, ?, ?)\",\n  payload: [msg._device_id, msg._uid, enabled ? 1 : 0, response.reason]\n};\n\nconst outMsg = { payload: response };\n\nreturn [outMsg, logMsg];\n",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 220,
+        "wires": [
+            [
+                "4da1b3d277461beb",
+                "e7402adcd6c28220"
+            ],
+            [
+                "3061d52513e2e3da"
+            ]
+        ]
+    },
+    {
+        "id": "3061d52513e2e3da",
+        "type": "mysql",
+        "z": "c25e398bee450a74",
+        "mydb": "058b7f4ef3234ad6",
+        "name": "Access Log",
+        "x": 1390,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4da1b3d277461beb",
+        "type": "mqtt out",
+        "z": "c25e398bee450a74",
+        "name": "Access response",
+        "topic": "site1/door1/access/response",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a97809dab94d9f0",
+        "x": 1410,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6e7d3b5d127133b7",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7ab7fb1d4b96ac70",
+        "type": "inject",
+        "z": "c25e398bee450a74",
+        "name": "Publish Allowlist",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "a2a030c3f8ddbab8"
+            ]
+        ]
+    },
+    {
+        "id": "f4243c95f33a649e",
+        "type": "mqtt out",
+        "z": "c25e398bee450a74",
+        "name": "Send Card Allowlist",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a97809dab94d9f0",
+        "x": 1230,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a2a030c3f8ddbab8",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Bump version",
+        "func": "let v = global.get(\"allowlist_version\") || 0;\nv += 1;\nglobal.set(\"allowlist_version\", v);\n\nmsg.allowlist_version = v;\n\n// SQL for the MySQL node\nmsg.topic = \"SELECT uid FROM cards WHERE enabled = 1\";\nmsg.payload = [];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "8781f0d0a50fd6d7"
+            ]
+        ]
+    },
+    {
+        "id": "8781f0d0a50fd6d7",
+        "type": "mysql",
+        "z": "c25e398bee450a74",
+        "mydb": "058b7f4ef3234ad6",
+        "name": "Query all enabled cards",
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "8f4a199812f3d512"
+            ]
+        ]
+    },
+    {
+        "id": "8f4a199812f3d512",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Build chunks and publish",
+        "func": "const version = msg.allowlist_version;\nconst rows = msg.payload || [];\n\nconst uids = rows.map(r => String(r.uid)).sort();\n\nconst chunkSize = 40;\nconst total = Math.ceil(uids.length / chunkSize);\n\nnode.send({\n  topic: \"hectorfoss@gmail.com/site1/door1/allowlist/version\",\n  payload: { version, count: uids.length }\n});\n\nfor (let i = 0; i < total; i++) {\n  const slice = uids.slice(i * chunkSize, (i + 1) * chunkSize);\n  node.send({\n    topic: \"hectorfoss@gmail.com/site1/door1/allowlist/chunk\",\n    payload: { version, index: i, total, uids: slice }\n  });\n}\n\nnode.send({\n  topic: \"hectorfoss@gmail.com/site1/door1/allowlist/apply\",\n  payload: { version }\n});\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 360,
+        "wires": [
+            [
+                "f4243c95f33a649e"
+            ]
+        ]
+    },
+    {
+        "id": "b9f886e3536bf1ac",
+        "type": "comment",
+        "z": "c25e398bee450a74",
+        "name": "Allowlist sync to ESPs",
+        "info": "",
+        "x": 220,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "26ccc2f6e6e3fee4",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e7402adcd6c28220",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1350,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2a97809dab94d9f0",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "maqiatto.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "058b7f4ef3234ad6",
+        "type": "MySQLdatabase",
+        "name": "Localhost",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "nodered_db",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "cb0981e52989cf52",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-node-mysql": "3.0.0"
+        }
+    }
+]
