@@ -29,11 +29,17 @@ public:
     const JsonDocument& data
   );
 
+  void setCallback(MQTT_CALLBACK_SIGNATURE);
+
+  bool subscribe(const char* topic);
+  bool unsubscribe(const char* topic);
+
+  String makeTopic(const char* suffix) const;
+
 private:
   void connectWifi();
   void connectMqtt();
-  String makeTopic(const char* suffix) const;
-
+  
   WiFiClient wifiClient;
   PubSubClient mqtt;
 

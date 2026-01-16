@@ -119,7 +119,7 @@ bool WifiMqttClient::publishJson(
   device["platform"] = DEVICE_NAME;
   device["chip_id"] = String((uint32_t)chipId, HEX);
 
-  envelope["ts"] = millis() / 1000;
+  envelope["sent_ts_ms"] = millis();
   envelope["data"] = data;
 
   char buffer[512];
@@ -130,4 +130,18 @@ bool WifiMqttClient::publishJson(
     buffer,
     len
   );
+}
+
+void WifiMqttClient::setCallback(MQTT_CALLBACK_SIGNATURE) {
+  mqtt.setCallback(callback);
+}
+
+bool WifiMqttClient::subscribe(const char* topic) {
+  if (!mqtt.connected()) return false;
+  return mqtt.subscribe(topic);
+}
+
+bool WifiMqttClient::unsubscribe(const char* topic) {
+  if (!mqtt.connected()) return false;
+  return mqtt.unsubscribe(topic);
 }
