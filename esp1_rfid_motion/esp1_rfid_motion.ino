@@ -180,7 +180,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     showTextUntil = millis() + UNLOCK_TIME_MS;
 
   } 
-  else if (String(topic) == net.makeTopic("keypad/keypad")) {
+  else if (String(topic) == net.makeTopic("access/keypad")) {
     // string code = doc["data"]["code"];
 
   }
