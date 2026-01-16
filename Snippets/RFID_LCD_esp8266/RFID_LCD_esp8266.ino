@@ -184,7 +184,7 @@ static void printUIDHex() {
  * @return AccessResult::Granted if UID matches allowed UID,
  *         AccessResult::Denied otherwise.
  */
-static AccessResult checkUID() {
+static AccessResult returnUID() {
   if (mfrc522.uid.size != ALLOWED_UID_LEN) return AccessResult::Denied;
   return (memcmp(mfrc522.uid.uidByte, ALLOWED_UID, ALLOWED_UID_LEN) == 0)
          ? AccessResult::Granted
@@ -280,7 +280,7 @@ void handleRFID() {
 
   printUIDHex();
 
-  const AccessResult result = checkUID();
+  const AccessResult result = returnUID();
   showResult(result);
 
   mfrc522.PICC_HaltA();
