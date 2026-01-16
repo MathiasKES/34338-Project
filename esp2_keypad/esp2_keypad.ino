@@ -9,8 +9,8 @@
 
 WifiMqttClient net;
 
-constexpr char WIFI_SSID[] = "Nikolajs iPhone 11";
-constexpr char WIFI_PASS[] = "nikospowifi123@";
+constexpr char WIFI_SSID[] = "Mathias iPhone";
+constexpr char WIFI_PASS[] = "mrbombastic";
 
 constexpr char MQTT_HOST[] = "maqiatto.com";
 constexpr uint16_t MQTT_PORT = 1883;
@@ -99,12 +99,11 @@ void loop() {
       Serial.println(input);
 
       // BaseTopic: hectorfoss@gmail.com/site1/door1/
-      // Suffix: events
       StaticJsonDocument<64> data;
       data["code"] = input;
       data["event"] = "KP_try";
 
-      net.publishJson("keypad", data);
+      net.publishJson("keypad/submit", data);
     } 
     else Serial.println("Code too short, resetting.");
 
