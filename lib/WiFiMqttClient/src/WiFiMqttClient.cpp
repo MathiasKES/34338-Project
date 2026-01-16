@@ -105,7 +105,7 @@ void WifiMqttClient::connectMqtt() {
 }
 
 String WifiMqttClient::makeTopic(const char* suffix) const {
-  return baseTopic + "/" + suffix; // /events
+  return baseTopic + "/" + suffix;
 }
 
 bool WifiMqttClient::publishJson(
