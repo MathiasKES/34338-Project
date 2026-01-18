@@ -1,0 +1,539 @@
+[
+    {
+        "id": "c25e398bee450a74",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d38d189f7f657b08",
+        "type": "tab",
+        "label": "ESP",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2a97809dab94d9f0",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "maqiatto.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd06bd64ae73d0c9",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7114781344af6368",
+        "type": "mqtt in",
+        "z": "c25e398bee450a74",
+        "name": "Access Request",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2a97809dab94d9f0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "930d7c090eb9bbec"
+            ]
+        ]
+    },
+    {
+        "id": "a26d9382ae773c17",
+        "type": "comment",
+        "z": "c25e398bee450a74",
+        "name": "Access decision",
+        "info": "",
+        "x": 200,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "930d7c090eb9bbec",
+        "type": "json",
+        "z": "c25e398bee450a74",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "791c427a7d9992e6",
+                "26ccc2f6e6e3fee4"
+            ]
+        ]
+    },
+    {
+        "id": "791c427a7d9992e6",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Build select",
+        "func": "const p = msg.payload || {};\nmsg._device_id = p.device_id || \"unknown_device\";\nmsg._uid = String(p.uid || \"\");\n\n// Path to your allowlist file\n// Linux example\nmsg.allowlist_path = \"/home/mathias/.node-red/allowlist.json\";\n\n// Windows example\n// msg.allowlist_path = \"C:\\\\Users\\\\Hector\\\\.node-red\\\\allowlist.json\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "dd06bd64ae73d0c9",
+                "1479cd28a3fecdf8"
+            ]
+        ]
+    },
+    {
+        "id": "22a7a97e333e5ad5",
+        "type": "function",
+        "z": "c25e398bee450a74",
+        "name": "Build response from allowlist",
+        "func": "const allow = msg.payload?.cards || {};\nconst uid = String(msg._uid || \"\");\n\nconst entry = allow[uid];\nconst enabled = !!(entry && entry.enabled);\n\nmsg.payload = {\n  uid,\n  authorized: enabled,\n  reason: enabled ? \"allowlist\" : \"not_found\",\n  ts: Math.floor(Date.now() / 1000)\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 220,
+        "wires": [
+            [
+                "4da1b3d277461beb",
+                "e7402adcd6c28220"
+            ]
+        ]
+    },
+    {
+        "id": "4da1b3d277461beb",
+        "type": "mqtt out",
+        "z": "c25e398bee450a74",
+        "name": "Access response",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/response",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a97809dab94d9f0",
+        "x": 1470,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6e7d3b5d127133b7",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "26ccc2f6e6e3fee4",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e7402adcd6c28220",
+        "type": "debug",
+        "z": "c25e398bee450a74",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1479cd28a3fecdf8",
+        "type": "file in",
+        "z": "c25e398bee450a74",
+        "name": "allowlist",
+        "filename": "allowlist_path",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 840,
+        "y": 220,
+        "wires": [
+            [
+                "287b1ffd184974e6"
+            ]
+        ]
+    },
+    {
+        "id": "287b1ffd184974e6",
+        "type": "json",
+        "z": "c25e398bee450a74",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 990,
+        "y": 220,
+        "wires": [
+            [
+                "22a7a97e333e5ad5"
+            ]
+        ]
+    },
+    {
+        "id": "ce0737ea0937cc84",
+        "type": "mqtt in",
+        "z": "d38d189f7f657b08",
+        "name": "Keypad code received",
+        "topic": "hectorfoss@gmail.com/site1/door1/keypad/submit",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2a97809dab94d9f0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "77b937cf1b2a1a12"
+            ]
+        ]
+    },
+    {
+        "id": "77b937cf1b2a1a12",
+        "type": "json",
+        "z": "d38d189f7f657b08",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "2f3a0d46718f1aee"
+            ]
+        ]
+    },
+    {
+        "id": "2f3a0d46718f1aee",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "name": "Check if UID matches keycode",
+        "func": "const CODE = msg.payload?.data?.code;\nconst UID = flow.get(\"currentGrantedUID\");\nconst allowlist = flow.get(\"allowlist\");\n\nconsole.log(\"Entered KeyPad Code:\", CODE);\nconsole.log(\"Checking UID:\", UID);\nconsole.log(\"Allowlist:\", allowlist);\n\n// Defensive checks\nif (!UID) {\n    node.warn(\"No currentGrantedUID in flow context\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nif (!CODE) {\n    node.warn(\"No keypad code provided\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nif (!allowlist || typeof allowlist !== \"object\") {\n    node.error(\"Allowlist not loaded or invalid\", msg);\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\n// Check if UID exists and code matches\nconst expectedCode = allowlist[UID];\n\nmsg.payload.response = {\n    accessGranted: typeof expectedCode === \"string\" && expectedCode === String(CODE)\n};\n\nconsole.log(msg);\nconsole.log(\"currentGrantedUID: \"+UID);\n\n// Reset UID\nflow.set(\"currentGrantedUID\", null);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "97e7d33b50beb0e5"
+            ]
+        ]
+    },
+    {
+        "id": "ae7e046d02c03fa1",
+        "type": "mqtt in",
+        "z": "d38d189f7f657b08",
+        "name": "RFID UID Received",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2a97809dab94d9f0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "d49e723c8859a81b"
+            ]
+        ]
+    },
+    {
+        "id": "d49e723c8859a81b",
+        "type": "json",
+        "z": "d38d189f7f657b08",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 300,
+        "wires": [
+            [
+                "ac67bdc36ed909d2"
+            ]
+        ]
+    },
+    {
+        "id": "ac67bdc36ed909d2",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "name": "Check if UID has permission",
+        "func": "const allowlist = flow.get(\"allowlist\");\n\nconst UID = msg.payload.data.uid;\n\n// Check if UID in db\nmsg.payload.response = {\n    hasAccess: Object.prototype.hasOwnProperty.call(allowlist, UID)\n};\n\nconsole.log(\"Scanned UID is in allowlist\");\n\nflow.set(\"currentGrantedUID\", UID);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 300,
+        "wires": [
+            [
+                "34dc293395dd4b91"
+            ]
+        ]
+    },
+    {
+        "id": "34dc293395dd4b91",
+        "type": "mqtt out",
+        "z": "d38d189f7f657b08",
+        "name": "Send response",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/response",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a97809dab94d9f0",
+        "x": 960,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7d7e746cc0f36f89",
+        "type": "mqtt in",
+        "z": "d38d189f7f657b08",
+        "name": "Keypad tap",
+        "topic": "hectorfoss@gmail.com/site1/door1/keypad/tap",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2a97809dab94d9f0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 420,
+        "wires": [
+            [
+                "99164f089998faf4"
+            ]
+        ]
+    },
+    {
+        "id": "99164f089998faf4",
+        "type": "json",
+        "z": "d38d189f7f657b08",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "bc3bcd924c8e506f"
+            ]
+        ]
+    },
+    {
+        "id": "bc3bcd924c8e506f",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97e7d33b50beb0e5",
+        "type": "mqtt out",
+        "z": "d38d189f7f657b08",
+        "name": "Keypad access",
+        "topic": "hectorfoss@gmail.com/site1/door1/access/keypad_response",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a97809dab94d9f0",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "672b587de06ee3a7",
+        "type": "file in",
+        "z": "d38d189f7f657b08",
+        "name": "Read allowlist",
+        "filename": "/home/mathias/.node-red/allowlist.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 460,
+        "y": 180,
+        "wires": [
+            [
+                "46fecf8697e1103b"
+            ]
+        ]
+    },
+    {
+        "id": "46fecf8697e1103b",
+        "type": "json",
+        "z": "d38d189f7f657b08",
+        "name": "Convert file read to JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 690,
+        "y": 180,
+        "wires": [
+            [
+                "3d54cd38ec0f6619"
+            ]
+        ]
+    },
+    {
+        "id": "0775898a7541984f",
+        "type": "inject",
+        "z": "d38d189f7f657b08",
+        "name": "On startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "672b587de06ee3a7"
+            ]
+        ]
+    },
+    {
+        "id": "3d54cd38ec0f6619",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "name": "Set flow var allowlist",
+        "func": "flow.set(\"allowlist\", msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    }
+]
