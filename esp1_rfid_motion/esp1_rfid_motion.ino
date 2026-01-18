@@ -164,28 +164,53 @@ void callback(char* topic, byte* payload, unsigned int length) {
       return;
     }
 
+    // *** Clean up
     bool hasAccess = doc["response"]["hasAccess"] | false;
 
     response = hasAccess
       ? AccessResult::Granted
       : AccessResult::Denied;
 
-    Serial.printf("Access %s\n", hasAccess ? "granted" : "denied");
+    // Serial.printf("Access %s\n", hasAccess ? "granted" : "denied");
+    Serial.printf("UID match: waiting for PIN...");
 
-    if (response != AccessResult::Granted) return;
+    if (response != AccessResult::Granted) {
+      lcdPrintLine0(F("Access Denied"));
+      textshown = true;
+      showTextUntil = millis() + DISPLAY_MS;
+      return;
+    }
 
     lcdPrintLine0(F("Enter PIN:"));
 
     textshown = true;
     showTextUntil = millis() + UNLOCK_TIME_MS;
-
+    
   } 
-  else if (String(topic) == net.makeTopic("access/keypad")) {
-    // string code = doc["data"]["code"];
+  if (String(topic) == net.makeTopic("access/keypad_response")) {
+    if (response != AccessResult::Granted) return;
+    // Check if it is an old message
+
+
+    // Print on LCD
+    bool accessGranted = doc["response"]["accessGranted"] | false;
+
+    if (!accessGranted) {
+      Serial.println("Access Denied");
+      lcdPrintLine0(F("Access Denied"));
+      textshown = true;
+      showTextUntil = millis() + DISPLAY_MS;
+      return;
+    }
+
+    Serial.println("Access Granted");
+    lcdPrintLine0(F("Access Granted"));
+    textshown = true;
+    showTextUntil = millis() + DISPLAY_MS;
 
   }
   else if (String(topic) == net.makeTopic("keypad/tap")) {
-    
+    // Visualize keypad taps
   }
 
 }
@@ -338,10 +363,10 @@ void setup() {
   else
     Serial.println("access/response MQTT subscribe OK");
 
-  if (!net.subscribe(net.makeTopic("access/keypad").c_str()))
-    Serial.println("access/response MQTT subscribe FAILED");
+  if (!net.subscribe(net.makeTopic("access/keypad_response").c_str()))
+    Serial.println("access/keypad MQTT subscribe FAILED");
   else
-    Serial.println("access/response MQTT subscribe OK");
+    Serial.println("access/keypad MQTT subscribe OK");
 }
 
 /**
