@@ -24,7 +24,7 @@ constexpr char MQTT_PASS[] = "potter";
 constexpr char DEVICE_ID[] = "door1";
 
 // -----------------------------------------------------------------------------
-// Pin configuration | lcd_rfid_motion_servo
+// Pin configuration | esp1&2.fzz
 // -----------------------------------------------------------------------------
 
 /** @brief RC522 SPI Slave Select pin (D8 / GPIO15). */
@@ -65,7 +65,10 @@ constexpr uint32_t DISPLAY_MS = 3000;
 /** @brief Duration (ms) to display backlight before resetting. */
 constexpr uint32_t DISPLAY_BACKLIGHT_MS = 5000;
 
-constexpr uint32_t UNLOCK_TIME_MS = 15000;
+constexpr uint32_t PIN_TIME_MS = 15000;
+
+constexpr uint32_t UNLOCK_TIME_MS = 5000;
+
 
 /** @brief Main loop polling delay (ms). */
 constexpr uint32_t POLL_MS    = 30;
@@ -104,11 +107,11 @@ uint32_t showTextUntil = 0;
 /** @brief Timestamp (ms) when the display should reset to idle backlight. */
 uint32_t showDisplayUntil = 0;
 
-/** @brief Indicates whether a person is near using sensory input */
-bool person_near = false;
-
 /** @brief Boolean to keep display active for a duration */
 bool motionActive = false;
+
+/** @brief Keep track of pin length from node-red */
+static char enteredPins[5] = "    ";
 
 // -----------------------------------------------------------------------------
 // Helper functions
@@ -120,22 +123,43 @@ bool motionActive = false;
  * @param msg Flash-resident string to display (use F("...")).
  */
 
-void lcdPrintLine0(const __FlashStringHelper* msg) {
-  lcd.setCursor(0, 0);
+void lcdPrintLine(const __FlashStringHelper* msg, uint8_t line) {
+  lcd.setCursor(0, line);
   lcd.print("                ");
-  lcd.setCursor(0, 0);
+  lcd.setCursor(0, line);
+  lcd.print(msg);
+}
+
+// Overload to also use msg
+void lcdPrintLine(const char* msg, uint8_t line) {
+  lcd.setCursor(0, line);
+  lcd.print("                ");
+  lcd.setCursor(0, line);
   lcd.print(msg);
 }
 
 /**
  * @brief Resets the system to the idle state.
  *
- * Clears the LCD, closes the servo if open, and stops textshown mode.
+ * Clears the LCD, and stops textshown mode.
  */
-static void resetIdle() {
+static void forceLock() {
   textshown = false;
   rfidAccess = AccessResult::Denied;
-  lcdPrintLine0(F("Scan RFID card"));
+  accessGranted = AccessResult::Denied;
+  lcdPrintLine(F("Scan RFID card"), 0);
+}
+
+/** @brief Parse pins as char[5] */
+void makeEnteredPins(uint8_t pinLength)
+{
+    if (pinLength > 4) {
+        pinLength = 4;
+    }
+
+    memset(enteredPins, '*', pinLength);
+    memset(enteredPins + pinLength, ' ', 4 - pinLength);
+    enteredPins[4] = '\0';
 }
 
 // Receive response from MQTT broker
@@ -165,59 +189,61 @@ void callback(char* topic, byte* payload, unsigned int length) {
       return;
     }
 
-    // *** Clean up
-    // bool hasAccess = doc["response"]["hasAccess"] | false;
-
     rfidAccess = (doc["response"]["hasAccess"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
 
-    // Serial.printf("Access %s\n", hasAccess ? "granted" : "denied");
     Serial.println("UID match: waiting for PIN...");
 
     if (rfidAccess != AccessResult::Granted) {
-      lcdPrintLine0(F("Access Denied"));
+      lcdPrintLine(F("Access Denied"), 0);
       textshown = true;
       showTextUntil = millis() + DISPLAY_MS;
       return;
     }
 
-    lcdPrintLine0(F("Enter PIN:"));
+    lcdPrintLine(F("Enter PIN:"), 0);
 
     textshown = true;
-    showTextUntil = millis() + UNLOCK_TIME_MS;
+    showTextUntil = millis() + PIN_TIME_MS;
     
   } 
+  // Unlock door on correct keypad response
   else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
     if (rfidAccess != AccessResult::Granted) return;
     // Check if it is an old message
 
 
     // Print on LCD
-    // bool accessGranted = doc["response"]["accessGranted"] | false;
-
     accessGranted = (doc["response"]["accessGranted"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
 
     if (accessGranted != AccessResult::Granted) {
       Serial.println("Access Denied");
-      lcdPrintLine0(F("Access Denied"));
+      lcdPrintLine(F("Access Denied"), 0);
       textshown = true;
       showTextUntil = millis() + DISPLAY_MS;
       return;
     }
 
     Serial.println("Access Granted");
-    lcdPrintLine0(F("Access Granted"));
+    lcdPrintLine(F("Access Granted"), 0);
     textshown = true;
-    showTextUntil = millis() + DISPLAY_MS;
+    showTextUntil = millis() + UNLOCK_TIME_MS;
 
   }
-  else if (strcmp(topic, net.makeTopic("keypad/tap").c_str()) == 0) {
-    // Visualize keypad taps
-  }
+  else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
+    if (rfidAccess != AccessResult::Granted) return;
 
+    // Visual feedback for keypad tap
+    uint8_t pinLength = doc["data"]["pinlength"] | 0;
+
+    // Update entered pins
+    makeEnteredPins(pinLength);
+
+    lcdPrintLine(enteredPins, 1);
+  }
 }
 
 /**
@@ -288,7 +314,6 @@ void uidToHexString(const MFRC522::Uid& uid, char* output, size_t outputSize) {
   output[uid.size * 2] = '\0';
 }
 
-
 /**
  * @brief Handles RFID card detection and processing.
  *
@@ -308,7 +333,7 @@ void handleRFID() {
   uidToHexString(mfrc522.uid, uidString, sizeof(uidString));
 
   Serial.println(uidString);
-  lcdPrintLine0(F("Connecting..."));
+  lcdPrintLine(F("Connecting..."), 0);
 
   textshown = true;
   showTextUntil = millis() + DISPLAY_MS;
@@ -340,7 +365,7 @@ void setup() {
   lcd.init();
   lcd.noBacklight();
   lcd.clear();
-  lcdPrintLine0(F("Scan RFID card"));
+  lcdPrintLine(F("Scan RFID card"), 0);
 
   SPI.begin();
   mfrc522.PCD_Init();
@@ -363,15 +388,14 @@ void setup() {
   Serial.println("MQTT ready");
 
   net.setCallback(callback);
-  if (!net.subscribe(net.makeTopic("access/response").c_str()))
-    Serial.println("access/response MQTT subscribe FAILED");
-  else
-    Serial.println("access/response MQTT subscribe OK");
+  Serial.printf("access/response MQTT subscribe %s\n", 
+    net.subscribe(net.makeTopic("access/response").c_str()) ? "OK" : "FAILED");
 
-  if (!net.subscribe(net.makeTopic("access/keypad_response").c_str()))
-    Serial.println("access/keypad MQTT subscribe FAILED");
-  else
-    Serial.println("access/keypad MQTT subscribe OK");
+  Serial.printf("access/keypad_response MQTT subscribe %s\n", 
+    net.subscribe(net.makeTopic("access/keypad_response").c_str()) ? "OK" : "FAILED");
+  
+  Serial.printf("keypad/beep MQTT subscribe %s\n", 
+    net.subscribe(net.makeTopic("keypad/beep").c_str()) ? "OK" : "FAILED");
 }
 
 /**
@@ -390,7 +414,7 @@ void loop() {
   const uint32_t now = millis();
 
   if (textshown) {
-    if ((int32_t)(now - showTextUntil) >= 0) resetIdle();
+    if ((int32_t)(now - showTextUntil) >= 0) forceLock();
     delay(POLL_MS);
     return;
   }
