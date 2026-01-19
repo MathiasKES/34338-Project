@@ -92,7 +92,8 @@ enum class AccessResult : uint8_t {
   Granted   /**< Access granted */
 };
 
-AccessResult response;
+AccessResult rfidAccess;
+AccessResult accessGranted;
 
 /** @brief Indicates whether a result is currently being displayed. */
 bool textshown = false;
@@ -133,7 +134,7 @@ void lcdPrintLine0(const __FlashStringHelper* msg) {
  */
 static void resetIdle() {
   textshown = false;
-  response = AccessResult::Denied;
+  rfidAccess = AccessResult::Denied;
   lcdPrintLine0(F("Scan RFID card"));
 }
 
@@ -165,16 +166,16 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
 
     // *** Clean up
-    bool hasAccess = doc["response"]["hasAccess"] | false;
+    // bool hasAccess = doc["response"]["hasAccess"] | false;
 
-    response = hasAccess
+    rfidAccess = (doc["response"]["hasAccess"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
 
     // Serial.printf("Access %s\n", hasAccess ? "granted" : "denied");
     Serial.println("UID match: waiting for PIN...");
 
-    if (response != AccessResult::Granted) {
+    if (rfidAccess != AccessResult::Granted) {
       lcdPrintLine0(F("Access Denied"));
       textshown = true;
       showTextUntil = millis() + DISPLAY_MS;
@@ -188,14 +189,18 @@ void callback(char* topic, byte* payload, unsigned int length) {
     
   } 
   else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
-    if (response != AccessResult::Granted) return;
+    if (rfidAccess != AccessResult::Granted) return;
     // Check if it is an old message
 
 
     // Print on LCD
-    bool accessGranted = doc["response"]["accessGranted"] | false;
+    // bool accessGranted = doc["response"]["accessGranted"] | false;
 
-    if (!accessGranted) {
+    accessGranted = (doc["response"]["accessGranted"] | false)
+      ? AccessResult::Granted
+      : AccessResult::Denied;
+
+    if (accessGranted != AccessResult::Granted) {
       Serial.println("Access Denied");
       lcdPrintLine0(F("Access Denied"));
       textshown = true;
@@ -328,7 +333,7 @@ void setup() {
   delay(100);
   Serial.begin(115200);
 
-  response = AccessResult::Denied;
+  rfidAccess = AccessResult::Denied;
 
   Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
 
