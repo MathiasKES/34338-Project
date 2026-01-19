@@ -13,8 +13,8 @@
 
 WifiMqttClient net;
 
-constexpr char WIFI_SSID[] = "Mathias iPhone";
-constexpr char WIFI_PASS[] = "mrbombastic";
+constexpr char WIFI_SSID[] = "Mathias2.4";
+constexpr char WIFI_PASS[] = "mrbombasticcallmefantastic";
 
 constexpr char MQTT_HOST[] = "maqiatto.com";
 constexpr uint16_t MQTT_PORT = 1883;
@@ -150,7 +150,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     return;
   }
 
-  if (String(topic) == net.makeTopic("access/response")) {
+  if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
     uint32_t requestMs = doc["sent_ts_ms"] | 0;
     uint32_t deltaMs = millis() - requestMs;
 
@@ -172,7 +172,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
       : AccessResult::Denied;
 
     // Serial.printf("Access %s\n", hasAccess ? "granted" : "denied");
-    Serial.printf("UID match: waiting for PIN...");
+    Serial.println("UID match: waiting for PIN...");
 
     if (response != AccessResult::Granted) {
       lcdPrintLine0(F("Access Denied"));
@@ -187,7 +187,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     showTextUntil = millis() + UNLOCK_TIME_MS;
     
   } 
-  if (String(topic) == net.makeTopic("access/keypad_response")) {
+  else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
     if (response != AccessResult::Granted) return;
     // Check if it is an old message
 
@@ -209,7 +209,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     showTextUntil = millis() + DISPLAY_MS;
 
   }
-  else if (String(topic) == net.makeTopic("keypad/tap")) {
+  else if (strcmp(topic, net.makeTopic("keypad/tap").c_str()) == 0) {
     // Visualize keypad taps
   }
 
@@ -380,7 +380,8 @@ void setup() {
  */
 void loop() {
   net.loop();
-
+  yield();
+  
   const uint32_t now = millis();
 
   if (textshown) {
