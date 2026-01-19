@@ -22,12 +22,13 @@ constexpr char DEVICE_ID[] = "door1";
 // Pin configuration | esp3.fzz
 // -----------------------------------------------------------------------------
 
-/** @brief  */
+/** @brief Pin configuration | See esp3.fzz*/
 
 constexpr uint8_t RED_PIN    = 4;
 constexpr uint8_t GREEN_PIN  = 0;
 constexpr uint8_t BUZZER_PIN = 14;
 constexpr uint8_t SERVO_PIN  = 13;
+#define POT_PIN A0;
 
 // -----------------------------------------------------------------------------
 // Timing configuration
@@ -60,6 +61,9 @@ Servo lock_servo;
 /** @brief Indicates whether the servo is currently in the open position. */
 bool servoOpen  = false;
 
+uint8_t servoAngle; // potentiometer value
+
+bool adminServoControl = false;
 
 
 // Buzzer state machine
@@ -208,6 +212,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
 
   if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
+    if (adminServoControl) return;
+
     accessGranted = (doc["response"]["accessGranted"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
@@ -231,7 +237,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
       unlockUntil = millis() + UNLOCK_TIME_MS;
 
   // RFID Response, only reacts to denied here
-  } else if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
+  }
+  else if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
     rfidAccess = (doc["response"]["hasAccess"] | false)
       ? true
       : false;
@@ -242,12 +249,27 @@ void callback(char* topic, byte* payload, unsigned int length) {
       forceLock();
       return;
     }
-  } else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
+  }
+  else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
     // Only beep if RFID is valid
     if (!rfidAccess) return;
 
     // Create buzzer tap sound
     playTapSound();
+  }
+  else if (strcmp(topic, net.makeTopic("admin/servo_control").c_str()) == 0) {
+    adminServoControl = (doc["data"]["adminServoControl"] | false)
+      ? true
+      : false;
+
+    if (!adminServoControl) {
+      Serial.println("Admin servo control disabled");
+      // Reset servo to locked position
+      forceLock();
+      return;
+    }
+    
+    Serial.println("Admin servo control enabled");
   }
 }
 
@@ -263,6 +285,8 @@ void setup() {
   digitalWrite(GREEN_PIN, LOW);
   digitalWrite(BUZZER_PIN, LOW);  
   lock_servo.write(0);
+
+  servoAngle = 0;
 
   delay(100);
   Serial.begin(115200);
@@ -289,6 +313,9 @@ void setup() {
 
   Serial.printf("keypad/beep MQTT subscribe %s\n",
     net.subscribe(net.makeTopic("keypad/beep").c_str()) ? "OK" : "FAILED");
+
+    Serial.printf("admin/servo_control MQTT subscribe %s\n",
+    net.subscribe(net.makeTopic("admin/servo_control").c_str()) ? "OK" : "FAILED");
 }
 
 /**
@@ -303,6 +330,14 @@ void loop() {
   yield();
 
   updateBuzzer();
+
+
+  if (adminServoControl) {
+    servoAngle = (int)(analogRead(A0) / 1023.0f * 180.0f);
+    servoAngle = constrain(servoAngle, 0, 180);
+    lock_servo.write(servoAngle);
+    return;
+  }
 
   const uint32_t now = millis();
 
