@@ -52,6 +52,7 @@ enum class AccessResult : uint8_t {
 };
 
 AccessResult accessGranted;
+bool rfidAccess = false;
 
 /** @brief Servo instance controlling the lock mechanism. */
 Servo lock_servo;
@@ -62,22 +63,30 @@ bool servoOpen  = false;
 
 
 // Buzzer state machine
-/** @brief Lock: short-short-long */
+
 // LEFT TIMINGS: beep-durations
 // RIGHT TIMINGS: silence-durations
+
+/** @brief Denied access: LONG */
 const unsigned int deniedTimings[] = {
   2000
 };
 
+/** @brief Lock: long-long-long */
 const unsigned int lockTimings[] = {
   250, 120,
   250, 120,
   250
 };
 
-/** @brief Unlock: long-short-short (distinct but related) */
+/** @brief Unlock: short-short */
 const unsigned int unlockTimings[] = {
   125, 120,
+  125
+};
+
+/** @brief Keypad Tap: short */
+const unsigned int beepTimings[] = {
   125
 };
 
@@ -158,7 +167,11 @@ void playDeniedSound() {
               sizeof(deniedTimings) / sizeof(deniedTimings[0]));
 }
 
-
+void playTapSound() {
+  stopBuzzer();
+  playPattern(beepTimings,
+              sizeof(beepTimings) / sizeof(beepTimings[0]));
+}
 
 
 // -----------------------------------------------------------------------------
@@ -180,7 +193,6 @@ static void forceLock() {
     servoOpen = false;
   }
 }
-
 
 // Receive response from MQTT broker
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -217,18 +229,25 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
       unlocked = true;
       unlockUntil = millis() + UNLOCK_TIME_MS;
+
   // RFID Response, only reacts to denied here
   } else if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
-    bool hasAccess = (doc["response"]["hasAccess"] | false)
+    rfidAccess = (doc["response"]["hasAccess"] | false)
       ? true
       : false;
 
-    if (!hasAccess) {
+    if (!rfidAccess) {
       Serial.println("Access Denied");
       playDeniedSound();
       forceLock();
       return;
     }
+  } else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
+    // Only beep if RFID is valid
+    if (!rfidAccess) return;
+
+    // Create buzzer tap sound
+    playTapSound();
   }
 }
 
@@ -262,12 +281,15 @@ void setup() {
   Serial.println("WiFi & MQTT ready");
 
   net.setCallback(callback);
-  Serial.printf("access/response MQTT subscribe %s\n", 
+  Serial.printf("access/response MQTT subscribe %s\n",
     net.subscribe(net.makeTopic("access/response").c_str()) ? "OK" : "FAILED");
 
-  Serial.printf("access/keypad_response MQTT subscribe %s\n", 
+  Serial.printf("access/keypad_response MQTT subscribe %s\n",
     net.subscribe(net.makeTopic("access/keypad_response").c_str()) ? "OK" : "FAILED");
-} 
+
+  Serial.printf("keypad/beep MQTT subscribe %s\n",
+    net.subscribe(net.makeTopic("keypad/beep").c_str()) ? "OK" : "FAILED");
+}
 
 /**
  * @brief Arduino main loop.
