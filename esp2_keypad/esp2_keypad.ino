@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Keypad.h>
-#include <string.h>
+// #include <string.h>
 #include <ArduinoJson.h>
 
 #include <WiFiMqttClient.h>
@@ -9,8 +9,8 @@
 
 WifiMqttClient net;
 
-constexpr char WIFI_SSID[] = "Mathias iPhone";
-constexpr char WIFI_PASS[] = "mrbombastic";
+constexpr char WIFI_SSID[] = "Mathias2.4";
+constexpr char WIFI_PASS[] = "mrbombasticcallmefantastic";
 
 constexpr char MQTT_HOST[] = "maqiatto.com";
 constexpr uint16_t MQTT_PORT = 1883;
@@ -46,6 +46,31 @@ constexpr uint8_t CODE_LENGTH = 4;
 char input[CODE_LENGTH + 1] = {0};
 uint8_t currentIdx = 0;
 
+bool kpEnabled = false;
+
+// Receive response from MQTT broker
+void callback(char* topic, byte* payload, unsigned int length) {
+  if (length == 0) return;
+
+  StaticJsonDocument<512> doc;
+  DeserializationError err = deserializeJson(doc, payload, length);
+
+  if (err) {
+    Serial.print("JSON parse failed: ");
+    Serial.println(err.c_str());
+    return;
+  }
+
+  if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
+    kpEnabled = (doc["response"]["hasAccess"] | false)
+      ? true
+      : false;
+  }
+  else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
+    kpEnabled = false;
+  }
+}
+
 // ---------------- Setup ----------------
 
 void setup() {
@@ -63,6 +88,13 @@ void setup() {
   );
 
   Serial.println("Keypad + MQTT ready");
+
+  net.setCallback(callback);
+  Serial.printf("access/response MQTT subscribe %s\n",
+    net.subscribe(net.makeTopic("access/response").c_str()) ? "OK" : "FAILED");
+
+    Serial.printf("access/keypad_response MQTT subscribe %s\n",
+    net.subscribe(net.makeTopic("access/keypad_response").c_str()) ? "OK" : "FAILED");
 }
 
 void reset_code() {
@@ -70,14 +102,23 @@ void reset_code() {
   currentIdx = 0;
 }
 
+/** @brief Publish pin length after press */
+void publishTap() {
+  StaticJsonDocument<64> data;
+  data["event"]  = "KP_tap";
+  data["pinlength"] = currentIdx;
+  net.publishJson("keypad/tap", data);
+}
+
 // ---------------- Main loop ----------------
 
 void loop() {
   net.loop();
+  yield();
 
   char key = keypad.getKey();
 
-  if (key == NO_KEY) {
+  if (key == NO_KEY || !kpEnabled) {
     return;
   }
 
@@ -86,22 +127,22 @@ void loop() {
     if (currentIdx < CODE_LENGTH) {
       input[currentIdx++] = key;
       input[currentIdx] = '\0';
+
       Serial.print("Key: ");
       Serial.println(key);
     }
-    return;
   }
 
   // Submit code
-  if (key == '#') {
+  else if (key == '#') {
     if (currentIdx == CODE_LENGTH) {
       Serial.print("Submitting code: ");
       Serial.println(input);
 
       // BaseTopic: hectorfoss@gmail.com/site1/door1/
       StaticJsonDocument<64> data;
-      data["code"] = input;
       data["event"] = "KP_try";
+      data["code"] = input;
 
       net.publishJson("keypad/submit", data);
     } 
@@ -109,12 +150,16 @@ void loop() {
 
     // Reset buffer
     reset_code();
-    return;
   }
 
   // Clear input
-  if (key == '*') {
+  else if (key == '*') {
     reset_code();
     Serial.println("Input cleared");
   }
+
+  else return;
+
+  // Any key press is a tap that updates currentIdx
+  publishTap();
 }
