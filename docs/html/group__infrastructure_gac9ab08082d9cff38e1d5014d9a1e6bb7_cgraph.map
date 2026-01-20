@@ -1,0 +1,11 @@
+<map id="WifiMqttClient::setCallback" name="WifiMqttClient::setCallback">
+<area shape="rect" id="Node000001" title="Sets the MQTT message callback." alt="" coords="5,31,204,56"/>
+<area shape="rect" id="Node000002" href="$group__esp1.html#gac3a129f66dc859e2b7279565f4e1de78" title="MQTT message callback handler." alt="" coords="252,31,328,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,41,238,41,238,46,204,46"/>
+<area shape="rect" id="Node000003" href="$group__esp1.html#ga1eec526201dccd228883774259151450" title="Clears an LCD line and prints a flash&#45;resident string." alt="" coords="394,5,493,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,35,380,26,381,31,329,40"/>
+<area shape="rect" id="Node000005" href="$group__esp1.html#gac8b922f2a416a064034b689152827cce" title="Builds a masked PIN string for LCD display." alt="" coords="376,55,511,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="329,47,363,52,362,57,328,52"/>
+<area shape="rect" id="Node000004" href="$group__esp1.html#gab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="559,5,600,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="493,15,545,15,545,21,493,21"/>
+</map>

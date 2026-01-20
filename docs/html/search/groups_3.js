@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keypad_0',['ESP2 - Keypad',['../group__esp2.html',1,'']]]
+  ['infrastructure_20–_20wifi_20mqtt_0',['Infrastructure – WiFi &amp;amp; MQTT',['../group__infrastructure.html',1,'']]]
 ];

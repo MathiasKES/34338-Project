@@ -1,0 +1,15 @@
+<map id="setup" name="setup">
+<area shape="rect" id="Node000001" title="Arduino setup function." alt="" coords="5,80,64,105"/>
+<area shape="rect" id="Node000002" href="$group__esp1.html#gac3a129f66dc859e2b7279565f4e1de78" title="MQTT message callback handler." alt="" coords="112,55,188,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,84,98,76,99,81,65,89"/>
+<area shape="rect" id="Node000003" href="$group__esp1.html#ga1eec526201dccd228883774259151450" title="Clears an LCD line and prints a flash&#45;resident string." alt="" coords="254,5,353,31"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="49,78,77,58,111,40,177,23,240,16,241,21,178,28,113,44,79,62,52,82"/>
+<area shape="rect" id="Node000004" href="$group__esp1.html#gab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="419,56,460,81"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="64,93,197,100,283,98,370,89,405,79,407,84,371,94,284,103,197,105,64,98"/>
+<area shape="rect" id="Node000006" href="$group__esp1.html#ga2251823e12f034625cf955d83d4ec6b6" title="MFRC522 RFID reader instance." alt="" coords="112,156,188,181"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="57,103,120,146,117,151,54,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,53,249,33,251,38,189,58"/>
+<area shape="rect" id="Node000005" href="$group__esp1.html#gac8b922f2a416a064034b689152827cce" title="Builds a masked PIN string for LCD display." alt="" coords="236,55,371,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="188,65,222,65,222,70,188,70"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="341,28,372,40,407,53,405,58,370,44,339,33"/>
+</map>

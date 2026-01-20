@@ -25,12 +25,14 @@
 var NAVTREE =
 [
   [ "ESP8266 Door Access Control System", "index.html", [
-    [ "34338-Project", "index.html", null ],
+    [ "System Overview", "index.html#autotoc_md1", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -50,7 +52,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"WiFiMqttClient_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

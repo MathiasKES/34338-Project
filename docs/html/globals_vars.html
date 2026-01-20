@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ESP8266 Door Access Control System: File Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -18,36 +17,19 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(function() { init_search(); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ESP8266 Door Access Control System<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">ESP8266 Door Access Control System
    </div>
-   <div id="projectbrief">Distributed RFID + Keypad + Servo access control using MQTT</div>
   </td>
  </tr>
-   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-</td></tr>
  </tbody>
 </table>
 </div>
@@ -59,7 +41,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 $(function() { codefold.init(); });
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -72,15 +64,8 @@ $(function() { codefold.init(); });
 <script type="text/javascript">
 $(function(){initNavTree('globals_vars.html','',''); });
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',false,false,'search.php','Search',true);
-});
-</script>
-<div id="main-nav"></div>
-<div id="container"><div id="doc-content">
+<div id="container">
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -106,126 +91,127 @@ $(function() {
 <div class="textblock">Here is a list of all variables with links to the files they belong to:</div>
 
 <h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>accessGranted&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a39d1ef76cb1d31fc16d855c63df5624a">esp1_rfid_motion.ino</a>, <a class="el" href="esp3_8ino.html#a39d1ef76cb1d31fc16d855c63df5624a">esp3.ino</a></li>
-<li>adminServoControl&#160;:&#160;<a class="el" href="esp3_8ino.html#acb368e6741d7e5d5fb51f384f3ef6c5e">esp3.ino</a></li>
+<li>accessGranted&#160;:&#160;<a class="el" href="group__esp1.html#ga39d1ef76cb1d31fc16d855c63df5624a">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp3.html#ga39d1ef76cb1d31fc16d855c63df5624a">esp3.ino</a></li>
+<li>adminServoControl&#160;:&#160;<a class="el" href="group__esp3.html#gacb368e6741d7e5d5fb51f384f3ef6c5e">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
-<li>beepTimings&#160;:&#160;<a class="el" href="esp3_8ino.html#acf6a49719a118eac7c9f54b4351977fd">esp3.ino</a></li>
-<li>BUZZER_PIN&#160;:&#160;<a class="el" href="esp3_8ino.html#afbe2629cea08969000cef8d30978edd8">esp3.ino</a></li>
-<li>buzzerState&#160;:&#160;<a class="el" href="esp3_8ino.html#a83ec3e49d3b2d7a5b3d7e24776ed94dd">esp3.ino</a></li>
+<li>beepTimings&#160;:&#160;<a class="el" href="group__esp3.html#gacf6a49719a118eac7c9f54b4351977fd">esp3.ino</a></li>
+<li>BUZZER_PIN&#160;:&#160;<a class="el" href="group__esp3.html#gafbe2629cea08969000cef8d30978edd8">esp3.ino</a></li>
+<li>buzzerState&#160;:&#160;<a class="el" href="group__esp3.html#ga83ec3e49d3b2d7a5b3d7e24776ed94dd">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>CODE_LENGTH&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a78e874f81f475d09f84f2bbc5d8f869d">esp2_keypad.ino</a></li>
-<li>colPins&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#aa9fece7b062124080e4b2976f9a8b675">esp2_keypad.ino</a></li>
-<li>COLS&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#aefd90f1160eaa105bc910d4d7c46b815">esp2_keypad.ino</a></li>
-<li>currentIdx&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#afe9f139ae3327939925efd3e3105d58a">esp2_keypad.ino</a></li>
-<li>currentPattern&#160;:&#160;<a class="el" href="esp3_8ino.html#a3968694cac10b831396197bf7627d45c">esp3.ino</a></li>
+<li>CODE_LENGTH&#160;:&#160;<a class="el" href="group__esp2.html#ga78e874f81f475d09f84f2bbc5d8f869d">esp2_keypad.ino</a></li>
+<li>colPins&#160;:&#160;<a class="el" href="group__esp2.html#gaa9fece7b062124080e4b2976f9a8b675">esp2_keypad.ino</a></li>
+<li>COLS&#160;:&#160;<a class="el" href="group__esp2.html#gaefd90f1160eaa105bc910d4d7c46b815">esp2_keypad.ino</a></li>
+<li>currentIdx&#160;:&#160;<a class="el" href="group__esp2.html#gafe9f139ae3327939925efd3e3105d58a">esp2_keypad.ino</a></li>
+<li>currentPattern&#160;:&#160;<a class="el" href="group__esp3.html#ga3968694cac10b831396197bf7627d45c">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>deniedTimings&#160;:&#160;<a class="el" href="esp3_8ino.html#a2bba129d79cf6951bff6c7931dee6f03">esp3.ino</a></li>
-<li>DEVICE_ID&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a04ecc29c762e5b2844d3c24744813015">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a04ecc29c762e5b2844d3c24744813015">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a04ecc29c762e5b2844d3c24744813015">esp3.ino</a></li>
-<li>DISPLAY_BACKLIGHT_MS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a7ac35d96245159cab011565a97a600a2">esp1_rfid_motion.ino</a></li>
-<li>DISPLAY_MS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a8241448199a71015eaefc1267dc8405b">esp1_rfid_motion.ino</a></li>
+<li>deniedTimings&#160;:&#160;<a class="el" href="group__esp3.html#ga2bba129d79cf6951bff6c7931dee6f03">esp3.ino</a></li>
+<li>DEVICE_ID&#160;:&#160;<a class="el" href="group__esp1.html#ga04ecc29c762e5b2844d3c24744813015">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga04ecc29c762e5b2844d3c24744813015">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga04ecc29c762e5b2844d3c24744813015">esp3.ino</a></li>
+<li>DEVICE_NAME&#160;:&#160;<a class="el" href="group__infrastructure.html#ga0ddf5deef4d80297032714cae8ccf027">WiFiMqttClient.cpp</a></li>
+<li>DISPLAY_BACKLIGHT_MS&#160;:&#160;<a class="el" href="group__esp1.html#ga7ac35d96245159cab011565a97a600a2">esp1_rfid_motion.ino</a></li>
+<li>DISPLAY_MS&#160;:&#160;<a class="el" href="group__esp1.html#ga8241448199a71015eaefc1267dc8405b">esp1_rfid_motion.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
-<li>enteredPins&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#af36f6d1529914bff6ce2e463c7d131fb">esp1_rfid_motion.ino</a></li>
+<li>enteredPins&#160;:&#160;<a class="el" href="group__esp1.html#gaf36f6d1529914bff6ce2e463c7d131fb">esp1_rfid_motion.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>GREEN_PIN&#160;:&#160;<a class="el" href="esp3_8ino.html#ad779a2a8a81b39a265a6361f7edf06f2">esp3.ino</a></li>
+<li>GREEN_PIN&#160;:&#160;<a class="el" href="group__esp3.html#gad779a2a8a81b39a265a6361f7edf06f2">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>I2C_SCL_PIN&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a9f6ed03d2d1d74a449ea68a62185786b">esp1_rfid_motion.ino</a></li>
-<li>I2C_SDA_PIN&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a63fd3c54e4843404005eeeb206227853">esp1_rfid_motion.ino</a></li>
-<li>input&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#ab42060a966bf72717ef9f3607d84bdd8">esp2_keypad.ino</a></li>
+<li>I2C_SCL_PIN&#160;:&#160;<a class="el" href="group__esp1.html#ga9f6ed03d2d1d74a449ea68a62185786b">esp1_rfid_motion.ino</a></li>
+<li>I2C_SDA_PIN&#160;:&#160;<a class="el" href="group__esp1.html#ga63fd3c54e4843404005eeeb206227853">esp1_rfid_motion.ino</a></li>
+<li>input&#160;:&#160;<a class="el" href="group__esp2.html#gab42060a966bf72717ef9f3607d84bdd8">esp2_keypad.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_k" name="index_k"></a>- k -</h3><ul>
-<li>keypad&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a0e6c3cc7e8c762ab0ca1fa2296d7bbfe">esp2_keypad.ino</a></li>
-<li>keys&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a856e873a1d14012d57ddb813c4a1e40a">esp2_keypad.ino</a></li>
-<li>kpEnabled&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a45e5fd1e566874b92cd64516fb7447f3">esp2_keypad.ino</a></li>
+<li>keypad&#160;:&#160;<a class="el" href="group__esp2.html#ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe">esp2_keypad.ino</a></li>
+<li>keys&#160;:&#160;<a class="el" href="group__esp2.html#ga856e873a1d14012d57ddb813c4a1e40a">esp2_keypad.ino</a></li>
+<li>kpEnabled&#160;:&#160;<a class="el" href="group__esp2.html#ga45e5fd1e566874b92cd64516fb7447f3">esp2_keypad.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_l" name="index_l"></a>- l -</h3><ul>
-<li>lastChange&#160;:&#160;<a class="el" href="esp3_8ino.html#aeaa41d0f25d6ba9737d73ffa5136f4ab">esp3.ino</a></li>
-<li>LCD_ADDRESS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#aa68f1d788c8105e0735aac60d3df262f">esp1_rfid_motion.ino</a></li>
-<li>LCD_COLUMNS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a0e6a68e678ddbbb64d3a90350409eb77">esp1_rfid_motion.ino</a></li>
-<li>LCD_ROWS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#ae8842648f085d102ff0d7b1f06896143">esp1_rfid_motion.ino</a></li>
-<li>lock_servo&#160;:&#160;<a class="el" href="esp3_8ino.html#a7d2ca4784fdea2b5e9ac6f9ac738ef08">esp3.ino</a></li>
-<li>lockTimings&#160;:&#160;<a class="el" href="esp3_8ino.html#a7dafde6b11d0e61269d5b5326deee7cb">esp3.ino</a></li>
+<li>lastChange&#160;:&#160;<a class="el" href="group__esp3.html#gaeaa41d0f25d6ba9737d73ffa5136f4ab">esp3.ino</a></li>
+<li>LCD_ADDRESS&#160;:&#160;<a class="el" href="group__esp1.html#gaa68f1d788c8105e0735aac60d3df262f">esp1_rfid_motion.ino</a></li>
+<li>LCD_COLUMNS&#160;:&#160;<a class="el" href="group__esp1.html#ga0e6a68e678ddbbb64d3a90350409eb77">esp1_rfid_motion.ino</a></li>
+<li>LCD_ROWS&#160;:&#160;<a class="el" href="group__esp1.html#gae8842648f085d102ff0d7b1f06896143">esp1_rfid_motion.ino</a></li>
+<li>lock_servo&#160;:&#160;<a class="el" href="group__esp3.html#ga7d2ca4784fdea2b5e9ac6f9ac738ef08">esp3.ino</a></li>
+<li>lockTimings&#160;:&#160;<a class="el" href="group__esp3.html#ga7dafde6b11d0e61269d5b5326deee7cb">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>MOTION_PIN&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a8e9966a29ec4b464131da8cb1825ceb5">esp1_rfid_motion.ino</a></li>
-<li>motionActive&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a62fac6034c46ae1f6fc7511f4447decb">esp1_rfid_motion.ino</a></li>
-<li>MQTT_HOST&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a41c34e432b12a511f9348547ddae11d4">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a41c34e432b12a511f9348547ddae11d4">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a41c34e432b12a511f9348547ddae11d4">esp3.ino</a></li>
-<li>MQTT_PASS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a31dacdc924feb376b49448eb843d053c">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a31dacdc924feb376b49448eb843d053c">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a31dacdc924feb376b49448eb843d053c">esp3.ino</a></li>
-<li>MQTT_PORT&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a993a7e0c0377e10146438ebe707f31d0">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a993a7e0c0377e10146438ebe707f31d0">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a993a7e0c0377e10146438ebe707f31d0">esp3.ino</a></li>
-<li>MQTT_USER&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a315cd313c3f6301b48d2f67e63bec2db">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a315cd313c3f6301b48d2f67e63bec2db">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a315cd313c3f6301b48d2f67e63bec2db">esp3.ino</a></li>
+<li>MOTION_PIN&#160;:&#160;<a class="el" href="group__esp1.html#ga8e9966a29ec4b464131da8cb1825ceb5">esp1_rfid_motion.ino</a></li>
+<li>motionActive&#160;:&#160;<a class="el" href="group__esp1.html#ga62fac6034c46ae1f6fc7511f4447decb">esp1_rfid_motion.ino</a></li>
+<li>MQTT_HOST&#160;:&#160;<a class="el" href="group__esp1.html#ga41c34e432b12a511f9348547ddae11d4">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga41c34e432b12a511f9348547ddae11d4">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga41c34e432b12a511f9348547ddae11d4">esp3.ino</a></li>
+<li>MQTT_PASS&#160;:&#160;<a class="el" href="group__esp1.html#ga31dacdc924feb376b49448eb843d053c">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga31dacdc924feb376b49448eb843d053c">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga31dacdc924feb376b49448eb843d053c">esp3.ino</a></li>
+<li>MQTT_PORT&#160;:&#160;<a class="el" href="group__esp1.html#ga993a7e0c0377e10146438ebe707f31d0">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga993a7e0c0377e10146438ebe707f31d0">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga993a7e0c0377e10146438ebe707f31d0">esp3.ino</a></li>
+<li>MQTT_USER&#160;:&#160;<a class="el" href="group__esp1.html#ga315cd313c3f6301b48d2f67e63bec2db">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga315cd313c3f6301b48d2f67e63bec2db">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga315cd313c3f6301b48d2f67e63bec2db">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_n" name="index_n"></a>- n -</h3><ul>
-<li>net&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">esp3.ino</a></li>
+<li>net&#160;:&#160;<a class="el" href="group__esp1.html#ga082cbde9dbf32731aabec6f0b8a7e5c0">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga082cbde9dbf32731aabec6f0b8a7e5c0">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga082cbde9dbf32731aabec6f0b8a7e5c0">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>PIN_TIME_MS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a1437df78a60c0b4cbfba394adb0451d2">esp1_rfid_motion.ino</a></li>
-<li>POLL_MS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#af9d4cdbb45bf12608e163ee4b2d0dadd">esp1_rfid_motion.ino</a></li>
+<li>PIN_TIME_MS&#160;:&#160;<a class="el" href="group__esp1.html#ga1437df78a60c0b4cbfba394adb0451d2">esp1_rfid_motion.ino</a></li>
+<li>POLL_MS&#160;:&#160;<a class="el" href="group__esp1.html#gaf9d4cdbb45bf12608e163ee4b2d0dadd">esp1_rfid_motion.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>RED_PIN&#160;:&#160;<a class="el" href="esp3_8ino.html#a1ff3e63b5caeb625ff113a8190b24c80">esp3.ino</a></li>
-<li>RFID_RST_PIN&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a5ddbb36ee43b0702d33a13226adfd364">esp1_rfid_motion.ino</a></li>
-<li>RFID_SS_PIN&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a740060cb86c3a8429646211325d378cb">esp1_rfid_motion.ino</a></li>
-<li>rfidAccess&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#af8cd458b5a58130e8dd244de49f9591d">esp1_rfid_motion.ino</a>, <a class="el" href="esp3_8ino.html#a037a56ba222296920d6e0f06796e9f21">esp3.ino</a></li>
-<li>rowPins&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a6d6753e0ae098b31e2f84d4024e361cf">esp2_keypad.ino</a></li>
-<li>ROWS&#160;:&#160;<a class="el" href="esp2__keypad_8ino.html#a829655a147df70dd4cc94eae40a2204e">esp2_keypad.ino</a></li>
+<li>RED_PIN&#160;:&#160;<a class="el" href="group__esp3.html#ga1ff3e63b5caeb625ff113a8190b24c80">esp3.ino</a></li>
+<li>RFID_RST_PIN&#160;:&#160;<a class="el" href="group__esp1.html#ga5ddbb36ee43b0702d33a13226adfd364">esp1_rfid_motion.ino</a></li>
+<li>RFID_SS_PIN&#160;:&#160;<a class="el" href="group__esp1.html#ga740060cb86c3a8429646211325d378cb">esp1_rfid_motion.ino</a></li>
+<li>rfidAccess&#160;:&#160;<a class="el" href="group__esp1.html#gaf8cd458b5a58130e8dd244de49f9591d">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp3.html#ga037a56ba222296920d6e0f06796e9f21">esp3.ino</a></li>
+<li>rowPins&#160;:&#160;<a class="el" href="group__esp2.html#ga6d6753e0ae098b31e2f84d4024e361cf">esp2_keypad.ino</a></li>
+<li>ROWS&#160;:&#160;<a class="el" href="group__esp2.html#ga829655a147df70dd4cc94eae40a2204e">esp2_keypad.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>SERVO_PIN&#160;:&#160;<a class="el" href="esp3_8ino.html#a98714b3ea5db9fa78cbcf8891a3c0798">esp3.ino</a></li>
-<li>servoAngle&#160;:&#160;<a class="el" href="esp3_8ino.html#a9382f70e6b3786d1e4c31a325939561e">esp3.ino</a></li>
-<li>servoOpen&#160;:&#160;<a class="el" href="esp3_8ino.html#ac981a10fb220aee90291389b2607c637">esp3.ino</a></li>
-<li>showDisplayUntil&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a25ac0b6f6c871d8fcaf0a438f1d8f46a">esp1_rfid_motion.ino</a></li>
-<li>showTextUntil&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a04d3079f12f3e11e3bcb2b289c537093">esp1_rfid_motion.ino</a></li>
-<li>stepIndex&#160;:&#160;<a class="el" href="esp3_8ino.html#ad0d2a31b1a102cbb8a415773c47b01bb">esp3.ino</a></li>
+<li>SERVO_PIN&#160;:&#160;<a class="el" href="group__esp3.html#ga98714b3ea5db9fa78cbcf8891a3c0798">esp3.ino</a></li>
+<li>servoAngle&#160;:&#160;<a class="el" href="group__esp3.html#ga9382f70e6b3786d1e4c31a325939561e">esp3.ino</a></li>
+<li>servoOpen&#160;:&#160;<a class="el" href="group__esp3.html#gac981a10fb220aee90291389b2607c637">esp3.ino</a></li>
+<li>showDisplayUntil&#160;:&#160;<a class="el" href="group__esp1.html#ga25ac0b6f6c871d8fcaf0a438f1d8f46a">esp1_rfid_motion.ino</a></li>
+<li>showTextUntil&#160;:&#160;<a class="el" href="group__esp1.html#ga04d3079f12f3e11e3bcb2b289c537093">esp1_rfid_motion.ino</a></li>
+<li>stepIndex&#160;:&#160;<a class="el" href="group__esp3.html#gad0d2a31b1a102cbb8a415773c47b01bb">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>textshown&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a7723000e87c672531aa82d5653686e61">esp1_rfid_motion.ino</a></li>
+<li>textshown&#160;:&#160;<a class="el" href="group__esp1.html#ga7723000e87c672531aa82d5653686e61">esp1_rfid_motion.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>UNLOCK_TIME_MS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a6d6d37a1e68b6dcd10e646ed685f6f5e">esp1_rfid_motion.ino</a>, <a class="el" href="esp3_8ino.html#a6d6d37a1e68b6dcd10e646ed685f6f5e">esp3.ino</a></li>
-<li>unlocked&#160;:&#160;<a class="el" href="esp3_8ino.html#a5284d36e95aca49afcb3ae1ecc97add5">esp3.ino</a></li>
-<li>unlockTimings&#160;:&#160;<a class="el" href="esp3_8ino.html#af8884950ef523ca854f256d016cfaf29">esp3.ino</a></li>
-<li>unlockUntil&#160;:&#160;<a class="el" href="esp3_8ino.html#a744e7cb284580272a7afb8a81f2a3bba">esp3.ino</a></li>
+<li>UNLOCK_TIME_MS&#160;:&#160;<a class="el" href="group__esp1.html#ga6d6d37a1e68b6dcd10e646ed685f6f5e">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp3.html#ga6d6d37a1e68b6dcd10e646ed685f6f5e">esp3.ino</a></li>
+<li>unlocked&#160;:&#160;<a class="el" href="group__esp3.html#ga5284d36e95aca49afcb3ae1ecc97add5">esp3.ino</a></li>
+<li>unlockTimings&#160;:&#160;<a class="el" href="group__esp3.html#gaf8884950ef523ca854f256d016cfaf29">esp3.ino</a></li>
+<li>unlockUntil&#160;:&#160;<a class="el" href="group__esp3.html#ga744e7cb284580272a7afb8a81f2a3bba">esp3.ino</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_w" name="index_w"></a>- w -</h3><ul>
-<li>WIFI_PASS&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#a0495958e0c537c1c5100ee272495435c">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#a0495958e0c537c1c5100ee272495435c">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#a0495958e0c537c1c5100ee272495435c">esp3.ino</a></li>
-<li>WIFI_SSID&#160;:&#160;<a class="el" href="esp1__rfid__motion_8ino.html#ae4ee394ecd24781bba5d0aaaab8e964a">esp1_rfid_motion.ino</a>, <a class="el" href="esp2__keypad_8ino.html#ae4ee394ecd24781bba5d0aaaab8e964a">esp2_keypad.ino</a>, <a class="el" href="esp3_8ino.html#ae4ee394ecd24781bba5d0aaaab8e964a">esp3.ino</a></li>
+<li>WIFI_PASS&#160;:&#160;<a class="el" href="group__esp1.html#ga0495958e0c537c1c5100ee272495435c">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#ga0495958e0c537c1c5100ee272495435c">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#ga0495958e0c537c1c5100ee272495435c">esp3.ino</a></li>
+<li>WIFI_SSID&#160;:&#160;<a class="el" href="group__esp1.html#gae4ee394ecd24781bba5d0aaaab8e964a">esp1_rfid_motion.ino</a>, <a class="el" href="group__esp2.html#gae4ee394ecd24781bba5d0aaaab8e964a">esp2_keypad.ino</a>, <a class="el" href="group__esp3.html#gae4ee394ecd24781bba5d0aaaab8e964a">esp3.ino</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -233,7 +219,7 @@ $(function() {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on <span class="timestamp"></span> for ESP8266 Door Access Control System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
   </ul>
 </div>
 </body>

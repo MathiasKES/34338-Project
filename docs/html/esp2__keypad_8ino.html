@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ESP8266 Door Access Control System: esp2_keypad/esp2_keypad.ino File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -18,36 +17,19 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(function() { init_search(); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ESP8266 Door Access Control System<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">ESP8266 Door Access Control System
    </div>
-   <div id="projectbrief">Distributed RFID + Keypad + Servo access control using MQTT</div>
   </td>
  </tr>
-   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-</td></tr>
  </tbody>
 </table>
 </div>
@@ -59,7 +41,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 $(function() { codefold.init(); });
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -72,15 +64,8 @@ $(function() { codefold.init(); });
 <script type="text/javascript">
 $(function(){initNavTree('esp2__keypad_8ino.html','',''); });
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',false,false,'search.php','Search',true);
-});
-</script>
-<div id="main-nav"></div>
-<div id="container"><div id="doc-content">
+<div id="container">
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -109,860 +94,75 @@ $(function() {
 
 <p>Keypad-based PIN entry controller with MQTT backend integration.  
 <a href="#details">More...</a></p>
-<div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Include dependency graph for esp2_keypad.ino:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="esp2__keypad_8ino__incl.png" border="0" usemap="#aesp2__keypad_2esp2__keypad_8ino" loading="lazy" alt=""/></div>
-<map name="aesp2__keypad_2esp2__keypad_8ino" id="aesp2__keypad_2esp2__keypad_8ino">
-<area shape="rect" title="Keypad&#45;based PIN entry controller with MQTT backend integration." alt="" coords="105,5,325,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,89,104"/>
-<area shape="poly" title=" " alt="" coords="189,33,88,76,86,71,187,28"/>
-<area shape="rect" title=" " alt="" coords="114,79,197,104"/>
-<area shape="poly" title=" " alt="" coords="207,33,176,70,172,66,203,29"/>
-<area shape="rect" title=" " alt="" coords="221,79,332,104"/>
-<area shape="poly" title=" " alt="" coords="227,29,260,66,256,70,223,33"/>
-<area shape="rect" title=" " alt="" coords="357,79,487,104"/>
-<area shape="poly" title=" " alt="" coords="249,28,376,72,375,77,248,33"/>
-</map>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;Keypad.h&gt;</code><br />
+<code>#include &lt;ArduinoJson.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="WiFiMqttClient_8h_source.html">WiFiMqttClient.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for esp2_keypad.ino:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="esp2__keypad_8ino__incl.svg" width="499" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="esp2__keypad_8ino_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac3a129f66dc859e2b7279565f4e1de78" id="r_ac3a129f66dc859e2b7279565f4e1de78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac3a129f66dc859e2b7279565f4e1de78">callback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
-<tr class="memdesc:ac3a129f66dc859e2b7279565f4e1de78"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT message callback handler.  <br /></td></tr>
-<tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
-<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino setup function.  <br /></td></tr>
-<tr class="memitem:a8d5423be1c5a1f45105978994e468f0a" id="r_a8d5423be1c5a1f45105978994e468f0a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8d5423be1c5a1f45105978994e468f0a">reset_code</a> ()</td></tr>
-<tr class="memdesc:a8d5423be1c5a1f45105978994e468f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the PIN input buffer and index.  <br /></td></tr>
-<tr class="memitem:ad45c6bc383467b9b8d638d841787c370" id="r_ad45c6bc383467b9b8d638d841787c370"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad45c6bc383467b9b8d638d841787c370">publishTap</a> ()</td></tr>
-<tr class="memdesc:ad45c6bc383467b9b8d638d841787c370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes keypad tap feedback via MQTT.  <br /></td></tr>
-<tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
-<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino main loop.  <br /></td></tr>
+<tr class="memitem:gac3a129f66dc859e2b7279565f4e1de78" id="r_gac3a129f66dc859e2b7279565f4e1de78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gac3a129f66dc859e2b7279565f4e1de78">callback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
+<tr class="memdesc:gac3a129f66dc859e2b7279565f4e1de78"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT message callback handler.  <br /></td></tr>
+<tr class="memitem:ga4fc01d736fe50cf5b977f755b675f11d" id="r_ga4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:ga4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino setup function.  <br /></td></tr>
+<tr class="memitem:ga8d5423be1c5a1f45105978994e468f0a" id="r_ga8d5423be1c5a1f45105978994e468f0a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga8d5423be1c5a1f45105978994e468f0a">reset_code</a> ()</td></tr>
+<tr class="memdesc:ga8d5423be1c5a1f45105978994e468f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the PIN input buffer and index.  <br /></td></tr>
+<tr class="memitem:gad45c6bc383467b9b8d638d841787c370" id="r_gad45c6bc383467b9b8d638d841787c370"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gad45c6bc383467b9b8d638d841787c370">publishTap</a> ()</td></tr>
+<tr class="memdesc:gad45c6bc383467b9b8d638d841787c370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes keypad tap feedback via MQTT.  <br /></td></tr>
+<tr class="memitem:gafe461d27b9c48d5921c00d521181f12f" id="r_gafe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gafe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:gafe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino main loop.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a082cbde9dbf32731aabec6f0b8a7e5c0" id="r_a082cbde9dbf32731aabec6f0b8a7e5c0"><td class="memItemLeft">WifiMqttClient&#160;</td><td class="memItemRight"><a class="el" href="#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a></td></tr>
-<tr class="memdesc:a082cbde9dbf32731aabec6f0b8a7e5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi + MQTT client wrapper.  <br /></td></tr>
-<tr class="memitem:ae4ee394ecd24781bba5d0aaaab8e964a" id="r_ae4ee394ecd24781bba5d0aaaab8e964a"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a> [] = &quot;Mathias2.4&quot;</td></tr>
-<tr class="memdesc:ae4ee394ecd24781bba5d0aaaab8e964a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi SSID.  <br /></td></tr>
-<tr class="memitem:a0495958e0c537c1c5100ee272495435c" id="r_a0495958e0c537c1c5100ee272495435c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#a0495958e0c537c1c5100ee272495435c">WIFI_PASS</a> [] = &quot;mrbombasticcallmefantastic&quot;</td></tr>
-<tr class="memdesc:a0495958e0c537c1c5100ee272495435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password.  <br /></td></tr>
-<tr class="memitem:a41c34e432b12a511f9348547ddae11d4" id="r_a41c34e432b12a511f9348547ddae11d4"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#a41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a> [] = &quot;maqiatto.com&quot;</td></tr>
-<tr class="memdesc:a41c34e432b12a511f9348547ddae11d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker hostname.  <br /></td></tr>
-<tr class="memitem:a993a7e0c0377e10146438ebe707f31d0" id="r_a993a7e0c0377e10146438ebe707f31d0"><td class="memItemLeft">constexpr uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a> = 1883</td></tr>
-<tr class="memdesc:a993a7e0c0377e10146438ebe707f31d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker port.  <br /></td></tr>
-<tr class="memitem:a315cd313c3f6301b48d2f67e63bec2db" id="r_a315cd313c3f6301b48d2f67e63bec2db"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#a315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a> [] = &quot;hectorfoss@gmail.com&quot;</td></tr>
-<tr class="memdesc:a315cd313c3f6301b48d2f67e63bec2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT username.  <br /></td></tr>
-<tr class="memitem:a31dacdc924feb376b49448eb843d053c" id="r_a31dacdc924feb376b49448eb843d053c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#a31dacdc924feb376b49448eb843d053c">MQTT_PASS</a> [] = &quot;potter&quot;</td></tr>
-<tr class="memdesc:a31dacdc924feb376b49448eb843d053c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT password.  <br /></td></tr>
-<tr class="memitem:a04ecc29c762e5b2844d3c24744813015" id="r_a04ecc29c762e5b2844d3c24744813015"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#a04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a> [] = &quot;door1&quot;</td></tr>
-<tr class="memdesc:a04ecc29c762e5b2844d3c24744813015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique device identifier used in MQTT topics.  <br /></td></tr>
-<tr class="memitem:a829655a147df70dd4cc94eae40a2204e" id="r_a829655a147df70dd4cc94eae40a2204e"><td class="memItemLeft">const byte&#160;</td><td class="memItemRight"><a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a> = 4</td></tr>
-<tr class="memdesc:a829655a147df70dd4cc94eae40a2204e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows in the keypad matrix.  <br /></td></tr>
-<tr class="memitem:aefd90f1160eaa105bc910d4d7c46b815" id="r_aefd90f1160eaa105bc910d4d7c46b815"><td class="memItemLeft">const byte&#160;</td><td class="memItemRight"><a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a> = 4</td></tr>
-<tr class="memdesc:aefd90f1160eaa105bc910d4d7c46b815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of columns in the keypad matrix.  <br /></td></tr>
-<tr class="memitem:a856e873a1d14012d57ddb813c4a1e40a" id="r_a856e873a1d14012d57ddb813c4a1e40a"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a856e873a1d14012d57ddb813c4a1e40a">keys</a> [<a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>][<a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>]</td></tr>
-<tr class="memdesc:a856e873a1d14012d57ddb813c4a1e40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical keypad layout.  <br /></td></tr>
-<tr class="memitem:a6d6753e0ae098b31e2f84d4024e361cf" id="r_a6d6753e0ae098b31e2f84d4024e361cf"><td class="memItemLeft">byte&#160;</td><td class="memItemRight"><a class="el" href="#a6d6753e0ae098b31e2f84d4024e361cf">rowPins</a> [<a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>] = {16, 5, 4, 0}</td></tr>
-<tr class="memdesc:a6d6753e0ae098b31e2f84d4024e361cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pins connected to keypad rows.  <br /></td></tr>
-<tr class="memitem:aa9fece7b062124080e4b2976f9a8b675" id="r_aa9fece7b062124080e4b2976f9a8b675"><td class="memItemLeft">byte&#160;</td><td class="memItemRight"><a class="el" href="#aa9fece7b062124080e4b2976f9a8b675">colPins</a> [<a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>] = {2, 14, 12, 13}</td></tr>
-<tr class="memdesc:aa9fece7b062124080e4b2976f9a8b675"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pins connected to keypad columns.  <br /></td></tr>
-<tr class="memitem:a0e6c3cc7e8c762ab0ca1fa2296d7bbfe" id="r_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe"><td class="memItemLeft">Keypad&#160;</td><td class="memItemRight"><a class="el" href="#a0e6c3cc7e8c762ab0ca1fa2296d7bbfe">keypad</a> = Keypad(makeKeymap(<a class="el" href="#a856e873a1d14012d57ddb813c4a1e40a">keys</a>), <a class="el" href="#a6d6753e0ae098b31e2f84d4024e361cf">rowPins</a>, <a class="el" href="#aa9fece7b062124080e4b2976f9a8b675">colPins</a>, <a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>, <a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>)</td></tr>
-<tr class="memdesc:a0e6c3cc7e8c762ab0ca1fa2296d7bbfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keypad instance handling scanning and debouncing.  <br /></td></tr>
-<tr class="memitem:a78e874f81f475d09f84f2bbc5d8f869d" id="r_a78e874f81f475d09f84f2bbc5d8f869d"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a> = 4</td></tr>
-<tr class="memdesc:a78e874f81f475d09f84f2bbc5d8f869d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required PIN length.  <br /></td></tr>
-<tr class="memitem:ab42060a966bf72717ef9f3607d84bdd8" id="r_ab42060a966bf72717ef9f3607d84bdd8"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a> [<a class="el" href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a>+1] = {0}</td></tr>
-<tr class="memdesc:ab42060a966bf72717ef9f3607d84bdd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input buffer for PIN digits.  <br /></td></tr>
-<tr class="memitem:afe9f139ae3327939925efd3e3105d58a" id="r_afe9f139ae3327939925efd3e3105d58a"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a> = 0</td></tr>
-<tr class="memdesc:afe9f139ae3327939925efd3e3105d58a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current index into the PIN buffer.  <br /></td></tr>
-<tr class="memitem:a45e5fd1e566874b92cd64516fb7447f3" id="r_a45e5fd1e566874b92cd64516fb7447f3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a> = false</td></tr>
-<tr class="memdesc:a45e5fd1e566874b92cd64516fb7447f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether keypad input is currently enabled.  <br /></td></tr>
+<tr class="memitem:ga082cbde9dbf32731aabec6f0b8a7e5c0" id="r_ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="memItemLeft"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a>&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga082cbde9dbf32731aabec6f0b8a7e5c0">net</a></td></tr>
+<tr class="memdesc:ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi + MQTT client wrapper.  <br /></td></tr>
+<tr class="memitem:gae4ee394ecd24781bba5d0aaaab8e964a" id="r_gae4ee394ecd24781bba5d0aaaab8e964a"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a> [] = &quot;Mathias2.4&quot;</td></tr>
+<tr class="memdesc:gae4ee394ecd24781bba5d0aaaab8e964a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi SSID.  <br /></td></tr>
+<tr class="memitem:ga0495958e0c537c1c5100ee272495435c" id="r_ga0495958e0c537c1c5100ee272495435c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga0495958e0c537c1c5100ee272495435c">WIFI_PASS</a> [] = &quot;mrbombasticcallmefantastic&quot;</td></tr>
+<tr class="memdesc:ga0495958e0c537c1c5100ee272495435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password.  <br /></td></tr>
+<tr class="memitem:ga41c34e432b12a511f9348547ddae11d4" id="r_ga41c34e432b12a511f9348547ddae11d4"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a> [] = &quot;maqiatto.com&quot;</td></tr>
+<tr class="memdesc:ga41c34e432b12a511f9348547ddae11d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker hostname.  <br /></td></tr>
+<tr class="memitem:ga993a7e0c0377e10146438ebe707f31d0" id="r_ga993a7e0c0377e10146438ebe707f31d0"><td class="memItemLeft">constexpr uint16_t&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a> = 1883</td></tr>
+<tr class="memdesc:ga993a7e0c0377e10146438ebe707f31d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker port.  <br /></td></tr>
+<tr class="memitem:ga315cd313c3f6301b48d2f67e63bec2db" id="r_ga315cd313c3f6301b48d2f67e63bec2db"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a> [] = &quot;hectorfoss@gmail.com&quot;</td></tr>
+<tr class="memdesc:ga315cd313c3f6301b48d2f67e63bec2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT username.  <br /></td></tr>
+<tr class="memitem:ga31dacdc924feb376b49448eb843d053c" id="r_ga31dacdc924feb376b49448eb843d053c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga31dacdc924feb376b49448eb843d053c">MQTT_PASS</a> [] = &quot;potter&quot;</td></tr>
+<tr class="memdesc:ga31dacdc924feb376b49448eb843d053c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT password.  <br /></td></tr>
+<tr class="memitem:ga04ecc29c762e5b2844d3c24744813015" id="r_ga04ecc29c762e5b2844d3c24744813015"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a> [] = &quot;door1&quot;</td></tr>
+<tr class="memdesc:ga04ecc29c762e5b2844d3c24744813015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique device identifier used in MQTT topics.  <br /></td></tr>
+<tr class="memitem:ga829655a147df70dd4cc94eae40a2204e" id="r_ga829655a147df70dd4cc94eae40a2204e"><td class="memItemLeft">const byte&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga829655a147df70dd4cc94eae40a2204e">ROWS</a> = 4</td></tr>
+<tr class="memdesc:ga829655a147df70dd4cc94eae40a2204e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows in the keypad matrix.  <br /></td></tr>
+<tr class="memitem:gaefd90f1160eaa105bc910d4d7c46b815" id="r_gaefd90f1160eaa105bc910d4d7c46b815"><td class="memItemLeft">const byte&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gaefd90f1160eaa105bc910d4d7c46b815">COLS</a> = 4</td></tr>
+<tr class="memdesc:gaefd90f1160eaa105bc910d4d7c46b815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of columns in the keypad matrix.  <br /></td></tr>
+<tr class="memitem:ga856e873a1d14012d57ddb813c4a1e40a" id="r_ga856e873a1d14012d57ddb813c4a1e40a"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga856e873a1d14012d57ddb813c4a1e40a">keys</a> [<a class="el" href="group__esp2.html#ga829655a147df70dd4cc94eae40a2204e">ROWS</a>][<a class="el" href="group__esp2.html#gaefd90f1160eaa105bc910d4d7c46b815">COLS</a>]</td></tr>
+<tr class="memdesc:ga856e873a1d14012d57ddb813c4a1e40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical keypad layout.  <br /></td></tr>
+<tr class="memitem:ga6d6753e0ae098b31e2f84d4024e361cf" id="r_ga6d6753e0ae098b31e2f84d4024e361cf"><td class="memItemLeft">byte&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga6d6753e0ae098b31e2f84d4024e361cf">rowPins</a> [<a class="el" href="group__esp2.html#ga829655a147df70dd4cc94eae40a2204e">ROWS</a>] = {16, 5, 4, 0}</td></tr>
+<tr class="memdesc:ga6d6753e0ae098b31e2f84d4024e361cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pins connected to keypad rows.  <br /></td></tr>
+<tr class="memitem:gaa9fece7b062124080e4b2976f9a8b675" id="r_gaa9fece7b062124080e4b2976f9a8b675"><td class="memItemLeft">byte&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gaa9fece7b062124080e4b2976f9a8b675">colPins</a> [<a class="el" href="group__esp2.html#gaefd90f1160eaa105bc910d4d7c46b815">COLS</a>] = {2, 14, 12, 13}</td></tr>
+<tr class="memdesc:gaa9fece7b062124080e4b2976f9a8b675"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pins connected to keypad columns.  <br /></td></tr>
+<tr class="memitem:ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe" id="r_ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe"><td class="memItemLeft">Keypad&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe">keypad</a> = Keypad(makeKeymap(<a class="el" href="group__esp2.html#ga856e873a1d14012d57ddb813c4a1e40a">keys</a>), <a class="el" href="group__esp2.html#ga6d6753e0ae098b31e2f84d4024e361cf">rowPins</a>, <a class="el" href="group__esp2.html#gaa9fece7b062124080e4b2976f9a8b675">colPins</a>, <a class="el" href="group__esp2.html#ga829655a147df70dd4cc94eae40a2204e">ROWS</a>, <a class="el" href="group__esp2.html#gaefd90f1160eaa105bc910d4d7c46b815">COLS</a>)</td></tr>
+<tr class="memdesc:ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keypad instance handling scanning and debouncing.  <br /></td></tr>
+<tr class="memitem:ga78e874f81f475d09f84f2bbc5d8f869d" id="r_ga78e874f81f475d09f84f2bbc5d8f869d"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a> = 4</td></tr>
+<tr class="memdesc:ga78e874f81f475d09f84f2bbc5d8f869d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required PIN length.  <br /></td></tr>
+<tr class="memitem:gab42060a966bf72717ef9f3607d84bdd8" id="r_gab42060a966bf72717ef9f3607d84bdd8"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gab42060a966bf72717ef9f3607d84bdd8">input</a> [<a class="el" href="group__esp2.html#ga78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a>+1] = {0}</td></tr>
+<tr class="memdesc:gab42060a966bf72717ef9f3607d84bdd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input buffer for PIN digits.  <br /></td></tr>
+<tr class="memitem:gafe9f139ae3327939925efd3e3105d58a" id="r_gafe9f139ae3327939925efd3e3105d58a"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#gafe9f139ae3327939925efd3e3105d58a">currentIdx</a> = 0</td></tr>
+<tr class="memdesc:gafe9f139ae3327939925efd3e3105d58a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current index into the PIN buffer.  <br /></td></tr>
+<tr class="memitem:ga45e5fd1e566874b92cd64516fb7447f3" id="r_ga45e5fd1e566874b92cd64516fb7447f3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="group__esp2.html#ga45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a> = false</td></tr>
+<tr class="memdesc:ga45e5fd1e566874b92cd64516fb7447f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether keypad input is currently enabled.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Keypad-based PIN entry controller with MQTT backend integration. </p>
 
 <p class="definition">Definition in file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="ac3a129f66dc859e2b7279565f4e1de78" name="ac3a129f66dc859e2b7279565f4e1de78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3a129f66dc859e2b7279565f4e1de78">&#9670;&#160;</a></span>callback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void callback </td>
-          <td>(</td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>MQTT message callback handler. </p>
-<p>Handles:</p><ul>
-<li>Enabling keypad input after RFID access is granted</li>
-<li>Disabling keypad input after PIN validation completes</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">topic</td><td>MQTT topic string. </td></tr>
-    <tr><td class="paramname">payload</td><td>Raw payload bytes. </td></tr>
-    <tr><td class="paramname">length</td><td>Payload length. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00150">150</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  150</span>                                                               {</div>
-<div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>  <span class="comment">// Ignore empty MQTT messages</span></div>
-<div class="line"><span class="lineno">  153</span>  <span class="keywordflow">if</span> (length == 0) <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>  StaticJsonDocument&lt;512&gt; doc;</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>  <span class="comment">// Parse JSON payload</span></div>
-<div class="line"><span class="lineno">  158</span>  DeserializationError err = deserializeJson(doc, payload, length);</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>  <span class="comment">// Abort on JSON parsing failure</span></div>
-<div class="line"><span class="lineno">  161</span>  <span class="keywordflow">if</span> (err) {</div>
-<div class="line"><span class="lineno">  162</span>    Serial.print(<span class="stringliteral">&quot;JSON parse failed: &quot;</span>);</div>
-<div class="line"><span class="lineno">  163</span>    Serial.println(err.c_str());</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  165</span>  }</div>
-<div class="line"><span class="lineno">  166</span> </div>
-<div class="line"><span class="lineno">  167</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  168</span>  <span class="comment">// RFID access response: enable or disable keypad</span></div>
-<div class="line"><span class="lineno">  169</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  170</span>  <span class="keywordflow">if</span> (strcmp(topic, <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.makeTopic(<span class="stringliteral">&quot;access/response&quot;</span>).c_str()) == 0) {</div>
-<div class="line"><span class="lineno">  171</span> </div>
-<div class="line"><span class="lineno">  172</span>    <span class="comment">// Enable keypad only if RFID access was granted</span></div>
-<div class="line"><span class="lineno">  173</span>    <a class="code hl_variable" href="#a45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a> = (doc[<span class="stringliteral">&quot;response&quot;</span>][<span class="stringliteral">&quot;hasAccess&quot;</span>] | <span class="keyword">false</span>)</div>
-<div class="line"><span class="lineno">  174</span>      ? <span class="keyword">true</span></div>
-<div class="line"><span class="lineno">  175</span>      : false;</div>
-<div class="line"><span class="lineno">  176</span>  }</div>
-<div class="line"><span class="lineno">  177</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  178</span>  <span class="comment">// PIN verification response: always disable keypad afterward</span></div>
-<div class="line"><span class="lineno">  179</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  180</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(topic, <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.makeTopic(<span class="stringliteral">&quot;access/keypad_response&quot;</span>).c_str()) == 0) {</div>
-<div class="line"><span class="lineno">  181</span> </div>
-<div class="line"><span class="lineno">  182</span>    <span class="comment">// Prevent further input until next RFID authorization</span></div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_variable" href="#a45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  184</span>  }</div>
-<div class="line"><span class="lineno">  185</span>}</div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a082cbde9dbf32731aabec6f0b8a7e5c0"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a></div><div class="ttdeci">WifiMqttClient net</div><div class="ttdoc">WiFi + MQTT client wrapper.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00053">esp1_rfid_motion.ino:53</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_a45e5fd1e566874b92cd64516fb7447f3"><div class="ttname"><a href="#a45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a></div><div class="ttdeci">bool kpEnabled</div><div class="ttdoc">Indicates whether keypad input is currently enabled.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00133">esp2_keypad.ino:133</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="esp2__keypad_8ino_source.html#l00133">kpEnabled</a>, and <a class="el" href="esp1__rfid__motion_8ino_source.html#l00053">net</a>.</p>
-
-</div>
-</div>
-<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void loop </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Arduino main loop. </p>
-<p>Handles:</p><ul>
-<li>MQTT client processing</li>
-<li>Keypad scanning</li>
-<li>PIN entry logic</li>
-<li>PIN submission and reset </li>
-</ul>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00265">265</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  265</span>            {</div>
-<div class="line"><span class="lineno">  266</span>  <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.loop();   <span class="comment">// Process MQTT traffic</span></div>
-<div class="line"><span class="lineno">  267</span>  yield();      <span class="comment">// Allow background WiFi tasks</span></div>
-<div class="line"><span class="lineno">  268</span> </div>
-<div class="line"><span class="lineno">  269</span>  <span class="comment">// Read keypad state (non-blocking)</span></div>
-<div class="line"><span class="lineno">  270</span>  <span class="keywordtype">char</span> key = <a class="code hl_variable" href="#a0e6c3cc7e8c762ab0ca1fa2296d7bbfe">keypad</a>.getKey();</div>
-<div class="line"><span class="lineno">  271</span> </div>
-<div class="line"><span class="lineno">  272</span>  <span class="comment">// Ignore input if no key pressed or keypad is disabled</span></div>
-<div class="line"><span class="lineno">  273</span>  <span class="keywordflow">if</span> (key == NO_KEY || !<a class="code hl_variable" href="#a45e5fd1e566874b92cd64516fb7447f3">kpEnabled</a>) {</div>
-<div class="line"><span class="lineno">  274</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  275</span>  }</div>
-<div class="line"><span class="lineno">  276</span> </div>
-<div class="line"><span class="lineno">  277</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  278</span>  <span class="comment">// Numeric key input</span></div>
-<div class="line"><span class="lineno">  279</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  280</span>  <span class="keywordflow">if</span> (key &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; key &lt;= <span class="charliteral">&#39;9&#39;</span>) {</div>
-<div class="line"><span class="lineno">  281</span> </div>
-<div class="line"><span class="lineno">  282</span>    <span class="comment">// Only accept input if buffer is not full</span></div>
-<div class="line"><span class="lineno">  283</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a> &lt; <a class="code hl_variable" href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a>) {</div>
-<div class="line"><span class="lineno">  284</span>      <a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>[<a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a>++] = key;   <span class="comment">// Store digit</span></div>
-<div class="line"><span class="lineno">  285</span>      <a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>[<a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a>] = <span class="charliteral">&#39;\0&#39;</span>;    <span class="comment">// Maintain null-terminated string</span></div>
-<div class="line"><span class="lineno">  286</span> </div>
-<div class="line"><span class="lineno">  287</span>      Serial.print(<span class="stringliteral">&quot;Key: &quot;</span>);</div>
-<div class="line"><span class="lineno">  288</span>      Serial.println(key);</div>
-<div class="line"><span class="lineno">  289</span>    }</div>
-<div class="line"><span class="lineno">  290</span>  }</div>
-<div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  293</span>  <span class="comment">// Submit PIN using &#39;#&#39;</span></div>
-<div class="line"><span class="lineno">  294</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  295</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;#&#39;</span>) {</div>
-<div class="line"><span class="lineno">  296</span> </div>
-<div class="line"><span class="lineno">  297</span>    <span class="comment">// Only submit if required PIN length is reached</span></div>
-<div class="line"><span class="lineno">  298</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a> == <a class="code hl_variable" href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a>) {</div>
-<div class="line"><span class="lineno">  299</span>      Serial.print(<span class="stringliteral">&quot;Submitting code: &quot;</span>);</div>
-<div class="line"><span class="lineno">  300</span>      Serial.println(<a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>);</div>
-<div class="line"><span class="lineno">  301</span> </div>
-<div class="line"><span class="lineno">  302</span>      <span class="comment">// Build JSON payload for PIN submission</span></div>
-<div class="line"><span class="lineno">  303</span>      StaticJsonDocument&lt;64&gt; data;</div>
-<div class="line"><span class="lineno">  304</span>      data[<span class="stringliteral">&quot;event&quot;</span>] = <span class="stringliteral">&quot;KP_try&quot;</span>;</div>
-<div class="line"><span class="lineno">  305</span>      data[<span class="stringliteral">&quot;code&quot;</span>]  = <a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>;</div>
-<div class="line"><span class="lineno">  306</span> </div>
-<div class="line"><span class="lineno">  307</span>      <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.publishJson(<span class="stringliteral">&quot;keypad/submit&quot;</span>, data);</div>
-<div class="line"><span class="lineno">  308</span>    } </div>
-<div class="line"><span class="lineno">  309</span>    <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  310</span>      Serial.println(<span class="stringliteral">&quot;Code too short, resetting.&quot;</span>);</div>
-<div class="line"><span class="lineno">  311</span>    }</div>
-<div class="line"><span class="lineno">  312</span> </div>
-<div class="line"><span class="lineno">  313</span>    <span class="comment">// Always reset buffer after submission attempt</span></div>
-<div class="line"><span class="lineno">  314</span>    <a class="code hl_function" href="#a8d5423be1c5a1f45105978994e468f0a">reset_code</a>();</div>
-<div class="line"><span class="lineno">  315</span>  }</div>
-<div class="line"><span class="lineno">  316</span> </div>
-<div class="line"><span class="lineno">  317</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  318</span>  <span class="comment">// Clear input using &#39;*&#39;</span></div>
-<div class="line"><span class="lineno">  319</span>  <span class="comment">// ---------------------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">  320</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;*&#39;</span>) {</div>
-<div class="line"><span class="lineno">  321</span>    <a class="code hl_function" href="#a8d5423be1c5a1f45105978994e468f0a">reset_code</a>();</div>
-<div class="line"><span class="lineno">  322</span>    Serial.println(<span class="stringliteral">&quot;Input cleared&quot;</span>);</div>
-<div class="line"><span class="lineno">  323</span>  }</div>
-<div class="line"><span class="lineno">  324</span> </div>
-<div class="line"><span class="lineno">  325</span>  <span class="comment">// Ignore unsupported keys (A-D)</span></div>
-<div class="line"><span class="lineno">  326</span>  <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  327</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  328</span>  }</div>
-<div class="line"><span class="lineno">  329</span> </div>
-<div class="line"><span class="lineno">  330</span>  <span class="comment">// Any valid keypress is treated as a tap event</span></div>
-<div class="line"><span class="lineno">  331</span>  <a class="code hl_function" href="#ad45c6bc383467b9b8d638d841787c370">publishTap</a>();</div>
-<div class="line"><span class="lineno">  332</span>}</div>
-<div class="ttc" id="aesp2__keypad_8ino_html_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe"><div class="ttname"><a href="#a0e6c3cc7e8c762ab0ca1fa2296d7bbfe">keypad</a></div><div class="ttdeci">Keypad keypad</div><div class="ttdoc">Keypad instance handling scanning and debouncing.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00111">esp2_keypad.ino:111</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_a78e874f81f475d09f84f2bbc5d8f869d"><div class="ttname"><a href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a></div><div class="ttdeci">constexpr uint8_t CODE_LENGTH</div><div class="ttdoc">Required PIN length.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00116">esp2_keypad.ino:116</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_a8d5423be1c5a1f45105978994e468f0a"><div class="ttname"><a href="#a8d5423be1c5a1f45105978994e468f0a">reset_code</a></div><div class="ttdeci">void reset_code()</div><div class="ttdoc">Resets the PIN input buffer and index.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00233">esp2_keypad.ino:233</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_ab42060a966bf72717ef9f3607d84bdd8"><div class="ttname"><a href="#ab42060a966bf72717ef9f3607d84bdd8">input</a></div><div class="ttdeci">char input[CODE_LENGTH+1]</div><div class="ttdoc">Input buffer for PIN digits.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00123">esp2_keypad.ino:123</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_ad45c6bc383467b9b8d638d841787c370"><div class="ttname"><a href="#ad45c6bc383467b9b8d638d841787c370">publishTap</a></div><div class="ttdeci">void publishTap()</div><div class="ttdoc">Publishes keypad tap feedback via MQTT.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00244">esp2_keypad.ino:244</a></div></div>
-<div class="ttc" id="aesp2__keypad_8ino_html_afe9f139ae3327939925efd3e3105d58a"><div class="ttname"><a href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a></div><div class="ttdeci">uint8_t currentIdx</div><div class="ttdoc">Current index into the PIN buffer.</div><div class="ttdef"><b>Definition</b> <a href="esp2__keypad_8ino_source.html#l00126">esp2_keypad.ino:126</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="esp2__keypad_8ino_source.html#l00116">CODE_LENGTH</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00126">currentIdx</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00123">input</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00111">keypad</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00133">kpEnabled</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00053">net</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00244">publishTap()</a>, and <a class="el" href="esp2__keypad_8ino_source.html#l00233">reset_code()</a>.</p>
-<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph.png" border="0" usemap="#aesp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph" loading="lazy" alt=""/></div>
-<map name="aesp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph" id="aesp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph">
-<area shape="rect" title="Arduino main loop." alt="" coords="5,31,56,56"/>
-<area shape="rect" href="esp2__keypad_8ino.html#ad45c6bc383467b9b8d638d841787c370" title="Publishes keypad tap feedback via MQTT." alt="" coords="105,5,196,31"/>
-<area shape="poly" title=" " alt="" coords="56,35,91,28,92,33,57,41"/>
-<area shape="rect" href="esp2__keypad_8ino.html#a8d5423be1c5a1f45105978994e468f0a" title="Resets the PIN input buffer and index." alt="" coords="104,55,197,80"/>
-<area shape="poly" title=" " alt="" coords="57,46,91,53,90,58,56,51"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="ad45c6bc383467b9b8d638d841787c370" name="ad45c6bc383467b9b8d638d841787c370"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad45c6bc383467b9b8d638d841787c370">&#9670;&#160;</a></span>publishTap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void publishTap </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Publishes keypad tap feedback via MQTT. </p>
-<p>Sends the current PIN length after each valid keypress, allowing external systems to provide visual or audio feedback. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00244">244</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  244</span>                  {</div>
-<div class="line"><span class="lineno">  245</span>  StaticJsonDocument&lt;64&gt; data;</div>
-<div class="line"><span class="lineno">  246</span>  data[<span class="stringliteral">&quot;event&quot;</span>]     = <span class="stringliteral">&quot;KP_tap&quot;</span>;</div>
-<div class="line"><span class="lineno">  247</span>  data[<span class="stringliteral">&quot;pinlength&quot;</span>] = <a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a>;</div>
-<div class="line"><span class="lineno">  248</span> </div>
-<div class="line"><span class="lineno">  249</span>  <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.publishJson(<span class="stringliteral">&quot;keypad/tap&quot;</span>, data);</div>
-<div class="line"><span class="lineno">  250</span>}</div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="esp2__keypad_8ino_source.html#l00126">currentIdx</a>, and <a class="el" href="esp1__rfid__motion_8ino_source.html#l00053">net</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>.</p>
-<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370_icgraph.png" border="0" usemap="#aesp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370_icgraph" loading="lazy" alt=""/></div>
-<map name="aesp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370_icgraph" id="aesp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370_icgraph">
-<area shape="rect" title="Publishes keypad tap feedback via MQTT." alt="" coords="104,5,195,31"/>
-<area shape="rect" href="esp2__keypad_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino main loop." alt="" coords="5,5,56,31"/>
-<area shape="poly" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a8d5423be1c5a1f45105978994e468f0a" name="a8d5423be1c5a1f45105978994e468f0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d5423be1c5a1f45105978994e468f0a">&#9670;&#160;</a></span>reset_code()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void reset_code </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Resets the PIN input buffer and index. </p>
-<p>Clears any partially entered PIN and prepares the buffer for new input. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00233">233</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>                  {</div>
-<div class="line"><span class="lineno">  234</span>  memset(<a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>, 0, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="#ab42060a966bf72717ef9f3607d84bdd8">input</a>));  <span class="comment">// Clear buffer contents</span></div>
-<div class="line"><span class="lineno">  235</span>  <a class="code hl_variable" href="#afe9f139ae3327939925efd3e3105d58a">currentIdx</a> = 0;                   <span class="comment">// Reset write index</span></div>
-<div class="line"><span class="lineno">  236</span>}</div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="esp2__keypad_8ino_source.html#l00126">currentIdx</a>, and <a class="el" href="esp2__keypad_8ino_source.html#l00123">input</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>.</p>
-<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a_icgraph.png" border="0" usemap="#aesp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a_icgraph" loading="lazy" alt=""/></div>
-<map name="aesp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a_icgraph" id="aesp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a_icgraph">
-<area shape="rect" title="Resets the PIN input buffer and index." alt="" coords="104,5,197,31"/>
-<area shape="rect" href="esp2__keypad_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino main loop." alt="" coords="5,5,56,31"/>
-<area shape="poly" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setup </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Arduino setup function. </p>
-<p>Initializes Serial output, WiFi connection, MQTT client, and topic subscriptions. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00197">197</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  197</span>             {</div>
-<div class="line"><span class="lineno">  198</span>  Serial.begin(115200);</div>
-<div class="line"><span class="lineno">  199</span> </div>
-<div class="line"><span class="lineno">  200</span>  <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.begin(</div>
-<div class="line"><span class="lineno">  201</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#ae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a>,</div>
-<div class="line"><span class="lineno">  202</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a0495958e0c537c1c5100ee272495435c">WIFI_PASS</a>,</div>
-<div class="line"><span class="lineno">  203</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a>,</div>
-<div class="line"><span class="lineno">  204</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a>,</div>
-<div class="line"><span class="lineno">  205</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a>,</div>
-<div class="line"><span class="lineno">  206</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a31dacdc924feb376b49448eb843d053c">MQTT_PASS</a>,</div>
-<div class="line"><span class="lineno">  207</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a>,</div>
-<div class="line"><span class="lineno">  208</span>    <span class="stringliteral">&quot;site1&quot;</span></div>
-<div class="line"><span class="lineno">  209</span>  );</div>
-<div class="line"><span class="lineno">  210</span> </div>
-<div class="line"><span class="lineno">  211</span>  Serial.println(<span class="stringliteral">&quot;Keypad + MQTT ready&quot;</span>);</div>
-<div class="line"><span class="lineno">  212</span> </div>
-<div class="line"><span class="lineno">  213</span>  <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.setCallback(<a class="code hl_function" href="esp1__rfid__motion_8ino.html#ac3a129f66dc859e2b7279565f4e1de78">callback</a>);</div>
-<div class="line"><span class="lineno">  214</span> </div>
-<div class="line"><span class="lineno">  215</span>  <span class="comment">// Subscribe to access control topics</span></div>
-<div class="line"><span class="lineno">  216</span>  Serial.printf(<span class="stringliteral">&quot;access/response MQTT subscribe %s\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  217</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.subscribe(<a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.makeTopic(<span class="stringliteral">&quot;access/response&quot;</span>).c_str()) ? <span class="stringliteral">&quot;OK&quot;</span> : <span class="stringliteral">&quot;FAILED&quot;</span>);</div>
-<div class="line"><span class="lineno">  218</span> </div>
-<div class="line"><span class="lineno">  219</span>  Serial.printf(<span class="stringliteral">&quot;access/keypad_response MQTT subscribe %s\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  220</span>    <a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.subscribe(<a class="code hl_variable" href="esp1__rfid__motion_8ino.html#a082cbde9dbf32731aabec6f0b8a7e5c0">net</a>.makeTopic(<span class="stringliteral">&quot;access/keypad_response&quot;</span>).c_str()) ? <span class="stringliteral">&quot;OK&quot;</span> : <span class="stringliteral">&quot;FAILED&quot;</span>);</div>
-<div class="line"><span class="lineno">  221</span>}</div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a0495958e0c537c1c5100ee272495435c"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a0495958e0c537c1c5100ee272495435c">WIFI_PASS</a></div><div class="ttdeci">constexpr char WIFI_PASS[]</div><div class="ttdoc">WiFi password.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00058">esp1_rfid_motion.ino:58</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a04ecc29c762e5b2844d3c24744813015"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a></div><div class="ttdeci">constexpr char DEVICE_ID[]</div><div class="ttdoc">Unique device identifier used in MQTT topics.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00070">esp1_rfid_motion.ino:70</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a315cd313c3f6301b48d2f67e63bec2db"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a></div><div class="ttdeci">constexpr char MQTT_USER[]</div><div class="ttdoc">MQTT username.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00065">esp1_rfid_motion.ino:65</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a31dacdc924feb376b49448eb843d053c"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a31dacdc924feb376b49448eb843d053c">MQTT_PASS</a></div><div class="ttdeci">constexpr char MQTT_PASS[]</div><div class="ttdoc">MQTT password.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00067">esp1_rfid_motion.ino:67</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a41c34e432b12a511f9348547ddae11d4"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a></div><div class="ttdeci">constexpr char MQTT_HOST[]</div><div class="ttdoc">MQTT broker hostname.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00061">esp1_rfid_motion.ino:61</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_a993a7e0c0377e10146438ebe707f31d0"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#a993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a></div><div class="ttdeci">constexpr uint16_t MQTT_PORT</div><div class="ttdoc">MQTT broker port.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00063">esp1_rfid_motion.ino:63</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_ac3a129f66dc859e2b7279565f4e1de78"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#ac3a129f66dc859e2b7279565f4e1de78">callback</a></div><div class="ttdeci">void callback(char *topic, byte *payload, unsigned int length)</div><div class="ttdoc">MQTT message callback handler.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00250">esp1_rfid_motion.ino:250</a></div></div>
-<div class="ttc" id="aesp1__rfid__motion_8ino_html_ae4ee394ecd24781bba5d0aaaab8e964a"><div class="ttname"><a href="esp1__rfid__motion_8ino.html#ae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a></div><div class="ttdeci">constexpr char WIFI_SSID[]</div><div class="ttdoc">WiFi SSID.</div><div class="ttdef"><b>Definition</b> <a href="esp1__rfid__motion_8ino_source.html#l00056">esp1_rfid_motion.ino:56</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="esp1__rfid__motion_8ino_source.html#l00250">callback()</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00070">DEVICE_ID</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00061">MQTT_HOST</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00067">MQTT_PASS</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00063">MQTT_PORT</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00065">MQTT_USER</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00053">net</a>, <a class="el" href="esp1__rfid__motion_8ino_source.html#l00058">WIFI_PASS</a>, and <a class="el" href="esp1__rfid__motion_8ino_source.html#l00056">WIFI_SSID</a>.</p>
-<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph.png" border="0" usemap="#aesp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph" loading="lazy" alt=""/></div>
-<map name="aesp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph" id="aesp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph">
-<area shape="rect" title="Arduino setup function." alt="" coords="5,31,64,56"/>
-<area shape="rect" href="esp1__rfid__motion_8ino.html#ac3a129f66dc859e2b7279565f4e1de78" title="MQTT message callback handler." alt="" coords="112,31,188,56"/>
-<area shape="poly" title=" " alt="" coords="64,41,98,41,98,46,64,46"/>
-<area shape="rect" href="esp1__rfid__motion_8ino.html#a1eec526201dccd228883774259151450" title="Clears an LCD line and prints a flash&#45;resident string." alt="" coords="254,5,353,31"/>
-<area shape="poly" title=" " alt="" coords="188,35,240,26,241,31,189,40"/>
-<area shape="rect" href="esp1__rfid__motion_8ino.html#ac8b922f2a416a064034b689152827cce" title="Builds a masked PIN string for LCD display." alt="" coords="236,55,371,80"/>
-<area shape="poly" title=" " alt="" coords="189,47,223,52,222,57,188,52"/>
-<area shape="rect" href="esp1__rfid__motion_8ino.html#ab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="419,5,460,31"/>
-<area shape="poly" title=" " alt="" coords="353,15,405,15,405,21,353,21"/>
-</map>
-</div>
-
-</div>
-</div>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
-<a id="a78e874f81f475d09f84f2bbc5d8f869d" name="a78e874f81f475d09f84f2bbc5d8f869d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78e874f81f475d09f84f2bbc5d8f869d">&#9670;&#160;</a></span>CODE_LENGTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t CODE_LENGTH = 4</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Required PIN length. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00116">116</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>.</p>
-
-</div>
-</div>
-<a id="aa9fece7b062124080e4b2976f9a8b675" name="aa9fece7b062124080e4b2976f9a8b675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9fece7b062124080e4b2976f9a8b675">&#9670;&#160;</a></span>colPins</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">byte colPins[<a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>] = {2, 14, 12, 13}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>GPIO pins connected to keypad columns. </p>
-<p>Order must match COLS definition. D4, D5, D6, D7 </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00096">96</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>{2, 14, 12, 13}; </div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aefd90f1160eaa105bc910d4d7c46b815" name="aefd90f1160eaa105bc910d4d7c46b815"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefd90f1160eaa105bc910d4d7c46b815">&#9670;&#160;</a></span>COLS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const byte COLS = 4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Number of columns in the keypad matrix. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00069">69</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="afe9f139ae3327939925efd3e3105d58a" name="afe9f139ae3327939925efd3e3105d58a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe9f139ae3327939925efd3e3105d58a">&#9670;&#160;</a></span>currentIdx</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t currentIdx = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Current index into the PIN buffer. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00126">126</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>, <a class="el" href="esp2__keypad_8ino_source.html#l00244">publishTap()</a>, and <a class="el" href="esp2__keypad_8ino_source.html#l00233">reset_code()</a>.</p>
-
-</div>
-</div>
-<a id="a04ecc29c762e5b2844d3c24744813015" name="a04ecc29c762e5b2844d3c24744813015"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04ecc29c762e5b2844d3c24744813015">&#9670;&#160;</a></span>DEVICE_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char DEVICE_ID[] = &quot;door1&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Unique device identifier used in MQTT topics. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00061">61</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="ab42060a966bf72717ef9f3607d84bdd8" name="ab42060a966bf72717ef9f3607d84bdd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab42060a966bf72717ef9f3607d84bdd8">&#9670;&#160;</a></span>input</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char input[<a class="el" href="#a78e874f81f475d09f84f2bbc5d8f869d">CODE_LENGTH</a>+1] = {0}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Input buffer for PIN digits. </p>
-<p>One extra byte is reserved for the null terminator. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00123">123</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  123</span>{0};</div>
-</div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>, and <a class="el" href="esp2__keypad_8ino_source.html#l00233">reset_code()</a>.</p>
-
-</div>
-</div>
-<a id="a0e6c3cc7e8c762ab0ca1fa2296d7bbfe" name="a0e6c3cc7e8c762ab0ca1fa2296d7bbfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e6c3cc7e8c762ab0ca1fa2296d7bbfe">&#9670;&#160;</a></span>keypad</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Keypad keypad = Keypad(makeKeymap(<a class="el" href="#a856e873a1d14012d57ddb813c4a1e40a">keys</a>), <a class="el" href="#a6d6753e0ae098b31e2f84d4024e361cf">rowPins</a>, <a class="el" href="#aa9fece7b062124080e4b2976f9a8b675">colPins</a>, <a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>, <a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Keypad instance handling scanning and debouncing. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00111">111</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>.</p>
-
-</div>
-</div>
-<a id="a856e873a1d14012d57ddb813c4a1e40a" name="a856e873a1d14012d57ddb813c4a1e40a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a856e873a1d14012d57ddb813c4a1e40a">&#9670;&#160;</a></span>keys</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char keys[<a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>][<a class="el" href="#aefd90f1160eaa105bc910d4d7c46b815">COLS</a>]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">          = {</div>
-<div class="line">  {<span class="charliteral">&#39;1&#39;</span>,<span class="charliteral">&#39;2&#39;</span>,<span class="charliteral">&#39;3&#39;</span>,<span class="charliteral">&#39;A&#39;</span>},</div>
-<div class="line">  {<span class="charliteral">&#39;4&#39;</span>,<span class="charliteral">&#39;5&#39;</span>,<span class="charliteral">&#39;6&#39;</span>,<span class="charliteral">&#39;B&#39;</span>},</div>
-<div class="line">  {<span class="charliteral">&#39;7&#39;</span>,<span class="charliteral">&#39;8&#39;</span>,<span class="charliteral">&#39;9&#39;</span>,<span class="charliteral">&#39;C&#39;</span>},</div>
-<div class="line">  {<span class="charliteral">&#39;*&#39;</span>,<span class="charliteral">&#39;0&#39;</span>,<span class="charliteral">&#39;#&#39;</span>,<span class="charliteral">&#39;D&#39;</span>}</div>
-<div class="line">}</div>
-</div><!-- fragment -->
-<p>Logical keypad layout. </p>
-<p>Defines the character returned for each row/column intersection. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00076">76</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>                      {</div>
-<div class="line"><span class="lineno">   77</span>  {<span class="charliteral">&#39;1&#39;</span>,<span class="charliteral">&#39;2&#39;</span>,<span class="charliteral">&#39;3&#39;</span>,<span class="charliteral">&#39;A&#39;</span>},</div>
-<div class="line"><span class="lineno">   78</span>  {<span class="charliteral">&#39;4&#39;</span>,<span class="charliteral">&#39;5&#39;</span>,<span class="charliteral">&#39;6&#39;</span>,<span class="charliteral">&#39;B&#39;</span>},</div>
-<div class="line"><span class="lineno">   79</span>  {<span class="charliteral">&#39;7&#39;</span>,<span class="charliteral">&#39;8&#39;</span>,<span class="charliteral">&#39;9&#39;</span>,<span class="charliteral">&#39;C&#39;</span>},</div>
-<div class="line"><span class="lineno">   80</span>  {<span class="charliteral">&#39;*&#39;</span>,<span class="charliteral">&#39;0&#39;</span>,<span class="charliteral">&#39;#&#39;</span>,<span class="charliteral">&#39;D&#39;</span>}</div>
-<div class="line"><span class="lineno">   81</span>};</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a45e5fd1e566874b92cd64516fb7447f3" name="a45e5fd1e566874b92cd64516fb7447f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45e5fd1e566874b92cd64516fb7447f3">&#9670;&#160;</a></span>kpEnabled</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool kpEnabled = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Indicates whether keypad input is currently enabled. </p>
-<p>This flag is controlled via MQTT messages from the access controller. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00133">133</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="esp2__keypad_8ino_source.html#l00150">callback()</a>, and <a class="el" href="esp2__keypad_8ino_source.html#l00265">loop()</a>.</p>
-
-</div>
-</div>
-<a id="a41c34e432b12a511f9348547ddae11d4" name="a41c34e432b12a511f9348547ddae11d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41c34e432b12a511f9348547ddae11d4">&#9670;&#160;</a></span>MQTT_HOST</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char MQTT_HOST[] = &quot;maqiatto.com&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>MQTT broker hostname. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00052">52</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a31dacdc924feb376b49448eb843d053c" name="a31dacdc924feb376b49448eb843d053c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31dacdc924feb376b49448eb843d053c">&#9670;&#160;</a></span>MQTT_PASS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char MQTT_PASS[] = &quot;potter&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>MQTT password. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00058">58</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a993a7e0c0377e10146438ebe707f31d0" name="a993a7e0c0377e10146438ebe707f31d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a993a7e0c0377e10146438ebe707f31d0">&#9670;&#160;</a></span>MQTT_PORT</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t MQTT_PORT = 1883</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>MQTT broker port. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00054">54</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a315cd313c3f6301b48d2f67e63bec2db" name="a315cd313c3f6301b48d2f67e63bec2db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a315cd313c3f6301b48d2f67e63bec2db">&#9670;&#160;</a></span>MQTT_USER</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char MQTT_USER[] = &quot;hectorfoss@gmail.com&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>MQTT username. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00056">56</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a082cbde9dbf32731aabec6f0b8a7e5c0" name="a082cbde9dbf32731aabec6f0b8a7e5c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a082cbde9dbf32731aabec6f0b8a7e5c0">&#9670;&#160;</a></span>net</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">WifiMqttClient net</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>WiFi + MQTT client wrapper. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00044">44</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a6d6753e0ae098b31e2f84d4024e361cf" name="a6d6753e0ae098b31e2f84d4024e361cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d6753e0ae098b31e2f84d4024e361cf">&#9670;&#160;</a></span>rowPins</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">byte rowPins[<a class="el" href="#a829655a147df70dd4cc94eae40a2204e">ROWS</a>] = {16, 5, 4, 0}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>GPIO pins connected to keypad rows. </p>
-<p>Order must match ROWS definition. D0, D1, D2, D3 </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00089">89</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   89</span>{16, 5, 4, 0}; </div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a829655a147df70dd4cc94eae40a2204e" name="a829655a147df70dd4cc94eae40a2204e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a829655a147df70dd4cc94eae40a2204e">&#9670;&#160;</a></span>ROWS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const byte ROWS = 4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Number of rows in the keypad matrix. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00066">66</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="a0495958e0c537c1c5100ee272495435c" name="a0495958e0c537c1c5100ee272495435c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0495958e0c537c1c5100ee272495435c">&#9670;&#160;</a></span>WIFI_PASS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char WIFI_PASS[] = &quot;mrbombasticcallmefantastic&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>WiFi password. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00049">49</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-<a id="ae4ee394ecd24781bba5d0aaaab8e964a" name="ae4ee394ecd24781bba5d0aaaab8e964a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4ee394ecd24781bba5d0aaaab8e964a">&#9670;&#160;</a></span>WIFI_SSID</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char WIFI_SSID[] = &quot;Mathias2.4&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>WiFi SSID. </p>
-
-<p class="definition">Definition at line <a class="el" href="esp2__keypad_8ino_source.html#l00047">47</a> of file <a class="el" href="esp2__keypad_8ino_source.html">esp2_keypad.ino</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>
@@ -976,7 +176,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_7af2c531ba7306d65050e59ad201885c.html">esp2_keypad</a></li><li class="navelem"><a href="esp2__keypad_8ino.html">esp2_keypad.ino</a></li>
-    <li class="footer">Generated on <span class="timestamp"></span> for ESP8266 Door Access Control System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
   </ul>
 </div>
 </body>

@@ -2,15 +2,24 @@
  * @file WiFiMqttClient.cpp
  * @brief Implementation of the WifiMqttClient helper class.
  *
- * This file provides the concrete implementation for:
- * - WiFi connection handling (ESP8266)
- * - MQTT connection and reconnection logic
- * - JSON-based publish helpers
- * - Topic construction utilities
+ * @defgroup infrastructure Infrastructure – WiFi & MQTT
+ * @{
+ *
+ * @details
+ * This file provides the concrete implementation of the WifiMqttClient class,
+ * which serves as a shared infrastructure component across all ESP nodes
+ * in the distributed door access control system.
+ *
+ * Responsibilities include:
+ * - WiFi connection handling on ESP8266
+ * - MQTT connection establishment and automatic reconnection
+ * - Construction of a consistent MQTT topic hierarchy
+ * - Publishing JSON-formatted messages with device metadata
  *
  * The implementation is designed to be robust against temporary
  * network failures and to simplify MQTT usage in embedded systems.
  */
+
 
 #include "WiFiMqttClient.h"
 #include <ESP8266WiFi.h>

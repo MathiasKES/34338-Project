@@ -1,19 +1,25 @@
 <map id="esp1_rfid_motion/esp1_rfid_motion.ino" name="esp1_rfid_motion/esp1_rfid_motion.ino">
-<area shape="rect" id="Node000001" title="RFID + PIN based access controller with LCD, motion sensing, and MQTT." alt="" coords="335,5,504,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,89,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="335,47,104,95,102,90,334,42"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="113,93,184,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="355,48,198,93,197,88,354,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="208,93,319,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="383,48,300,89,297,85,381,43"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="343,93,397,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="410,47,387,83,382,80,405,44"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="422,93,518,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="434,44,457,80,453,83,429,47"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="542,93,606,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="458,43,540,85,538,89,455,48"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="630,93,777,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="488,43,650,87,648,92,487,48"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="801,93,931,119"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="505,39,788,88,787,94,504,44"/>
+<area shape="rect" id="Node000001" title="RFID + PIN based access controller with LCD, motion sensing, and MQTT." alt="" coords="336,5,505,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,167,89,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="337,42,250,63,204,77,161,96,111,126,71,159,68,155,108,122,158,91,202,72,248,58,335,37"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="343,93,413,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="413,47,393,83,388,80,408,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="113,167,224,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="336,42,241,64,202,78,177,95,170,108,166,123,166,153,161,153,161,122,165,106,173,92,199,74,239,59,335,37"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="437,93,492,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="434,44,454,80,449,83,429,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="517,93,613,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="456,43,533,84,530,89,454,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="637,93,701,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="481,43,625,88,623,93,479,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="725,93,871,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="506,42,730,88,729,93,505,47"/>
+<area shape="rect" id="Node000009" href="$WiFiMqttClient_8h.html" title=" " alt="" coords="187,93,318,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="382,48,291,90,289,85,379,43"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="221,121,94,165,93,160,219,116"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="241,121,195,160,191,155,237,117"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="249,167,369,192"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="264,117,293,154,289,157,260,121"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="393,167,493,192"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="284,116,400,159,398,164,282,121"/>
 </map>

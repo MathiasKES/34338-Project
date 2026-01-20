@@ -1,0 +1,30 @@
+<map id="lcd" name="lcd">
+<area shape="rect" id="Node000001" title="I2C LCD instance." alt="" coords="637,158,679,183"/>
+<area shape="rect" id="Node000002" href="$group__esp1.html#ga1eec526201dccd228883774259151450" title="Clears an LCD line and prints a flash&#45;resident string." alt="" coords="469,108,567,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="623,161,554,136,556,131,625,156"/>
+<area shape="rect" id="Node000005" href="$group__esp1.html#ga4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup function." alt="" coords="75,8,134,34"/>
+<area shape="poly" id="edge16_Node000001_Node000005" title=" " alt="" coords="638,148,615,122,588,98,539,66,499,45,455,31,398,18,324,9,251,9,134,19,134,14,250,4,325,4,399,13,457,26,501,40,542,61,591,94,619,118,642,145"/>
+<area shape="rect" id="Node000009" href="$group__esp1.html#ga79a958a99f2c3f644266594c7df27b97" title="Clears an LCD line and prints a RAM&#45;resident string." alt="" coords="469,256,567,282"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="642,196,620,223,591,247,568,259,566,254,588,243,616,219,638,193"/>
+<area shape="rect" id="Node000010" href="$group__esp1.html#gade59c900943c3305d0209fb836346d95" title="Handles motion&#45;detected events." alt="" coords="447,158,589,183"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="624,173,590,173,590,168,624,168"/>
+<area shape="rect" id="Node000012" href="$group__esp1.html#gacafc4192a261b10303c3d691ac3f3340" title="Handles motion&#45;idle state." alt="" coords="465,207,571,232"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="626,185,590,198,558,210,556,205,588,193,624,180"/>
+<area shape="rect" id="Node000003" href="$group__esp1.html#gac3a129f66dc859e2b7279565f4e1de78" title="MQTT message callback handler." alt="" coords="287,59,363,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,108,363,84,364,79,456,103"/>
+<area shape="poly" id="edge9_Node000002_Node000005" title=" " alt="" coords="490,102,448,73,398,49,325,31,252,23,185,21,134,22,134,17,185,15,252,17,326,26,400,44,451,69,493,98"/>
+<area shape="rect" id="Node000006" href="$group__esp1.html#gaff8c04e7b324ff4272911924db174640" title="Forces the system back into locked idle state." alt="" coords="283,108,368,134"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="455,124,369,124,369,118,455,118"/>
+<area shape="rect" id="Node000008" href="$group__esp1.html#gaee754d5a9a7adc964e2458c556d31728" title="Handles RFID card detection and request publishing." alt="" coords="277,158,374,183"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="456,140,375,161,374,155,455,134"/>
+<area shape="rect" id="Node000004" href="$group__infrastructure.html#gac9ab08082d9cff38e1d5014d9a1e6bb7" title="Sets the MQTT message callback." alt="" coords="5,59,204,84"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="273,74,204,74,204,69,273,69"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="273,63,134,30,135,25,274,57"/>
+<area shape="rect" id="Node000007" href="$group__esp1.html#gafe461d27b9c48d5921c00d521181f12f" title="Arduino main loop." alt="" coords="79,158,130,183"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="270,136,131,168,130,162,269,131"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="262,173,130,173,130,168,262,168"/>
+<area shape="rect" id="Node000011" href="$group__esp1.html#ga8df5568d50795a11cfd7fb0abb331131" title="Updates motion state based on PIR sensor input." alt="" coords="252,207,399,232"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="455,189,377,210,375,204,454,184"/>
+<area shape="poly" id="edge13_Node000011_Node000007" title=" " alt="" coords="254,207,130,179,131,173,255,201"/>
+<area shape="poly" id="edge15_Node000012_Node000011" title=" " alt="" coords="451,222,399,222,399,217,451,217"/>
+</map>

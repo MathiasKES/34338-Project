@@ -1,2 +1,1015 @@
 \doxysection{ESP1 -\/ RFID \& Motion }
 \hypertarget{group__esp1}{}\label{group__esp1}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{Access\+Result::\+\+Denied}}
+, \doxymbox{\hyperlink{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{Access\+Result::\+\+Granted}}
+, \doxymbox{\hyperlink{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{Access\+Result::\+\+Denied}}
+, \doxymbox{\hyperlink{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{Access\+Result::\+\+Granted}}
+ \}
+\begin{DoxyCompactList}\small\item\em Access result enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+MFRC522 \doxymbox{\hyperlink{group__esp1_ga2251823e12f034625cf955d83d4ec6b6}{mfrc522}} (\doxymbox{\hyperlink{group__esp1_ga740060cb86c3a8429646211325d378cb}{RFID\+\_\+\+SS\+\_\+\+PIN}}, \doxymbox{\hyperlink{group__esp1_ga5ddbb36ee43b0702d33a13226adfd364}{RFID\+\_\+\+RST\+\_\+\+PIN}})
+\begin{DoxyCompactList}\small\item\em MFRC522 RFID reader instance. \end{DoxyCompactList}\item 
+Liquid\+Crystal\+\_\+\+I2C \doxymbox{\hyperlink{group__esp1_gab09e66ce429f1e2dd70e188a52754e2b}{lcd}} (\doxymbox{\hyperlink{group__esp1_gaa68f1d788c8105e0735aac60d3df262f}{LCD\+\_\+\+ADDRESS}}, \doxymbox{\hyperlink{group__esp1_ga0e6a68e678ddbbb64d3a90350409eb77}{LCD\+\_\+\+COLUMNS}}, \doxymbox{\hyperlink{group__esp1_gae8842648f085d102ff0d7b1f06896143}{LCD\+\_\+\+ROWS}})
+\begin{DoxyCompactList}\small\item\em I2C LCD instance. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_ga1eec526201dccd228883774259151450}{lcd\+Print\+Line}} (const \+\_\+\+\_\+\+Flash\+String\+Helper \texorpdfstring{$\ast$}{*}msg, uint8\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Clears an LCD line and prints a flash-\/resident string. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_ga79a958a99f2c3f644266594c7df27b97}{lcd\+Print\+Line}} (const char \texorpdfstring{$\ast$}{*}msg, uint8\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Clears an LCD line and prints a RAM-\/resident string. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{group__esp1_gaff8c04e7b324ff4272911924db174640}{force\+Lock}} ()
+\begin{DoxyCompactList}\small\item\em Forces the system back into locked idle state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gac8b922f2a416a064034b689152827cce}{make\+Entered\+Pins}} (uint8\+\_\+t pin\+Length)
+\begin{DoxyCompactList}\small\item\em Builds a masked PIN string for LCD display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gac3a129f66dc859e2b7279565f4e1de78}{callback}} (char \texorpdfstring{$\ast$}{*}topic, byte \texorpdfstring{$\ast$}{*}payload, unsigned int length)
+\begin{DoxyCompactList}\small\item\em MQTT message callback handler. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp1_gafd31f405375298b91360c711cad4200f}{is\+Display\+Active}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Checks whether the LCD backlight should remain active. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gade59c900943c3305d0209fb836346d95}{on\+Motion\+Detected}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Handles motion-\/detected events. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gacafc4192a261b10303c3d691ac3f3340}{on\+Motion\+Idle}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Handles motion-\/idle state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_ga8df5568d50795a11cfd7fb0abb331131}{update\+Motion\+State}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Updates motion state based on PIR sensor input. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gac37295ff76a33dc6395fbeb6906267fd}{uid\+To\+Hex\+String}} (const MFRC522::\+\+Uid \&uid, char \texorpdfstring{$\ast$}{*}output, size\+\_\+t output\+Size)
+\begin{DoxyCompactList}\small\item\em Converts an RFID UID to a hexadecimal string. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gaee754d5a9a7adc964e2458c556d31728}{handle\+RFID}} ()
+\begin{DoxyCompactList}\small\item\em Handles RFID card detection and request publishing. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_ga4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino setup function. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp1_gafe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Arduino main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} \doxymbox{\hyperlink{group__esp1_ga082cbde9dbf32731aabec6f0b8a7e5c0}{net}}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi + MQTT client wrapper. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_gae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\+\_\+\+SSID}} \+[$\,$]\+ = "{}Mathias2.\+4"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi SSID. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_ga0495958e0c537c1c5100ee272495435c}{WIFI\+\_\+\+PASS}} \+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_ga41c34e432b12a511f9348547ddae11d4}{MQTT\+\_\+\+HOST}} \+[$\,$]\+ = "{}maqiatto.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT broker hostname. \end{DoxyCompactList}\item 
+constexpr uint16\+\_\+t \doxymbox{\hyperlink{group__esp1_ga993a7e0c0377e10146438ebe707f31d0}{MQTT\+\_\+\+PORT}} = 1883
+\begin{DoxyCompactList}\small\item\em MQTT broker port. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_ga315cd313c3f6301b48d2f67e63bec2db}{MQTT\+\_\+\+USER}} \+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT username. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_ga31dacdc924feb376b49448eb843d053c}{MQTT\+\_\+\+PASS}} \+[$\,$]\+ = "{}potter"{}
+\begin{DoxyCompactList}\small\item\em MQTT password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp1_ga04ecc29c762e5b2844d3c24744813015}{DEVICE\+\_\+\+ID}} \+[$\,$]\+ = "{}door1"{}
+\begin{DoxyCompactList}\small\item\em Unique device identifier used in MQTT topics. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga740060cb86c3a8429646211325d378cb}{RFID\+\_\+\+SS\+\_\+\+PIN}} = 15
+\begin{DoxyCompactList}\small\item\em RC522 SPI Slave Select pin (D8 /\+ GPIO15). \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga5ddbb36ee43b0702d33a13226adfd364}{RFID\+\_\+\+RST\+\_\+\+PIN}} = 16
+\begin{DoxyCompactList}\small\item\em RC522 Reset pin (D0 /\+ GPIO16). \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga8e9966a29ec4b464131da8cb1825ceb5}{MOTION\+\_\+\+PIN}} = 0
+\begin{DoxyCompactList}\small\item\em Motion sensor pin (D3 /\+ GPIO0). \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga63fd3c54e4843404005eeeb206227853}{I2\+C\+\_\+\+SDA\+\_\+\+PIN}} = 4
+\begin{DoxyCompactList}\small\item\em I2C SDA pin for LCD (D2 /\+ GPIO4). \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga9f6ed03d2d1d74a449ea68a62185786b}{I2\+C\+\_\+\+SCL\+\_\+\+PIN}} = 5
+\begin{DoxyCompactList}\small\item\em I2C SCL pin for LCD (D1 /\+ GPIO5). \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_ga0e6a68e678ddbbb64d3a90350409eb77}{LCD\+\_\+\+COLUMNS}} = 16
+\begin{DoxyCompactList}\small\item\em Number of LCD columns. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_gae8842648f085d102ff0d7b1f06896143}{LCD\+\_\+\+ROWS}} = 2
+\begin{DoxyCompactList}\small\item\em Number of LCD rows. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp1_gaa68f1d788c8105e0735aac60d3df262f}{LCD\+\_\+\+ADDRESS}} = 0x27
+\begin{DoxyCompactList}\small\item\em I2C address of the LCD module. \end{DoxyCompactList}\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga8241448199a71015eaefc1267dc8405b}{DISPLAY\+\_\+\+MS}} = 3000
+\begin{DoxyCompactList}\small\item\em Duration (ms) to display text before resetting. \end{DoxyCompactList}\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga7ac35d96245159cab011565a97a600a2}{DISPLAY\+\_\+\+BACKLIGHT\+\_\+\+MS}} = 5000
+\begin{DoxyCompactList}\small\item\em Duration (ms) to keep LCD backlight on after motion. \end{DoxyCompactList}\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga1437df78a60c0b4cbfba394adb0451d2}{PIN\+\_\+\+TIME\+\_\+\+MS}} = 15000
+\begin{DoxyCompactList}\small\item\em Time window (ms) for entering PIN after RFID success. \end{DoxyCompactList}\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga6d6d37a1e68b6dcd10e646ed685f6f5e}{UNLOCK\+\_\+\+TIME\+\_\+\+MS}} = 5000
+\begin{DoxyCompactList}\small\item\em Door unlock display duration (ms). \end{DoxyCompactList}\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_gaf9d4cdbb45bf12608e163ee4b2d0dadd}{POLL\+\_\+\+MS}} = 30
+\begin{DoxyCompactList}\small\item\em Main loop polling delay (ms). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} \doxymbox{\hyperlink{group__esp1_gaf8cd458b5a58130e8dd244de49f9591d}{rfid\+Access}}
+\begin{DoxyCompactList}\small\item\em Result of RFID authentication. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} \doxymbox{\hyperlink{group__esp1_ga39d1ef76cb1d31fc16d855c63df5624a}{access\+Granted}}
+\begin{DoxyCompactList}\small\item\em Result of PIN verification. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp1_ga7723000e87c672531aa82d5653686e61}{textshown}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether a status message is currently displayed. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga04d3079f12f3e11e3bcb2b289c537093}{show\+Text\+Until}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp (ms) when the displayed text should expire. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{group__esp1_ga25ac0b6f6c871d8fcaf0a438f1d8f46a}{show\+Display\+Until}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp (ms) when LCD backlight should turn off. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp1_ga62fac6034c46ae1f6fc7511f4447decb}{motion\+Active}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether motion is currently considered active. \end{DoxyCompactList}\item 
+static char \doxymbox{\hyperlink{group__esp1_gaf36f6d1529914bff6ce2e463c7d131fb}{entered\+Pins}} \+[5]\+ = "{} "{}
+\begin{DoxyCompactList}\small\item\em Masked PIN buffer shown on LCD (max 4 digits + null terminator). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This firmware runs on an ESP-\/based Arduino-\/compatible board and implements the first stage of a distributed door access control system.
+
+Hardware components:\+
+\begin{DoxyItemize}
+\item MFRC522 RFID reader (RC522)
+\item I2C LCD display
+\item PIR motion sensor
+\end{DoxyItemize}
+
+Functional responsibilities:\+
+\begin{DoxyItemize}
+\item Detects motion to manage LCD backlight and user interaction
+\item Reads RFID tags and initiates authentication
+\item Displays system and authentication status on the LCD
+\item Communicates authentication requests and results via MQTT
+\end{DoxyItemize}
+
+RFID authentication must succeed before the keypad stage is enabled. 
+
+\label{doc-enum-members}
+\Hypertarget{group__esp1_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!AccessResult@{AccessResult}}
+\index{AccessResult@{AccessResult}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{AccessResult}{AccessResult}}
+{\footnotesize\ttfamily \label{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1} 
+enum class \doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Access result enumeration. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Denied@{Denied}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!Denied@{Denied}}
+}\Hypertarget{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}\label{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73} 
+Denied&Access denied \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Granted@{Granted}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!Granted@{Granted}}
+}\Hypertarget{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}\label{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db} 
+Granted&Access granted \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Denied@{Denied}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!Denied@{Denied}}
+}\Hypertarget{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}\label{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73} 
+Denied&Access denied \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Granted@{Granted}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!Granted@{Granted}}
+}\Hypertarget{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}\label{group__esp1_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db} 
+Granted&Access granted \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00130}{130}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__esp1_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__esp1_gac3a129f66dc859e2b7279565f4e1de78}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!callback@{callback}}
+\index{callback@{callback}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily \label{group__esp1_gac3a129f66dc859e2b7279565f4e1de78} 
+void callback (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{byte \texorpdfstring{$\ast$}{*}}]{payload}{, }\item[{unsigned int}]{length}{}\end{DoxyParamCaption})}
+
+
+
+MQTT message callback handler. 
+
+Parses incoming JSON messages and dispatches logic based on topic:\+
+\begin{DoxyItemize}
+\item RFID access decision
+\item Keypad PIN validation result
+\item Keypad keypress feedback
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & MQTT topic string. \\
+\hline
+{\em payload} & Raw payload bytes. \\
+\hline
+{\em length} & Payload length. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00240}{240}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{group__esp1_gac3a129f66dc859e2b7279565f4e1de78_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{group__esp1_gac3a129f66dc859e2b7279565f4e1de78_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gaff8c04e7b324ff4272911924db174640}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!forceLock@{forceLock}}
+\index{forceLock@{forceLock}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{forceLock()}{forceLock()}}
+{\footnotesize\ttfamily \label{group__esp1_gaff8c04e7b324ff4272911924db174640} 
+void force\+Lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Forces the system back into locked idle state. 
+
+Resets access state, clears temporary flags, and restores the default idle LCD message. 
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00196}{196}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{group__esp1_gaff8c04e7b324ff4272911924db174640_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{group__esp1_gaff8c04e7b324ff4272911924db174640_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gaee754d5a9a7adc964e2458c556d31728}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!handleRFID@{handleRFID}}
+\index{handleRFID@{handleRFID}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{handleRFID()}{handleRFID()}}
+{\footnotesize\ttfamily \label{group__esp1_gaee754d5a9a7adc964e2458c556d31728} 
+void handle\+RFID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Handles RFID card detection and request publishing. 
+
+Detects new cards, reads UID, updates LCD, and sends an MQTT access request. 
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00440}{440}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{group__esp1_gaee754d5a9a7adc964e2458c556d31728_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{group__esp1_gaee754d5a9a7adc964e2458c556d31728_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gafd31f405375298b91360c711cad4200f}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!isDisplayActive@{isDisplayActive}}
+\index{isDisplayActive@{isDisplayActive}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{isDisplayActive()}{isDisplayActive()}}
+{\footnotesize\ttfamily \label{group__esp1_gafd31f405375298b91360c711cad4200f} 
+bool is\+Display\+Active (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether the LCD backlight should remain active. 
+
+Uses signed time comparison to safely handle millis() wraparound.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now} & Current time in milliseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if display is active, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00353}{353}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gafd31f405375298b91360c711cad4200f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gab09e66ce429f1e2dd70e188a52754e2b}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!lcd@{lcd}}
+\index{lcd@{lcd}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{lcd()}{lcd()}}
+{\footnotesize\ttfamily \label{group__esp1_gab09e66ce429f1e2dd70e188a52754e2b} 
+Liquid\+Crystal\+\_\+\+I2C lcd (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{group__esp1_gaa68f1d788c8105e0735aac60d3df262f}{LCD\+\_\+\+ADDRESS}}}]{}{, }\item[{\doxymbox{\hyperlink{group__esp1_ga0e6a68e678ddbbb64d3a90350409eb77}{LCD\+\_\+\+COLUMNS}}}]{}{, }\item[{\doxymbox{\hyperlink{group__esp1_gae8842648f085d102ff0d7b1f06896143}{LCD\+\_\+\+ROWS}}}]{}{}\end{DoxyParamCaption})}
+
+
+
+I2C LCD instance. 
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gab09e66ce429f1e2dd70e188a52754e2b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_ga1eec526201dccd228883774259151450}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!lcdPrintLine@{lcdPrintLine}}
+\index{lcdPrintLine@{lcdPrintLine}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{lcdPrintLine()}{lcdPrintLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__esp1_ga1eec526201dccd228883774259151450} 
+void lcd\+Print\+Line (\begin{DoxyParamCaption}\item[{const \+\_\+\+\_\+\+Flash\+String\+Helper \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{uint8\+\_\+t}]{line}{}\end{DoxyParamCaption})}
+
+
+
+Clears an LCD line and prints a flash-\/resident string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Flash string (use F("{}..."{})). \\
+\hline
+{\em line} & LCD row index. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00170}{170}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{group__esp1_ga1eec526201dccd228883774259151450_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_ga1eec526201dccd228883774259151450_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_ga79a958a99f2c3f644266594c7df27b97}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!lcdPrintLine@{lcdPrintLine}}
+\index{lcdPrintLine@{lcdPrintLine}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{lcdPrintLine()}{lcdPrintLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__esp1_ga79a958a99f2c3f644266594c7df27b97} 
+void lcd\+Print\+Line (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{uint8\+\_\+t}]{line}{}\end{DoxyParamCaption})}
+
+
+
+Clears an LCD line and prints a RAM-\/resident string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & C-\/string to print. \\
+\hline
+{\em line} & LCD row index. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00183}{183}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{group__esp1_ga79a958a99f2c3f644266594c7df27b97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gafe461d27b9c48d5921c00d521181f12f}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!loop@{loop}}
+\index{loop@{loop}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{group__esp1_gafe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino main loop. 
+
+Executes non-\/blocking system logic:\+
+\begin{DoxyItemize}
+\item MQTT client processing
+\item Display timeout handling
+\item Motion-\/based backlight control
+\item RFID polling when active 
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00536}{536}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gafe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gac8b922f2a416a064034b689152827cce}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!makeEnteredPins@{makeEnteredPins}}
+\index{makeEnteredPins@{makeEnteredPins}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{makeEnteredPins()}{makeEnteredPins()}}
+{\footnotesize\ttfamily \label{group__esp1_gac8b922f2a416a064034b689152827cce} 
+void make\+Entered\+Pins (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin\+Length}{}\end{DoxyParamCaption})}
+
+
+
+Builds a masked PIN string for LCD display. 
+
+Converts a numeric PIN length into a visual representation using \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{} characters and trailing spaces.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Length} & Number of digits entered so far. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00211}{211}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gac8b922f2a416a064034b689152827cce_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_ga2251823e12f034625cf955d83d4ec6b6}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!mfrc522@{mfrc522}}
+\index{mfrc522@{mfrc522}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{mfrc522()}{mfrc522()}}
+{\footnotesize\ttfamily \label{group__esp1_ga2251823e12f034625cf955d83d4ec6b6} 
+MFRC522 mfrc522 (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{group__esp1_ga740060cb86c3a8429646211325d378cb}{RFID\+\_\+\+SS\+\_\+\+PIN}}}]{}{, }\item[{\doxymbox{\hyperlink{group__esp1_ga5ddbb36ee43b0702d33a13226adfd364}{RFID\+\_\+\+RST\+\_\+\+PIN}}}]{}{}\end{DoxyParamCaption})}
+
+
+
+MFRC522 RFID reader instance. 
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{group__esp1_ga2251823e12f034625cf955d83d4ec6b6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gade59c900943c3305d0209fb836346d95}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!onMotionDetected@{onMotionDetected}}
+\index{onMotionDetected@{onMotionDetected}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{onMotionDetected()}{onMotionDetected()}}
+{\footnotesize\ttfamily \label{group__esp1_gade59c900943c3305d0209fb836346d95} 
+void on\+Motion\+Detected (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})}
+
+
+
+Handles motion-\/detected events. 
+
+Activates LCD backlight and refreshes display timeout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now} & Current time in milliseconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00364}{364}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{group__esp1_gade59c900943c3305d0209fb836346d95_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gade59c900943c3305d0209fb836346d95_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gacafc4192a261b10303c3d691ac3f3340}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!onMotionIdle@{onMotionIdle}}
+\index{onMotionIdle@{onMotionIdle}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{onMotionIdle()}{onMotionIdle()}}
+{\footnotesize\ttfamily \label{group__esp1_gacafc4192a261b10303c3d691ac3f3340} 
+void on\+Motion\+Idle (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})}
+
+
+
+Handles motion-\/idle state. 
+
+Turns off LCD backlight when motion has ceased and the timeout has expired.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now} & Current time in milliseconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00383}{383}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{group__esp1_gacafc4192a261b10303c3d691ac3f3340_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gacafc4192a261b10303c3d691ac3f3340_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_ga4fc01d736fe50cf5b977f755b675f11d}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!setup@{setup}}
+\index{setup@{setup}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{group__esp1_ga4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino setup function. 
+
+Initializes hardware peripherals, LCD, Wi\+Fi, MQTT client, and topic subscriptions. 
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00481}{481}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_ga4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_gac37295ff76a33dc6395fbeb6906267fd}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!uidToHexString@{uidToHexString}}
+\index{uidToHexString@{uidToHexString}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{uidToHexString()}{uidToHexString()}}
+{\footnotesize\ttfamily \label{group__esp1_gac37295ff76a33dc6395fbeb6906267fd} 
+void uid\+To\+Hex\+String (\begin{DoxyParamCaption}\item[{const MFRC522::\+\+Uid \&}]{uid}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{output\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Converts an RFID UID to a hexadecimal string. 
+
+Each UID byte is encoded as two uppercase hexadecimal characters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & MFRC522 UID structure. \\
+\hline
+{\em output} & Destination buffer. \\
+\hline
+{\em output\+Size} & Size of destination buffer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00416}{416}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_gac37295ff76a33dc6395fbeb6906267fd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp1_ga8df5568d50795a11cfd7fb0abb331131}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!updateMotionState@{updateMotionState}}
+\index{updateMotionState@{updateMotionState}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{updateMotionState()}{updateMotionState()}}
+{\footnotesize\ttfamily \label{group__esp1_ga8df5568d50795a11cfd7fb0abb331131} 
+void update\+Motion\+State (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})}
+
+
+
+Updates motion state based on PIR sensor input. 
+
+Dispatches to motion-\/detected or motion-\/idle handlers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now} & Current time in milliseconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00397}{397}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp1_ga8df5568d50795a11cfd7fb0abb331131_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{group__esp1_ga8df5568d50795a11cfd7fb0abb331131_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__esp1_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__esp1_ga39d1ef76cb1d31fc16d855c63df5624a}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!accessGranted@{accessGranted}}
+\index{accessGranted@{accessGranted}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{accessGranted}{accessGranted}}
+{\footnotesize\ttfamily \label{group__esp1_ga39d1ef76cb1d31fc16d855c63df5624a} 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} access\+Granted}
+
+
+
+Result of PIN verification. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00139}{139}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga04ecc29c762e5b2844d3c24744813015}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!DEVICE\_ID@{DEVICE\_ID}}
+\index{DEVICE\_ID@{DEVICE\_ID}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_ID}{DEVICE\_ID}}
+{\footnotesize\ttfamily \label{group__esp1_ga04ecc29c762e5b2844d3c24744813015} 
+char DEVICE\+\_\+\+ID\+[$\,$]\+ = "{}door1"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Unique device identifier used in MQTT topics. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00060}{60}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga7ac35d96245159cab011565a97a600a2}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!DISPLAY\_BACKLIGHT\_MS@{DISPLAY\_BACKLIGHT\_MS}}
+\index{DISPLAY\_BACKLIGHT\_MS@{DISPLAY\_BACKLIGHT\_MS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_BACKLIGHT\_MS}{DISPLAY\_BACKLIGHT\_MS}}
+{\footnotesize\ttfamily \label{group__esp1_ga7ac35d96245159cab011565a97a600a2} 
+uint32\+\_\+t DISPLAY\+\_\+\+BACKLIGHT\+\_\+\+MS = 5000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Duration (ms) to keep LCD backlight on after motion. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00102}{102}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga8241448199a71015eaefc1267dc8405b}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!DISPLAY\_MS@{DISPLAY\_MS}}
+\index{DISPLAY\_MS@{DISPLAY\_MS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_MS}{DISPLAY\_MS}}
+{\footnotesize\ttfamily \label{group__esp1_ga8241448199a71015eaefc1267dc8405b} 
+uint32\+\_\+t DISPLAY\+\_\+\+MS = 3000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Duration (ms) to display text before resetting. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00099}{99}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gaf36f6d1529914bff6ce2e463c7d131fb}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!enteredPins@{enteredPins}}
+\index{enteredPins@{enteredPins}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{enteredPins}{enteredPins}}
+{\footnotesize\ttfamily \label{group__esp1_gaf36f6d1529914bff6ce2e463c7d131fb} 
+char entered\+Pins\+[5]\+ = "{} "{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Masked PIN buffer shown on LCD (max 4 digits + null terminator). 
+
+Filled with \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{} for entered digits and spaces for remaining slots. 
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00158}{158}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga9f6ed03d2d1d74a449ea68a62185786b}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!I2C\_SCL\_PIN@{I2C\_SCL\_PIN}}
+\index{I2C\_SCL\_PIN@{I2C\_SCL\_PIN}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{I2C\_SCL\_PIN}{I2C\_SCL\_PIN}}
+{\footnotesize\ttfamily \label{group__esp1_ga9f6ed03d2d1d74a449ea68a62185786b} 
+uint8\+\_\+t I2\+C\+\_\+\+SCL\+\_\+\+PIN = 5\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+I2C SCL pin for LCD (D1 /\+ GPIO5). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00079}{79}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga63fd3c54e4843404005eeeb206227853}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!I2C\_SDA\_PIN@{I2C\_SDA\_PIN}}
+\index{I2C\_SDA\_PIN@{I2C\_SDA\_PIN}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{I2C\_SDA\_PIN}{I2C\_SDA\_PIN}}
+{\footnotesize\ttfamily \label{group__esp1_ga63fd3c54e4843404005eeeb206227853} 
+uint8\+\_\+t I2\+C\+\_\+\+SDA\+\_\+\+PIN = 4\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+I2C SDA pin for LCD (D2 /\+ GPIO4). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00076}{76}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gaa68f1d788c8105e0735aac60d3df262f}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!LCD\_ADDRESS@{LCD\_ADDRESS}}
+\index{LCD\_ADDRESS@{LCD\_ADDRESS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{LCD\_ADDRESS}{LCD\_ADDRESS}}
+{\footnotesize\ttfamily \label{group__esp1_gaa68f1d788c8105e0735aac60d3df262f} 
+uint8\+\_\+t LCD\+\_\+\+ADDRESS = 0x27\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+I2C address of the LCD module. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00092}{92}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga0e6a68e678ddbbb64d3a90350409eb77}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!LCD\_COLUMNS@{LCD\_COLUMNS}}
+\index{LCD\_COLUMNS@{LCD\_COLUMNS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{LCD\_COLUMNS}{LCD\_COLUMNS}}
+{\footnotesize\ttfamily \label{group__esp1_ga0e6a68e678ddbbb64d3a90350409eb77} 
+uint8\+\_\+t LCD\+\_\+\+COLUMNS = 16\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Number of LCD columns. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00086}{86}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gae8842648f085d102ff0d7b1f06896143}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!LCD\_ROWS@{LCD\_ROWS}}
+\index{LCD\_ROWS@{LCD\_ROWS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{LCD\_ROWS}{LCD\_ROWS}}
+{\footnotesize\ttfamily \label{group__esp1_gae8842648f085d102ff0d7b1f06896143} 
+uint8\+\_\+t LCD\+\_\+\+ROWS = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Number of LCD rows. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00089}{89}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga8e9966a29ec4b464131da8cb1825ceb5}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!MOTION\_PIN@{MOTION\_PIN}}
+\index{MOTION\_PIN@{MOTION\_PIN}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{MOTION\_PIN}{MOTION\_PIN}}
+{\footnotesize\ttfamily \label{group__esp1_ga8e9966a29ec4b464131da8cb1825ceb5} 
+uint8\+\_\+t MOTION\+\_\+\+PIN = 0\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Motion sensor pin (D3 /\+ GPIO0). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00073}{73}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga62fac6034c46ae1f6fc7511f4447decb}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!motionActive@{motionActive}}
+\index{motionActive@{motionActive}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{motionActive}{motionActive}}
+{\footnotesize\ttfamily \label{group__esp1_ga62fac6034c46ae1f6fc7511f4447decb} 
+bool motion\+Active = false}
+
+
+
+Indicates whether motion is currently considered active. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00151}{151}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga41c34e432b12a511f9348547ddae11d4}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!MQTT\_HOST@{MQTT\_HOST}}
+\index{MQTT\_HOST@{MQTT\_HOST}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{MQTT\_HOST}{MQTT\_HOST}}
+{\footnotesize\ttfamily \label{group__esp1_ga41c34e432b12a511f9348547ddae11d4} 
+char MQTT\+\_\+\+HOST\+[$\,$]\+ = "{}maqiatto.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker hostname. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00051}{51}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga31dacdc924feb376b49448eb843d053c}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!MQTT\_PASS@{MQTT\_PASS}}
+\index{MQTT\_PASS@{MQTT\_PASS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PASS}{MQTT\_PASS}}
+{\footnotesize\ttfamily \label{group__esp1_ga31dacdc924feb376b49448eb843d053c} 
+char MQTT\+\_\+\+PASS\+[$\,$]\+ = "{}potter"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00057}{57}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga993a7e0c0377e10146438ebe707f31d0}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!MQTT\_PORT@{MQTT\_PORT}}
+\index{MQTT\_PORT@{MQTT\_PORT}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PORT}{MQTT\_PORT}}
+{\footnotesize\ttfamily \label{group__esp1_ga993a7e0c0377e10146438ebe707f31d0} 
+uint16\+\_\+t MQTT\+\_\+\+PORT = 1883\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker port. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00053}{53}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga315cd313c3f6301b48d2f67e63bec2db}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!MQTT\_USER@{MQTT\_USER}}
+\index{MQTT\_USER@{MQTT\_USER}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{MQTT\_USER}{MQTT\_USER}}
+{\footnotesize\ttfamily \label{group__esp1_ga315cd313c3f6301b48d2f67e63bec2db} 
+char MQTT\+\_\+\+USER\+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT username. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00055}{55}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga082cbde9dbf32731aabec6f0b8a7e5c0}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!net@{net}}
+\index{net@{net}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \label{group__esp1_ga082cbde9dbf32731aabec6f0b8a7e5c0} 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} net}
+
+
+
+Wi\+Fi + MQTT client wrapper. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00043}{43}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga1437df78a60c0b4cbfba394adb0451d2}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!PIN\_TIME\_MS@{PIN\_TIME\_MS}}
+\index{PIN\_TIME\_MS@{PIN\_TIME\_MS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{PIN\_TIME\_MS}{PIN\_TIME\_MS}}
+{\footnotesize\ttfamily \label{group__esp1_ga1437df78a60c0b4cbfba394adb0451d2} 
+uint32\+\_\+t PIN\+\_\+\+TIME\+\_\+\+MS = 15000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Time window (ms) for entering PIN after RFID success. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00105}{105}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gaf9d4cdbb45bf12608e163ee4b2d0dadd}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!POLL\_MS@{POLL\_MS}}
+\index{POLL\_MS@{POLL\_MS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{POLL\_MS}{POLL\_MS}}
+{\footnotesize\ttfamily \label{group__esp1_gaf9d4cdbb45bf12608e163ee4b2d0dadd} 
+uint32\+\_\+t POLL\+\_\+\+MS = 30\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Main loop polling delay (ms). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00111}{111}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga5ddbb36ee43b0702d33a13226adfd364}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!RFID\_RST\_PIN@{RFID\_RST\_PIN}}
+\index{RFID\_RST\_PIN@{RFID\_RST\_PIN}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{RFID\_RST\_PIN}{RFID\_RST\_PIN}}
+{\footnotesize\ttfamily \label{group__esp1_ga5ddbb36ee43b0702d33a13226adfd364} 
+uint8\+\_\+t RFID\+\_\+\+RST\+\_\+\+PIN = 16\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RC522 Reset pin (D0 /\+ GPIO16). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00070}{70}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga740060cb86c3a8429646211325d378cb}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!RFID\_SS\_PIN@{RFID\_SS\_PIN}}
+\index{RFID\_SS\_PIN@{RFID\_SS\_PIN}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{RFID\_SS\_PIN}{RFID\_SS\_PIN}}
+{\footnotesize\ttfamily \label{group__esp1_ga740060cb86c3a8429646211325d378cb} 
+uint8\+\_\+t RFID\+\_\+\+SS\+\_\+\+PIN = 15\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RC522 SPI Slave Select pin (D8 /\+ GPIO15). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00067}{67}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gaf8cd458b5a58130e8dd244de49f9591d}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!rfidAccess@{rfidAccess}}
+\index{rfidAccess@{rfidAccess}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{rfidAccess}{rfidAccess}}
+{\footnotesize\ttfamily \label{group__esp1_gaf8cd458b5a58130e8dd244de49f9591d} 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} rfid\+Access}
+
+
+
+Result of RFID authentication. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00136}{136}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga25ac0b6f6c871d8fcaf0a438f1d8f46a}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!showDisplayUntil@{showDisplayUntil}}
+\index{showDisplayUntil@{showDisplayUntil}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{showDisplayUntil}{showDisplayUntil}}
+{\footnotesize\ttfamily \label{group__esp1_ga25ac0b6f6c871d8fcaf0a438f1d8f46a} 
+uint32\+\_\+t show\+Display\+Until = 0}
+
+
+
+Timestamp (ms) when LCD backlight should turn off. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00148}{148}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga04d3079f12f3e11e3bcb2b289c537093}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!showTextUntil@{showTextUntil}}
+\index{showTextUntil@{showTextUntil}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{showTextUntil}{showTextUntil}}
+{\footnotesize\ttfamily \label{group__esp1_ga04d3079f12f3e11e3bcb2b289c537093} 
+uint32\+\_\+t show\+Text\+Until = 0}
+
+
+
+Timestamp (ms) when the displayed text should expire. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00145}{145}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga7723000e87c672531aa82d5653686e61}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!textshown@{textshown}}
+\index{textshown@{textshown}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{textshown}{textshown}}
+{\footnotesize\ttfamily \label{group__esp1_ga7723000e87c672531aa82d5653686e61} 
+bool textshown = false}
+
+
+
+Indicates whether a status message is currently displayed. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00142}{142}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga6d6d37a1e68b6dcd10e646ed685f6f5e}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!UNLOCK\_TIME\_MS@{UNLOCK\_TIME\_MS}}
+\index{UNLOCK\_TIME\_MS@{UNLOCK\_TIME\_MS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{UNLOCK\_TIME\_MS}{UNLOCK\_TIME\_MS}}
+{\footnotesize\ttfamily \label{group__esp1_ga6d6d37a1e68b6dcd10e646ed685f6f5e} 
+uint32\+\_\+t UNLOCK\+\_\+\+TIME\+\_\+\+MS = 5000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Door unlock display duration (ms). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00108}{108}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_ga0495958e0c537c1c5100ee272495435c}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!WIFI\_PASS@{WIFI\_PASS}}
+\index{WIFI\_PASS@{WIFI\_PASS}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{WIFI\_PASS}{WIFI\_PASS}}
+{\footnotesize\ttfamily \label{group__esp1_ga0495958e0c537c1c5100ee272495435c} 
+char WIFI\+\_\+\+PASS\+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00048}{48}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+
+\Hypertarget{group__esp1_gae4ee394ecd24781bba5d0aaaab8e964a}\index{ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}!WIFI\_SSID@{WIFI\_SSID}}
+\index{WIFI\_SSID@{WIFI\_SSID}!ESP1 -\/ RFID \& Motion@{ESP1 -\/ RFID \& Motion}}
+\doxysubsubsection{\texorpdfstring{WIFI\_SSID}{WIFI\_SSID}}
+{\footnotesize\ttfamily \label{group__esp1_gae4ee394ecd24781bba5d0aaaab8e964a} 
+char WIFI\+\_\+\+SSID\+[$\,$]\+ = "{}Mathias2.\+4"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi SSID. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00046}{46}} of file \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source}{esp1\+\_\+rfid\+\_\+motion.\+ino}}.
+

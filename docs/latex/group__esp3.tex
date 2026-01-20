@@ -1,2 +1,983 @@
 \doxysection{ESP3 -\/ Door Actuator }
 \hypertarget{group__esp3}{}\label{group__esp3}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structBuzzerPattern}{Buzzer\+Pattern}}
+\begin{DoxyCompactList}\small\item\em Describes a buzzer sound pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{group__esp3_gaae89f73e4cdcb650ae5c585818d3a861}{POT\+\_\+\+PIN}}~A0
+\begin{DoxyCompactList}\small\item\em Analog pin for potentiometer (admin servo control). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{group__esp3_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{Access\+Result::\+\+Denied}}
+, \doxymbox{\hyperlink{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{Access\+Result::\+\+Granted}}
+, \doxymbox{\hyperlink{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{Access\+Result::\+\+Denied}}
+, \doxymbox{\hyperlink{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{Access\+Result::\+\+Granted}}
+ \}
+\begin{DoxyCompactList}\small\item\em Access result enumeration. \end{DoxyCompactList}\item 
+enum \doxymbox{\hyperlink{group__esp3_gae3c5be103282ee46f635819ae28c1176}{Buzzer\+State}} \{ \doxymbox{\hyperlink{group__esp3_ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\+\_\+\+IDLE}}
+, \doxymbox{\hyperlink{group__esp3_ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{BUZZER\+\_\+\+ON}}
+, \doxymbox{\hyperlink{group__esp3_ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68}{BUZZER\+\_\+\+OFF}}
+ \}
+\begin{DoxyCompactList}\small\item\em Buzzer state enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{group__esp3_ga89ff5d59e14a11256f4dd5c82602f932}{play\+Pattern}} (const unsigned int \texorpdfstring{$\ast$}{*}timings, uint8\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Starts playing a buzzer pattern. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga312e25f84437a687662bb53eceebec83}{update\+Buzzer}} ()
+\begin{DoxyCompactList}\small\item\em Advances the buzzer state machine. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga95513a5e9cc3b574afa284a38c77d6e7}{stop\+Buzzer}} ()
+\begin{DoxyCompactList}\small\item\em Immediately stops any active buzzer sound. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f}{play\+Lock\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays lock sound pattern. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga979598b64139705fd13eb4ea50e0674c}{play\+Unlock\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays unlock sound pattern. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga04bf0803eb139c30e08775daa9076ea6}{play\+Denied\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays denied-\/access sound pattern. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100}{play\+Tap\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Plays keypad tap sound. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{group__esp3_gaff8c04e7b324ff4272911924db174640}{force\+Lock}} ()
+\begin{DoxyCompactList}\small\item\em Forces the system into a locked idle state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_gac3a129f66dc859e2b7279565f4e1de78}{callback}} (char \texorpdfstring{$\ast$}{*}topic, byte \texorpdfstring{$\ast$}{*}payload, unsigned int length)
+\begin{DoxyCompactList}\small\item\em MQTT message callback handler. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_ga4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino setup function. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp3_gafe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Arduino main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} \doxymbox{\hyperlink{group__esp3_ga082cbde9dbf32731aabec6f0b8a7e5c0}{net}}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi + MQTT client wrapper. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_gae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\+\_\+\+SSID}} \+[$\,$]\+ = "{}Mathias2.\+4"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi SSID. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_ga0495958e0c537c1c5100ee272495435c}{WIFI\+\_\+\+PASS}} \+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_ga41c34e432b12a511f9348547ddae11d4}{MQTT\+\_\+\+HOST}} \+[$\,$]\+ = "{}maqiatto.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT broker hostname. \end{DoxyCompactList}\item 
+constexpr uint16\+\_\+t \doxymbox{\hyperlink{group__esp3_ga993a7e0c0377e10146438ebe707f31d0}{MQTT\+\_\+\+PORT}} = 1883
+\begin{DoxyCompactList}\small\item\em MQTT broker port. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_ga315cd313c3f6301b48d2f67e63bec2db}{MQTT\+\_\+\+USER}} \+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT username. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_ga31dacdc924feb376b49448eb843d053c}{MQTT\+\_\+\+PASS}} \+[$\,$]\+ = "{}potter"{}
+\begin{DoxyCompactList}\small\item\em MQTT password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp3_ga04ecc29c762e5b2844d3c24744813015}{DEVICE\+\_\+\+ID}} \+[$\,$]\+ = "{}door1"{}
+\begin{DoxyCompactList}\small\item\em Unique device identifier used in MQTT topics. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_ga1ff3e63b5caeb625ff113a8190b24c80}{RED\+\_\+\+PIN}} = 4
+\begin{DoxyCompactList}\small\item\em GPIO pin assignments. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_gad779a2a8a81b39a265a6361f7edf06f2}{GREEN\+\_\+\+PIN}} = 0
+\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_gafbe2629cea08969000cef8d30978edd8}{BUZZER\+\_\+\+PIN}} = 14
+\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_ga98714b3ea5db9fa78cbcf8891a3c0798}{SERVO\+\_\+\+PIN}} = 13
+\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{group__esp3_ga6d6d37a1e68b6dcd10e646ed685f6f5e}{UNLOCK\+\_\+\+TIME\+\_\+\+MS}} = 5000
+\begin{DoxyCompactList}\small\item\em Door unlock duration (ms). \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{group__esp3_ga744e7cb284580272a7afb8a81f2a3bba}{unlock\+Until}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp (ms) until which the door remains unlocked. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp3_ga5284d36e95aca49afcb3ae1ecc97add5}{unlocked}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the door is currently unlocked. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} \doxymbox{\hyperlink{group__esp3_ga39d1ef76cb1d31fc16d855c63df5624a}{access\+Granted}}
+\begin{DoxyCompactList}\small\item\em Result of keypad PIN verification. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp3_ga037a56ba222296920d6e0f06796e9f21}{rfid\+Access}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether RFID access was granted. \end{DoxyCompactList}\item 
+Servo \doxymbox{\hyperlink{group__esp3_ga7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\+\_\+servo}}
+\begin{DoxyCompactList}\small\item\em Servo instance controlling the lock mechanism. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp3_gac981a10fb220aee90291389b2607c637}{servo\+Open}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the servo is currently in the open position. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_ga9382f70e6b3786d1e4c31a325939561e}{servo\+Angle}}
+\begin{DoxyCompactList}\small\item\em Current servo angle (derived from potentiometer in admin mode). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp3_gacb368e6741d7e5d5fb51f384f3ef6c5e}{admin\+Servo\+Control}} = false
+\begin{DoxyCompactList}\small\item\em Enables direct servo control via potentiometer (admin mode). \end{DoxyCompactList}\item 
+const unsigned int \doxymbox{\hyperlink{group__esp3_ga2bba129d79cf6951bff6c7931dee6f03}{denied\+Timings}} \+[$\,$]\+
+\begin{DoxyCompactList}\small\item\em Denied access:\+ single long beep. Extra long to scare. \end{DoxyCompactList}\item 
+const unsigned int \doxymbox{\hyperlink{group__esp3_ga7dafde6b11d0e61269d5b5326deee7cb}{lock\+Timings}} \+[$\,$]\+
+\begin{DoxyCompactList}\small\item\em Lock sound:\+ long-\/long-\/long pattern. \end{DoxyCompactList}\item 
+const unsigned int \doxymbox{\hyperlink{group__esp3_gaf8884950ef523ca854f256d016cfaf29}{unlock\+Timings}} \+[$\,$]\+
+\begin{DoxyCompactList}\small\item\em Unlock sound:\+ short-\/short pattern. \end{DoxyCompactList}\item 
+const unsigned int \doxymbox{\hyperlink{group__esp3_gacf6a49719a118eac7c9f54b4351977fd}{beep\+Timings}} \+[$\,$]\+
+\begin{DoxyCompactList}\small\item\em Keypad tap sound:\+ short beep. \end{DoxyCompactList}\item 
+const unsigned int \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{group__esp3_ga9973d8105ccaef4e92696ff202364a48}{Buzzer\+Pattern::\+timings}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_gaa5a431c816b520d8df9dc3fb85d5c062}{Buzzer\+Pattern::\+length}}
+\item 
+\doxymbox{\hyperlink{group__esp3_gae3c5be103282ee46f635819ae28c1176}{Buzzer\+State}} \doxymbox{\hyperlink{group__esp3_ga83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzer\+State}} = \doxymbox{\hyperlink{group__esp3_ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\+\_\+\+IDLE}}
+\begin{DoxyCompactList}\small\item\em Current buzzer state. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{structBuzzerPattern}{Buzzer\+Pattern}} \doxymbox{\hyperlink{group__esp3_ga3968694cac10b831396197bf7627d45c}{current\+Pattern}} = \{nullptr, 0\}
+\begin{DoxyCompactList}\small\item\em Currently active buzzer pattern. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group__esp3_gad0d2a31b1a102cbb8a415773c47b01bb}{step\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em Index into the timing array. \end{DoxyCompactList}\item 
+unsigned long \doxymbox{\hyperlink{group__esp3_gaeaa41d0f25d6ba9737d73ffa5136f4ab}{last\+Change}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp of last buzzer state change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This firmware runs on an ESP-\/based Arduino-\/compatible board and implements the final actuator stage of the access control system.
+
+Hardware components:\+
+\begin{DoxyItemize}
+\item Servo motor for door locking mechanism
+\item Status LEDs (red /\+ green)
+\item Piezo buzzer
+\end{DoxyItemize}
+
+Functional responsibilities:\+
+\begin{DoxyItemize}
+\item Locks and unlocks the door based on MQTT access decisions
+\item Provides audible and visual feedback for access events
+\item Automatically relocks the door after a configurable timeout
+\item Supports an administrative servo override mode via MQTT
+\end{DoxyItemize}
+
+This node does not make access decisions itself; it only reacts to authenticated results produced by the RFID and keypad nodes. 
+
+\label{doc-define-members}
+\Hypertarget{group__esp3_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__esp3_gaae89f73e4cdcb650ae5c585818d3a861}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!POT\_PIN@{POT\_PIN}}
+\index{POT\_PIN@{POT\_PIN}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{POT\_PIN}{POT\_PIN}}
+{\footnotesize\ttfamily \label{group__esp3_gaae89f73e4cdcb650ae5c585818d3a861} 
+\+\#define POT\+\_\+\+PIN~A0}
+
+
+
+Analog pin for potentiometer (admin servo control). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00070}{70}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{group__esp3_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{group__esp3_ga6a8b3b75b2ade421c119d83a8b2133f1}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!AccessResult@{AccessResult}}
+\index{AccessResult@{AccessResult}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{AccessResult}{AccessResult}}
+{\footnotesize\ttfamily \label{group__esp3_ga6a8b3b75b2ade421c119d83a8b2133f1} 
+enum class \doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Access result enumeration. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Denied@{Denied}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!Denied@{Denied}}
+}\Hypertarget{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}\label{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73} 
+Denied&Access denied \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Granted@{Granted}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!Granted@{Granted}}
+}\Hypertarget{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}\label{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db} 
+Granted&Access granted \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Denied@{Denied}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!Denied@{Denied}}
+}\Hypertarget{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}\label{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73} 
+Denied&Access denied \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Granted@{Granted}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!Granted@{Granted}}
+}\Hypertarget{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}\label{group__esp3_gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db} 
+Granted&Access granted \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00092}{92}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gae3c5be103282ee46f635819ae28c1176}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!BuzzerState@{BuzzerState}}
+\index{BuzzerState@{BuzzerState}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{BuzzerState}{BuzzerState}}
+{\footnotesize\ttfamily \label{group__esp3_gae3c5be103282ee46f635819ae28c1176} 
+enum \doxymbox{\hyperlink{group__esp3_gae3c5be103282ee46f635819ae28c1176}{Buzzer\+State}}}
+
+
+
+Buzzer state enumeration. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUZZER\_IDLE@{BUZZER\_IDLE}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!BUZZER\_IDLE@{BUZZER\_IDLE}}
+}\Hypertarget{group__esp3_ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}\label{group__esp3_ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd} 
+BUZZER\+\_\+\+IDLE&No sound playing \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUZZER\_ON@{BUZZER\_ON}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!BUZZER\_ON@{BUZZER\_ON}}
+}\Hypertarget{group__esp3_ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}\label{group__esp3_ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c} 
+BUZZER\+\_\+\+ON&Buzzer currently active \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUZZER\_OFF@{BUZZER\_OFF}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!BUZZER\_OFF@{BUZZER\_OFF}}
+}\Hypertarget{group__esp3_ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68}\label{group__esp3_ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68} 
+BUZZER\+\_\+\+OFF&Silent gap between beeps \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00151}{151}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__esp3_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__esp3_gac3a129f66dc859e2b7279565f4e1de78}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!callback@{callback}}
+\index{callback@{callback}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily \label{group__esp3_gac3a129f66dc859e2b7279565f4e1de78} 
+void callback (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{byte \texorpdfstring{$\ast$}{*}}]{payload}{, }\item[{unsigned int}]{length}{}\end{DoxyParamCaption})}
+
+
+
+MQTT message callback handler. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item Keypad access responses (unlock /\+ deny)
+\item RFID access denials
+\item Keypad tap beep feedback
+\item Admin servo control enable/\+disable
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & MQTT topic string. \\
+\hline
+{\em payload} & Raw payload bytes. \\
+\hline
+{\em length} & Payload length. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00308}{308}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp3_gac3a129f66dc859e2b7279565f4e1de78_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_gaff8c04e7b324ff4272911924db174640}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!forceLock@{forceLock}}
+\index{forceLock@{forceLock}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{forceLock()}{forceLock()}}
+{\footnotesize\ttfamily \label{group__esp3_gaff8c04e7b324ff4272911924db174640} 
+void force\+Lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Forces the system into a locked idle state. 
+
+
+\begin{DoxyItemize}
+\item Resets access state
+\item Sets LEDs to "{}locked"{}
+\item Moves servo to closed position if needed 
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00278}{278}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{group__esp3_gaff8c04e7b324ff4272911924db174640_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_gafe461d27b9c48d5921c00d521181f12f}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!loop@{loop}}
+\index{loop@{loop}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{group__esp3_gafe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino main loop. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item MQTT processing
+\item Buzzer state machine updates
+\item Servo admin override mode
+\item Automatic relocking after timeout 
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00474}{474}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp3_gafe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga04bf0803eb139c30e08775daa9076ea6}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!playDeniedSound@{playDeniedSound}}
+\index{playDeniedSound@{playDeniedSound}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{playDeniedSound()}{playDeniedSound()}}
+{\footnotesize\ttfamily \label{group__esp3_ga04bf0803eb139c30e08775daa9076ea6} 
+void play\+Denied\+Sound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Plays denied-\/access sound pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00254}{254}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{group__esp3_ga04bf0803eb139c30e08775daa9076ea6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{group__esp3_ga04bf0803eb139c30e08775daa9076ea6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!playLockSound@{playLockSound}}
+\index{playLockSound@{playLockSound}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{playLockSound()}{playLockSound()}}
+{\footnotesize\ttfamily \label{group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f} 
+void play\+Lock\+Sound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Plays lock sound pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00240}{240}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga89ff5d59e14a11256f4dd5c82602f932}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!playPattern@{playPattern}}
+\index{playPattern@{playPattern}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{playPattern()}{playPattern()}}
+{\footnotesize\ttfamily \label{group__esp3_ga89ff5d59e14a11256f4dd5c82602f932} 
+void play\+Pattern (\begin{DoxyParamCaption}\item[{const unsigned int \texorpdfstring{$\ast$}{*}}]{timings}{, }\item[{uint8\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Starts playing a buzzer pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timings} & Pointer to timing array. \\
+\hline
+{\em length} & Number of elements in the timing array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00183}{183}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp3_ga89ff5d59e14a11256f4dd5c82602f932_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!playTapSound@{playTapSound}}
+\index{playTapSound@{playTapSound}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{playTapSound()}{playTapSound()}}
+{\footnotesize\ttfamily \label{group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100} 
+void play\+Tap\+Sound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Plays keypad tap sound. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00261}{261}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga979598b64139705fd13eb4ea50e0674c}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!playUnlockSound@{playUnlockSound}}
+\index{playUnlockSound@{playUnlockSound}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{playUnlockSound()}{playUnlockSound()}}
+{\footnotesize\ttfamily \label{group__esp3_ga979598b64139705fd13eb4ea50e0674c} 
+void play\+Unlock\+Sound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Plays unlock sound pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00247}{247}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{group__esp3_ga979598b64139705fd13eb4ea50e0674c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{group__esp3_ga979598b64139705fd13eb4ea50e0674c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga4fc01d736fe50cf5b977f755b675f11d}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!setup@{setup}}
+\index{setup@{setup}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{group__esp3_ga4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino setup function. 
+
+Initializes GPIOs, servo, Wi\+Fi, MQTT client, and topic subscriptions. 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00413}{413}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp3_ga4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga95513a5e9cc3b574afa284a38c77d6e7}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!stopBuzzer@{stopBuzzer}}
+\index{stopBuzzer@{stopBuzzer}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{stopBuzzer()}{stopBuzzer()}}
+{\footnotesize\ttfamily \label{group__esp3_ga95513a5e9cc3b574afa284a38c77d6e7} 
+void stop\+Buzzer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Immediately stops any active buzzer sound. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00234}{234}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp3_ga95513a5e9cc3b574afa284a38c77d6e7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp3_ga312e25f84437a687662bb53eceebec83}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!updateBuzzer@{updateBuzzer}}
+\index{updateBuzzer@{updateBuzzer}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{updateBuzzer()}{updateBuzzer()}}
+{\footnotesize\ttfamily \label{group__esp3_ga312e25f84437a687662bb53eceebec83} 
+void update\+Buzzer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Advances the buzzer state machine. 
+
+Must be called frequently from the main loop. 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00203}{203}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{group__esp3_ga312e25f84437a687662bb53eceebec83_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__esp3_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__esp3_ga39d1ef76cb1d31fc16d855c63df5624a}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!accessGranted@{accessGranted}}
+\index{accessGranted@{accessGranted}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{accessGranted}{accessGranted}}
+{\footnotesize\ttfamily \label{group__esp3_ga39d1ef76cb1d31fc16d855c63df5624a} 
+\doxymbox{\hyperlink{group__esp1_ga6a8b3b75b2ade421c119d83a8b2133f1}{Access\+Result}} access\+Granted}
+
+
+
+Result of keypad PIN verification. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00098}{98}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gacb368e6741d7e5d5fb51f384f3ef6c5e}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!adminServoControl@{adminServoControl}}
+\index{adminServoControl@{adminServoControl}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{adminServoControl}{adminServoControl}}
+{\footnotesize\ttfamily \label{group__esp3_gacb368e6741d7e5d5fb51f384f3ef6c5e} 
+bool admin\+Servo\+Control = false}
+
+
+
+Enables direct servo control via potentiometer (admin mode). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00113}{113}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gacf6a49719a118eac7c9f54b4351977fd}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!beepTimings@{beepTimings}}
+\index{beepTimings@{beepTimings}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{beepTimings}{beepTimings}}
+{\footnotesize\ttfamily \label{group__esp3_gacf6a49719a118eac7c9f54b4351977fd} 
+const unsigned int beep\+Timings\+[$\,$]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ 125}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Keypad tap sound:\+ short beep. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00144}{144}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gafbe2629cea08969000cef8d30978edd8}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!BUZZER\_PIN@{BUZZER\_PIN}}
+\index{BUZZER\_PIN@{BUZZER\_PIN}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{BUZZER\_PIN}{BUZZER\_PIN}}
+{\footnotesize\ttfamily \label{group__esp3_gafbe2629cea08969000cef8d30978edd8} 
+uint8\+\_\+t BUZZER\+\_\+\+PIN = 14\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+Piezo buzzer 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00066}{66}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga83ec3e49d3b2d7a5b3d7e24776ed94dd}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!buzzerState@{buzzerState}}
+\index{buzzerState@{buzzerState}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{buzzerState}{buzzerState}}
+{\footnotesize\ttfamily \label{group__esp3_ga83ec3e49d3b2d7a5b3d7e24776ed94dd} 
+\doxymbox{\hyperlink{group__esp3_gae3c5be103282ee46f635819ae28c1176}{Buzzer\+State}} buzzer\+State = \doxymbox{\hyperlink{group__esp3_ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\+\_\+\+IDLE}}}
+
+
+
+Current buzzer state. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00166}{166}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga3968694cac10b831396197bf7627d45c}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!currentPattern@{currentPattern}}
+\index{currentPattern@{currentPattern}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{currentPattern}{currentPattern}}
+{\footnotesize\ttfamily \label{group__esp3_ga3968694cac10b831396197bf7627d45c} 
+\doxymbox{\hyperlink{structBuzzerPattern}{Buzzer\+Pattern}} current\+Pattern = \{nullptr, 0\}}
+
+
+
+Currently active buzzer pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00169}{169}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga2bba129d79cf6951bff6c7931dee6f03}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!deniedTimings@{deniedTimings}}
+\index{deniedTimings@{deniedTimings}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{deniedTimings}{deniedTimings}}
+{\footnotesize\ttfamily \label{group__esp3_ga2bba129d79cf6951bff6c7931dee6f03} 
+const unsigned int denied\+Timings\+[$\,$]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ 2000}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Denied access:\+ single long beep. Extra long to scare. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00126}{126}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga04ecc29c762e5b2844d3c24744813015}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!DEVICE\_ID@{DEVICE\_ID}}
+\index{DEVICE\_ID@{DEVICE\_ID}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_ID}{DEVICE\_ID}}
+{\footnotesize\ttfamily \label{group__esp3_ga04ecc29c762e5b2844d3c24744813015} 
+char DEVICE\+\_\+\+ID\+[$\,$]\+ = "{}door1"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Unique device identifier used in MQTT topics. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00053}{53}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gad779a2a8a81b39a265a6361f7edf06f2}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!GREEN\_PIN@{GREEN\_PIN}}
+\index{GREEN\_PIN@{GREEN\_PIN}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{GREEN\_PIN}{GREEN\_PIN}}
+{\footnotesize\ttfamily \label{group__esp3_gad779a2a8a81b39a265a6361f7edf06f2} 
+uint8\+\_\+t GREEN\+\_\+\+PIN = 0\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+Green LED (unlocked) 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00065}{65}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gaeaa41d0f25d6ba9737d73ffa5136f4ab}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!lastChange@{lastChange}}
+\index{lastChange@{lastChange}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{lastChange}{lastChange}}
+{\footnotesize\ttfamily \label{group__esp3_gaeaa41d0f25d6ba9737d73ffa5136f4ab} 
+unsigned long last\+Change = 0}
+
+
+
+Timestamp of last buzzer state change. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00175}{175}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gaa5a431c816b520d8df9dc3fb85d5c062}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!length@{length}}
+\index{length@{length}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \label{group__esp3_gaa5a431c816b520d8df9dc3fb85d5c062} 
+uint8\+\_\+t Buzzer\+Pattern::\+length}
+
+Number of timing entries 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00162}{162}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga7d2ca4784fdea2b5e9ac6f9ac738ef08}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!lock\_servo@{lock\_servo}}
+\index{lock\_servo@{lock\_servo}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{lock\_servo}{lock\_servo}}
+{\footnotesize\ttfamily \label{group__esp3_ga7d2ca4784fdea2b5e9ac6f9ac738ef08} 
+Servo lock\+\_\+servo}
+
+
+
+Servo instance controlling the lock mechanism. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00104}{104}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga7dafde6b11d0e61269d5b5326deee7cb}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!lockTimings@{lockTimings}}
+\index{lockTimings@{lockTimings}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{lockTimings}{lockTimings}}
+{\footnotesize\ttfamily \label{group__esp3_ga7dafde6b11d0e61269d5b5326deee7cb} 
+const unsigned int lock\+Timings\+[$\,$]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ 250,\ 120,}
+\DoxyCodeLine{\ \ 250,\ 120,}
+\DoxyCodeLine{\ \ 250}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Lock sound:\+ long-\/long-\/long pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00131}{131}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga41c34e432b12a511f9348547ddae11d4}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!MQTT\_HOST@{MQTT\_HOST}}
+\index{MQTT\_HOST@{MQTT\_HOST}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{MQTT\_HOST}{MQTT\_HOST}}
+{\footnotesize\ttfamily \label{group__esp3_ga41c34e432b12a511f9348547ddae11d4} 
+char MQTT\+\_\+\+HOST\+[$\,$]\+ = "{}maqiatto.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker hostname. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00044}{44}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga31dacdc924feb376b49448eb843d053c}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!MQTT\_PASS@{MQTT\_PASS}}
+\index{MQTT\_PASS@{MQTT\_PASS}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PASS}{MQTT\_PASS}}
+{\footnotesize\ttfamily \label{group__esp3_ga31dacdc924feb376b49448eb843d053c} 
+char MQTT\+\_\+\+PASS\+[$\,$]\+ = "{}potter"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00050}{50}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga993a7e0c0377e10146438ebe707f31d0}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!MQTT\_PORT@{MQTT\_PORT}}
+\index{MQTT\_PORT@{MQTT\_PORT}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PORT}{MQTT\_PORT}}
+{\footnotesize\ttfamily \label{group__esp3_ga993a7e0c0377e10146438ebe707f31d0} 
+uint16\+\_\+t MQTT\+\_\+\+PORT = 1883\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker port. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00046}{46}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga315cd313c3f6301b48d2f67e63bec2db}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!MQTT\_USER@{MQTT\_USER}}
+\index{MQTT\_USER@{MQTT\_USER}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{MQTT\_USER}{MQTT\_USER}}
+{\footnotesize\ttfamily \label{group__esp3_ga315cd313c3f6301b48d2f67e63bec2db} 
+char MQTT\+\_\+\+USER\+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT username. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00048}{48}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga082cbde9dbf32731aabec6f0b8a7e5c0}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!net@{net}}
+\index{net@{net}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \label{group__esp3_ga082cbde9dbf32731aabec6f0b8a7e5c0} 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} net}
+
+
+
+Wi\+Fi + MQTT client wrapper. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00036}{36}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga1ff3e63b5caeb625ff113a8190b24c80}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!RED\_PIN@{RED\_PIN}}
+\index{RED\_PIN@{RED\_PIN}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{RED\_PIN}{RED\_PIN}}
+{\footnotesize\ttfamily \label{group__esp3_ga1ff3e63b5caeb625ff113a8190b24c80} 
+uint8\+\_\+t RED\+\_\+\+PIN = 4\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+GPIO pin assignments. 
+
+Refer to esp3.\+fzz for wiring details. Red LED (locked /\+ denied) 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00064}{64}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga037a56ba222296920d6e0f06796e9f21}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!rfidAccess@{rfidAccess}}
+\index{rfidAccess@{rfidAccess}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{rfidAccess}{rfidAccess}}
+{\footnotesize\ttfamily \label{group__esp3_ga037a56ba222296920d6e0f06796e9f21} 
+bool rfid\+Access = false}
+
+
+
+Indicates whether RFID access was granted. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00101}{101}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga98714b3ea5db9fa78cbcf8891a3c0798}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!SERVO\_PIN@{SERVO\_PIN}}
+\index{SERVO\_PIN@{SERVO\_PIN}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{SERVO\_PIN}{SERVO\_PIN}}
+{\footnotesize\ttfamily \label{group__esp3_ga98714b3ea5db9fa78cbcf8891a3c0798} 
+uint8\+\_\+t SERVO\+\_\+\+PIN = 13\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+Servo signal pin 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00067}{67}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga9382f70e6b3786d1e4c31a325939561e}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!servoAngle@{servoAngle}}
+\index{servoAngle@{servoAngle}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{servoAngle}{servoAngle}}
+{\footnotesize\ttfamily \label{group__esp3_ga9382f70e6b3786d1e4c31a325939561e} 
+uint8\+\_\+t servo\+Angle}
+
+
+
+Current servo angle (derived from potentiometer in admin mode). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00110}{110}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gac981a10fb220aee90291389b2607c637}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!servoOpen@{servoOpen}}
+\index{servoOpen@{servoOpen}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{servoOpen}{servoOpen}}
+{\footnotesize\ttfamily \label{group__esp3_gac981a10fb220aee90291389b2607c637} 
+bool servo\+Open = false}
+
+
+
+Indicates whether the servo is currently in the open position. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00107}{107}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gad0d2a31b1a102cbb8a415773c47b01bb}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!stepIndex@{stepIndex}}
+\index{stepIndex@{stepIndex}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{stepIndex}{stepIndex}}
+{\footnotesize\ttfamily \label{group__esp3_gad0d2a31b1a102cbb8a415773c47b01bb} 
+uint8\+\_\+t step\+Index = 0}
+
+
+
+Index into the timing array. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00172}{172}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga9973d8105ccaef4e92696ff202364a48}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!timings@{timings}}
+\index{timings@{timings}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{timings}{timings}}
+{\footnotesize\ttfamily \label{group__esp3_ga9973d8105ccaef4e92696ff202364a48} 
+const unsigned int\texorpdfstring{$\ast$}{*} Buzzer\+Pattern::\+timings}
+
+Pointer to timing array 
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00161}{161}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga6d6d37a1e68b6dcd10e646ed685f6f5e}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!UNLOCK\_TIME\_MS@{UNLOCK\_TIME\_MS}}
+\index{UNLOCK\_TIME\_MS@{UNLOCK\_TIME\_MS}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{UNLOCK\_TIME\_MS}{UNLOCK\_TIME\_MS}}
+{\footnotesize\ttfamily \label{group__esp3_ga6d6d37a1e68b6dcd10e646ed685f6f5e} 
+uint32\+\_\+t UNLOCK\+\_\+\+TIME\+\_\+\+MS = 5000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Door unlock duration (ms). 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00077}{77}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga5284d36e95aca49afcb3ae1ecc97add5}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!unlocked@{unlocked}}
+\index{unlocked@{unlocked}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{unlocked}{unlocked}}
+{\footnotesize\ttfamily \label{group__esp3_ga5284d36e95aca49afcb3ae1ecc97add5} 
+bool unlocked = false}
+
+
+
+Indicates whether the door is currently unlocked. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00087}{87}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gaf8884950ef523ca854f256d016cfaf29}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!unlockTimings@{unlockTimings}}
+\index{unlockTimings@{unlockTimings}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{unlockTimings}{unlockTimings}}
+{\footnotesize\ttfamily \label{group__esp3_gaf8884950ef523ca854f256d016cfaf29} 
+const unsigned int unlock\+Timings\+[$\,$]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ 125,\ 120,}
+\DoxyCodeLine{\ \ 125}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Unlock sound:\+ short-\/short pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00138}{138}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga744e7cb284580272a7afb8a81f2a3bba}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!unlockUntil@{unlockUntil}}
+\index{unlockUntil@{unlockUntil}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{unlockUntil}{unlockUntil}}
+{\footnotesize\ttfamily \label{group__esp3_ga744e7cb284580272a7afb8a81f2a3bba} 
+uint32\+\_\+t unlock\+Until = 0}
+
+
+
+Timestamp (ms) until which the door remains unlocked. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00080}{80}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_ga0495958e0c537c1c5100ee272495435c}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!WIFI\_PASS@{WIFI\_PASS}}
+\index{WIFI\_PASS@{WIFI\_PASS}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{WIFI\_PASS}{WIFI\_PASS}}
+{\footnotesize\ttfamily \label{group__esp3_ga0495958e0c537c1c5100ee272495435c} 
+char WIFI\+\_\+\+PASS\+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00041}{41}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+
+\Hypertarget{group__esp3_gae4ee394ecd24781bba5d0aaaab8e964a}\index{ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}!WIFI\_SSID@{WIFI\_SSID}}
+\index{WIFI\_SSID@{WIFI\_SSID}!ESP3 -\/ Door Actuator@{ESP3 -\/ Door Actuator}}
+\doxysubsubsection{\texorpdfstring{WIFI\_SSID}{WIFI\_SSID}}
+{\footnotesize\ttfamily \label{group__esp3_gae4ee394ecd24781bba5d0aaaab8e964a} 
+char WIFI\+\_\+\+SSID\+[$\,$]\+ = "{}Mathias2.\+4"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi SSID. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp3_8ino_source_l00039}{39}} of file \doxymbox{\hyperlink{esp3_8ino_source}{esp3.\+ino}}.
+

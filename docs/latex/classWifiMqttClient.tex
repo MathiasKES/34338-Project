@@ -1,0 +1,63 @@
+\doxysection{Wifi\+Mqtt\+Client Class Reference}
+\hypertarget{classWifiMqttClient}{}\label{classWifiMqttClient}\index{WifiMqttClient@{WifiMqttClient}}
+
+
+Combined Wi\+Fi and MQTT client abstraction.  
+
+
+
+
+{\ttfamily \+\#include $<$Wi\+Fi\+Mqtt\+Client.\+h$>$}
+
+
+
+Collaboration diagram for Wifi\+Mqtt\+Client:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classWifiMqttClient__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}{Wifi\+Mqtt\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__infrastructure_gad6d9197bee60e1c9035dd4c246c5549b}{begin}} (const char \texorpdfstring{$\ast$}{*}wifi\+Ssid, const char \texorpdfstring{$\ast$}{*}wifi\+Pass, const char \texorpdfstring{$\ast$}{*}mqtt\+Host, uint16\+\_\+t mqtt\+Port, const char \texorpdfstring{$\ast$}{*}mqtt\+User, const char \texorpdfstring{$\ast$}{*}mqtt\+Pass, const char \texorpdfstring{$\ast$}{*}device\+Id, const char \texorpdfstring{$\ast$}{*}site)
+\begin{DoxyCompactList}\small\item\em Initializes Wi\+Fi and MQTT configuration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Main service loop. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{connected}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the MQTT client is currently connected. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{publish\+Json}} (const char \texorpdfstring{$\ast$}{*}topic\+Suffix, const Json\+Document \&data)
+\begin{DoxyCompactList}\small\item\em Publishes a JSON document to an MQTT topic. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{set\+Callback}} (MQTT\+\_\+\+CALLBACK\+\_\+\+SIGNATURE)
+\begin{DoxyCompactList}\small\item\em Sets the MQTT message callback. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{subscribe}} (const char \texorpdfstring{$\ast$}{*}topic)
+\begin{DoxyCompactList}\small\item\em Subscribes to a topic. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{unsubscribe}} (const char \texorpdfstring{$\ast$}{*}topic)
+\begin{DoxyCompactList}\small\item\em Unsubscribes from a topic. \end{DoxyCompactList}\item 
+String \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{make\+Topic}} (const char \texorpdfstring{$\ast$}{*}suffix) const
+\begin{DoxyCompactList}\small\item\em Constructs a fully qualified MQTT topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Combined Wi\+Fi and MQTT client abstraction. 
+
+This class wraps an Arduino Wi\+Fi\+Client and Pub\+Sub\+Client to provide:\+
+\begin{DoxyItemize}
+\item Automatic Wi\+Fi and MQTT reconnection
+\item Topic construction based on site and device identifiers
+\item JSON publishing convenience functions
+\end{DoxyItemize}
+
+Typical base topic structure:\+ $<$mqtt\+User$>$/\+$<$site$>$/\+$<$device\+Id$>$/\+$<$suffix$>$ 
+
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{WiFiMqttClient_8h_source}{Wi\+Fi\+Mqtt\+Client.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+lib/\+\+Wi\+Fi\+Mqtt\+Client/\+src/\+\doxymbox{\hyperlink{WiFiMqttClient_8h}{Wi\+Fi\+Mqtt\+Client.\+h}}\item 
+lib/\+\+Wi\+Fi\+Mqtt\+Client/\+src/\+\doxymbox{\hyperlink{WiFiMqttClient_8cpp}{Wi\+Fi\+Mqtt\+Client.\+cpp}}\end{DoxyCompactItemize}

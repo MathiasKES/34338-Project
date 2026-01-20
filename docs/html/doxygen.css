@@ -2129,35 +2129,3 @@ details[open]>summary::before {
 	font-size: 80%;
 }
 
-
-#titlearea {
-  border-bottom: none;
-  background-color: #F9FAFC;
-  border-right: 1px solid #C4CFE5;
-}
-
-html {
---timestamp: 'Tue Jan 20 2026 14:21:29';
-}
-span.timestamp { content: ' '; }
-span.timestamp:before { content: var(--timestamp); }
-
-:root {
-    scrollbar-width: thin;
-    scrollbar-color: #C4CFE5 #F9FAFC;
-}
-
-::-webkit-scrollbar {
-        background-color: #F9FAFC;
-        height: 12px;
-        width: 12px;
-}
-::-webkit-scrollbar-thumb {
-        border-radius: 6px;
-        box-shadow: inset 0 0 12px 12px #C4CFE5;
-        border: solid 2px transparent;
-}
-::-webkit-scrollbar-corner {
-        background-color: #F9FAFC;
-}
-

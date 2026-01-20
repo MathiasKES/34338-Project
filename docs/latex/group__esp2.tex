@@ -1,2 +1,462 @@
 \doxysection{ESP2 -\/ Keypad }
 \hypertarget{group__esp2}{}\label{group__esp2}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{group__esp2_gac3a129f66dc859e2b7279565f4e1de78}{callback}} (char \texorpdfstring{$\ast$}{*}topic, byte \texorpdfstring{$\ast$}{*}payload, unsigned int length)
+\begin{DoxyCompactList}\small\item\em MQTT message callback handler. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp2_ga4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino setup function. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp2_ga8d5423be1c5a1f45105978994e468f0a}{reset\+\_\+code}} ()
+\begin{DoxyCompactList}\small\item\em Resets the PIN input buffer and index. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp2_gad45c6bc383467b9b8d638d841787c370}{publish\+Tap}} ()
+\begin{DoxyCompactList}\small\item\em Publishes keypad tap feedback via MQTT. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{group__esp2_gafe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Arduino main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} \doxymbox{\hyperlink{group__esp2_ga082cbde9dbf32731aabec6f0b8a7e5c0}{net}}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi + MQTT client wrapper. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_gae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\+\_\+\+SSID}} \+[$\,$]\+ = "{}Mathias2.\+4"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi SSID. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_ga0495958e0c537c1c5100ee272495435c}{WIFI\+\_\+\+PASS}} \+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_ga41c34e432b12a511f9348547ddae11d4}{MQTT\+\_\+\+HOST}} \+[$\,$]\+ = "{}maqiatto.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT broker hostname. \end{DoxyCompactList}\item 
+constexpr uint16\+\_\+t \doxymbox{\hyperlink{group__esp2_ga993a7e0c0377e10146438ebe707f31d0}{MQTT\+\_\+\+PORT}} = 1883
+\begin{DoxyCompactList}\small\item\em MQTT broker port. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_ga315cd313c3f6301b48d2f67e63bec2db}{MQTT\+\_\+\+USER}} \+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT username. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_ga31dacdc924feb376b49448eb843d053c}{MQTT\+\_\+\+PASS}} \+[$\,$]\+ = "{}potter"{}
+\begin{DoxyCompactList}\small\item\em MQTT password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{group__esp2_ga04ecc29c762e5b2844d3c24744813015}{DEVICE\+\_\+\+ID}} \+[$\,$]\+ = "{}door1"{}
+\begin{DoxyCompactList}\small\item\em Unique device identifier used in MQTT topics. \end{DoxyCompactList}\item 
+const byte \doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}} = 4
+\begin{DoxyCompactList}\small\item\em Number of rows in the keypad matrix. \end{DoxyCompactList}\item 
+const byte \doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}} = 4
+\begin{DoxyCompactList}\small\item\em Number of columns in the keypad matrix. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{group__esp2_ga856e873a1d14012d57ddb813c4a1e40a}{keys}} \+[\doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+\+[\doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+
+\begin{DoxyCompactList}\small\item\em Logical keypad layout. \end{DoxyCompactList}\item 
+byte \doxymbox{\hyperlink{group__esp2_ga6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}} \+[\doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+ = \{16, 5, 4, 0\}
+\begin{DoxyCompactList}\small\item\em GPIO pins connected to keypad rows. \end{DoxyCompactList}\item 
+byte \doxymbox{\hyperlink{group__esp2_gaa9fece7b062124080e4b2976f9a8b675}{col\+Pins}} \+[\doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+ = \{2, 14, 12, 13\}
+\begin{DoxyCompactList}\small\item\em GPIO pins connected to keypad columns. \end{DoxyCompactList}\item 
+Keypad \doxymbox{\hyperlink{group__esp2_ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{keypad}} = Keypad(make\+Keymap(\doxymbox{\hyperlink{group__esp2_ga856e873a1d14012d57ddb813c4a1e40a}{keys}}), \doxymbox{\hyperlink{group__esp2_ga6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}}, \doxymbox{\hyperlink{group__esp2_gaa9fece7b062124080e4b2976f9a8b675}{col\+Pins}}, \doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}, \doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}})
+\begin{DoxyCompactList}\small\item\em Keypad instance handling scanning and debouncing. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{group__esp2_ga78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}} = 4
+\begin{DoxyCompactList}\small\item\em Required PIN length. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{group__esp2_gab42060a966bf72717ef9f3607d84bdd8}{input}} \+[\doxymbox{\hyperlink{group__esp2_ga78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}}+1]\+ = \{0\}
+\begin{DoxyCompactList}\small\item\em Input buffer for PIN digits. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group__esp2_gafe9f139ae3327939925efd3e3105d58a}{current\+Idx}} = 0
+\begin{DoxyCompactList}\small\item\em Current index into the PIN buffer. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{group__esp2_ga45e5fd1e566874b92cd64516fb7447f3}{kp\+Enabled}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether keypad input is currently enabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This firmware runs on an ESP-\/based Arduino-\/compatible board and implements the second stage of the access control system.
+
+Hardware components:\+
+\begin{DoxyItemize}
+\item 4x4 matrix keypad using the Keypad library
+\end{DoxyItemize}
+
+Functional responsibilities:\+
+\begin{DoxyItemize}
+\item Accepts PIN input from the user
+\item Provides keypress feedback (beeps)
+\item Publishes PIN entry progress and submissions via MQTT
+\end{DoxyItemize}
+
+The keypad is only active after successful RFID authentication, which is signaled asynchronously via MQTT. 
+
+\label{doc-func-members}
+\Hypertarget{group__esp2_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__esp2_gac3a129f66dc859e2b7279565f4e1de78}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!callback@{callback}}
+\index{callback@{callback}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily \label{group__esp2_gac3a129f66dc859e2b7279565f4e1de78} 
+void callback (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{byte \texorpdfstring{$\ast$}{*}}]{payload}{, }\item[{unsigned int}]{length}{}\end{DoxyParamCaption})}
+
+
+
+MQTT message callback handler. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item Enabling keypad input after RFID access is granted
+\item Disabling keypad input after PIN validation completes
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & MQTT topic string. \\
+\hline
+{\em payload} & Raw payload bytes. \\
+\hline
+{\em length} & Payload length. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00141}{141}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gafe461d27b9c48d5921c00d521181f12f}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!loop@{loop}}
+\index{loop@{loop}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{group__esp2_gafe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino main loop. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item MQTT client processing
+\item Keypad scanning
+\item PIN entry logic
+\item PIN submission and reset 
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00256}{256}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{group__esp2_gafe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp2_gad45c6bc383467b9b8d638d841787c370}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!publishTap@{publishTap}}
+\index{publishTap@{publishTap}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{publishTap()}{publishTap()}}
+{\footnotesize\ttfamily \label{group__esp2_gad45c6bc383467b9b8d638d841787c370} 
+void publish\+Tap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Publishes keypad tap feedback via MQTT. 
+
+Sends the current PIN length after each valid keypress, allowing external systems to provide visual or audio feedback. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00235}{235}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{group__esp2_gad45c6bc383467b9b8d638d841787c370_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp2_ga8d5423be1c5a1f45105978994e468f0a}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!reset\_code@{reset\_code}}
+\index{reset\_code@{reset\_code}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{reset\_code()}{reset\_code()}}
+{\footnotesize\ttfamily \label{group__esp2_ga8d5423be1c5a1f45105978994e468f0a} 
+void reset\+\_\+code (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets the PIN input buffer and index. 
+
+Clears any partially entered PIN and prepares the buffer for new input. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00224}{224}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{group__esp2_ga8d5423be1c5a1f45105978994e468f0a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__esp2_ga4fc01d736fe50cf5b977f755b675f11d}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!setup@{setup}}
+\index{setup@{setup}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{group__esp2_ga4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino setup function. 
+
+Initializes Serial output, Wi\+Fi connection, MQTT client, and topic subscriptions. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00188}{188}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__esp2_ga4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__esp2_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__esp2_ga78e874f81f475d09f84f2bbc5d8f869d}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!CODE\_LENGTH@{CODE\_LENGTH}}
+\index{CODE\_LENGTH@{CODE\_LENGTH}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{CODE\_LENGTH}{CODE\_LENGTH}}
+{\footnotesize\ttfamily \label{group__esp2_ga78e874f81f475d09f84f2bbc5d8f869d} 
+uint8\+\_\+t CODE\+\_\+\+LENGTH = 4\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Required PIN length. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00107}{107}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gaa9fece7b062124080e4b2976f9a8b675}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!colPins@{colPins}}
+\index{colPins@{colPins}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{colPins}{colPins}}
+{\footnotesize\ttfamily \label{group__esp2_gaa9fece7b062124080e4b2976f9a8b675} 
+byte col\+Pins\+[\doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+ = \{2, 14, 12, 13\}}
+
+
+
+GPIO pins connected to keypad columns. 
+
+Order must match COLS definition. D4, D5, D6, D7 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00087}{87}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!COLS@{COLS}}
+\index{COLS@{COLS}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{COLS}{COLS}}
+{\footnotesize\ttfamily \label{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815} 
+const byte COLS = 4}
+
+
+
+Number of columns in the keypad matrix. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00060}{60}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gafe9f139ae3327939925efd3e3105d58a}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!currentIdx@{currentIdx}}
+\index{currentIdx@{currentIdx}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{currentIdx}{currentIdx}}
+{\footnotesize\ttfamily \label{group__esp2_gafe9f139ae3327939925efd3e3105d58a} 
+uint8\+\_\+t current\+Idx = 0}
+
+
+
+Current index into the PIN buffer. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00117}{117}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga04ecc29c762e5b2844d3c24744813015}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!DEVICE\_ID@{DEVICE\_ID}}
+\index{DEVICE\_ID@{DEVICE\_ID}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_ID}{DEVICE\_ID}}
+{\footnotesize\ttfamily \label{group__esp2_ga04ecc29c762e5b2844d3c24744813015} 
+char DEVICE\+\_\+\+ID\+[$\,$]\+ = "{}door1"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Unique device identifier used in MQTT topics. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00052}{52}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gab42060a966bf72717ef9f3607d84bdd8}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!input@{input}}
+\index{input@{input}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily \label{group__esp2_gab42060a966bf72717ef9f3607d84bdd8} 
+char input\+[\doxymbox{\hyperlink{group__esp2_ga78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}}+1]\+ = \{0\}}
+
+
+
+Input buffer for PIN digits. 
+
+One extra byte is reserved for the null terminator. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00114}{114}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!keypad@{keypad}}
+\index{keypad@{keypad}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{keypad}{keypad}}
+{\footnotesize\ttfamily \label{group__esp2_ga0e6c3cc7e8c762ab0ca1fa2296d7bbfe} 
+Keypad keypad = Keypad(make\+Keymap(\doxymbox{\hyperlink{group__esp2_ga856e873a1d14012d57ddb813c4a1e40a}{keys}}), \doxymbox{\hyperlink{group__esp2_ga6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}}, \doxymbox{\hyperlink{group__esp2_gaa9fece7b062124080e4b2976f9a8b675}{col\+Pins}}, \doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}, \doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}})}
+
+
+
+Keypad instance handling scanning and debouncing. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00102}{102}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga856e873a1d14012d57ddb813c4a1e40a}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!keys@{keys}}
+\index{keys@{keys}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily \label{group__esp2_ga856e873a1d14012d57ddb813c4a1e40a} 
+char keys\+[\doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+\+[\doxymbox{\hyperlink{group__esp2_gaefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'1'},\textcolor{charliteral}{'2'},\textcolor{charliteral}{'3'},\textcolor{charliteral}{'A'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'4'},\textcolor{charliteral}{'5'},\textcolor{charliteral}{'6'},\textcolor{charliteral}{'B'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'7'},\textcolor{charliteral}{'8'},\textcolor{charliteral}{'9'},\textcolor{charliteral}{'C'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'*'},\textcolor{charliteral}{'0'},\textcolor{charliteral}{'\#'},\textcolor{charliteral}{'D'}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Logical keypad layout. 
+
+Defines the character returned for each row/\+column intersection. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00067}{67}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga45e5fd1e566874b92cd64516fb7447f3}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!kpEnabled@{kpEnabled}}
+\index{kpEnabled@{kpEnabled}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{kpEnabled}{kpEnabled}}
+{\footnotesize\ttfamily \label{group__esp2_ga45e5fd1e566874b92cd64516fb7447f3} 
+bool kp\+Enabled = false}
+
+
+
+Indicates whether keypad input is currently enabled. 
+
+This flag is controlled via MQTT messages from the access controller. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00124}{124}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga41c34e432b12a511f9348547ddae11d4}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!MQTT\_HOST@{MQTT\_HOST}}
+\index{MQTT\_HOST@{MQTT\_HOST}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{MQTT\_HOST}{MQTT\_HOST}}
+{\footnotesize\ttfamily \label{group__esp2_ga41c34e432b12a511f9348547ddae11d4} 
+char MQTT\+\_\+\+HOST\+[$\,$]\+ = "{}maqiatto.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker hostname. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00043}{43}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga31dacdc924feb376b49448eb843d053c}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!MQTT\_PASS@{MQTT\_PASS}}
+\index{MQTT\_PASS@{MQTT\_PASS}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PASS}{MQTT\_PASS}}
+{\footnotesize\ttfamily \label{group__esp2_ga31dacdc924feb376b49448eb843d053c} 
+char MQTT\+\_\+\+PASS\+[$\,$]\+ = "{}potter"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00049}{49}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga993a7e0c0377e10146438ebe707f31d0}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!MQTT\_PORT@{MQTT\_PORT}}
+\index{MQTT\_PORT@{MQTT\_PORT}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PORT}{MQTT\_PORT}}
+{\footnotesize\ttfamily \label{group__esp2_ga993a7e0c0377e10146438ebe707f31d0} 
+uint16\+\_\+t MQTT\+\_\+\+PORT = 1883\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker port. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00045}{45}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga315cd313c3f6301b48d2f67e63bec2db}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!MQTT\_USER@{MQTT\_USER}}
+\index{MQTT\_USER@{MQTT\_USER}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{MQTT\_USER}{MQTT\_USER}}
+{\footnotesize\ttfamily \label{group__esp2_ga315cd313c3f6301b48d2f67e63bec2db} 
+char MQTT\+\_\+\+USER\+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT username. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00047}{47}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga082cbde9dbf32731aabec6f0b8a7e5c0}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!net@{net}}
+\index{net@{net}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \label{group__esp2_ga082cbde9dbf32731aabec6f0b8a7e5c0} 
+\doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}} net}
+
+
+
+Wi\+Fi + MQTT client wrapper. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00035}{35}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga6d6753e0ae098b31e2f84d4024e361cf}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!rowPins@{rowPins}}
+\index{rowPins@{rowPins}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{rowPins}{rowPins}}
+{\footnotesize\ttfamily \label{group__esp2_ga6d6753e0ae098b31e2f84d4024e361cf} 
+byte row\+Pins\+[\doxymbox{\hyperlink{group__esp2_ga829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+ = \{16, 5, 4, 0\}}
+
+
+
+GPIO pins connected to keypad rows. 
+
+Order must match ROWS definition. D0, D1, D2, D3 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00080}{80}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga829655a147df70dd4cc94eae40a2204e}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!ROWS@{ROWS}}
+\index{ROWS@{ROWS}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{ROWS}{ROWS}}
+{\footnotesize\ttfamily \label{group__esp2_ga829655a147df70dd4cc94eae40a2204e} 
+const byte ROWS = 4}
+
+
+
+Number of rows in the keypad matrix. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00057}{57}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_ga0495958e0c537c1c5100ee272495435c}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!WIFI\_PASS@{WIFI\_PASS}}
+\index{WIFI\_PASS@{WIFI\_PASS}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{WIFI\_PASS}{WIFI\_PASS}}
+{\footnotesize\ttfamily \label{group__esp2_ga0495958e0c537c1c5100ee272495435c} 
+char WIFI\+\_\+\+PASS\+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00040}{40}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{group__esp2_gae4ee394ecd24781bba5d0aaaab8e964a}\index{ESP2 -\/ Keypad@{ESP2 -\/ Keypad}!WIFI\_SSID@{WIFI\_SSID}}
+\index{WIFI\_SSID@{WIFI\_SSID}!ESP2 -\/ Keypad@{ESP2 -\/ Keypad}}
+\doxysubsubsection{\texorpdfstring{WIFI\_SSID}{WIFI\_SSID}}
+{\footnotesize\ttfamily \label{group__esp2_gae4ee394ecd24781bba5d0aaaab8e964a} 
+char WIFI\+\_\+\+SSID\+[$\,$]\+ = "{}Mathias2.\+4"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi SSID. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00038}{38}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+

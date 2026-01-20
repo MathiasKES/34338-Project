@@ -1,8 +1,9 @@
 /**
  * @file esp3.ino
  * @brief Door actuator, buzzer, and LED controller with MQTT integration.
+ *
  * @defgroup esp3 ESP3 - Door Actuator
- * @ingroup esp3
+ * @{
  *
  * @details
  * This firmware runs on an ESP-based Arduino-compatible board and implements
@@ -21,19 +22,8 @@
  *
  * This node does not make access decisions itself; it only reacts
  * to authenticated results produced by the RFID and keypad nodes.
- *
- * @section esp3_functions Main functions
- * - setup() - Hardware, WiFi, and MQTT initialization
- * - loop()  - Actuator control, timeout handling, and buzzer state machine
- *
- * @section esp3_globals Global state
- * - Access state and unlock timing
- * - Servo position and override flags
- * - Buzzer pattern state machine variables
- *
- * @section esp3_source Source code
- * The full implementation is shown below.
  */
+
 
 #include <Servo.h>
 

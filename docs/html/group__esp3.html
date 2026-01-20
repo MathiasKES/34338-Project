@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ESP8266 Door Access Control System: ESP3 - Door Actuator</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -18,36 +17,19 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(function() { init_search(); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ESP8266 Door Access Control System<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">ESP8266 Door Access Control System
    </div>
-   <div id="projectbrief">Distributed RFID + Keypad + Servo access control using MQTT</div>
   </td>
  </tr>
-   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-</td></tr>
  </tbody>
 </table>
 </div>
@@ -59,7 +41,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 $(function() { codefold.init(); });
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -72,15 +64,8 @@ $(function() { codefold.init(); });
 <script type="text/javascript">
 $(function(){initNavTree('group__esp3.html','',''); });
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',false,false,'search.php','Search',true);
-});
-</script>
-<div id="main-nav"></div>
-<div id="container"><div id="doc-content">
+<div id="container">
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -106,6 +91,1240 @@ $(function() {
   <div class="headertitle"><div class="title">ESP3 - Door Actuator </div></div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:BuzzerPattern" id="r_BuzzerPattern"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structBuzzerPattern.html">BuzzerPattern</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a buzzer sound pattern.  <a href="structBuzzerPattern.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gaae89f73e4cdcb650ae5c585818d3a861" id="r_gaae89f73e4cdcb650ae5c585818d3a861"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gaae89f73e4cdcb650ae5c585818d3a861">POT_PIN</a>&#160;&#160;&#160;A0</td></tr>
+<tr class="memdesc:gaae89f73e4cdcb650ae5c585818d3a861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog pin for potentiometer (admin servo control).  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga6a8b3b75b2ade421c119d83a8b2133f1" id="r_ga6a8b3b75b2ade421c119d83a8b2133f1"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> : uint8_t { <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73">AccessResult::Denied</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db">AccessResult::Granted</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73">AccessResult::Denied</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db">AccessResult::Granted</a>
+ }</td></tr>
+<tr class="memdesc:ga6a8b3b75b2ade421c119d83a8b2133f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access result enumeration.  <a href="#ga6a8b3b75b2ade421c119d83a8b2133f1">More...</a><br /></td></tr>
+<tr class="memitem:gae3c5be103282ee46f635819ae28c1176" id="r_gae3c5be103282ee46f635819ae28c1176"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#gae3c5be103282ee46f635819ae28c1176">BuzzerState</a> { <a class="el" href="#ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd">BUZZER_IDLE</a>
+, <a class="el" href="#ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c">BUZZER_ON</a>
+, <a class="el" href="#ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68">BUZZER_OFF</a>
+ }</td></tr>
+<tr class="memdesc:gae3c5be103282ee46f635819ae28c1176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buzzer state enumeration.  <a href="#gae3c5be103282ee46f635819ae28c1176">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga89ff5d59e14a11256f4dd5c82602f932" id="r_ga89ff5d59e14a11256f4dd5c82602f932"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga89ff5d59e14a11256f4dd5c82602f932">playPattern</a> (const unsigned int *timings, uint8_t length)</td></tr>
+<tr class="memdesc:ga89ff5d59e14a11256f4dd5c82602f932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts playing a buzzer pattern.  <br /></td></tr>
+<tr class="memitem:ga312e25f84437a687662bb53eceebec83" id="r_ga312e25f84437a687662bb53eceebec83"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga312e25f84437a687662bb53eceebec83">updateBuzzer</a> ()</td></tr>
+<tr class="memdesc:ga312e25f84437a687662bb53eceebec83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the buzzer state machine.  <br /></td></tr>
+<tr class="memitem:ga95513a5e9cc3b574afa284a38c77d6e7" id="r_ga95513a5e9cc3b574afa284a38c77d6e7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga95513a5e9cc3b574afa284a38c77d6e7">stopBuzzer</a> ()</td></tr>
+<tr class="memdesc:ga95513a5e9cc3b574afa284a38c77d6e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately stops any active buzzer sound.  <br /></td></tr>
+<tr class="memitem:ga4da2553f00d22f892f2fe8ee47e9db9f" id="r_ga4da2553f00d22f892f2fe8ee47e9db9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga4da2553f00d22f892f2fe8ee47e9db9f">playLockSound</a> ()</td></tr>
+<tr class="memdesc:ga4da2553f00d22f892f2fe8ee47e9db9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays lock sound pattern.  <br /></td></tr>
+<tr class="memitem:ga979598b64139705fd13eb4ea50e0674c" id="r_ga979598b64139705fd13eb4ea50e0674c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga979598b64139705fd13eb4ea50e0674c">playUnlockSound</a> ()</td></tr>
+<tr class="memdesc:ga979598b64139705fd13eb4ea50e0674c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays unlock sound pattern.  <br /></td></tr>
+<tr class="memitem:ga04bf0803eb139c30e08775daa9076ea6" id="r_ga04bf0803eb139c30e08775daa9076ea6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga04bf0803eb139c30e08775daa9076ea6">playDeniedSound</a> ()</td></tr>
+<tr class="memdesc:ga04bf0803eb139c30e08775daa9076ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays denied-access sound pattern.  <br /></td></tr>
+<tr class="memitem:ga0f76dd1d3c15f21fc5dd0d4536f4c100" id="r_ga0f76dd1d3c15f21fc5dd0d4536f4c100"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga0f76dd1d3c15f21fc5dd0d4536f4c100">playTapSound</a> ()</td></tr>
+<tr class="memdesc:ga0f76dd1d3c15f21fc5dd0d4536f4c100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays keypad tap sound.  <br /></td></tr>
+<tr class="memitem:gaff8c04e7b324ff4272911924db174640" id="r_gaff8c04e7b324ff4272911924db174640"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#gaff8c04e7b324ff4272911924db174640">forceLock</a> ()</td></tr>
+<tr class="memdesc:gaff8c04e7b324ff4272911924db174640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the system into a locked idle state.  <br /></td></tr>
+<tr class="memitem:gac3a129f66dc859e2b7279565f4e1de78" id="r_gac3a129f66dc859e2b7279565f4e1de78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac3a129f66dc859e2b7279565f4e1de78">callback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
+<tr class="memdesc:gac3a129f66dc859e2b7279565f4e1de78"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT message callback handler.  <br /></td></tr>
+<tr class="memitem:ga4fc01d736fe50cf5b977f755b675f11d" id="r_ga4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:ga4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino setup function.  <br /></td></tr>
+<tr class="memitem:gafe461d27b9c48d5921c00d521181f12f" id="r_gafe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gafe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:gafe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino main loop.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga082cbde9dbf32731aabec6f0b8a7e5c0" id="r_ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="memItemLeft"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga082cbde9dbf32731aabec6f0b8a7e5c0">net</a></td></tr>
+<tr class="memdesc:ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi + MQTT client wrapper.  <br /></td></tr>
+<tr class="memitem:gae4ee394ecd24781bba5d0aaaab8e964a" id="r_gae4ee394ecd24781bba5d0aaaab8e964a"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#gae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a> [] = &quot;Mathias2.4&quot;</td></tr>
+<tr class="memdesc:gae4ee394ecd24781bba5d0aaaab8e964a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi SSID.  <br /></td></tr>
+<tr class="memitem:ga0495958e0c537c1c5100ee272495435c" id="r_ga0495958e0c537c1c5100ee272495435c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga0495958e0c537c1c5100ee272495435c">WIFI_PASS</a> [] = &quot;mrbombasticcallmefantastic&quot;</td></tr>
+<tr class="memdesc:ga0495958e0c537c1c5100ee272495435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password.  <br /></td></tr>
+<tr class="memitem:ga41c34e432b12a511f9348547ddae11d4" id="r_ga41c34e432b12a511f9348547ddae11d4"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a> [] = &quot;maqiatto.com&quot;</td></tr>
+<tr class="memdesc:ga41c34e432b12a511f9348547ddae11d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker hostname.  <br /></td></tr>
+<tr class="memitem:ga993a7e0c0377e10146438ebe707f31d0" id="r_ga993a7e0c0377e10146438ebe707f31d0"><td class="memItemLeft">constexpr uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ga993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a> = 1883</td></tr>
+<tr class="memdesc:ga993a7e0c0377e10146438ebe707f31d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker port.  <br /></td></tr>
+<tr class="memitem:ga315cd313c3f6301b48d2f67e63bec2db" id="r_ga315cd313c3f6301b48d2f67e63bec2db"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a> [] = &quot;hectorfoss@gmail.com&quot;</td></tr>
+<tr class="memdesc:ga315cd313c3f6301b48d2f67e63bec2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT username.  <br /></td></tr>
+<tr class="memitem:ga31dacdc924feb376b49448eb843d053c" id="r_ga31dacdc924feb376b49448eb843d053c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga31dacdc924feb376b49448eb843d053c">MQTT_PASS</a> [] = &quot;potter&quot;</td></tr>
+<tr class="memdesc:ga31dacdc924feb376b49448eb843d053c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT password.  <br /></td></tr>
+<tr class="memitem:ga04ecc29c762e5b2844d3c24744813015" id="r_ga04ecc29c762e5b2844d3c24744813015"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a> [] = &quot;door1&quot;</td></tr>
+<tr class="memdesc:ga04ecc29c762e5b2844d3c24744813015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique device identifier used in MQTT topics.  <br /></td></tr>
+<tr class="memitem:ga1ff3e63b5caeb625ff113a8190b24c80" id="r_ga1ff3e63b5caeb625ff113a8190b24c80"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga1ff3e63b5caeb625ff113a8190b24c80">RED_PIN</a> = 4</td></tr>
+<tr class="memdesc:ga1ff3e63b5caeb625ff113a8190b24c80"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pin assignments.  <br /></td></tr>
+<tr class="memitem:gad779a2a8a81b39a265a6361f7edf06f2" id="r_gad779a2a8a81b39a265a6361f7edf06f2"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gad779a2a8a81b39a265a6361f7edf06f2">GREEN_PIN</a> = 0</td></tr>
+<tr class="memitem:gafbe2629cea08969000cef8d30978edd8" id="r_gafbe2629cea08969000cef8d30978edd8"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gafbe2629cea08969000cef8d30978edd8">BUZZER_PIN</a> = 14</td></tr>
+<tr class="memitem:ga98714b3ea5db9fa78cbcf8891a3c0798" id="r_ga98714b3ea5db9fa78cbcf8891a3c0798"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga98714b3ea5db9fa78cbcf8891a3c0798">SERVO_PIN</a> = 13</td></tr>
+<tr class="memitem:ga6d6d37a1e68b6dcd10e646ed685f6f5e" id="r_ga6d6d37a1e68b6dcd10e646ed685f6f5e"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga6d6d37a1e68b6dcd10e646ed685f6f5e">UNLOCK_TIME_MS</a> = 5000</td></tr>
+<tr class="memdesc:ga6d6d37a1e68b6dcd10e646ed685f6f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Door unlock duration (ms).  <br /></td></tr>
+<tr class="memitem:ga744e7cb284580272a7afb8a81f2a3bba" id="r_ga744e7cb284580272a7afb8a81f2a3bba"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga744e7cb284580272a7afb8a81f2a3bba">unlockUntil</a> = 0</td></tr>
+<tr class="memdesc:ga744e7cb284580272a7afb8a81f2a3bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp (ms) until which the door remains unlocked.  <br /></td></tr>
+<tr class="memitem:ga5284d36e95aca49afcb3ae1ecc97add5" id="r_ga5284d36e95aca49afcb3ae1ecc97add5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga5284d36e95aca49afcb3ae1ecc97add5">unlocked</a> = false</td></tr>
+<tr class="memdesc:ga5284d36e95aca49afcb3ae1ecc97add5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the door is currently unlocked.  <br /></td></tr>
+<tr class="memitem:ga39d1ef76cb1d31fc16d855c63df5624a" id="r_ga39d1ef76cb1d31fc16d855c63df5624a"><td class="memItemLeft"><a class="el" href="group__esp1.html#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga39d1ef76cb1d31fc16d855c63df5624a">accessGranted</a></td></tr>
+<tr class="memdesc:ga39d1ef76cb1d31fc16d855c63df5624a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of keypad PIN verification.  <br /></td></tr>
+<tr class="memitem:ga037a56ba222296920d6e0f06796e9f21" id="r_ga037a56ba222296920d6e0f06796e9f21"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga037a56ba222296920d6e0f06796e9f21">rfidAccess</a> = false</td></tr>
+<tr class="memdesc:ga037a56ba222296920d6e0f06796e9f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether RFID access was granted.  <br /></td></tr>
+<tr class="memitem:ga7d2ca4784fdea2b5e9ac6f9ac738ef08" id="r_ga7d2ca4784fdea2b5e9ac6f9ac738ef08"><td class="memItemLeft">Servo&#160;</td><td class="memItemRight"><a class="el" href="#ga7d2ca4784fdea2b5e9ac6f9ac738ef08">lock_servo</a></td></tr>
+<tr class="memdesc:ga7d2ca4784fdea2b5e9ac6f9ac738ef08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servo instance controlling the lock mechanism.  <br /></td></tr>
+<tr class="memitem:gac981a10fb220aee90291389b2607c637" id="r_gac981a10fb220aee90291389b2607c637"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gac981a10fb220aee90291389b2607c637">servoOpen</a> = false</td></tr>
+<tr class="memdesc:gac981a10fb220aee90291389b2607c637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the servo is currently in the open position.  <br /></td></tr>
+<tr class="memitem:ga9382f70e6b3786d1e4c31a325939561e" id="r_ga9382f70e6b3786d1e4c31a325939561e"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga9382f70e6b3786d1e4c31a325939561e">servoAngle</a></td></tr>
+<tr class="memdesc:ga9382f70e6b3786d1e4c31a325939561e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current servo angle (derived from potentiometer in admin mode).  <br /></td></tr>
+<tr class="memitem:gacb368e6741d7e5d5fb51f384f3ef6c5e" id="r_gacb368e6741d7e5d5fb51f384f3ef6c5e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gacb368e6741d7e5d5fb51f384f3ef6c5e">adminServoControl</a> = false</td></tr>
+<tr class="memdesc:gacb368e6741d7e5d5fb51f384f3ef6c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables direct servo control via potentiometer (admin mode).  <br /></td></tr>
+<tr class="memitem:ga2bba129d79cf6951bff6c7931dee6f03" id="r_ga2bba129d79cf6951bff6c7931dee6f03"><td class="memItemLeft">const unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#ga2bba129d79cf6951bff6c7931dee6f03">deniedTimings</a> []</td></tr>
+<tr class="memdesc:ga2bba129d79cf6951bff6c7931dee6f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Denied access: single long beep. Extra long to scare.  <br /></td></tr>
+<tr class="memitem:ga7dafde6b11d0e61269d5b5326deee7cb" id="r_ga7dafde6b11d0e61269d5b5326deee7cb"><td class="memItemLeft">const unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#ga7dafde6b11d0e61269d5b5326deee7cb">lockTimings</a> []</td></tr>
+<tr class="memdesc:ga7dafde6b11d0e61269d5b5326deee7cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock sound: long-long-long pattern.  <br /></td></tr>
+<tr class="memitem:gaf8884950ef523ca854f256d016cfaf29" id="r_gaf8884950ef523ca854f256d016cfaf29"><td class="memItemLeft">const unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#gaf8884950ef523ca854f256d016cfaf29">unlockTimings</a> []</td></tr>
+<tr class="memdesc:gaf8884950ef523ca854f256d016cfaf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock sound: short-short pattern.  <br /></td></tr>
+<tr class="memitem:gacf6a49719a118eac7c9f54b4351977fd" id="r_gacf6a49719a118eac7c9f54b4351977fd"><td class="memItemLeft">const unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#gacf6a49719a118eac7c9f54b4351977fd">beepTimings</a> []</td></tr>
+<tr class="memdesc:gacf6a49719a118eac7c9f54b4351977fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keypad tap sound: short beep.  <br /></td></tr>
+<tr class="memitem:ga9973d8105ccaef4e92696ff202364a48" id="r_ga9973d8105ccaef4e92696ff202364a48"><td class="memItemLeft">const unsigned int *&#160;</td><td class="memItemRight"><a class="el" href="#ga9973d8105ccaef4e92696ff202364a48">BuzzerPattern::timings</a></td></tr>
+<tr class="memitem:gaa5a431c816b520d8df9dc3fb85d5c062" id="r_gaa5a431c816b520d8df9dc3fb85d5c062"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gaa5a431c816b520d8df9dc3fb85d5c062">BuzzerPattern::length</a></td></tr>
+<tr class="memitem:ga83ec3e49d3b2d7a5b3d7e24776ed94dd" id="r_ga83ec3e49d3b2d7a5b3d7e24776ed94dd"><td class="memItemLeft"><a class="el" href="#gae3c5be103282ee46f635819ae28c1176">BuzzerState</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga83ec3e49d3b2d7a5b3d7e24776ed94dd">buzzerState</a> = <a class="el" href="#ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd">BUZZER_IDLE</a></td></tr>
+<tr class="memdesc:ga83ec3e49d3b2d7a5b3d7e24776ed94dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current buzzer state.  <br /></td></tr>
+<tr class="memitem:ga3968694cac10b831396197bf7627d45c" id="r_ga3968694cac10b831396197bf7627d45c"><td class="memItemLeft"><a class="el" href="structBuzzerPattern.html">BuzzerPattern</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga3968694cac10b831396197bf7627d45c">currentPattern</a> = {nullptr, 0}</td></tr>
+<tr class="memdesc:ga3968694cac10b831396197bf7627d45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active buzzer pattern.  <br /></td></tr>
+<tr class="memitem:gad0d2a31b1a102cbb8a415773c47b01bb" id="r_gad0d2a31b1a102cbb8a415773c47b01bb"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gad0d2a31b1a102cbb8a415773c47b01bb">stepIndex</a> = 0</td></tr>
+<tr class="memdesc:gad0d2a31b1a102cbb8a415773c47b01bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index into the timing array.  <br /></td></tr>
+<tr class="memitem:gaeaa41d0f25d6ba9737d73ffa5136f4ab" id="r_gaeaa41d0f25d6ba9737d73ffa5136f4ab"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#gaeaa41d0f25d6ba9737d73ffa5136f4ab">lastChange</a> = 0</td></tr>
+<tr class="memdesc:gaeaa41d0f25d6ba9737d73ffa5136f4ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp of last buzzer state change.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This firmware runs on an ESP-based Arduino-compatible board and implements the final actuator stage of the access control system.</p>
+<p>Hardware components:</p><ul>
+<li>Servo motor for door locking mechanism</li>
+<li>Status LEDs (red / green)</li>
+<li>Piezo buzzer</li>
+</ul>
+<p>Functional responsibilities:</p><ul>
+<li>Locks and unlocks the door based on MQTT access decisions</li>
+<li>Provides audible and visual feedback for access events</li>
+<li>Automatically relocks the door after a configurable timeout</li>
+<li>Supports an administrative servo override mode via MQTT</li>
+</ul>
+<p>This node does not make access decisions itself; it only reacts to authenticated results produced by the RFID and keypad nodes. </p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="gaae89f73e4cdcb650ae5c585818d3a861" name="gaae89f73e4cdcb650ae5c585818d3a861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaae89f73e4cdcb650ae5c585818d3a861">&#9670;&#160;</a></span>POT_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define POT_PIN&#160;&#160;&#160;A0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Analog pin for potentiometer (admin servo control). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00070">70</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga6a8b3b75b2ade421c119d83a8b2133f1" name="ga6a8b3b75b2ade421c119d83a8b2133f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a8b3b75b2ade421c119d83a8b2133f1">&#9670;&#160;</a></span>AccessResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="group__esp1.html#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access result enumeration. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73" name="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73"></a>Denied&#160;</td><td class="fielddoc"><p>Access denied </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db" name="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db"></a>Granted&#160;</td><td class="fielddoc"><p>Access granted </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73" name="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73"></a>Denied&#160;</td><td class="fielddoc"><p>Access denied </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db" name="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db"></a>Granted&#160;</td><td class="fielddoc"><p>Access granted </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00092">92</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gae3c5be103282ee46f635819ae28c1176" name="gae3c5be103282ee46f635819ae28c1176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3c5be103282ee46f635819ae28c1176">&#9670;&#160;</a></span>BuzzerState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#gae3c5be103282ee46f635819ae28c1176">BuzzerState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buzzer state enumeration. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd" name="ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd"></a>BUZZER_IDLE&#160;</td><td class="fielddoc"><p>No sound playing </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c" name="ggae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c"></a>BUZZER_ON&#160;</td><td class="fielddoc"><p>Buzzer currently active </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68" name="ggae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68"></a>BUZZER_OFF&#160;</td><td class="fielddoc"><p>Silent gap between beeps </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00151">151</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="gac3a129f66dc859e2b7279565f4e1de78" name="gac3a129f66dc859e2b7279565f4e1de78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3a129f66dc859e2b7279565f4e1de78">&#9670;&#160;</a></span>callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void callback </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MQTT message callback handler. </p>
+<p>Handles:</p><ul>
+<li>Keypad access responses (unlock / deny)</li>
+<li>RFID access denials</li>
+<li>Keypad tap beep feedback</li>
+<li>Admin servo control enable/disable</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">topic</td><td>MQTT topic string. </td></tr>
+    <tr><td class="paramname">payload</td><td>Raw payload bytes. </td></tr>
+    <tr><td class="paramname">length</td><td>Payload length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00308">308</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_gac3a129f66dc859e2b7279565f4e1de78_cgraph.svg" width="415" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gaff8c04e7b324ff4272911924db174640" name="gaff8c04e7b324ff4272911924db174640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff8c04e7b324ff4272911924db174640">&#9670;&#160;</a></span>forceLock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forceLock </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Forces the system into a locked idle state. </p>
+<ul>
+<li>Resets access state</li>
+<li>Sets LEDs to "locked"</li>
+<li>Moves servo to closed position if needed </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00278">278</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_gaff8c04e7b324ff4272911924db174640_icgraph.svg" width="220" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gafe461d27b9c48d5921c00d521181f12f" name="gafe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arduino main loop. </p>
+<p>Handles:</p><ul>
+<li>MQTT processing</li>
+<li>Buzzer state machine updates</li>
+<li>Servo admin override mode</li>
+<li>Automatic relocking after timeout </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00474">474</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_gafe461d27b9c48d5921c00d521181f12f_cgraph.svg" width="374" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga04bf0803eb139c30e08775daa9076ea6" name="ga04bf0803eb139c30e08775daa9076ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04bf0803eb139c30e08775daa9076ea6">&#9670;&#160;</a></span>playDeniedSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playDeniedSound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays denied-access sound pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00254">254</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga04bf0803eb139c30e08775daa9076ea6_cgraph.svg" width="291" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga04bf0803eb139c30e08775daa9076ea6_icgraph.svg" width="271" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga4da2553f00d22f892f2fe8ee47e9db9f" name="ga4da2553f00d22f892f2fe8ee47e9db9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4da2553f00d22f892f2fe8ee47e9db9f">&#9670;&#160;</a></span>playLockSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playLockSound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays lock sound pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00240">240</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f_cgraph.svg" width="275" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga4da2553f00d22f892f2fe8ee47e9db9f_icgraph.svg" width="230" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga89ff5d59e14a11256f4dd5c82602f932" name="ga89ff5d59e14a11256f4dd5c82602f932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga89ff5d59e14a11256f4dd5c82602f932">&#9670;&#160;</a></span>playPattern()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playPattern </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int *</td>          <td class="paramname"><span class="paramname"><em>timings</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts playing a buzzer pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timings</td><td>Pointer to timing array. </td></tr>
+    <tr><td class="paramname">length</td><td>Number of elements in the timing array. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00183">183</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga89ff5d59e14a11256f4dd5c82602f932_icgraph.svg" width="415" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga0f76dd1d3c15f21fc5dd0d4536f4c100" name="ga0f76dd1d3c15f21fc5dd0d4536f4c100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0f76dd1d3c15f21fc5dd0d4536f4c100">&#9670;&#160;</a></span>playTapSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playTapSound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays keypad tap sound. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00261">261</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100_cgraph.svg" width="267" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga0f76dd1d3c15f21fc5dd0d4536f4c100_icgraph.svg" width="247" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga979598b64139705fd13eb4ea50e0674c" name="ga979598b64139705fd13eb4ea50e0674c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga979598b64139705fd13eb4ea50e0674c">&#9670;&#160;</a></span>playUnlockSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void playUnlockSound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays unlock sound pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00247">247</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga979598b64139705fd13eb4ea50e0674c_cgraph.svg" width="290" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga979598b64139705fd13eb4ea50e0674c_icgraph.svg" width="270" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga4fc01d736fe50cf5b977f755b675f11d" name="ga4fc01d736fe50cf5b977f755b675f11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arduino setup function. </p>
+<p>Initializes GPIOs, servo, WiFi, MQTT client, and topic subscriptions. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00413">413</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga4fc01d736fe50cf5b977f755b675f11d_cgraph.svg" width="466" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga95513a5e9cc3b574afa284a38c77d6e7" name="ga95513a5e9cc3b574afa284a38c77d6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga95513a5e9cc3b574afa284a38c77d6e7">&#9670;&#160;</a></span>stopBuzzer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void stopBuzzer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Immediately stops any active buzzer sound. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00234">234</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga95513a5e9cc3b574afa284a38c77d6e7_icgraph.svg" width="414" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga312e25f84437a687662bb53eceebec83" name="ga312e25f84437a687662bb53eceebec83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga312e25f84437a687662bb53eceebec83">&#9670;&#160;</a></span>updateBuzzer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void updateBuzzer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Advances the buzzer state machine. </p>
+<p>Must be called frequently from the main loop. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00203">203</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp3_ga312e25f84437a687662bb53eceebec83_icgraph.svg" width="220" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ga39d1ef76cb1d31fc16d855c63df5624a" name="ga39d1ef76cb1d31fc16d855c63df5624a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39d1ef76cb1d31fc16d855c63df5624a">&#9670;&#160;</a></span>accessGranted</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__esp1.html#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> accessGranted</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Result of keypad PIN verification. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00098">98</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gacb368e6741d7e5d5fb51f384f3ef6c5e" name="gacb368e6741d7e5d5fb51f384f3ef6c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb368e6741d7e5d5fb51f384f3ef6c5e">&#9670;&#160;</a></span>adminServoControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool adminServoControl = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables direct servo control via potentiometer (admin mode). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00113">113</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gacf6a49719a118eac7c9f54b4351977fd" name="gacf6a49719a118eac7c9f54b4351977fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf6a49719a118eac7c9f54b4351977fd">&#9670;&#160;</a></span>beepTimings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int beepTimings[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">                               = {</div>
+<div class="line">  125</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Keypad tap sound: short beep. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00144">144</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gafbe2629cea08969000cef8d30978edd8" name="gafbe2629cea08969000cef8d30978edd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafbe2629cea08969000cef8d30978edd8">&#9670;&#160;</a></span>BUZZER_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BUZZER_PIN = 14</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Piezo buzzer </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00066">66</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga83ec3e49d3b2d7a5b3d7e24776ed94dd" name="ga83ec3e49d3b2d7a5b3d7e24776ed94dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga83ec3e49d3b2d7a5b3d7e24776ed94dd">&#9670;&#160;</a></span>buzzerState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#gae3c5be103282ee46f635819ae28c1176">BuzzerState</a> buzzerState = <a class="el" href="#ggae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd">BUZZER_IDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Current buzzer state. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00166">166</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga3968694cac10b831396197bf7627d45c" name="ga3968694cac10b831396197bf7627d45c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3968694cac10b831396197bf7627d45c">&#9670;&#160;</a></span>currentPattern</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBuzzerPattern.html">BuzzerPattern</a> currentPattern = {nullptr, 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Currently active buzzer pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00169">169</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga2bba129d79cf6951bff6c7931dee6f03" name="ga2bba129d79cf6951bff6c7931dee6f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2bba129d79cf6951bff6c7931dee6f03">&#9670;&#160;</a></span>deniedTimings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int deniedTimings[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">                                 = {</div>
+<div class="line">  2000</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Denied access: single long beep. Extra long to scare. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00126">126</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga04ecc29c762e5b2844d3c24744813015" name="ga04ecc29c762e5b2844d3c24744813015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04ecc29c762e5b2844d3c24744813015">&#9670;&#160;</a></span>DEVICE_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char DEVICE_ID[] = &quot;door1&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique device identifier used in MQTT topics. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00053">53</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gad779a2a8a81b39a265a6361f7edf06f2" name="gad779a2a8a81b39a265a6361f7edf06f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad779a2a8a81b39a265a6361f7edf06f2">&#9670;&#160;</a></span>GREEN_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t GREEN_PIN = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Green LED (unlocked) </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00065">65</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaeaa41d0f25d6ba9737d73ffa5136f4ab" name="gaeaa41d0f25d6ba9737d73ffa5136f4ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeaa41d0f25d6ba9737d73ffa5136f4ab">&#9670;&#160;</a></span>lastChange</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long lastChange = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timestamp of last buzzer state change. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00175">175</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaa5a431c816b520d8df9dc3fb85d5c062" name="gaa5a431c816b520d8df9dc3fb85d5c062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa5a431c816b520d8df9dc3fb85d5c062">&#9670;&#160;</a></span>length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BuzzerPattern::length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of timing entries </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00162">162</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga7d2ca4784fdea2b5e9ac6f9ac738ef08" name="ga7d2ca4784fdea2b5e9ac6f9ac738ef08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7d2ca4784fdea2b5e9ac6f9ac738ef08">&#9670;&#160;</a></span>lock_servo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Servo lock_servo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Servo instance controlling the lock mechanism. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00104">104</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga7dafde6b11d0e61269d5b5326deee7cb" name="ga7dafde6b11d0e61269d5b5326deee7cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7dafde6b11d0e61269d5b5326deee7cb">&#9670;&#160;</a></span>lockTimings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int lockTimings[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">                               = {</div>
+<div class="line">  250, 120,</div>
+<div class="line">  250, 120,</div>
+<div class="line">  250</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Lock sound: long-long-long pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00131">131</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga41c34e432b12a511f9348547ddae11d4" name="ga41c34e432b12a511f9348547ddae11d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41c34e432b12a511f9348547ddae11d4">&#9670;&#160;</a></span>MQTT_HOST</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_HOST[] = &quot;maqiatto.com&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT broker hostname. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00044">44</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga31dacdc924feb376b49448eb843d053c" name="ga31dacdc924feb376b49448eb843d053c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31dacdc924feb376b49448eb843d053c">&#9670;&#160;</a></span>MQTT_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_PASS[] = &quot;potter&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT password. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00050">50</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga993a7e0c0377e10146438ebe707f31d0" name="ga993a7e0c0377e10146438ebe707f31d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga993a7e0c0377e10146438ebe707f31d0">&#9670;&#160;</a></span>MQTT_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t MQTT_PORT = 1883</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT broker port. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00046">46</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga315cd313c3f6301b48d2f67e63bec2db" name="ga315cd313c3f6301b48d2f67e63bec2db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga315cd313c3f6301b48d2f67e63bec2db">&#9670;&#160;</a></span>MQTT_USER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_USER[] = &quot;hectorfoss@gmail.com&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT username. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00048">48</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga082cbde9dbf32731aabec6f0b8a7e5c0" name="ga082cbde9dbf32731aabec6f0b8a7e5c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga082cbde9dbf32731aabec6f0b8a7e5c0">&#9670;&#160;</a></span>net</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a> net</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>WiFi + MQTT client wrapper. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00036">36</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga1ff3e63b5caeb625ff113a8190b24c80" name="ga1ff3e63b5caeb625ff113a8190b24c80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1ff3e63b5caeb625ff113a8190b24c80">&#9670;&#160;</a></span>RED_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RED_PIN = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>GPIO pin assignments. </p>
+<p>Refer to esp3.fzz for wiring details. Red LED (locked / denied) </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00064">64</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga037a56ba222296920d6e0f06796e9f21" name="ga037a56ba222296920d6e0f06796e9f21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga037a56ba222296920d6e0f06796e9f21">&#9670;&#160;</a></span>rfidAccess</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rfidAccess = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether RFID access was granted. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00101">101</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga98714b3ea5db9fa78cbcf8891a3c0798" name="ga98714b3ea5db9fa78cbcf8891a3c0798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga98714b3ea5db9fa78cbcf8891a3c0798">&#9670;&#160;</a></span>SERVO_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SERVO_PIN = 13</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Servo signal pin </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00067">67</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga9382f70e6b3786d1e4c31a325939561e" name="ga9382f70e6b3786d1e4c31a325939561e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9382f70e6b3786d1e4c31a325939561e">&#9670;&#160;</a></span>servoAngle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t servoAngle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Current servo angle (derived from potentiometer in admin mode). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00110">110</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gac981a10fb220aee90291389b2607c637" name="gac981a10fb220aee90291389b2607c637"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac981a10fb220aee90291389b2607c637">&#9670;&#160;</a></span>servoOpen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool servoOpen = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether the servo is currently in the open position. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00107">107</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gad0d2a31b1a102cbb8a415773c47b01bb" name="gad0d2a31b1a102cbb8a415773c47b01bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad0d2a31b1a102cbb8a415773c47b01bb">&#9670;&#160;</a></span>stepIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t stepIndex = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Index into the timing array. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00172">172</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga9973d8105ccaef4e92696ff202364a48" name="ga9973d8105ccaef4e92696ff202364a48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9973d8105ccaef4e92696ff202364a48">&#9670;&#160;</a></span>timings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int* BuzzerPattern::timings</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to timing array </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00161">161</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga6d6d37a1e68b6dcd10e646ed685f6f5e" name="ga6d6d37a1e68b6dcd10e646ed685f6f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d6d37a1e68b6dcd10e646ed685f6f5e">&#9670;&#160;</a></span>UNLOCK_TIME_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t UNLOCK_TIME_MS = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Door unlock duration (ms). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00077">77</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga5284d36e95aca49afcb3ae1ecc97add5" name="ga5284d36e95aca49afcb3ae1ecc97add5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5284d36e95aca49afcb3ae1ecc97add5">&#9670;&#160;</a></span>unlocked</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool unlocked = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether the door is currently unlocked. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00087">87</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaf8884950ef523ca854f256d016cfaf29" name="gaf8884950ef523ca854f256d016cfaf29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf8884950ef523ca854f256d016cfaf29">&#9670;&#160;</a></span>unlockTimings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int unlockTimings[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">                                 = {</div>
+<div class="line">  125, 120,</div>
+<div class="line">  125</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Unlock sound: short-short pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00138">138</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga744e7cb284580272a7afb8a81f2a3bba" name="ga744e7cb284580272a7afb8a81f2a3bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga744e7cb284580272a7afb8a81f2a3bba">&#9670;&#160;</a></span>unlockUntil</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t unlockUntil = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timestamp (ms) until which the door remains unlocked. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00080">80</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga0495958e0c537c1c5100ee272495435c" name="ga0495958e0c537c1c5100ee272495435c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0495958e0c537c1c5100ee272495435c">&#9670;&#160;</a></span>WIFI_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char WIFI_PASS[] = &quot;mrbombasticcallmefantastic&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>WiFi password. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00041">41</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
+<a id="gae4ee394ecd24781bba5d0aaaab8e964a" name="gae4ee394ecd24781bba5d0aaaab8e964a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4ee394ecd24781bba5d0aaaab8e964a">&#9670;&#160;</a></span>WIFI_SSID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char WIFI_SSID[] = &quot;Mathias2.4&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>WiFi SSID. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp3_8ino_source.html#l00039">39</a> of file <a class="el" href="esp3_8ino_source.html">esp3.ino</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -119,7 +1338,7 @@ $(function() {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on <span class="timestamp"></span> for ESP8266 Door Access Control System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
   </ul>
 </div>
 </body>

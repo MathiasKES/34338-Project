@@ -1,0 +1,7 @@
+<map id="onMotionIdle" name="onMotionIdle">
+<area shape="rect" id="Node000001" title="Handles motion&#45;idle state." alt="" coords="5,31,112,56"/>
+<area shape="rect" id="Node000002" href="$group__esp1.html#gafd31f405375298b91360c711cad4200f" title="Checks whether the LCD backlight should remain active." alt="" coords="160,5,283,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,32,146,27,147,32,113,38"/>
+<area shape="rect" id="Node000003" href="$group__esp1.html#gab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="201,55,242,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,49,187,60,186,65,112,54"/>
+</map>

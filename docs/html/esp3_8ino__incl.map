@@ -1,9 +1,16 @@
 <map id="esp3/esp3.ino" name="esp3/esp3.ino">
-<area shape="rect" id="Node000001" title="Door actuator, buzzer, and LED controller with MQTT integration." alt="" coords="99,5,211,31"/>
+<area shape="rect" id="Node000001" title="Door actuator, buzzer, and LED controller with MQTT integration." alt="" coords="58,5,170,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,76,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,33,72,74,70,69,136,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="100,79,211,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,31,158,65,153,65,153,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="235,79,366,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="180,28,266,70,264,75,178,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,33,64,71,61,67,100,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="49,152,160,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,31,109,138,104,138,111,31"/>
+<area shape="rect" id="Node000004" href="$WiFiMqttClient_8h.html" title=" " alt="" coords="161,79,291,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,28,197,69,194,73,131,33"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="208,106,137,147,135,143,205,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="184,152,268,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="229,104,229,138,223,138,223,104"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="293,152,413,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="248,102,321,143,319,147,245,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="437,152,537,177"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="269,101,432,146,431,151,267,107"/>
 </map>

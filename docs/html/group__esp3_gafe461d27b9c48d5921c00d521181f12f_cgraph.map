@@ -1,0 +1,13 @@
+<map id="loop" name="loop">
+<area shape="rect" id="Node000001" title="Arduino main loop." alt="" coords="5,55,56,80"/>
+<area shape="rect" id="Node000002" href="$group__esp3.html#gaff8c04e7b324ff4272911924db174640" title="Forces the system into a locked idle state." alt="" coords="121,5,207,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,56,115,33,117,38,58,61"/>
+<area shape="rect" id="Node000003" href="$group__esp3.html#ga4da2553f00d22f892f2fe8ee47e9db9f" title="Plays lock sound pattern." alt="" coords="104,55,224,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="57,65,90,65,90,70,57,70"/>
+<area shape="rect" id="Node000006" href="$group__esp3.html#ga312e25f84437a687662bb53eceebec83" title="Advances the buzzer state machine." alt="" coords="109,104,219,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="58,74,117,97,115,102,56,79"/>
+<area shape="rect" id="Node000004" href="$group__esp3.html#ga89ff5d59e14a11256f4dd5c82602f932" title="Starts playing a buzzer pattern." alt="" coords="272,31,368,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="224,55,258,50,259,55,225,61"/>
+<area shape="rect" id="Node000005" href="$group__esp3.html#ga95513a5e9cc3b574afa284a38c77d6e7" title="Immediately stops any active buzzer sound." alt="" coords="273,80,367,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="225,74,260,80,259,85,224,80"/>
+</map>

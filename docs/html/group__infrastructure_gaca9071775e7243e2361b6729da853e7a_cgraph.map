@@ -1,0 +1,5 @@
+<map id="WifiMqttClient::publishJson" name="WifiMqttClient::publishJson">
+<area shape="rect" id="Node000001" title="Publishes a JSON document to an MQTT topic." alt="" coords="5,5,203,31"/>
+<area shape="rect" id="Node000002" href="$group__infrastructure.html#gab64506a345407ad92a59dbf0db1f435c" title="Constructs a fully qualified MQTT topic." alt="" coords="251,5,443,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
+</map>

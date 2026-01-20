@@ -1,0 +1,7 @@
+<map id="callback" name="callback">
+<area shape="rect" id="Node000001" title="MQTT message callback handler." alt="" coords="252,31,328,56"/>
+<area shape="rect" id="Node000002" href="$group__infrastructure.html#gac9ab08082d9cff38e1d5014d9a1e6bb7" title="Sets the MQTT message callback." alt="" coords="5,5,204,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,39,197,33,198,28,238,34"/>
+<area shape="rect" id="Node000003" href="$group__esp1.html#ga4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup function." alt="" coords="75,55,134,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,53,135,66,134,61,238,47"/>
+</map>

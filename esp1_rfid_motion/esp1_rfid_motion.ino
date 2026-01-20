@@ -1,8 +1,9 @@
 /**
  * @file esp1_rfid_motion.ino
  * @brief RFID + PIN based access controller with LCD, motion sensing, and MQTT.
+ *
  * @defgroup esp1 ESP1 - RFID & Motion
- * @ingroup esp1
+ * @{
  *
  * @details
  * This firmware runs on an ESP-based Arduino-compatible board and implements
@@ -20,19 +21,8 @@
  * - Communicates authentication requests and results via MQTT
  *
  * RFID authentication must succeed before the keypad stage is enabled.
- *
- * @section esp1_functions Main functions
- * - setup() - Hardware, WiFi, and MQTT initialization
- * - loop()  - Motion detection, RFID scanning, and MQTT handling
- *
- * @section esp1_globals Global state
- * - Motion detection flags and timers
- * - RFID authentication state
- * - LCD backlight control variables
- *
- * @section esp1_source Source code
- * The full implementation is shown below.
  */
+
 
 
 

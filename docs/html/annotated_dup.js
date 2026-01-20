@@ -1,4 +1,5 @@
 var annotated_dup =
 [
-    [ "BuzzerPattern", "esp3_8ino.html#structBuzzerPattern", "esp3_8ino_structBuzzerPattern" ]
+    [ "BuzzerPattern", "structBuzzerPattern.html", "structBuzzerPattern" ],
+    [ "WifiMqttClient", "classWifiMqttClient.html", "classWifiMqttClient" ]
 ];

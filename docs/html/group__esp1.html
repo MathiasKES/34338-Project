@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ESP8266 Door Access Control System: ESP1 - RFID &amp; Motion</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -18,36 +17,19 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(function() { init_search(); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ESP8266 Door Access Control System<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">ESP8266 Door Access Control System
    </div>
-   <div id="projectbrief">Distributed RFID + Keypad + Servo access control using MQTT</div>
   </td>
  </tr>
-   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-</td></tr>
  </tbody>
 </table>
 </div>
@@ -59,7 +41,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 $(function() { codefold.init(); });
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -72,15 +64,8 @@ $(function() { codefold.init(); });
 <script type="text/javascript">
 $(function(){initNavTree('group__esp1.html','',''); });
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',false,false,'search.php','Search',true);
-});
-</script>
-<div id="main-nav"></div>
-<div id="container"><div id="doc-content">
+<div id="container">
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -106,6 +91,1383 @@ $(function() {
   <div class="headertitle"><div class="title">ESP1 - RFID &amp; Motion </div></div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga6a8b3b75b2ade421c119d83a8b2133f1" id="r_ga6a8b3b75b2ade421c119d83a8b2133f1"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> : uint8_t { <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73">AccessResult::Denied</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db">AccessResult::Granted</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73">AccessResult::Denied</a>
+, <a class="el" href="#gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db">AccessResult::Granted</a>
+ }</td></tr>
+<tr class="memdesc:ga6a8b3b75b2ade421c119d83a8b2133f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access result enumeration.  <a href="#ga6a8b3b75b2ade421c119d83a8b2133f1">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga2251823e12f034625cf955d83d4ec6b6" id="r_ga2251823e12f034625cf955d83d4ec6b6"><td class="memItemLeft">MFRC522&#160;</td><td class="memItemRight"><a class="el" href="#ga2251823e12f034625cf955d83d4ec6b6">mfrc522</a> (<a class="el" href="#ga740060cb86c3a8429646211325d378cb">RFID_SS_PIN</a>, <a class="el" href="#ga5ddbb36ee43b0702d33a13226adfd364">RFID_RST_PIN</a>)</td></tr>
+<tr class="memdesc:ga2251823e12f034625cf955d83d4ec6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">MFRC522 RFID reader instance.  <br /></td></tr>
+<tr class="memitem:gab09e66ce429f1e2dd70e188a52754e2b" id="r_gab09e66ce429f1e2dd70e188a52754e2b"><td class="memItemLeft">LiquidCrystal_I2C&#160;</td><td class="memItemRight"><a class="el" href="#gab09e66ce429f1e2dd70e188a52754e2b">lcd</a> (<a class="el" href="#gaa68f1d788c8105e0735aac60d3df262f">LCD_ADDRESS</a>, <a class="el" href="#ga0e6a68e678ddbbb64d3a90350409eb77">LCD_COLUMNS</a>, <a class="el" href="#gae8842648f085d102ff0d7b1f06896143">LCD_ROWS</a>)</td></tr>
+<tr class="memdesc:gab09e66ce429f1e2dd70e188a52754e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C LCD instance.  <br /></td></tr>
+<tr class="memitem:ga1eec526201dccd228883774259151450" id="r_ga1eec526201dccd228883774259151450"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga1eec526201dccd228883774259151450">lcdPrintLine</a> (const __FlashStringHelper *msg, uint8_t line)</td></tr>
+<tr class="memdesc:ga1eec526201dccd228883774259151450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears an LCD line and prints a flash-resident string.  <br /></td></tr>
+<tr class="memitem:ga79a958a99f2c3f644266594c7df27b97" id="r_ga79a958a99f2c3f644266594c7df27b97"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga79a958a99f2c3f644266594c7df27b97">lcdPrintLine</a> (const char *msg, uint8_t line)</td></tr>
+<tr class="memdesc:ga79a958a99f2c3f644266594c7df27b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears an LCD line and prints a RAM-resident string.  <br /></td></tr>
+<tr class="memitem:gaff8c04e7b324ff4272911924db174640" id="r_gaff8c04e7b324ff4272911924db174640"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#gaff8c04e7b324ff4272911924db174640">forceLock</a> ()</td></tr>
+<tr class="memdesc:gaff8c04e7b324ff4272911924db174640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the system back into locked idle state.  <br /></td></tr>
+<tr class="memitem:gac8b922f2a416a064034b689152827cce" id="r_gac8b922f2a416a064034b689152827cce"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac8b922f2a416a064034b689152827cce">makeEnteredPins</a> (uint8_t pinLength)</td></tr>
+<tr class="memdesc:gac8b922f2a416a064034b689152827cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a masked PIN string for LCD display.  <br /></td></tr>
+<tr class="memitem:gac3a129f66dc859e2b7279565f4e1de78" id="r_gac3a129f66dc859e2b7279565f4e1de78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac3a129f66dc859e2b7279565f4e1de78">callback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
+<tr class="memdesc:gac3a129f66dc859e2b7279565f4e1de78"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT message callback handler.  <br /></td></tr>
+<tr class="memitem:gafd31f405375298b91360c711cad4200f" id="r_gafd31f405375298b91360c711cad4200f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gafd31f405375298b91360c711cad4200f">isDisplayActive</a> (uint32_t now)</td></tr>
+<tr class="memdesc:gafd31f405375298b91360c711cad4200f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the LCD backlight should remain active.  <br /></td></tr>
+<tr class="memitem:gade59c900943c3305d0209fb836346d95" id="r_gade59c900943c3305d0209fb836346d95"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gade59c900943c3305d0209fb836346d95">onMotionDetected</a> (uint32_t now)</td></tr>
+<tr class="memdesc:gade59c900943c3305d0209fb836346d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles motion-detected events.  <br /></td></tr>
+<tr class="memitem:gacafc4192a261b10303c3d691ac3f3340" id="r_gacafc4192a261b10303c3d691ac3f3340"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gacafc4192a261b10303c3d691ac3f3340">onMotionIdle</a> (uint32_t now)</td></tr>
+<tr class="memdesc:gacafc4192a261b10303c3d691ac3f3340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles motion-idle state.  <br /></td></tr>
+<tr class="memitem:ga8df5568d50795a11cfd7fb0abb331131" id="r_ga8df5568d50795a11cfd7fb0abb331131"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8df5568d50795a11cfd7fb0abb331131">updateMotionState</a> (uint32_t now)</td></tr>
+<tr class="memdesc:ga8df5568d50795a11cfd7fb0abb331131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates motion state based on PIR sensor input.  <br /></td></tr>
+<tr class="memitem:gac37295ff76a33dc6395fbeb6906267fd" id="r_gac37295ff76a33dc6395fbeb6906267fd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac37295ff76a33dc6395fbeb6906267fd">uidToHexString</a> (const MFRC522::Uid &amp;uid, char *output, size_t outputSize)</td></tr>
+<tr class="memdesc:gac37295ff76a33dc6395fbeb6906267fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an RFID UID to a hexadecimal string.  <br /></td></tr>
+<tr class="memitem:gaee754d5a9a7adc964e2458c556d31728" id="r_gaee754d5a9a7adc964e2458c556d31728"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaee754d5a9a7adc964e2458c556d31728">handleRFID</a> ()</td></tr>
+<tr class="memdesc:gaee754d5a9a7adc964e2458c556d31728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles RFID card detection and request publishing.  <br /></td></tr>
+<tr class="memitem:ga4fc01d736fe50cf5b977f755b675f11d" id="r_ga4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:ga4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino setup function.  <br /></td></tr>
+<tr class="memitem:gafe461d27b9c48d5921c00d521181f12f" id="r_gafe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gafe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:gafe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino main loop.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga082cbde9dbf32731aabec6f0b8a7e5c0" id="r_ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="memItemLeft"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga082cbde9dbf32731aabec6f0b8a7e5c0">net</a></td></tr>
+<tr class="memdesc:ga082cbde9dbf32731aabec6f0b8a7e5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi + MQTT client wrapper.  <br /></td></tr>
+<tr class="memitem:gae4ee394ecd24781bba5d0aaaab8e964a" id="r_gae4ee394ecd24781bba5d0aaaab8e964a"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#gae4ee394ecd24781bba5d0aaaab8e964a">WIFI_SSID</a> [] = &quot;Mathias2.4&quot;</td></tr>
+<tr class="memdesc:gae4ee394ecd24781bba5d0aaaab8e964a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi SSID.  <br /></td></tr>
+<tr class="memitem:ga0495958e0c537c1c5100ee272495435c" id="r_ga0495958e0c537c1c5100ee272495435c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga0495958e0c537c1c5100ee272495435c">WIFI_PASS</a> [] = &quot;mrbombasticcallmefantastic&quot;</td></tr>
+<tr class="memdesc:ga0495958e0c537c1c5100ee272495435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password.  <br /></td></tr>
+<tr class="memitem:ga41c34e432b12a511f9348547ddae11d4" id="r_ga41c34e432b12a511f9348547ddae11d4"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga41c34e432b12a511f9348547ddae11d4">MQTT_HOST</a> [] = &quot;maqiatto.com&quot;</td></tr>
+<tr class="memdesc:ga41c34e432b12a511f9348547ddae11d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker hostname.  <br /></td></tr>
+<tr class="memitem:ga993a7e0c0377e10146438ebe707f31d0" id="r_ga993a7e0c0377e10146438ebe707f31d0"><td class="memItemLeft">constexpr uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ga993a7e0c0377e10146438ebe707f31d0">MQTT_PORT</a> = 1883</td></tr>
+<tr class="memdesc:ga993a7e0c0377e10146438ebe707f31d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker port.  <br /></td></tr>
+<tr class="memitem:ga315cd313c3f6301b48d2f67e63bec2db" id="r_ga315cd313c3f6301b48d2f67e63bec2db"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga315cd313c3f6301b48d2f67e63bec2db">MQTT_USER</a> [] = &quot;hectorfoss@gmail.com&quot;</td></tr>
+<tr class="memdesc:ga315cd313c3f6301b48d2f67e63bec2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT username.  <br /></td></tr>
+<tr class="memitem:ga31dacdc924feb376b49448eb843d053c" id="r_ga31dacdc924feb376b49448eb843d053c"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga31dacdc924feb376b49448eb843d053c">MQTT_PASS</a> [] = &quot;potter&quot;</td></tr>
+<tr class="memdesc:ga31dacdc924feb376b49448eb843d053c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT password.  <br /></td></tr>
+<tr class="memitem:ga04ecc29c762e5b2844d3c24744813015" id="r_ga04ecc29c762e5b2844d3c24744813015"><td class="memItemLeft">constexpr char&#160;</td><td class="memItemRight"><a class="el" href="#ga04ecc29c762e5b2844d3c24744813015">DEVICE_ID</a> [] = &quot;door1&quot;</td></tr>
+<tr class="memdesc:ga04ecc29c762e5b2844d3c24744813015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique device identifier used in MQTT topics.  <br /></td></tr>
+<tr class="memitem:ga740060cb86c3a8429646211325d378cb" id="r_ga740060cb86c3a8429646211325d378cb"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga740060cb86c3a8429646211325d378cb">RFID_SS_PIN</a> = 15</td></tr>
+<tr class="memdesc:ga740060cb86c3a8429646211325d378cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC522 SPI Slave Select pin (D8 / GPIO15).  <br /></td></tr>
+<tr class="memitem:ga5ddbb36ee43b0702d33a13226adfd364" id="r_ga5ddbb36ee43b0702d33a13226adfd364"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga5ddbb36ee43b0702d33a13226adfd364">RFID_RST_PIN</a> = 16</td></tr>
+<tr class="memdesc:ga5ddbb36ee43b0702d33a13226adfd364"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC522 Reset pin (D0 / GPIO16).  <br /></td></tr>
+<tr class="memitem:ga8e9966a29ec4b464131da8cb1825ceb5" id="r_ga8e9966a29ec4b464131da8cb1825ceb5"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga8e9966a29ec4b464131da8cb1825ceb5">MOTION_PIN</a> = 0</td></tr>
+<tr class="memdesc:ga8e9966a29ec4b464131da8cb1825ceb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motion sensor pin (D3 / GPIO0).  <br /></td></tr>
+<tr class="memitem:ga63fd3c54e4843404005eeeb206227853" id="r_ga63fd3c54e4843404005eeeb206227853"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga63fd3c54e4843404005eeeb206227853">I2C_SDA_PIN</a> = 4</td></tr>
+<tr class="memdesc:ga63fd3c54e4843404005eeeb206227853"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C SDA pin for LCD (D2 / GPIO4).  <br /></td></tr>
+<tr class="memitem:ga9f6ed03d2d1d74a449ea68a62185786b" id="r_ga9f6ed03d2d1d74a449ea68a62185786b"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga9f6ed03d2d1d74a449ea68a62185786b">I2C_SCL_PIN</a> = 5</td></tr>
+<tr class="memdesc:ga9f6ed03d2d1d74a449ea68a62185786b"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C SCL pin for LCD (D1 / GPIO5).  <br /></td></tr>
+<tr class="memitem:ga0e6a68e678ddbbb64d3a90350409eb77" id="r_ga0e6a68e678ddbbb64d3a90350409eb77"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ga0e6a68e678ddbbb64d3a90350409eb77">LCD_COLUMNS</a> = 16</td></tr>
+<tr class="memdesc:ga0e6a68e678ddbbb64d3a90350409eb77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of LCD columns.  <br /></td></tr>
+<tr class="memitem:gae8842648f085d102ff0d7b1f06896143" id="r_gae8842648f085d102ff0d7b1f06896143"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gae8842648f085d102ff0d7b1f06896143">LCD_ROWS</a> = 2</td></tr>
+<tr class="memdesc:gae8842648f085d102ff0d7b1f06896143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of LCD rows.  <br /></td></tr>
+<tr class="memitem:gaa68f1d788c8105e0735aac60d3df262f" id="r_gaa68f1d788c8105e0735aac60d3df262f"><td class="memItemLeft">constexpr uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#gaa68f1d788c8105e0735aac60d3df262f">LCD_ADDRESS</a> = 0x27</td></tr>
+<tr class="memdesc:gaa68f1d788c8105e0735aac60d3df262f"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C address of the LCD module.  <br /></td></tr>
+<tr class="memitem:ga8241448199a71015eaefc1267dc8405b" id="r_ga8241448199a71015eaefc1267dc8405b"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga8241448199a71015eaefc1267dc8405b">DISPLAY_MS</a> = 3000</td></tr>
+<tr class="memdesc:ga8241448199a71015eaefc1267dc8405b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration (ms) to display text before resetting.  <br /></td></tr>
+<tr class="memitem:ga7ac35d96245159cab011565a97a600a2" id="r_ga7ac35d96245159cab011565a97a600a2"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga7ac35d96245159cab011565a97a600a2">DISPLAY_BACKLIGHT_MS</a> = 5000</td></tr>
+<tr class="memdesc:ga7ac35d96245159cab011565a97a600a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration (ms) to keep LCD backlight on after motion.  <br /></td></tr>
+<tr class="memitem:ga1437df78a60c0b4cbfba394adb0451d2" id="r_ga1437df78a60c0b4cbfba394adb0451d2"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga1437df78a60c0b4cbfba394adb0451d2">PIN_TIME_MS</a> = 15000</td></tr>
+<tr class="memdesc:ga1437df78a60c0b4cbfba394adb0451d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time window (ms) for entering PIN after RFID success.  <br /></td></tr>
+<tr class="memitem:ga6d6d37a1e68b6dcd10e646ed685f6f5e" id="r_ga6d6d37a1e68b6dcd10e646ed685f6f5e"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga6d6d37a1e68b6dcd10e646ed685f6f5e">UNLOCK_TIME_MS</a> = 5000</td></tr>
+<tr class="memdesc:ga6d6d37a1e68b6dcd10e646ed685f6f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Door unlock display duration (ms).  <br /></td></tr>
+<tr class="memitem:gaf9d4cdbb45bf12608e163ee4b2d0dadd" id="r_gaf9d4cdbb45bf12608e163ee4b2d0dadd"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#gaf9d4cdbb45bf12608e163ee4b2d0dadd">POLL_MS</a> = 30</td></tr>
+<tr class="memdesc:gaf9d4cdbb45bf12608e163ee4b2d0dadd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main loop polling delay (ms).  <br /></td></tr>
+<tr class="memitem:gaf8cd458b5a58130e8dd244de49f9591d" id="r_gaf8cd458b5a58130e8dd244de49f9591d"><td class="memItemLeft"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaf8cd458b5a58130e8dd244de49f9591d">rfidAccess</a></td></tr>
+<tr class="memdesc:gaf8cd458b5a58130e8dd244de49f9591d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of RFID authentication.  <br /></td></tr>
+<tr class="memitem:ga39d1ef76cb1d31fc16d855c63df5624a" id="r_ga39d1ef76cb1d31fc16d855c63df5624a"><td class="memItemLeft"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga39d1ef76cb1d31fc16d855c63df5624a">accessGranted</a></td></tr>
+<tr class="memdesc:ga39d1ef76cb1d31fc16d855c63df5624a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of PIN verification.  <br /></td></tr>
+<tr class="memitem:ga7723000e87c672531aa82d5653686e61" id="r_ga7723000e87c672531aa82d5653686e61"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga7723000e87c672531aa82d5653686e61">textshown</a> = false</td></tr>
+<tr class="memdesc:ga7723000e87c672531aa82d5653686e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether a status message is currently displayed.  <br /></td></tr>
+<tr class="memitem:ga04d3079f12f3e11e3bcb2b289c537093" id="r_ga04d3079f12f3e11e3bcb2b289c537093"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga04d3079f12f3e11e3bcb2b289c537093">showTextUntil</a> = 0</td></tr>
+<tr class="memdesc:ga04d3079f12f3e11e3bcb2b289c537093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp (ms) when the displayed text should expire.  <br /></td></tr>
+<tr class="memitem:ga25ac0b6f6c871d8fcaf0a438f1d8f46a" id="r_ga25ac0b6f6c871d8fcaf0a438f1d8f46a"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga25ac0b6f6c871d8fcaf0a438f1d8f46a">showDisplayUntil</a> = 0</td></tr>
+<tr class="memdesc:ga25ac0b6f6c871d8fcaf0a438f1d8f46a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp (ms) when LCD backlight should turn off.  <br /></td></tr>
+<tr class="memitem:ga62fac6034c46ae1f6fc7511f4447decb" id="r_ga62fac6034c46ae1f6fc7511f4447decb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga62fac6034c46ae1f6fc7511f4447decb">motionActive</a> = false</td></tr>
+<tr class="memdesc:ga62fac6034c46ae1f6fc7511f4447decb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether motion is currently considered active.  <br /></td></tr>
+<tr class="memitem:gaf36f6d1529914bff6ce2e463c7d131fb" id="r_gaf36f6d1529914bff6ce2e463c7d131fb"><td class="memItemLeft">static char&#160;</td><td class="memItemRight"><a class="el" href="#gaf36f6d1529914bff6ce2e463c7d131fb">enteredPins</a> [5] = &quot; &quot;</td></tr>
+<tr class="memdesc:gaf36f6d1529914bff6ce2e463c7d131fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Masked PIN buffer shown on LCD (max 4 digits + null terminator).  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This firmware runs on an ESP-based Arduino-compatible board and implements the first stage of a distributed door access control system.</p>
+<p>Hardware components:</p><ul>
+<li>MFRC522 RFID reader (RC522)</li>
+<li>I2C LCD display</li>
+<li>PIR motion sensor</li>
+</ul>
+<p>Functional responsibilities:</p><ul>
+<li>Detects motion to manage LCD backlight and user interaction</li>
+<li>Reads RFID tags and initiates authentication</li>
+<li>Displays system and authentication status on the LCD</li>
+<li>Communicates authentication requests and results via MQTT</li>
+</ul>
+<p>RFID authentication must succeed before the keypad stage is enabled. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga6a8b3b75b2ade421c119d83a8b2133f1" name="ga6a8b3b75b2ade421c119d83a8b2133f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a8b3b75b2ade421c119d83a8b2133f1">&#9670;&#160;</a></span>AccessResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access result enumeration. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73" name="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73"></a>Denied&#160;</td><td class="fielddoc"><p>Access denied </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db" name="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db"></a>Granted&#160;</td><td class="fielddoc"><p>Access granted </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73" name="gga6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73"></a>Denied&#160;</td><td class="fielddoc"><p>Access denied </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db" name="gga6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db"></a>Granted&#160;</td><td class="fielddoc"><p>Access granted </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00130">130</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="gac3a129f66dc859e2b7279565f4e1de78" name="gac3a129f66dc859e2b7279565f4e1de78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3a129f66dc859e2b7279565f4e1de78">&#9670;&#160;</a></span>callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void callback </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MQTT message callback handler. </p>
+<p>Parses incoming JSON messages and dispatches logic based on topic:</p><ul>
+<li>RFID access decision</li>
+<li>Keypad PIN validation result</li>
+<li>Keypad keypress feedback</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">topic</td><td>MQTT topic string. </td></tr>
+    <tr><td class="paramname">payload</td><td>Raw payload bytes. </td></tr>
+    <tr><td class="paramname">length</td><td>Payload length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00240">240</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gac3a129f66dc859e2b7279565f4e1de78_cgraph.svg" width="359" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gac3a129f66dc859e2b7279565f4e1de78_icgraph.svg" width="334" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gaff8c04e7b324ff4272911924db174640" name="gaff8c04e7b324ff4272911924db174640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff8c04e7b324ff4272911924db174640">&#9670;&#160;</a></span>forceLock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forceLock </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Forces the system back into locked idle state. </p>
+<p>Resets access state, clears temporary flags, and restores the default idle LCD message. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00196">196</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gaff8c04e7b324ff4272911924db174640_cgraph.svg" width="332" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gaff8c04e7b324ff4272911924db174640_icgraph.svg" width="195" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gaee754d5a9a7adc964e2458c556d31728" name="gaee754d5a9a7adc964e2458c556d31728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee754d5a9a7adc964e2458c556d31728">&#9670;&#160;</a></span>handleRFID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleRFID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles RFID card detection and request publishing. </p>
+<p>Detects new cards, reads UID, updates LCD, and sends an MQTT access request. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00440">440</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gaee754d5a9a7adc964e2458c556d31728_cgraph.svg" width="366" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gaee754d5a9a7adc964e2458c556d31728_icgraph.svg" width="207" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gafd31f405375298b91360c711cad4200f" name="gafd31f405375298b91360c711cad4200f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd31f405375298b91360c711cad4200f">&#9670;&#160;</a></span>isDisplayActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isDisplayActive </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>now</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether the LCD backlight should remain active. </p>
+<p>Uses signed time comparison to safely handle millis() wraparound.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">now</td><td>Current time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if display is active, false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00353">353</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gafd31f405375298b91360c711cad4200f_icgraph.svg" width="582" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gab09e66ce429f1e2dd70e188a52754e2b" name="gab09e66ce429f1e2dd70e188a52754e2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab09e66ce429f1e2dd70e188a52754e2b">&#9670;&#160;</a></span>lcd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LiquidCrystal_I2C lcd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#gaa68f1d788c8105e0735aac60d3df262f">LCD_ADDRESS</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga0e6a68e678ddbbb64d3a90350409eb77">LCD_COLUMNS</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#gae8842648f085d102ff0d7b1f06896143">LCD_ROWS</a></td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C LCD instance. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gab09e66ce429f1e2dd70e188a52754e2b_icgraph.svg" width="100%" height="515"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ga1eec526201dccd228883774259151450" name="ga1eec526201dccd228883774259151450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1eec526201dccd228883774259151450">&#9670;&#160;</a></span>lcdPrintLine() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lcdPrintLine </td>
+          <td>(</td>
+          <td class="paramtype">const __FlashStringHelper *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>line</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears an LCD line and prints a flash-resident string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Flash string (use F("...")). </td></tr>
+    <tr><td class="paramname">line</td><td>LCD row index. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00170">170</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga1eec526201dccd228883774259151450_cgraph.svg" width="199" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga1eec526201dccd228883774259151450_icgraph.svg" width="502" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga79a958a99f2c3f644266594c7df27b97" name="ga79a958a99f2c3f644266594c7df27b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79a958a99f2c3f644266594c7df27b97">&#9670;&#160;</a></span>lcdPrintLine() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lcdPrintLine </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>line</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears an LCD line and prints a RAM-resident string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>C-string to print. </td></tr>
+    <tr><td class="paramname">line</td><td>LCD row index. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00183">183</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga79a958a99f2c3f644266594c7df27b97_cgraph.svg" width="199" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gafe461d27b9c48d5921c00d521181f12f" name="gafe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arduino main loop. </p>
+<p>Executes non-blocking system logic:</p><ul>
+<li>MQTT client processing</li>
+<li>Display timeout handling</li>
+<li>Motion-based backlight control</li>
+<li>RFID polling when active </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00536">536</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gafe461d27b9c48d5921c00d521181f12f_cgraph.svg" width="618" height="259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gac8b922f2a416a064034b689152827cce" name="gac8b922f2a416a064034b689152827cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8b922f2a416a064034b689152827cce">&#9670;&#160;</a></span>makeEnteredPins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void makeEnteredPins </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pinLength</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a masked PIN string for LCD display. </p>
+<p>Converts a numeric PIN length into a visual representation using '*' characters and trailing spaces.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pinLength</td><td>Number of digits entered so far. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00211">211</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gac8b922f2a416a064034b689152827cce_icgraph.svg" width="516" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga2251823e12f034625cf955d83d4ec6b6" name="ga2251823e12f034625cf955d83d4ec6b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2251823e12f034625cf955d83d4ec6b6">&#9670;&#160;</a></span>mfrc522()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MFRC522 mfrc522 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ga740060cb86c3a8429646211325d378cb">RFID_SS_PIN</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga5ddbb36ee43b0702d33a13226adfd364">RFID_RST_PIN</a></td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MFRC522 RFID reader instance. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga2251823e12f034625cf955d83d4ec6b6_icgraph.svg" width="331" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gade59c900943c3305d0209fb836346d95" name="gade59c900943c3305d0209fb836346d95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade59c900943c3305d0209fb836346d95">&#9670;&#160;</a></span>onMotionDetected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void onMotionDetected </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>now</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles motion-detected events. </p>
+<p>Activates LCD backlight and refreshes display timeout.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">now</td><td>Current time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00364">364</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gade59c900943c3305d0209fb836346d95_cgraph.svg" width="243" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gade59c900943c3305d0209fb836346d95_icgraph.svg" width="447" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gacafc4192a261b10303c3d691ac3f3340" name="gacafc4192a261b10303c3d691ac3f3340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacafc4192a261b10303c3d691ac3f3340">&#9670;&#160;</a></span>onMotionIdle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void onMotionIdle </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>now</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles motion-idle state. </p>
+<p>Turns off LCD backlight when motion has ceased and the timeout has expired.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">now</td><td>Current time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00383">383</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gacafc4192a261b10303c3d691ac3f3340_cgraph.svg" width="288" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gacafc4192a261b10303c3d691ac3f3340_icgraph.svg" width="411" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga4fc01d736fe50cf5b977f755b675f11d" name="ga4fc01d736fe50cf5b977f755b675f11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arduino setup function. </p>
+<p>Initializes hardware peripherals, LCD, WiFi, MQTT client, and topic subscriptions. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00481">481</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga4fc01d736fe50cf5b977f755b675f11d_cgraph.svg" width="466" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gac37295ff76a33dc6395fbeb6906267fd" name="gac37295ff76a33dc6395fbeb6906267fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac37295ff76a33dc6395fbeb6906267fd">&#9670;&#160;</a></span>uidToHexString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uidToHexString </td>
+          <td>(</td>
+          <td class="paramtype">const MFRC522::Uid &amp;</td>          <td class="paramname"><span class="paramname"><em>uid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outputSize</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts an RFID UID to a hexadecimal string. </p>
+<p>Each UID byte is encoded as two uppercase hexadecimal characters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uid</td><td>MFRC522 UID structure. </td></tr>
+    <tr><td class="paramname">output</td><td>Destination buffer. </td></tr>
+    <tr><td class="paramname">outputSize</td><td>Size of destination buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00416">416</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_gac37295ff76a33dc6395fbeb6906267fd_icgraph.svg" width="375" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga8df5568d50795a11cfd7fb0abb331131" name="ga8df5568d50795a11cfd7fb0abb331131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8df5568d50795a11cfd7fb0abb331131">&#9670;&#160;</a></span>updateMotionState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void updateMotionState </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>now</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates motion state based on PIR sensor input. </p>
+<p>Dispatches to motion-detected or motion-idle handlers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">now</td><td>Current time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00397">397</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga8df5568d50795a11cfd7fb0abb331131_cgraph.svg" width="519" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__esp1_ga8df5568d50795a11cfd7fb0abb331131_icgraph.svg" width="256" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ga39d1ef76cb1d31fc16d855c63df5624a" name="ga39d1ef76cb1d31fc16d855c63df5624a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39d1ef76cb1d31fc16d855c63df5624a">&#9670;&#160;</a></span>accessGranted</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> accessGranted</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Result of PIN verification. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00139">139</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga04ecc29c762e5b2844d3c24744813015" name="ga04ecc29c762e5b2844d3c24744813015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04ecc29c762e5b2844d3c24744813015">&#9670;&#160;</a></span>DEVICE_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char DEVICE_ID[] = &quot;door1&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique device identifier used in MQTT topics. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00060">60</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga7ac35d96245159cab011565a97a600a2" name="ga7ac35d96245159cab011565a97a600a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ac35d96245159cab011565a97a600a2">&#9670;&#160;</a></span>DISPLAY_BACKLIGHT_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t DISPLAY_BACKLIGHT_MS = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Duration (ms) to keep LCD backlight on after motion. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00102">102</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga8241448199a71015eaefc1267dc8405b" name="ga8241448199a71015eaefc1267dc8405b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8241448199a71015eaefc1267dc8405b">&#9670;&#160;</a></span>DISPLAY_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t DISPLAY_MS = 3000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Duration (ms) to display text before resetting. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00099">99</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaf36f6d1529914bff6ce2e463c7d131fb" name="gaf36f6d1529914bff6ce2e463c7d131fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf36f6d1529914bff6ce2e463c7d131fb">&#9670;&#160;</a></span>enteredPins</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char enteredPins[5] = &quot; &quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Masked PIN buffer shown on LCD (max 4 digits + null terminator). </p>
+<p>Filled with '*' for entered digits and spaces for remaining slots. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00158">158</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga9f6ed03d2d1d74a449ea68a62185786b" name="ga9f6ed03d2d1d74a449ea68a62185786b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9f6ed03d2d1d74a449ea68a62185786b">&#9670;&#160;</a></span>I2C_SCL_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t I2C_SCL_PIN = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>I2C SCL pin for LCD (D1 / GPIO5). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00079">79</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga63fd3c54e4843404005eeeb206227853" name="ga63fd3c54e4843404005eeeb206227853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63fd3c54e4843404005eeeb206227853">&#9670;&#160;</a></span>I2C_SDA_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t I2C_SDA_PIN = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>I2C SDA pin for LCD (D2 / GPIO4). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00076">76</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaa68f1d788c8105e0735aac60d3df262f" name="gaa68f1d788c8105e0735aac60d3df262f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa68f1d788c8105e0735aac60d3df262f">&#9670;&#160;</a></span>LCD_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t LCD_ADDRESS = 0x27</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>I2C address of the LCD module. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00092">92</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga0e6a68e678ddbbb64d3a90350409eb77" name="ga0e6a68e678ddbbb64d3a90350409eb77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e6a68e678ddbbb64d3a90350409eb77">&#9670;&#160;</a></span>LCD_COLUMNS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t LCD_COLUMNS = 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of LCD columns. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00086">86</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gae8842648f085d102ff0d7b1f06896143" name="gae8842648f085d102ff0d7b1f06896143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae8842648f085d102ff0d7b1f06896143">&#9670;&#160;</a></span>LCD_ROWS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t LCD_ROWS = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of LCD rows. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00089">89</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga8e9966a29ec4b464131da8cb1825ceb5" name="ga8e9966a29ec4b464131da8cb1825ceb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e9966a29ec4b464131da8cb1825ceb5">&#9670;&#160;</a></span>MOTION_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MOTION_PIN = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Motion sensor pin (D3 / GPIO0). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00073">73</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga62fac6034c46ae1f6fc7511f4447decb" name="ga62fac6034c46ae1f6fc7511f4447decb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga62fac6034c46ae1f6fc7511f4447decb">&#9670;&#160;</a></span>motionActive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool motionActive = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether motion is currently considered active. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00151">151</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga41c34e432b12a511f9348547ddae11d4" name="ga41c34e432b12a511f9348547ddae11d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41c34e432b12a511f9348547ddae11d4">&#9670;&#160;</a></span>MQTT_HOST</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_HOST[] = &quot;maqiatto.com&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT broker hostname. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00051">51</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga31dacdc924feb376b49448eb843d053c" name="ga31dacdc924feb376b49448eb843d053c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31dacdc924feb376b49448eb843d053c">&#9670;&#160;</a></span>MQTT_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_PASS[] = &quot;potter&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT password. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00057">57</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga993a7e0c0377e10146438ebe707f31d0" name="ga993a7e0c0377e10146438ebe707f31d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga993a7e0c0377e10146438ebe707f31d0">&#9670;&#160;</a></span>MQTT_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t MQTT_PORT = 1883</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT broker port. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00053">53</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga315cd313c3f6301b48d2f67e63bec2db" name="ga315cd313c3f6301b48d2f67e63bec2db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga315cd313c3f6301b48d2f67e63bec2db">&#9670;&#160;</a></span>MQTT_USER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char MQTT_USER[] = &quot;hectorfoss@gmail.com&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>MQTT username. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00055">55</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga082cbde9dbf32731aabec6f0b8a7e5c0" name="ga082cbde9dbf32731aabec6f0b8a7e5c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga082cbde9dbf32731aabec6f0b8a7e5c0">&#9670;&#160;</a></span>net</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a> net</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>WiFi + MQTT client wrapper. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00043">43</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga1437df78a60c0b4cbfba394adb0451d2" name="ga1437df78a60c0b4cbfba394adb0451d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1437df78a60c0b4cbfba394adb0451d2">&#9670;&#160;</a></span>PIN_TIME_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t PIN_TIME_MS = 15000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time window (ms) for entering PIN after RFID success. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00105">105</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaf9d4cdbb45bf12608e163ee4b2d0dadd" name="gaf9d4cdbb45bf12608e163ee4b2d0dadd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf9d4cdbb45bf12608e163ee4b2d0dadd">&#9670;&#160;</a></span>POLL_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t POLL_MS = 30</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Main loop polling delay (ms). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00111">111</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga5ddbb36ee43b0702d33a13226adfd364" name="ga5ddbb36ee43b0702d33a13226adfd364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ddbb36ee43b0702d33a13226adfd364">&#9670;&#160;</a></span>RFID_RST_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RFID_RST_PIN = 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC522 Reset pin (D0 / GPIO16). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00070">70</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga740060cb86c3a8429646211325d378cb" name="ga740060cb86c3a8429646211325d378cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga740060cb86c3a8429646211325d378cb">&#9670;&#160;</a></span>RFID_SS_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RFID_SS_PIN = 15</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC522 SPI Slave Select pin (D8 / GPIO15). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00067">67</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gaf8cd458b5a58130e8dd244de49f9591d" name="gaf8cd458b5a58130e8dd244de49f9591d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf8cd458b5a58130e8dd244de49f9591d">&#9670;&#160;</a></span>rfidAccess</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ga6a8b3b75b2ade421c119d83a8b2133f1">AccessResult</a> rfidAccess</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Result of RFID authentication. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00136">136</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga25ac0b6f6c871d8fcaf0a438f1d8f46a" name="ga25ac0b6f6c871d8fcaf0a438f1d8f46a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25ac0b6f6c871d8fcaf0a438f1d8f46a">&#9670;&#160;</a></span>showDisplayUntil</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t showDisplayUntil = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timestamp (ms) when LCD backlight should turn off. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00148">148</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga04d3079f12f3e11e3bcb2b289c537093" name="ga04d3079f12f3e11e3bcb2b289c537093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04d3079f12f3e11e3bcb2b289c537093">&#9670;&#160;</a></span>showTextUntil</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t showTextUntil = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timestamp (ms) when the displayed text should expire. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00145">145</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga7723000e87c672531aa82d5653686e61" name="ga7723000e87c672531aa82d5653686e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7723000e87c672531aa82d5653686e61">&#9670;&#160;</a></span>textshown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool textshown = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates whether a status message is currently displayed. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00142">142</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga6d6d37a1e68b6dcd10e646ed685f6f5e" name="ga6d6d37a1e68b6dcd10e646ed685f6f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d6d37a1e68b6dcd10e646ed685f6f5e">&#9670;&#160;</a></span>UNLOCK_TIME_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t UNLOCK_TIME_MS = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Door unlock display duration (ms). </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00108">108</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="ga0495958e0c537c1c5100ee272495435c" name="ga0495958e0c537c1c5100ee272495435c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0495958e0c537c1c5100ee272495435c">&#9670;&#160;</a></span>WIFI_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char WIFI_PASS[] = &quot;mrbombasticcallmefantastic&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>WiFi password. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00048">48</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
+<a id="gae4ee394ecd24781bba5d0aaaab8e964a" name="gae4ee394ecd24781bba5d0aaaab8e964a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4ee394ecd24781bba5d0aaaab8e964a">&#9670;&#160;</a></span>WIFI_SSID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char WIFI_SSID[] = &quot;Mathias2.4&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>WiFi SSID. </p>
+
+<p class="definition">Definition at line <a class="el" href="esp1__rfid__motion_8ino_source.html#l00046">46</a> of file <a class="el" href="esp1__rfid__motion_8ino_source.html">esp1_rfid_motion.ino</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -119,7 +1481,7 @@ $(function() {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on <span class="timestamp"></span> for ESP8266 Door Access Control System by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.0 </li>
   </ul>
 </div>
 </body>

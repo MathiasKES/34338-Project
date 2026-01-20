@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isdisplayactive_0',['isDisplayActive',['../esp1__rfid__motion_8ino.html#afd31f405375298b91360c711cad4200f',1,'esp1_rfid_motion.ino']]]
+  ['handlerfid_0',['handleRFID',['../group__esp1.html#gaee754d5a9a7adc964e2458c556d31728',1,'esp1_rfid_motion.ino']]]
 ];

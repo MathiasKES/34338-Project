@@ -1,17 +1,23 @@
 ###############################################################################
-# Doxygen Configuration File for Chemical Process Control (Arduino)
+# Doxygen Configuration File for Distributed Door Access Control System
 # Purpose:
 #   Generate comprehensive documentation in HTML and LaTeX/PDF formats
-#   with syntax highlighting, diagrams, tables, and search functionality.
+#   for a distributed ESP8266-based door access control system using MQTT.
+#
+#   The documentation covers:
+#   - Multiple ESP8266 firmware nodes (RFID, keypad, actuator)
+#   - A shared WiFi + MQTT client library
+#   - Firmware-level control logic, state machines, and callbacks
+#
 # Audience:
-#   Developers, maintainers, and reviewers of the Arduino-based chemical
-#   process control architecture.
+#   Developers, maintainers, and reviewers of an embedded IoT-based
+#   access control architecture.
 ###############################################################################
 
 # -----------------------------------------------------------------------------
 # ---- Project Metadata ----
 # -----------------------------------------------------------------------------
-PROJECT_NAME           = "Chemical Process Control (Arduino)"
+PROJECT_NAME           = "ESP8266 Door Access Control System"
 # Name displayed in HTML and LaTeX outputs.
 
 OUTPUT_DIRECTORY       = docs
@@ -21,64 +27,71 @@ OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_OUTPUT_VHDL   = NO
 # These toggles optimize parsing for specific languages. Set NO because
-# the project uses C++/Arduino, not C, Java, or VHDL.
+# the project is written in C++ using the Arduino framework on ESP8266.
 
 # -----------------------------------------------------------------------------
 # ---- Input Sources ----
 # -----------------------------------------------------------------------------
-mrra@DTU-5CG1423XRM:~/MyProject/chemical-process-control-arduino/docs$ more Doxyfile
+INPUT                  = \
+  esp1_rfid_motion/ \
+  esp2_keypad/ \
+  esp3/ \
+  lib/WiFiMqttClient/src/ \
+  README.md
 
-###############################################################################
-# Doxygen Configuration File for Chemical Process Control (Arduino)
-# Purpose:
-#   Generate comprehensive documentation in HTML and LaTeX/PDF formats
-#   with syntax highlighting, diagrams, tables, and search functionality.
-# Audience:
-#   Developers, maintainers, and reviewers of the Arduino-based chemical
-#   process control architecture.
-###############################################################################
+EXTENSION_MAPPING = ino=C++
 
-# -----------------------------------------------------------------------------
-# ---- Project Metadata ----
-# -----------------------------------------------------------------------------
-PROJECT_NAME           = "Chemical Process Control (Arduino)"
-# Name displayed in HTML and LaTeX outputs.
 
-OUTPUT_DIRECTORY       = docs
-# Root directory for all generated documentation (HTML, LaTeX, graphs).
+# Input paths scanned for documentation comments.
+#
+# In this project, the documented sources conceptually correspond to:
+#
+#   - esp1_rfid_motion/esp1_rfid_motion.ino
+#       Firmware handling RFID authentication, LCD output, and motion sensing
+#
+#   - esp2_keypad/esp2_keypad.ino
+#       Firmware handling keypad-based PIN entry and MQTT communication
+#
+#   - esp3/esp3.ino
+#       Firmware handling door actuation (servo), LEDs, buzzer, and timeouts
+#
+#   - lib/WiFiMqttClient/src/
+#       Shared library providing WiFi and MQTT abstraction used by all ESP nodes
+#
+# Non-code assets such as:
+#   - Node-RED flows (flows.json, allowlist.json)
+#   - Fritzing diagrams (.fzz, .png)
+#   - External Arduino libraries (libraries -> /home/mathias/Arduino/libraries)
+# are intentionally not part of the documented source set.
 
-OPTIMIZE_OUTPUT_FOR_C  = NO
-OPTIMIZE_OUTPUT_JAVA   = NO
-OPTIMIZE_OUTPUT_VHDL   = NO
-# These toggles optimize parsing for specific languages. Set NO because
-# the project uses C++/Arduino, not C, Java, or VHDL.
-
-# -----------------------------------------------------------------------------
-# ---- Input Sources ----
-# -----------------------------------------------------------------------------
-INPUT                  = include src
-# Directories scanned for documentation comments.
-
-FILE_PATTERNS          = *.h *.hpp *.ino
-# File extensions to include: headers (.h/.hpp) and Arduino sketches (.ino).
+FILE_PATTERNS          = *.h *.hpp *.ino *.cpp
+# File extensions included in documentation:
+#   - .ino : Arduino firmware sketches for ESP nodes
+#   - .h/.hpp : Shared library headers (e.g. WiFiMqttClient)
 
 RECURSIVE              = YES
-# Enables recursive scanning of subdirectories.
+# Enables recursive scanning of subdirectories so that
+# ESP node folders and the shared library source tree are fully documented.
 
 EXTRACT_ALL            = YES
-# Document all entities, even if comments are missing (helps identify gaps).
+# Document all entities, even if comments are missing.
+# This is appropriate for embedded firmware where
+# globals and static helpers are part of the design.
 
 EXTRACT_PRIVATE        = NO
-# Do not include private members in docs (keeps API clean).
+# Do not include private class members in documentation
+# to keep the public-facing API readable.
 
 EXTRACT_STATIC         = YES
-# Include static functions and variables for completeness.
+# Include static functions and variables for completeness,
+# as firmware logic often relies on file-local state.
 
 SOURCE_BROWSER         = YES
 # Adds a source code browser in HTML output.
 
 INLINE_SOURCES         = NO
-# Do not inline full source code in documentation pages (keeps docs concise).
+# Do not inline full source code in documentation pages
+# to keep documentation pages concise and readable.
 
 STRIP_CODE_COMMENTS    = NO
 # Preserve code comments in source listings for context.
@@ -114,9 +127,10 @@ CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
 CLASS_GRAPH            = YES
 UML_LOOK               = YES
-# Generate call/caller graphs and UML-style class diagrams.
+# Generate call/caller graphs and UML-style class diagrams
+# to visualize firmware control flow and inter-node interactions.
 
-DOT_TRANSPARENT        = YES
+# DOT_TRANSPARENT        = YES
 INTERACTIVE_SVG        = YES
 # Transparent backgrounds and interactive SVG for better UX.
 
@@ -145,7 +159,7 @@ GENERATE_LATEX         = YES
 USE_PDFLATEX           = YES
 # Use pdflatex for better font and color support.
 
-LATEX_SOURCE_CODE      = YES
+# LATEX_SOURCE_CODE      = YES
 # Colorized source code in PDF using listings package.
 
 LATEX_BATCHMODE        = NO
@@ -153,7 +167,9 @@ LATEX_CMD_NAME         = pdflatex
 PDF_HYPERLINKS         = YES
 # Enable clickable links in PDF.
 
-LATEX_HEADER           = docs/latex_header.tex
+# LATEX_HEADER           = docs/latex_header.tex
+USE_MDFILE_AS_MAINPAGE = README.md
+
 # Custom LaTeX header for fonts, colors, and code styling.
 
 # -----------------------------------------------------------------------------
@@ -171,7 +187,8 @@ TOC_INCLUDE_HEADINGS   = 3
 ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = NO
-# Preprocess macros for accurate documentation of conditional code.
+# Preprocess macros for accurate documentation of Arduino-
+# and ESP8266-specific code.
 
 # -----------------------------------------------------------------------------
 # ---- Indexing & Search ----

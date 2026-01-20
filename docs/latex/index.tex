@@ -1,7 +1,19 @@
-\chapter{34338-\/Project }
-\hypertarget{index}{}\label{index}\index{34338-\/Project@{34338-\/Project}}
+\chapter{ESP8266 Door Access Control System }
+\hypertarget{index}{}\label{index}\index{ESP8266 Door Access Control System@{ESP8266 Door Access Control System}}
 \label{index_md_README}%
 \Hypertarget{index_md_README}%
 
+
+This project implements a distributed door access control system using multiple ESP8266 nodes communicating over MQTT.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{System Overview}{System Overview}}\label{index_autotoc_md1}
+The system consists of three ESP8266 nodes:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{ESP1 – RFID \& Motion}} Handles RFID authentication, LCD feedback, and motion sensing.
+\item {\bfseries{ESP2 – Keypad}} Handles PIN entry and reports keypad interaction.
+\item {\bfseries{ESP3 – Door Actuator}} Controls the door lock servo, LEDs, and buzzer.
+\end{DoxyItemize}
+
+A shared {\ttfamily Wi\+Fi\+Mqtt\+Client} library provides a unified abstraction for Wi\+Fi and MQTT communication.
 
 The pin maps of ESP2866\+MOD:\+ \href{https://lastminuteengineers.com/esp8266-pinout-reference/}{\texttt{https:\+/\+/\+lastminuteengineers.\+com/\+esp8266-\/pinout-\/reference/\+}} 
