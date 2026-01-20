@@ -1,0 +1,229 @@
+\doxysection{esp2\+\_\+keypad.\+ino}
+\hypertarget{esp2__keypad_8ino_source}{}\label{esp2__keypad_8ino_source}\index{esp2\_keypad/esp2\_keypad.ino@{esp2\_keypad/esp2\_keypad.ino}}
+\doxymbox{\hyperlink{esp2__keypad_8ino}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00034}00034\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00035}00035\ \textcolor{preprocessor}{\#include\ <Keypad.h>}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00036}00036\ \textcolor{comment}{//\ \#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00037}00037\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00039}00039\ \textcolor{preprocessor}{\#include\ <WiFiMqttClient.h>}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00041}00041\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Network\ configuration\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00044}\doxymbox{\hyperlink{esp2__keypad_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{00044}}\ WifiMqttClient\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00047}\doxymbox{\hyperlink{esp2__keypad_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{00047}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\_SSID}}[]\ =\ \textcolor{stringliteral}{"{}Mathias2.4"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00049}\doxymbox{\hyperlink{esp2__keypad_8ino_a0495958e0c537c1c5100ee272495435c}{00049}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\_PASS}}[]\ =\ \textcolor{stringliteral}{"{}mrbombasticcallmefantastic"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00052}\doxymbox{\hyperlink{esp2__keypad_8ino_a41c34e432b12a511f9348547ddae11d4}{00052}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\_HOST}}[]\ =\ \textcolor{stringliteral}{"{}maqiatto.com"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00054}\doxymbox{\hyperlink{esp2__keypad_8ino_a993a7e0c0377e10146438ebe707f31d0}{00054}}\ \textcolor{keyword}{constexpr}\ uint16\_t\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\_PORT}}\ =\ 1883;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00056}\doxymbox{\hyperlink{esp2__keypad_8ino_a315cd313c3f6301b48d2f67e63bec2db}{00056}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\_USER}}[]\ =\ \textcolor{stringliteral}{"{}hectorfoss@gmail.com"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00058}\doxymbox{\hyperlink{esp2__keypad_8ino_a31dacdc924feb376b49448eb843d053c}{00058}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\_PASS}}[]\ =\ \textcolor{stringliteral}{"{}potter"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00061}\doxymbox{\hyperlink{esp2__keypad_8ino_a04ecc29c762e5b2844d3c24744813015}{00061}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\_ID}}[]\ =\ \textcolor{stringliteral}{"{}door1"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00063}00063\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Keypad\ configuration\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00066}\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{00066}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00069}\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{00069}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00076}\doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{00076}}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{keys}}[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}][\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00077}00077\ \ \ \{\textcolor{charliteral}{'1'},\textcolor{charliteral}{'2'},\textcolor{charliteral}{'3'},\textcolor{charliteral}{'A'}\},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00078}00078\ \ \ \{\textcolor{charliteral}{'4'},\textcolor{charliteral}{'5'},\textcolor{charliteral}{'6'},\textcolor{charliteral}{'B'}\},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00079}00079\ \ \ \{\textcolor{charliteral}{'7'},\textcolor{charliteral}{'8'},\textcolor{charliteral}{'9'},\textcolor{charliteral}{'C'}\},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00080}00080\ \ \ \{\textcolor{charliteral}{'*'},\textcolor{charliteral}{'0'},\textcolor{charliteral}{'\#'},\textcolor{charliteral}{'D'}\}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00081}00081\ \};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00089}\doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{00089}}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{rowPins}}[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}]\ =\ \{16,\ 5,\ 4,\ 0\};\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00096}\doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{00096}}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{colPins}}[\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\ =\ \{2,\ 14,\ 12,\ 13\};\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00098}00098\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00099}00099\ \textcolor{comment}{\ *\ Physical\ wiring\ reference:}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00100}00100\ \textcolor{comment}{\ *\ R1\ -\/>\ D8,\ R2\ -\/>\ D7,\ R3\ -\/>\ D6,\ R4\ -\/>\ D5}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00101}00101\ \textcolor{comment}{\ *\ C1\ -\/>\ D4,\ C2\ -\/>\ D3,\ C3\ -\/>\ D2,\ C4\ -\/>\ D1}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00102}00102\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00103}00103\ \textcolor{comment}{\ *\ ESP8266\ mapping:}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00104}00104\ \textcolor{comment}{\ *\ D1=5,\ D2=4,\ D3=0,\ D4=2,}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00105}00105\ \textcolor{comment}{\ *\ D5=14,\ D6=12,\ D7=13,\ D8=15}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00106}00106\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00111}\doxymbox{\hyperlink{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{00111}}\ Keypad\ \doxymbox{\hyperlink{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{keypad}}\ =\ Keypad(makeKeymap(\doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{keys}}),\ \doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{rowPins}},\ \doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{colPins}},\ \doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}},\ \doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00113}00113\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Code\ handling\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00116}\doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{00116}}\ \textcolor{keyword}{constexpr}\ uint8\_t\ \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00123}\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{00123}}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}[\doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}}\ +\ 1]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00126}\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{00126}}\ uint8\_t\ \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00133}\doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{00133}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00135}00135\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00136}00136\ \textcolor{comment}{//\ MQTT\ callback}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00137}00137\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00150}\doxymbox{\hyperlink{esp2__keypad_8ino_ac3a129f66dc859e2b7279565f4e1de78}{00150}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp2__keypad_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}}(\textcolor{keywordtype}{char}*\ topic,\ \textcolor{keywordtype}{byte}*\ payload,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00152}00152\ \ \ \textcolor{comment}{//\ Ignore\ empty\ MQTT\ messages}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00153}00153\ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00155}00155\ \ \ StaticJsonDocument<512>\ doc;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00157}00157\ \ \ \textcolor{comment}{//\ Parse\ JSON\ payload}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00158}00158\ \ \ DeserializationError\ err\ =\ deserializeJson(doc,\ payload,\ length);}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00160}00160\ \ \ \textcolor{comment}{//\ Abort\ on\ JSON\ parsing\ failure}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00161}00161\ \ \ \textcolor{keywordflow}{if}\ (err)\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00162}00162\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}JSON\ parse\ failed:\ "{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00163}00163\ \ \ \ \ Serial.println(err.c\_str());}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00165}00165\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00167}00167\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00168}00168\ \ \ \textcolor{comment}{//\ RFID\ access\ response:\ enable\ or\ disable\ keypad}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00169}00169\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00170}00170\ \ \ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00172}00172\ \ \ \ \ \textcolor{comment}{//\ Enable\ keypad\ only\ if\ RFID\ access\ was\ granted}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00173}00173\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}}\ =\ (doc[\textcolor{stringliteral}{"{}response"{}}][\textcolor{stringliteral}{"{}hasAccess"{}}]\ |\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00174}00174\ \ \ \ \ \ \ ?\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00175}00175\ \ \ \ \ \ \ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00176}00176\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00177}00177\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00178}00178\ \ \ \textcolor{comment}{//\ PIN\ verification\ response:\ always\ disable\ keypad\ afterward}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00179}00179\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00180}00180\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ Prevent\ further\ input\ until\ next\ RFID\ authorization}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00183}00183\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00184}00184\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00185}00185\ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00187}00187\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00188}00188\ \textcolor{comment}{//\ Setup}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00189}00189\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00197}\doxymbox{\hyperlink{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d}{00197}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00198}00198\ \ \ Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00200}00200\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.begin(}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00201}00201\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\_SSID}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00202}00202\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\_PASS}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00203}00203\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\_HOST}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00204}00204\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\_PORT}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00205}00205\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\_USER}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00206}00206\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\_PASS}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00207}00207\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\_ID}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00208}00208\ \ \ \ \ \textcolor{stringliteral}{"{}site1"{}}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00209}00209\ \ \ );}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00211}00211\ \ \ Serial.println(\textcolor{stringliteral}{"{}Keypad\ +\ MQTT\ ready"{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00213}00213\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.setCallback(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00215}00215\ \ \ \textcolor{comment}{//\ Subscribe\ to\ access\ control\ topics}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00216}00216\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00217}00217\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00219}00219\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/keypad\_response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00220}00220\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00221}00221\ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00223}00223\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00224}00224\ \textcolor{comment}{//\ Helper\ functions}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00225}00225\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00233}\doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{00233}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\_code}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00234}00234\ \ \ memset(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}},\ 0,\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}));\ \ \textcolor{comment}{//\ Clear\ buffer\ contents}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00235}00235\ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ write\ index}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00236}00236\ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00244}\doxymbox{\hyperlink{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}{00244}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}{publishTap}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00245}00245\ \ \ StaticJsonDocument<64>\ data;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00246}00246\ \ \ data[\textcolor{stringliteral}{"{}event"{}}]\ \ \ \ \ =\ \textcolor{stringliteral}{"{}KP\_tap"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00247}00247\ \ \ data[\textcolor{stringliteral}{"{}pinlength"{}}]\ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00249}00249\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.publishJson(\textcolor{stringliteral}{"{}keypad/tap"{}},\ data);}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00250}00250\ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00252}00252\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00253}00253\ \textcolor{comment}{//\ Main\ loop}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00254}00254\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00265}\doxymbox{\hyperlink{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f}{00265}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00266}00266\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.loop();\ \ \ \textcolor{comment}{//\ Process\ MQTT\ traffic}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00267}00267\ \ \ yield();\ \ \ \ \ \ \textcolor{comment}{//\ Allow\ background\ WiFi\ tasks}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00269}00269\ \ \ \textcolor{comment}{//\ Read\ keypad\ state\ (non-\/blocking)}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00270}00270\ \ \ \textcolor{keywordtype}{char}\ key\ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{keypad}}.getKey();}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00272}00272\ \ \ \textcolor{comment}{//\ Ignore\ input\ if\ no\ key\ pressed\ or\ keypad\ is\ disabled}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00273}00273\ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ NO\_KEY\ ||\ !\doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00274}00274\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00275}00275\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00277}00277\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00278}00278\ \ \ \textcolor{comment}{//\ Numeric\ key\ input}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00279}00279\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00280}00280\ \ \ \textcolor{keywordflow}{if}\ (key\ >=\ \textcolor{charliteral}{'0'}\ \&\&\ key\ <=\ \textcolor{charliteral}{'9'})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00282}00282\ \ \ \ \ \textcolor{comment}{//\ Only\ accept\ input\ if\ buffer\ is\ not\ full}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00283}00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ <\ \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00284}00284\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}[\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}++]\ =\ key;\ \ \ \textcolor{comment}{//\ Store\ digit}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00285}00285\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}[\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \ \ \ \textcolor{comment}{//\ Maintain\ null-\/terminated\ string}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00287}00287\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Key:\ "{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00288}00288\ \ \ \ \ \ \ Serial.println(key);}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00289}00289\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00290}00290\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00292}00292\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00293}00293\ \ \ \textcolor{comment}{//\ Submit\ PIN\ using\ '\#'}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00294}00294\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00295}00295\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{charliteral}{'\#'})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00297}00297\ \ \ \ \ \textcolor{comment}{//\ Only\ submit\ if\ required\ PIN\ length\ is\ reached}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00298}00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ ==\ \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00299}00299\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Submitting\ code:\ "{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00300}00300\ \ \ \ \ \ \ Serial.println(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00302}00302\ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ JSON\ payload\ for\ PIN\ submission}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00303}00303\ \ \ \ \ \ \ StaticJsonDocument<64>\ data;}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00304}00304\ \ \ \ \ \ \ data[\textcolor{stringliteral}{"{}event"{}}]\ =\ \textcolor{stringliteral}{"{}KP\_try"{}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00305}00305\ \ \ \ \ \ \ data[\textcolor{stringliteral}{"{}code"{}}]\ \ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00307}00307\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.publishJson(\textcolor{stringliteral}{"{}keypad/submit"{}},\ data);}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00308}00308\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00309}00309\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00310}00310\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Code\ too\ short,\ resetting."{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00311}00311\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00313}00313\ \ \ \ \ \textcolor{comment}{//\ Always\ reset\ buffer\ after\ submission\ attempt}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00314}00314\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\_code}}();}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00315}00315\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00317}00317\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00318}00318\ \ \ \textcolor{comment}{//\ Clear\ input\ using\ '*'}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00319}00319\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00320}00320\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{charliteral}{'*'})\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00321}00321\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\_code}}();}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00322}00322\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Input\ cleared"{}});}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00323}00323\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00325}00325\ \ \ \textcolor{comment}{//\ Ignore\ unsupported\ keys\ (A-\/D)}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00326}00326\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00327}00327\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00328}00328\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00330}00330\ \ \ \textcolor{comment}{//\ Any\ valid\ keypress\ is\ treated\ as\ a\ tap\ event}}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00331}00331\ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}{publishTap}}();}
+\DoxyCodeLine{\Hypertarget{esp2__keypad_8ino_source_l00332}00332\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,28 @@
+<map id="lcd" name="lcd">
+<area shape="rect" id="Node000001" title="I2C LCD instance." alt="" coords="497,155,539,180"/>
+<area shape="rect" id="Node000002" href="$esp1__rfid__motion_8ino.html#a1eec526201dccd228883774259151450" title="Clears an LCD line and prints a flash&#45;resident string." alt="" coords="329,106,427,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="484,158,448,145,416,134,418,129,450,140,486,153"/>
+<area shape="rect" id="Node000004" href="$esp1__rfid__motion_8ino.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup function." alt="" coords="5,6,64,31"/>
+<area shape="poly" id="edge15_Node000001_Node000004" title=" " alt="" coords="498,145,475,119,448,95,399,63,359,42,315,28,258,16,205,9,152,9,64,16,64,11,151,3,205,4,259,10,317,23,361,37,402,58,451,91,479,116,502,142"/>
+<area shape="rect" id="Node000008" href="$esp1__rfid__motion_8ino.html#a79a958a99f2c3f644266594c7df27b97" title="Clears an LCD line and prints a RAM&#45;resident string." alt="" coords="329,254,427,279"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="502,193,480,220,451,245,428,256,426,251,448,240,476,216,498,190"/>
+<area shape="rect" id="Node000009" href="$esp1__rfid__motion_8ino.html#ade59c900943c3305d0209fb836346d95" title="Handles motion&#45;detected events." alt="" coords="307,155,449,180"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="484,170,450,170,450,165,484,165"/>
+<area shape="rect" id="Node000011" href="$esp1__rfid__motion_8ino.html#acafc4192a261b10303c3d691ac3f3340" title="Handles motion&#45;idle state." alt="" coords="325,204,431,230"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="486,182,450,196,418,207,416,202,448,191,484,177"/>
+<area shape="rect" id="Node000003" href="$esp1__rfid__motion_8ino.html#ac3a129f66dc859e2b7279565f4e1de78" title="MQTT message callback handler." alt="" coords="147,56,223,82"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,105,223,81,224,76,316,100"/>
+<area shape="poly" id="edge8_Node000002_Node000004" title=" " alt="" coords="349,99,308,71,258,46,206,32,152,24,64,20,64,15,153,19,207,27,260,41,310,66,352,95"/>
+<area shape="rect" id="Node000005" href="$esp1__rfid__motion_8ino.html#aff8c04e7b324ff4272911924db174640" title="Forces the system back into locked idle state." alt="" coords="143,106,228,131"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="315,121,229,121,229,116,315,116"/>
+<area shape="rect" id="Node000007" href="$esp1__rfid__motion_8ino.html#aee754d5a9a7adc964e2458c556d31728" title="Handles RFID card detection and request publishing." alt="" coords="137,155,234,180"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="316,137,235,158,234,153,315,132"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="133,54,63,31,65,25,135,49"/>
+<area shape="rect" id="Node000006" href="$esp1__rfid__motion_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino main loop." alt="" coords="9,155,60,180"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,138,61,162,59,157,132,133"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="123,170,60,170,60,165,123,165"/>
+<area shape="rect" id="Node000010" href="$esp1__rfid__motion_8ino.html#a8df5568d50795a11cfd7fb0abb331131" title="Updates motion state based on PIR sensor input." alt="" coords="112,204,259,230"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="315,186,237,207,235,202,314,181"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="132,203,59,178,61,173,134,197"/>
+<area shape="poly" id="edge14_Node000011_Node000010" title=" " alt="" coords="311,220,259,220,259,214,311,214"/>
+</map>

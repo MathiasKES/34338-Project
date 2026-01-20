@@ -1,134 +1,181 @@
-# ---------------------------------------------------------------------------
-# Project related configuration options
-# ---------------------------------------------------------------------------
+###############################################################################
+# Doxygen Configuration File for Chemical Process Control (Arduino)
+# Purpose:
+#   Generate comprehensive documentation in HTML and LaTeX/PDF formats
+#   with syntax highlighting, diagrams, tables, and search functionality.
+# Audience:
+#   Developers, maintainers, and reviewers of the Arduino-based chemical
+#   process control architecture.
+###############################################################################
 
-PROJECT_NAME           = "ESP8266 Door Access Control System"
-PROJECT_BRIEF          = "Distributed RFID + Keypad + Servo access control using MQTT"
-PROJECT_NUMBER         = "1.0"
+# -----------------------------------------------------------------------------
+# ---- Project Metadata ----
+# -----------------------------------------------------------------------------
+PROJECT_NAME           = "Chemical Process Control (Arduino)"
+# Name displayed in HTML and LaTeX outputs.
 
 OUTPUT_DIRECTORY       = docs
-CREATE_SUBDIRS         = NO
+# Root directory for all generated documentation (HTML, LaTeX, graphs).
 
-OUTPUT_LANGUAGE        = English
-MARKDOWN_SUPPORT       = YES
-AUTOLINK_SUPPORT       = YES
-
-# Generate documentation for private members (useful for embedded systems)
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-EXTRACT_STATIC         = YES
-
-# ---------------------------------------------------------------------------
-# Build related configuration options
-# ---------------------------------------------------------------------------
-
-OPTIMIZE_OUTPUT_FOR_C  = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
-OPTIMIZE_FOR_FORTRAN   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+# These toggles optimize parsing for specific languages. Set NO because
+# the project uses C++/Arduino, not C, Java, or VHDL.
 
-INLINE_SOURCES         = YES
+# -----------------------------------------------------------------------------
+# ---- Input Sources ----
+# -----------------------------------------------------------------------------
+mrra@DTU-5CG1423XRM:~/MyProject/chemical-process-control-arduino/docs$ more Doxyfile
+
+###############################################################################
+# Doxygen Configuration File for Chemical Process Control (Arduino)
+# Purpose:
+#   Generate comprehensive documentation in HTML and LaTeX/PDF formats
+#   with syntax highlighting, diagrams, tables, and search functionality.
+# Audience:
+#   Developers, maintainers, and reviewers of the Arduino-based chemical
+#   process control architecture.
+###############################################################################
+
+# -----------------------------------------------------------------------------
+# ---- Project Metadata ----
+# -----------------------------------------------------------------------------
+PROJECT_NAME           = "Chemical Process Control (Arduino)"
+# Name displayed in HTML and LaTeX outputs.
+
+OUTPUT_DIRECTORY       = docs
+# Root directory for all generated documentation (HTML, LaTeX, graphs).
+
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+# These toggles optimize parsing for specific languages. Set NO because
+# the project uses C++/Arduino, not C, Java, or VHDL.
+
+# -----------------------------------------------------------------------------
+# ---- Input Sources ----
+# -----------------------------------------------------------------------------
+INPUT                  = include src
+# Directories scanned for documentation comments.
+
+FILE_PATTERNS          = *.h *.hpp *.ino
+# File extensions to include: headers (.h/.hpp) and Arduino sketches (.ino).
+
+RECURSIVE              = YES
+# Enables recursive scanning of subdirectories.
+
+EXTRACT_ALL            = YES
+# Document all entities, even if comments are missing (helps identify gaps).
+
+EXTRACT_PRIVATE        = NO
+# Do not include private members in docs (keeps API clean).
+
+EXTRACT_STATIC         = YES
+# Include static functions and variables for completeness.
+
 SOURCE_BROWSER         = YES
-REFERENCED_BY_RELATION = YES
-REFERENCES_RELATION    = YES
-REFERENCES_LINK_SOURCE = YES
+# Adds a source code browser in HTML output.
 
-# Useful for understanding logic-heavy firmware
+INLINE_SOURCES         = NO
+# Do not inline full source code in documentation pages (keeps docs concise).
+
+STRIP_CODE_COMMENTS    = NO
+# Preserve code comments in source listings for context.
+
+# -----------------------------------------------------------------------------
+# ---- Warnings & Quality Gates ----
+# -----------------------------------------------------------------------------
+WARN_IF_UNDOCUMENTED   = YES
+# Warn if any entity lacks documentation (helps enforce coverage).
+
+WARN_IF_DOC_ERROR      = YES
+# Warn on malformed documentation tags.
+
+WARN_NO_PARAMDOC       = YES
+# Warn if parameters lack @param descriptions.
+
+WARN_AS_ERROR          = NO
+# Set to YES to fail CI on warnings (recommended for strict pipelines).
+
+QUIET                  = NO
+# Show warnings and progress during generation.
+
+# -----------------------------------------------------------------------------
+# ---- Diagrams & Graphs (Graphviz Integration) ----
+# -----------------------------------------------------------------------------
+HAVE_DOT               = YES
+# Enables Graphviz for diagrams (class graphs, call graphs).
+
+DOT_IMAGE_FORMAT       = svg
+# Use scalable vector graphics for diagrams (best for HTML and PDF).
+
 CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
+CLASS_GRAPH            = YES
+UML_LOOK               = YES
+# Generate call/caller graphs and UML-style class diagrams.
 
-# ---------------------------------------------------------------------------
-# Input configuration
-# ---------------------------------------------------------------------------
+DOT_TRANSPARENT        = YES
+INTERACTIVE_SVG        = YES
+# Transparent backgrounds and interactive SVG for better UX.
 
-# Root directory of your Arduino project
-INPUT                  = .
+# -----------------------------------------------------------------------------
+# ---- HTML Output Settings ----
+# -----------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+# Generate HTML documentation in docs/html.
 
-# Explicit file types used in your project
-FILE_PATTERNS          = *.ino \
-                         *.h   \
-                         *.cpp
+HTML_COLORSTYLE        = LIGHT
+# Light theme for readability.
 
-# Recursively scan subfolders (libraries, components, etc.)
-RECURSIVE              = YES
+HTML_EXTRA_STYLESHEET  = docs/doxygen_custom.css
+# Custom CSS for branding, colors, and table styling.
 
-# Exclude Arduino core and external libraries if present
-EXCLUDE_PATTERNS       = */.pio/* \
-                         */.arduino/* \
-                         */Arduino/libraries/*
+GENERATE_TREEVIEW      = YES
+# Adds collapsible navigation tree in HTML output.
 
-# ---------------------------------------------------------------------------
-# Preprocessor configuration
-# ---------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# ---- LaTeX/PDF Output Settings ----
+# -----------------------------------------------------------------------------
+GENERATE_LATEX         = YES
+# Enable LaTeX output for PDF generation.
 
+USE_PDFLATEX           = YES
+# Use pdflatex for better font and color support.
+
+LATEX_SOURCE_CODE      = YES
+# Colorized source code in PDF using listings package.
+
+LATEX_BATCHMODE        = NO
+LATEX_CMD_NAME         = pdflatex
+PDF_HYPERLINKS         = YES
+# Enable clickable links in PDF.
+
+LATEX_HEADER           = docs/latex_header.tex
+# Custom LaTeX header for fonts, colors, and code styling.
+
+# -----------------------------------------------------------------------------
+# ---- Markdown & Tables ----
+# -----------------------------------------------------------------------------
+MARKDOWN_SUPPORT       = YES
+# Enables Markdown syntax in comments (tables, lists, headings).
+
+TOC_INCLUDE_HEADINGS   = 3
+# Include headings up to level 3 in the Table of Contents.
+
+# -----------------------------------------------------------------------------
+# ---- Preprocessor Settings ----
+# -----------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = NO
+# Preprocess macros for accurate documentation of conditional code.
 
-# Common Arduino macros
-PREDEFINED             = ARDUINO \
-                         ESP8266 \
-                         PROGMEM=
-
-# ---------------------------------------------------------------------------
-# HTML output configuration
-# ---------------------------------------------------------------------------
-
-GENERATE_HTML          = YES
-HTML_OUTPUT            = html
-
-HTML_DYNAMIC_SECTIONS  = YES
-DISABLE_INDEX          = NO
-GENERATE_TREEVIEW      = YES
-FULL_SIDEBAR           = YES
-
-HTML_TIMESTAMP         = YES
-HTML_COLORSTYLE        = LIGHT
-
-# ---------------------------------------------------------------------------
-# LaTeX / PDF output (optional but recommended for reports)
-# ---------------------------------------------------------------------------
-
-GENERATE_LATEX         = YES
-LATEX_OUTPUT           = latex
-LATEX_BATCHMODE        = YES
-LATEX_HIDE_INDICES     = NO
-
-# ---------------------------------------------------------------------------
-# Warnings and diagnostics
-# ---------------------------------------------------------------------------
-
-WARNINGS               = YES
-WARN_IF_UNDOCUMENTED   = YES
-WARN_IF_DOC_ERROR      = YES
-WARN_NO_PARAMDOC       = YES
-
-# ---------------------------------------------------------------------------
-# Diagram configuration (requires Graphviz)
-# ---------------------------------------------------------------------------
-
-HAVE_DOT               = YES
-DOT_NUM_THREADS        = 4
-
-DOT_CALL_GRAPH         = YES
-DOT_CALLER_GRAPH       = YES
-DOT_TRANSPARENT        = YES
-
-# ---------------------------------------------------------------------------
-# Documentation style
-# ---------------------------------------------------------------------------
-
-JAVADOC_AUTOBRIEF      = YES
-MULTILINE_CPP_IS_BRIEF = NO
-QT_AUTOBRIEF           = NO
-
-TAB_SIZE               = 2
-ALIASES                = "brief=@brief"
-
-# ---------------------------------------------------------------------------
-# Misc
-# ---------------------------------------------------------------------------
-
-QUIET                  = NO
-GENERATE_TODOLIST      = YES
-GENERATE_TESTLIST      = NO
-GENERATE_BUGLIST       = YES
+# -----------------------------------------------------------------------------
+# ---- Indexing & Search ----
+# -----------------------------------------------------------------------------
+SEARCHENGINE           = YES
+# Adds a full-text search engine to HTML output.
+###############################################################################

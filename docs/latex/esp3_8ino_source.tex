@@ -1,0 +1,392 @@
+\doxysection{esp3.\+ino}
+\hypertarget{esp3_8ino_source}{}\label{esp3_8ino_source}\index{esp3/esp3.ino@{esp3/esp3.ino}}
+\doxymbox{\hyperlink{esp3_8ino}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00038}00038\ \textcolor{preprocessor}{\#include\ <Servo.h>}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00040}00040\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00041}00041\ \textcolor{preprocessor}{\#include\ <WiFiMqttClient.h>}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00043}00043\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Network\ configuration\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00046}\doxymbox{\hyperlink{esp3_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{00046}}\ WifiMqttClient\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00049}\doxymbox{\hyperlink{esp3_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{00049}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\_SSID}}[]\ =\ \textcolor{stringliteral}{"{}Mathias2.4"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00051}\doxymbox{\hyperlink{esp3_8ino_a0495958e0c537c1c5100ee272495435c}{00051}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\_PASS}}[]\ =\ \textcolor{stringliteral}{"{}mrbombasticcallmefantastic"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00054}\doxymbox{\hyperlink{esp3_8ino_a41c34e432b12a511f9348547ddae11d4}{00054}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\_HOST}}[]\ =\ \textcolor{stringliteral}{"{}maqiatto.com"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00056}\doxymbox{\hyperlink{esp3_8ino_a993a7e0c0377e10146438ebe707f31d0}{00056}}\ \textcolor{keyword}{constexpr}\ uint16\_t\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\_PORT}}\ =\ 1883;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00058}\doxymbox{\hyperlink{esp3_8ino_a315cd313c3f6301b48d2f67e63bec2db}{00058}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\_USER}}[]\ =\ \textcolor{stringliteral}{"{}hectorfoss@gmail.com"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00060}\doxymbox{\hyperlink{esp3_8ino_a31dacdc924feb376b49448eb843d053c}{00060}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\_PASS}}[]\ =\ \textcolor{stringliteral}{"{}potter"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00063}\doxymbox{\hyperlink{esp3_8ino_a04ecc29c762e5b2844d3c24744813015}{00063}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\_ID}}[]\ =\ \textcolor{stringliteral}{"{}door1"{}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00065}00065\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00066}00066\ \textcolor{comment}{//\ Pin\ configuration\ |\ esp3.fzz}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00067}00067\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00074}\doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{00074}}\ \textcolor{keyword}{constexpr}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{RED\_PIN}}\ \ \ \ =\ 4;\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00075}\doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{00075}}\ \textcolor{keyword}{constexpr}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{GREEN\_PIN}}\ \ =\ 0;\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00076}\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{00076}}\ \textcolor{keyword}{constexpr}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}}\ =\ 14;\ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00077}\doxymbox{\hyperlink{esp3_8ino_a98714b3ea5db9fa78cbcf8891a3c0798}{00077}}\ \textcolor{keyword}{constexpr}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_a98714b3ea5db9fa78cbcf8891a3c0798}{SERVO\_PIN}}\ \ =\ 13;\ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00080}\doxymbox{\hyperlink{esp3_8ino_aae89f73e4cdcb650ae5c585818d3a861}{00080}}\ \textcolor{preprocessor}{\#define\ POT\_PIN\ A0}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00082}00082\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00083}00083\ \textcolor{comment}{//\ Timing\ configuration}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00084}00084\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00087}\doxymbox{\hyperlink{esp3_8ino_a6d6d37a1e68b6dcd10e646ed685f6f5e}{00087}}\ \textcolor{keyword}{constexpr}\ uint32\_t\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6d6d37a1e68b6dcd10e646ed685f6f5e}{UNLOCK\_TIME\_MS}}\ =\ 5000;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00090}\doxymbox{\hyperlink{esp3_8ino_a744e7cb284580272a7afb8a81f2a3bba}{00090}}\ uint32\_t\ \doxymbox{\hyperlink{esp3_8ino_a744e7cb284580272a7afb8a81f2a3bba}{unlockUntil}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00092}00092\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00093}00093\ \textcolor{comment}{//\ Global\ state}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00094}00094\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00097}\doxymbox{\hyperlink{esp3_8ino_a5284d36e95aca49afcb3ae1ecc97add5}{00097}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{esp3_8ino_a5284d36e95aca49afcb3ae1ecc97add5}{unlocked}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00102}\doxymbox{\hyperlink{esp3_8ino_a6a8b3b75b2ade421c119d83a8b2133f1}{00102}}\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1}{AccessResult}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00103}\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{00103}}\ \ \ \doxymbox{\hyperlink{esp3_8ino_a6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{Denied}},\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00104}\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{00104}}\ \ \ \doxymbox{\hyperlink{esp3_8ino_a6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{Granted}}\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00105}00105\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00108}\doxymbox{\hyperlink{esp3_8ino_a39d1ef76cb1d31fc16d855c63df5624a}{00108}}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1}{AccessResult}}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a39d1ef76cb1d31fc16d855c63df5624a}{accessGranted}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00111}\doxymbox{\hyperlink{esp3_8ino_a037a56ba222296920d6e0f06796e9f21}{00111}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_af8cd458b5a58130e8dd244de49f9591d}{rfidAccess}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00114}\doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{00114}}\ Servo\ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00117}\doxymbox{\hyperlink{esp3_8ino_ac981a10fb220aee90291389b2607c637}{00117}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{esp3_8ino_ac981a10fb220aee90291389b2607c637}{servoOpen}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00120}\doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{00120}}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00123}\doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{00123}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{adminServoControl}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00125}00125\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00126}00126\ \textcolor{comment}{//\ Buzzer\ state\ machine}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00127}00127\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00129}00129\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00130}00130\ \textcolor{comment}{\ *\ Timing\ arrays\ define\ alternating\ ON/OFF\ durations\ in\ milliseconds.}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00131}00131\ \textcolor{comment}{\ *\ Even\ indices\ (LEFT):\ buzzer\ ON\ durations}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00132}00132\ \textcolor{comment}{\ *\ Odd\ indices\ (RIGHT):\ \ buzzer\ OFF\ durations}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00133}00133\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00136}\doxymbox{\hyperlink{esp3_8ino_a2bba129d79cf6951bff6c7931dee6f03}{00136}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{esp3_8ino_a2bba129d79cf6951bff6c7931dee6f03}{deniedTimings}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00137}00137\ \ \ 2000}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00138}00138\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00141}\doxymbox{\hyperlink{esp3_8ino_a7dafde6b11d0e61269d5b5326deee7cb}{00141}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{esp3_8ino_a7dafde6b11d0e61269d5b5326deee7cb}{lockTimings}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00142}00142\ \ \ 250,\ 120,}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00143}00143\ \ \ 250,\ 120,}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00144}00144\ \ \ 250}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00145}00145\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00148}\doxymbox{\hyperlink{esp3_8ino_af8884950ef523ca854f256d016cfaf29}{00148}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{esp3_8ino_af8884950ef523ca854f256d016cfaf29}{unlockTimings}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00149}00149\ \ \ 125,\ 120,}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00150}00150\ \ \ 125}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00151}00151\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00154}\doxymbox{\hyperlink{esp3_8ino_acf6a49719a118eac7c9f54b4351977fd}{00154}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{esp3_8ino_acf6a49719a118eac7c9f54b4351977fd}{beepTimings}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00155}00155\ \ \ 125}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00156}00156\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00161}\doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176}{00161}}\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176}{BuzzerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00162}\doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{00162}}\ \ \ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}},\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00163}\doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{00163}}\ \ \ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{BUZZER\_ON}},\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00164}\doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68}{00164}}\ \ \ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68}{BUZZER\_OFF}}\ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00165}00165\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00170}\doxymbox{\hyperlink{esp3_8ino}{00170}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{esp3_8ino_structBuzzerPattern}{BuzzerPattern}}\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00171}\doxymbox{\hyperlink{esp3_8ino_a9973d8105ccaef4e92696ff202364a48}{00171}}\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}*\ \doxymbox{\hyperlink{esp3_8ino_a9973d8105ccaef4e92696ff202364a48}{timings}};\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00172}\doxymbox{\hyperlink{esp3_8ino_aa5a431c816b520d8df9dc3fb85d5c062}{00172}}\ \ \ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_aa5a431c816b520d8df9dc3fb85d5c062}{length}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00173}00173\ \};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00176}\doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{00176}}\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176}{BuzzerState}}\ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00179}\doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{00179}}\ \doxymbox{\hyperlink{esp3_8ino_structBuzzerPattern}{BuzzerPattern}}\ \doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{currentPattern}}\ =\ \{\textcolor{keyword}{nullptr},\ 0\};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00182}\doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{00182}}\ uint8\_t\ \doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{stepIndex}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00185}\doxymbox{\hyperlink{esp3_8ino_aeaa41d0f25d6ba9737d73ffa5136f4ab}{00185}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{esp3_8ino_aeaa41d0f25d6ba9737d73ffa5136f4ab}{lastChange}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00193}\doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{00193}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{playPattern}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}*\ timings,\ uint8\_t\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00195}00195\ \ \ \textcolor{comment}{//\ Prevent\ overlapping\ sound\ patterns}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00196}00196\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ !=\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00198}00198\ \ \ \doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{currentPattern}}.timings\ =\ timings;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00199}00199\ \ \ \doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{currentPattern}}.length\ \ =\ length;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00201}00201\ \ \ \doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{stepIndex}}\ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00202}00202\ \ \ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{BUZZER\_ON}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00203}00203\ \ \ \doxymbox{\hyperlink{esp3_8ino_aeaa41d0f25d6ba9737d73ffa5136f4ab}{lastChange}}\ \ =\ millis();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00205}00205\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ HIGH);\ \ \textcolor{comment}{//\ Start\ with\ buzzer\ ON}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00206}00206\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00213}\doxymbox{\hyperlink{esp3_8ino_a312e25f84437a687662bb53eceebec83}{00213}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a312e25f84437a687662bb53eceebec83}{updateBuzzer}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00214}00214\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ ==\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00216}00216\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00218}00218\ \ \ \textcolor{comment}{//\ Wait\ until\ current\ timing\ interval\ expires}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00219}00219\ \ \ \textcolor{keywordflow}{if}\ (now\ -\/\ \doxymbox{\hyperlink{esp3_8ino_aeaa41d0f25d6ba9737d73ffa5136f4ab}{lastChange}}\ <\ \doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{currentPattern}}.timings[\doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{stepIndex}}])\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00221}00221\ \ \ \doxymbox{\hyperlink{esp3_8ino_aeaa41d0f25d6ba9737d73ffa5136f4ab}{lastChange}}\ =\ now;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00222}00222\ \ \ \doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{stepIndex}}++;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00224}00224\ \ \ \textcolor{comment}{//\ End\ of\ pattern\ reached}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00225}00225\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_ad0d2a31b1a102cbb8a415773c47b01bb}{stepIndex}}\ >=\ \doxymbox{\hyperlink{esp3_8ino_a3968694cac10b831396197bf7627d45c}{currentPattern}}.length)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00226}00226\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00227}00227\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00228}00228\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00229}00229\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00231}00231\ \ \ \textcolor{comment}{//\ Toggle\ buzzer\ state}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00232}00232\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ ==\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{BUZZER\_ON}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00233}00233\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00234}00234\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a6fd00a9b64a658134b21162400027a68}{BUZZER\_OFF}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00235}00235\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00236}00236\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ HIGH);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00237}00237\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176a5435ccab40fb29ad3420e7ffdecac65c}{BUZZER\_ON}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00238}00238\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00239}00239\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00244}\doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{00244}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{stopBuzzer}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00245}00245\ \ \ \doxymbox{\hyperlink{esp3_8ino_a83ec3e49d3b2d7a5b3d7e24776ed94dd}{buzzerState}}\ =\ \doxymbox{\hyperlink{esp3_8ino_ae3c5be103282ee46f635819ae28c1176ad32089a6564a38159e66921ddece6ebd}{BUZZER\_IDLE}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00246}00246\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00247}00247\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00250}\doxymbox{\hyperlink{esp3_8ino_a4da2553f00d22f892f2fe8ee47e9db9f}{00250}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a4da2553f00d22f892f2fe8ee47e9db9f}{playLockSound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00251}00251\ \ \ \doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{stopBuzzer}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00252}00252\ \ \ \doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{playPattern}}(\doxymbox{\hyperlink{esp3_8ino_a7dafde6b11d0e61269d5b5326deee7cb}{lockTimings}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_a7dafde6b11d0e61269d5b5326deee7cb}{lockTimings}})\ /\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_a7dafde6b11d0e61269d5b5326deee7cb}{lockTimings}}[0]));}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00254}00254\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00257}\doxymbox{\hyperlink{esp3_8ino_a979598b64139705fd13eb4ea50e0674c}{00257}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a979598b64139705fd13eb4ea50e0674c}{playUnlockSound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00258}00258\ \ \ \doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{stopBuzzer}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00259}00259\ \ \ \doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{playPattern}}(\doxymbox{\hyperlink{esp3_8ino_af8884950ef523ca854f256d016cfaf29}{unlockTimings}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_af8884950ef523ca854f256d016cfaf29}{unlockTimings}})\ /\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_af8884950ef523ca854f256d016cfaf29}{unlockTimings}}[0]));}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00261}00261\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00264}\doxymbox{\hyperlink{esp3_8ino_a04bf0803eb139c30e08775daa9076ea6}{00264}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a04bf0803eb139c30e08775daa9076ea6}{playDeniedSound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00265}00265\ \ \ \doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{stopBuzzer}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00266}00266\ \ \ \doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{playPattern}}(\doxymbox{\hyperlink{esp3_8ino_a2bba129d79cf6951bff6c7931dee6f03}{deniedTimings}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_a2bba129d79cf6951bff6c7931dee6f03}{deniedTimings}})\ /\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_a2bba129d79cf6951bff6c7931dee6f03}{deniedTimings}}[0]));}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00268}00268\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00271}\doxymbox{\hyperlink{esp3_8ino_a0f76dd1d3c15f21fc5dd0d4536f4c100}{00271}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a0f76dd1d3c15f21fc5dd0d4536f4c100}{playTapSound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00272}00272\ \ \ \doxymbox{\hyperlink{esp3_8ino_a95513a5e9cc3b574afa284a38c77d6e7}{stopBuzzer}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00273}00273\ \ \ \doxymbox{\hyperlink{esp3_8ino_a89ff5d59e14a11256f4dd5c82602f932}{playPattern}}(\doxymbox{\hyperlink{esp3_8ino_acf6a49719a118eac7c9f54b4351977fd}{beepTimings}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_acf6a49719a118eac7c9f54b4351977fd}{beepTimings}})\ /\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp3_8ino_acf6a49719a118eac7c9f54b4351977fd}{beepTimings}}[0]));}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00275}00275\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00277}00277\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00278}00278\ \textcolor{comment}{//\ Helper\ functions}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00279}00279\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00288}\doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{00288}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{forceLock}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00289}00289\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a39d1ef76cb1d31fc16d855c63df5624a}{accessGranted}}\ =\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{AccessResult::Denied}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00290}00290\ \ \ \doxymbox{\hyperlink{esp3_8ino_a5284d36e95aca49afcb3ae1ecc97add5}{unlocked}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00292}00292\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{RED\_PIN}},\ HIGH);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00293}00293\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{GREEN\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00295}00295\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_ac981a10fb220aee90291389b2607c637}{servoOpen}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00296}00296\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}}.write(0);\ \ \ \textcolor{comment}{//\ Move\ servo\ to\ locked\ position}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00297}00297\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_ac981a10fb220aee90291389b2607c637}{servoOpen}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00298}00298\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00299}00299\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00301}00301\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00302}00302\ \textcolor{comment}{//\ MQTT\ callback}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00303}00303\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00318}\doxymbox{\hyperlink{esp3_8ino_ac3a129f66dc859e2b7279565f4e1de78}{00318}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}}(\textcolor{keywordtype}{char}*\ topic,\ \textcolor{keywordtype}{byte}*\ payload,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00320}00320\ \ \ \textcolor{comment}{//\ Ignore\ empty\ MQTT\ messages}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00321}00321\ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00323}00323\ \ \ StaticJsonDocument<512>\ doc;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00324}00324\ \ \ DeserializationError\ err\ =\ deserializeJson(doc,\ payload,\ length);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00326}00326\ \ \ \textcolor{comment}{//\ Abort\ if\ JSON\ parsing\ fails}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00327}00327\ \ \ \textcolor{keywordflow}{if}\ (err)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00328}00328\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}JSON\ parse\ failed:\ "{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00329}00329\ \ \ \ \ Serial.println(err.c\_str());}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00330}00330\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00331}00331\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00333}00333\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00334}00334\ \ \ \textcolor{comment}{//\ Keypad\ PIN\ verification\ response}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00335}00335\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00336}00336\ \ \ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00338}00338\ \ \ \ \ \textcolor{comment}{//\ Ignore\ keypad\ responses\ during\ admin\ servo\ control}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00339}00339\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{adminServoControl}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00341}00341\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a39d1ef76cb1d31fc16d855c63df5624a}{accessGranted}}\ =\ (doc[\textcolor{stringliteral}{"{}response"{}}][\textcolor{stringliteral}{"{}accessGranted"{}}]\ |\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00342}00342\ \ \ \ \ \ \ ?\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{AccessResult::Granted}}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00343}00343\ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1a58d036b9b7f0e7eb38cfb90f1cc70a73}{AccessResult::Denied}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00345}00345\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a39d1ef76cb1d31fc16d855c63df5624a}{accessGranted}}\ !=\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6a8b3b75b2ade421c119d83a8b2133f1ac322f9346b70efdd31968628d5ee68db}{AccessResult::Granted}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00346}00346\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Access\ Denied"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00347}00347\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a04bf0803eb139c30e08775daa9076ea6}{playDeniedSound}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00348}00348\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{forceLock}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00349}00349\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00350}00350\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00352}00352\ \ \ \ \ \textcolor{comment}{//\ Access\ granted:\ unlock\ door}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00353}00353\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Unlocking\ door"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00354}00354\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a979598b64139705fd13eb4ea50e0674c}{playUnlockSound}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00355}00355\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00356}00356\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}}.write(180);\ \ \ \textcolor{comment}{//\ Move\ servo\ to\ unlocked\ position}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00357}00357\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_ac981a10fb220aee90291389b2607c637}{servoOpen}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00359}00359\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{GREEN\_PIN}},\ HIGH);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00360}00360\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{RED\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00362}00362\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a5284d36e95aca49afcb3ae1ecc97add5}{unlocked}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00363}00363\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a744e7cb284580272a7afb8a81f2a3bba}{unlockUntil}}\ =\ millis()\ +\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a6d6d37a1e68b6dcd10e646ed685f6f5e}{UNLOCK\_TIME\_MS}};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00364}00364\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00366}00366\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00367}00367\ \ \ \textcolor{comment}{//\ RFID\ access\ response\ (only\ react\ to\ denial)}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00368}00368\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00369}00369\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00371}00371\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_af8cd458b5a58130e8dd244de49f9591d}{rfidAccess}}\ =\ (doc[\textcolor{stringliteral}{"{}response"{}}][\textcolor{stringliteral}{"{}hasAccess"{}}]\ |\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00372}00372\ \ \ \ \ \ \ ?\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00373}00373\ \ \ \ \ \ \ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00375}00375\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{esp1__rfid__motion_8ino_af8cd458b5a58130e8dd244de49f9591d}{rfidAccess}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00376}00376\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Access\ Denied"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00377}00377\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a04bf0803eb139c30e08775daa9076ea6}{playDeniedSound}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00378}00378\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{forceLock}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00379}00379\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00380}00380\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00381}00381\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00383}00383\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00384}00384\ \ \ \textcolor{comment}{//\ Keypad\ tap\ feedback}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00385}00385\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00386}00386\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}keypad/beep"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00388}00388\ \ \ \ \ \textcolor{comment}{//\ Only\ beep\ if\ RFID\ access\ is\ valid}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00389}00389\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{esp1__rfid__motion_8ino_af8cd458b5a58130e8dd244de49f9591d}{rfidAccess}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00391}00391\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a0f76dd1d3c15f21fc5dd0d4536f4c100}{playTapSound}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00392}00392\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00394}00394\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00395}00395\ \ \ \textcolor{comment}{//\ Admin\ servo\ control\ enable/disable}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00396}00396\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00397}00397\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}admin/servo\_control"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00399}00399\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{adminServoControl}}\ =\ (doc[\textcolor{stringliteral}{"{}data"{}}][\textcolor{stringliteral}{"{}adminServoControl"{}}]\ |\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00400}00400\ \ \ \ \ \ \ ?\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00401}00401\ \ \ \ \ \ \ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00403}00403\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{adminServoControl}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00404}00404\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Admin\ servo\ control\ disabled"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00405}00405\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{forceLock}}();\ \ \textcolor{comment}{//\ Reset\ servo\ to\ locked\ state}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00406}00406\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00407}00407\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00409}00409\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Admin\ servo\ control\ enabled"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00410}00410\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00411}00411\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00413}00413\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00414}00414\ \textcolor{comment}{//\ Setup}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00415}00415\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00423}\doxymbox{\hyperlink{esp3_8ino_a4fc01d736fe50cf5b977f755b675f11d}{00423}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00425}00425\ \ \ pinMode(\doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{RED\_PIN}},\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00426}00426\ \ \ pinMode(\doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{GREEN\_PIN}},\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00427}00427\ \ \ pinMode(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00429}00429\ \ \ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}}.attach(\doxymbox{\hyperlink{esp3_8ino_a98714b3ea5db9fa78cbcf8891a3c0798}{SERVO\_PIN}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00430}00430\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00431}00431\ \ \ \textcolor{comment}{//\ Initialize\ outputs\ to\ safe\ state}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00432}00432\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_a1ff3e63b5caeb625ff113a8190b24c80}{RED\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00433}00433\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_ad779a2a8a81b39a265a6361f7edf06f2}{GREEN\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00434}00434\ \ \ digitalWrite(\doxymbox{\hyperlink{esp3_8ino_afbe2629cea08969000cef8d30978edd8}{BUZZER\_PIN}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00435}00435\ \ \ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}}.write(0);\ \ \textcolor{comment}{//\ Locked\ position}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00437}00437\ \ \ \doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00439}00439\ \ \ delay(100);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00440}00440\ \ \ Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00442}00442\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.begin(}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00443}00443\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\_SSID}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00444}00444\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\_PASS}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00445}00445\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\_HOST}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00446}00446\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\_PORT}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00447}00447\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\_USER}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00448}00448\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\_PASS}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00449}00449\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\_ID}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00450}00450\ \ \ \ \ \textcolor{stringliteral}{"{}site1"{}}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00451}00451\ \ \ );}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00452}00452\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00453}00453\ \ \ Serial.println(\textcolor{stringliteral}{"{}WiFi\ \&\ MQTT\ ready"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00455}00455\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.setCallback(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00456}00456\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00457}00457\ \ \ \textcolor{comment}{//\ Subscribe\ to\ required\ MQTT\ topics}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00458}00458\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00459}00459\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00460}00460\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00461}00461\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/keypad\_response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00462}00462\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00464}00464\ \ \ Serial.printf(\textcolor{stringliteral}{"{}keypad/beep\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00465}00465\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}keypad/beep"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00466}00466\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00467}00467\ \ \ Serial.printf(\textcolor{stringliteral}{"{}admin/servo\_control\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00468}00468\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}admin/servo\_control"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00469}00469\ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00471}00471\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00472}00472\ \textcolor{comment}{//\ Main\ loop}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00473}00473\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00474}00474\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00484}\doxymbox{\hyperlink{esp3_8ino_afe461d27b9c48d5921c00d521181f12f}{00484}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{esp3_8ino_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00485}00485\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.loop();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00486}00486\ \ \ yield();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00488}00488\ \ \ \textcolor{comment}{//\ Advance\ buzzer\ state\ machine}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00489}00489\ \ \ \doxymbox{\hyperlink{esp3_8ino_a312e25f84437a687662bb53eceebec83}{updateBuzzer}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00490}00490\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00491}00491\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00492}00492\ \ \ \textcolor{comment}{//\ Admin\ servo\ control\ mode}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00493}00493\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00494}00494\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_acb368e6741d7e5d5fb51f384f3ef6c5e}{adminServoControl}})\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00496}00496\ \ \ \ \ \textcolor{comment}{//\ Map\ potentiometer\ value\ to\ servo\ angle}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00497}00497\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}}\ =\ (int)(analogRead(\doxymbox{\hyperlink{esp3_8ino_aae89f73e4cdcb650ae5c585818d3a861}{POT\_PIN}})\ /\ 1023.0f\ *\ 180.0f);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00498}00498\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}}\ =\ constrain(\doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}},\ 0,\ 180);}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00499}00499\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00500}00500\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a7d2ca4784fdea2b5e9ac6f9ac738ef08}{lock\_servo}}.write(\doxymbox{\hyperlink{esp3_8ino_a9382f70e6b3786d1e4c31a325939561e}{servoAngle}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00501}00501\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00502}00502\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00504}00504\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00505}00505\ \ \ \textcolor{comment}{//\ Automatic\ relock\ after\ unlock\ timeout}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00506}00506\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00507}00507\ \ \ \textcolor{keyword}{const}\ uint32\_t\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00509}00509\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp3_8ino_a5284d36e95aca49afcb3ae1ecc97add5}{unlocked}}\ \&\&\ (int32\_t)(now\ -\/\ \doxymbox{\hyperlink{esp3_8ino_a744e7cb284580272a7afb8a81f2a3bba}{unlockUntil}})\ >=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00510}00510\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Locking\ door"{}});}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00511}00511\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_a4da2553f00d22f892f2fe8ee47e9db9f}{playLockSound}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00512}00512\ \ \ \ \ \doxymbox{\hyperlink{esp3_8ino_aff8c04e7b324ff4272911924db174640}{forceLock}}();}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00513}00513\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{esp3_8ino_source_l00514}00514\ \}}
+
+\end{DoxyCode}

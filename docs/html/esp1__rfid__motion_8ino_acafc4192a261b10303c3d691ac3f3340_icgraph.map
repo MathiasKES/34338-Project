@@ -1,0 +1,7 @@
+<map id="onMotionIdle" name="onMotionIdle">
+<area shape="rect" id="Node000001" title="Handles motion&#45;idle state." alt="" coords="299,5,405,31"/>
+<area shape="rect" id="Node000002" href="$esp1__rfid__motion_8ino.html#a8df5568d50795a11cfd7fb0abb331131" title="Updates motion state based on PIR sensor input." alt="" coords="104,5,251,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,21,251,21,251,15,285,15"/>
+<area shape="rect" id="Node000003" href="$esp1__rfid__motion_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino main loop." alt="" coords="5,5,56,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
+</map>

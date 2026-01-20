@@ -1,0 +1,12 @@
+<map id="updateMotionState" name="updateMotionState">
+<area shape="rect" id="Node000001" title="Updates motion state based on PIR sensor input." alt="" coords="5,31,152,56"/>
+<area shape="rect" id="Node000002" href="$esp1__rfid__motion_8ino.html#ade59c900943c3305d0209fb836346d95" title="Handles motion&#45;detected events." alt="" coords="200,5,343,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,31,186,27,186,32,153,36"/>
+<area shape="rect" id="Node000004" href="$esp1__rfid__motion_8ino.html#acafc4192a261b10303c3d691ac3f3340" title="Handles motion&#45;idle state." alt="" coords="218,55,325,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,50,205,56,204,62,152,55"/>
+<area shape="rect" id="Node000003" href="$esp1__rfid__motion_8ino.html#ab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="431,5,473,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,15,417,15,417,21,343,21"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="318,52,417,24,419,30,319,57"/>
+<area shape="rect" id="Node000005" href="$esp1__rfid__motion_8ino.html#afd31f405375298b91360c711cad4200f" title="Checks whether the LCD backlight should remain active." alt="" coords="391,55,513,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="325,65,377,65,377,70,325,70"/>
+</map>

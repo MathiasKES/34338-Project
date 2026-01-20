@@ -1,0 +1,7 @@
+<map id="playDeniedSound" name="playDeniedSound">
+<area shape="rect" id="Node000001" title="Plays denied&#45;access sound pattern." alt="" coords="5,31,141,56"/>
+<area shape="rect" id="Node000002" href="$esp3_8ino.html#a89ff5d59e14a11256f4dd5c82602f932" title="Starts playing a buzzer pattern." alt="" coords="189,5,285,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,30,175,25,176,30,142,35"/>
+<area shape="rect" id="Node000003" href="$esp3_8ino.html#a95513a5e9cc3b574afa284a38c77d6e7" title="Immediately stops any active buzzer sound." alt="" coords="190,55,285,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,51,177,56,176,61,141,56"/>
+</map>

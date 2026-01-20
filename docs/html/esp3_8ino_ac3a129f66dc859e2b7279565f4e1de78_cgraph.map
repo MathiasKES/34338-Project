@@ -1,0 +1,19 @@
+<map id="callback" name="callback">
+<area shape="rect" id="Node000001" title="MQTT message callback handler." alt="" coords="5,80,81,105"/>
+<area shape="rect" id="Node000002" href="$esp3_8ino.html#aff8c04e7b324ff4272911924db174640" title="Forces the system into a locked idle state." alt="" coords="155,5,240,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,78,128,40,143,33,145,38,131,44,65,82"/>
+<area shape="rect" id="Node000003" href="$esp3_8ino.html#a04bf0803eb139c30e08775daa9076ea6" title="Plays denied&#45;access sound pattern." alt="" coords="129,55,265,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="81,84,115,78,116,83,82,89"/>
+<area shape="rect" id="Node000006" href="$esp3_8ino.html#a0f76dd1d3c15f21fc5dd0d4536f4c100" title="Plays keypad tap sound." alt="" coords="141,104,253,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="82,96,128,103,127,108,81,101"/>
+<area shape="rect" id="Node000007" href="$esp3_8ino.html#a979598b64139705fd13eb4ea50e0674c" title="Plays unlock sound pattern." alt="" coords="130,153,265,179"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="66,103,131,138,148,146,146,151,128,143,64,108"/>
+<area shape="rect" id="Node000004" href="$esp3_8ino.html#a89ff5d59e14a11256f4dd5c82602f932" title="Starts playing a buzzer pattern." alt="" coords="313,80,409,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="266,75,300,81,299,86,265,80"/>
+<area shape="rect" id="Node000005" href="$esp3_8ino.html#a95513a5e9cc3b574afa284a38c77d6e7" title="Immediately stops any active buzzer sound." alt="" coords="314,129,409,155"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="238,78,266,89,326,120,323,125,264,94,236,83"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="253,106,299,99,300,104,254,111"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="254,123,301,130,300,135,253,128"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="233,151,264,138,322,109,324,114,266,143,235,156"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="264,154,300,148,301,153,265,159"/>
+</map>

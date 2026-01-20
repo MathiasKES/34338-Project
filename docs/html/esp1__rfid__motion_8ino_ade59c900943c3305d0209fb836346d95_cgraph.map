@@ -1,0 +1,5 @@
+<map id="onMotionDetected" name="onMotionDetected">
+<area shape="rect" id="Node000001" title="Handles motion&#45;detected events." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$esp1__rfid__motion_8ino.html#ab09e66ce429f1e2dd70e188a52754e2b" title="I2C LCD instance." alt="" coords="196,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,15,182,15,182,21,148,21"/>
+</map>

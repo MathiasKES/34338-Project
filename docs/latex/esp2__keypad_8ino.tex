@@ -1,0 +1,699 @@
+\doxysection{esp2\+\_\+keypad/\+esp2\+\_\+keypad.ino File Reference}
+\hypertarget{esp2__keypad_8ino}{}\label{esp2__keypad_8ino}\index{esp2\_keypad/esp2\_keypad.ino@{esp2\_keypad/esp2\_keypad.ino}}
+
+
+Keypad-\/based PIN entry controller with MQTT backend integration.  
+
+
+Include dependency graph for esp2\+\_\+keypad.\+ino:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp2__keypad_8ino__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{esp2__keypad_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}} (char \texorpdfstring{$\ast$}{*}topic, byte \texorpdfstring{$\ast$}{*}payload, unsigned int length)
+\begin{DoxyCompactList}\small\item\em MQTT message callback handler. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino setup function. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\+\_\+code}} ()
+\begin{DoxyCompactList}\small\item\em Resets the PIN input buffer and index. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}{publish\+Tap}} ()
+\begin{DoxyCompactList}\small\item\em Publishes keypad tap feedback via MQTT. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Arduino main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Wifi\+Mqtt\+Client \doxymbox{\hyperlink{esp2__keypad_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi + MQTT client wrapper. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\+\_\+\+SSID}} \+[$\,$]\+ = "{}Mathias2.\+4"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi SSID. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\+\_\+\+PASS}} \+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}
+\begin{DoxyCompactList}\small\item\em Wi\+Fi password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\+\_\+\+HOST}} \+[$\,$]\+ = "{}maqiatto.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT broker hostname. \end{DoxyCompactList}\item 
+constexpr uint16\+\_\+t \doxymbox{\hyperlink{esp2__keypad_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\+\_\+\+PORT}} = 1883
+\begin{DoxyCompactList}\small\item\em MQTT broker port. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\+\_\+\+USER}} \+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}
+\begin{DoxyCompactList}\small\item\em MQTT username. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\+\_\+\+PASS}} \+[$\,$]\+ = "{}potter"{}
+\begin{DoxyCompactList}\small\item\em MQTT password. \end{DoxyCompactList}\item 
+constexpr char \doxymbox{\hyperlink{esp2__keypad_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\+\_\+\+ID}} \+[$\,$]\+ = "{}door1"{}
+\begin{DoxyCompactList}\small\item\em Unique device identifier used in MQTT topics. \end{DoxyCompactList}\item 
+const byte \doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}} = 4
+\begin{DoxyCompactList}\small\item\em Number of rows in the keypad matrix. \end{DoxyCompactList}\item 
+const byte \doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}} = 4
+\begin{DoxyCompactList}\small\item\em Number of columns in the keypad matrix. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{keys}} \+[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+\+[\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+
+\begin{DoxyCompactList}\small\item\em Logical keypad layout. \end{DoxyCompactList}\item 
+byte \doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}} \+[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+ = \{16, 5, 4, 0\}
+\begin{DoxyCompactList}\small\item\em GPIO pins connected to keypad rows. \end{DoxyCompactList}\item 
+byte \doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{col\+Pins}} \+[\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+ = \{2, 14, 12, 13\}
+\begin{DoxyCompactList}\small\item\em GPIO pins connected to keypad columns. \end{DoxyCompactList}\item 
+Keypad \doxymbox{\hyperlink{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{keypad}} = Keypad(make\+Keymap(\doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{keys}}), \doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}}, \doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{col\+Pins}}, \doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}, \doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}})
+\begin{DoxyCompactList}\small\item\em Keypad instance handling scanning and debouncing. \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}} = 4
+\begin{DoxyCompactList}\small\item\em Required PIN length. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}} \+[\doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}}+1]\+ = \{0\}
+\begin{DoxyCompactList}\small\item\em Input buffer for PIN digits. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{current\+Idx}} = 0
+\begin{DoxyCompactList}\small\item\em Current index into the PIN buffer. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kp\+Enabled}} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether keypad input is currently enabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Keypad-\/based PIN entry controller with MQTT backend integration. 
+
+
+
+Definition in file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{esp2__keypad_8ino_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{esp2__keypad_8ino_ac3a129f66dc859e2b7279565f4e1de78}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!callback@{callback}}
+\index{callback@{callback}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_ac3a129f66dc859e2b7279565f4e1de78} 
+void callback (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{topic}{, }\item[{byte \texorpdfstring{$\ast$}{*}}]{payload}{, }\item[{unsigned int}]{length}{}\end{DoxyParamCaption})}
+
+
+
+MQTT message callback handler. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item Enabling keypad input after RFID access is granted
+\item Disabling keypad input after PIN validation completes
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & MQTT topic string. \\
+\hline
+{\em payload} & Raw payload bytes. \\
+\hline
+{\em length} & Payload length. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00150}{150}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{comment}{//\ Ignore\ empty\ MQTT\ messages}}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ StaticJsonDocument<512>\ doc;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \textcolor{comment}{//\ Parse\ JSON\ payload}}
+\DoxyCodeLine{00158\ \ \ DeserializationError\ err\ =\ deserializeJson(doc,\ payload,\ length);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{comment}{//\ Abort\ on\ JSON\ parsing\ failure}}
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordflow}{if}\ (err)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}JSON\ parse\ failed:\ "{}});}
+\DoxyCodeLine{00163\ \ \ \ \ Serial.println(err.c\_str());}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00165\ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00168\ \ \ \textcolor{comment}{//\ RFID\ access\ response:\ enable\ or\ disable\ keypad}}
+\DoxyCodeLine{00169\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Enable\ keypad\ only\ if\ RFID\ access\ was\ granted}}
+\DoxyCodeLine{00173\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}}\ =\ (doc[\textcolor{stringliteral}{"{}response"{}}][\textcolor{stringliteral}{"{}hasAccess"{}}]\ |\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ ?\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ :\ false;}
+\DoxyCodeLine{00176\ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00178\ \ \ \textcolor{comment}{//\ PIN\ verification\ response:\ always\ disable\ keypad\ afterward}}
+\DoxyCodeLine{00179\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(topic,\ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ==\ 0)\ \{}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Prevent\ further\ input\ until\ next\ RFID\ authorization}}
+\DoxyCodeLine{00183\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00184\ \ \ \}}
+\DoxyCodeLine{00185\ \}}
+
+\end{DoxyCode}
+
+
+References \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00133}{kp\+Enabled}}, and \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00053}{net}}.
+
+\Hypertarget{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!loop@{loop}}
+\index{loop@{loop}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino main loop. 
+
+Handles:\+
+\begin{DoxyItemize}
+\item MQTT client processing
+\item Keypad scanning
+\item PIN entry logic
+\item PIN submission and reset 
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{265}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.loop();\ \ \ \textcolor{comment}{//\ Process\ MQTT\ traffic}}
+\DoxyCodeLine{00267\ \ \ yield();\ \ \ \ \ \ \textcolor{comment}{//\ Allow\ background\ WiFi\ tasks}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \textcolor{comment}{//\ Read\ keypad\ state\ (non-\/blocking)}}
+\DoxyCodeLine{00270\ \ \ \textcolor{keywordtype}{char}\ key\ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}{keypad}}.getKey();}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \textcolor{comment}{//\ Ignore\ input\ if\ no\ key\ pressed\ or\ keypad\ is\ disabled}}
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ NO\_KEY\ ||\ !\doxymbox{\hyperlink{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}{kpEnabled}})\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00275\ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00278\ \ \ \textcolor{comment}{//\ Numeric\ key\ input}}
+\DoxyCodeLine{00279\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00280\ \ \ \textcolor{keywordflow}{if}\ (key\ >=\ \textcolor{charliteral}{'0'}\ \&\&\ key\ <=\ \textcolor{charliteral}{'9'})\ \{}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{comment}{//\ Only\ accept\ input\ if\ buffer\ is\ not\ full}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ <\ \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}})\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}[\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}++]\ =\ key;\ \ \ \textcolor{comment}{//\ Store\ digit}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}[\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \ \ \ \textcolor{comment}{//\ Maintain\ null-\/terminated\ string}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Key:\ "{}});}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ Serial.println(key);}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00293\ \ \ \textcolor{comment}{//\ Submit\ PIN\ using\ '\#'}}
+\DoxyCodeLine{00294\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{charliteral}{'\#'})\ \{}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{//\ Only\ submit\ if\ required\ PIN\ length\ is\ reached}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ ==\ \doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\_LENGTH}})\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Submitting\ code:\ "{}});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ Serial.println(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}});}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ JSON\ payload\ for\ PIN\ submission}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ StaticJsonDocument<64>\ data;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ data[\textcolor{stringliteral}{"{}event"{}}]\ =\ \textcolor{stringliteral}{"{}KP\_try"{}};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ data[\textcolor{stringliteral}{"{}code"{}}]\ \ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.publishJson(\textcolor{stringliteral}{"{}keypad/submit"{}},\ data);}
+\DoxyCodeLine{00308\ \ \ \ \ \}\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Code\ too\ short,\ resetting."{}});}
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{comment}{//\ Always\ reset\ buffer\ after\ submission\ attempt}}
+\DoxyCodeLine{00314\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\_code}}();}
+\DoxyCodeLine{00315\ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00318\ \ \ \textcolor{comment}{//\ Clear\ input\ using\ '*'}}
+\DoxyCodeLine{00319\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{charliteral}{'*'})\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}{reset\_code}}();}
+\DoxyCodeLine{00322\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Input\ cleared"{}});}
+\DoxyCodeLine{00323\ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \textcolor{comment}{//\ Ignore\ unsupported\ keys\ (A-\/D)}}
+\DoxyCodeLine{00326\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00328\ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \textcolor{comment}{//\ Any\ valid\ keypress\ is\ treated\ as\ a\ tap\ event}}
+\DoxyCodeLine{00331\ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}{publishTap}}();}
+\DoxyCodeLine{00332\ \}}
+
+\end{DoxyCode}
+
+
+References \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00116}{CODE\+\_\+\+LENGTH}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00126}{current\+Idx}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00123}{input}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00111}{keypad}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00133}{kp\+Enabled}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00053}{net}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00244}{publish\+Tap()}}, and \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00233}{reset\+\_\+code()}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{esp2__keypad_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!publishTap@{publishTap}}
+\index{publishTap@{publishTap}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{publishTap()}{publishTap()}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370} 
+void publish\+Tap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Publishes keypad tap feedback via MQTT. 
+
+Sends the current PIN length after each valid keypress, allowing external systems to provide visual or audio feedback. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00244}{244}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ StaticJsonDocument<64>\ data;}
+\DoxyCodeLine{00246\ \ \ data[\textcolor{stringliteral}{"{}event"{}}]\ \ \ \ \ =\ \textcolor{stringliteral}{"{}KP\_tap"{}};}
+\DoxyCodeLine{00247\ \ \ data[\textcolor{stringliteral}{"{}pinlength"{}}]\ =\ \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.publishJson(\textcolor{stringliteral}{"{}keypad/tap"{}},\ data);}
+\DoxyCodeLine{00250\ \}}
+
+\end{DoxyCode}
+
+
+References \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00126}{current\+Idx}}, and \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00053}{net}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{esp2__keypad_8ino_ad45c6bc383467b9b8d638d841787c370_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!reset\_code@{reset\_code}}
+\index{reset\_code@{reset\_code}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{reset\_code()}{reset\_code()}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a} 
+void reset\+\_\+code (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets the PIN input buffer and index. 
+
+Clears any partially entered PIN and prepares the buffer for new input. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00233}{233}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ memset(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}},\ 0,\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}{input}}));\ \ \textcolor{comment}{//\ Clear\ buffer\ contents}}
+\DoxyCodeLine{00235\ \ \ \doxymbox{\hyperlink{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}{currentIdx}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ write\ index}}
+\DoxyCodeLine{00236\ \}}
+
+\end{DoxyCode}
+
+
+References \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00126}{current\+Idx}}, and \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00123}{input}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}.
+
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{esp2__keypad_8ino_a8d5423be1c5a1f45105978994e468f0a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!setup@{setup}}
+\index{setup@{setup}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino setup function. 
+
+Initializes Serial output, Wi\+Fi connection, MQTT client, and topic subscriptions. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00197}{197}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ Serial.begin(115200);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.begin(}
+\DoxyCodeLine{00201\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}{WIFI\_SSID}},}
+\DoxyCodeLine{00202\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a0495958e0c537c1c5100ee272495435c}{WIFI\_PASS}},}
+\DoxyCodeLine{00203\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a41c34e432b12a511f9348547ddae11d4}{MQTT\_HOST}},}
+\DoxyCodeLine{00204\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a993a7e0c0377e10146438ebe707f31d0}{MQTT\_PORT}},}
+\DoxyCodeLine{00205\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a315cd313c3f6301b48d2f67e63bec2db}{MQTT\_USER}},}
+\DoxyCodeLine{00206\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a31dacdc924feb376b49448eb843d053c}{MQTT\_PASS}},}
+\DoxyCodeLine{00207\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a04ecc29c762e5b2844d3c24744813015}{DEVICE\_ID}},}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{stringliteral}{"{}site1"{}}}
+\DoxyCodeLine{00209\ \ \ );}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ Serial.println(\textcolor{stringliteral}{"{}Keypad\ +\ MQTT\ ready"{}});}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.setCallback(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_ac3a129f66dc859e2b7279565f4e1de78}{callback}});}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{comment}{//\ Subscribe\ to\ access\ control\ topics}}
+\DoxyCodeLine{00216\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00217\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ Serial.printf(\textcolor{stringliteral}{"{}access/keypad\_response\ MQTT\ subscribe\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00220\ \ \ \ \ \doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.subscribe(\doxymbox{\hyperlink{esp1__rfid__motion_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}{net}}.makeTopic(\textcolor{stringliteral}{"{}access/keypad\_response"{}}).c\_str())\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}FAILED"{}});}
+\DoxyCodeLine{00221\ \}}
+
+\end{DoxyCode}
+
+
+References \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00250}{callback()}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00070}{DEVICE\+\_\+\+ID}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00061}{MQTT\+\_\+\+HOST}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00067}{MQTT\+\_\+\+PASS}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00063}{MQTT\+\_\+\+PORT}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00065}{MQTT\+\_\+\+USER}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00053}{net}}, \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00058}{WIFI\+\_\+\+PASS}}, and \doxymbox{\hyperlink{esp1__rfid__motion_8ino_source_l00056}{WIFI\+\_\+\+SSID}}.
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp2__keypad_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{esp2__keypad_8ino_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!CODE\_LENGTH@{CODE\_LENGTH}}
+\index{CODE\_LENGTH@{CODE\_LENGTH}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{CODE\_LENGTH}{CODE\_LENGTH}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d} 
+uint8\+\_\+t CODE\+\_\+\+LENGTH = 4\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Required PIN length. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00116}{116}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}.
+
+\Hypertarget{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!colPins@{colPins}}
+\index{colPins@{colPins}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{colPins}{colPins}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675} 
+byte col\+Pins\+[\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+ = \{2, 14, 12, 13\}}
+
+
+
+GPIO pins connected to keypad columns. 
+
+Order must match COLS definition. D4, D5, D6, D7 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00096}{96}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00096\ \{2,\ 14,\ 12,\ 13\};\ }
+
+\end{DoxyCode}
+\Hypertarget{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!COLS@{COLS}}
+\index{COLS@{COLS}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{COLS}{COLS}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815} 
+const byte COLS = 4}
+
+
+
+Number of columns in the keypad matrix. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00069}{69}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!currentIdx@{currentIdx}}
+\index{currentIdx@{currentIdx}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{currentIdx}{currentIdx}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_afe9f139ae3327939925efd3e3105d58a} 
+uint8\+\_\+t current\+Idx = 0}
+
+
+
+Current index into the PIN buffer. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00126}{126}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}, \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00244}{publish\+Tap()}}, and \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00233}{reset\+\_\+code()}}.
+
+\Hypertarget{esp2__keypad_8ino_a04ecc29c762e5b2844d3c24744813015}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!DEVICE\_ID@{DEVICE\_ID}}
+\index{DEVICE\_ID@{DEVICE\_ID}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_ID}{DEVICE\_ID}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a04ecc29c762e5b2844d3c24744813015} 
+char DEVICE\+\_\+\+ID\+[$\,$]\+ = "{}door1"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Unique device identifier used in MQTT topics. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00061}{61}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!input@{input}}
+\index{input@{input}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_ab42060a966bf72717ef9f3607d84bdd8} 
+char input\+[\doxymbox{\hyperlink{esp2__keypad_8ino_a78e874f81f475d09f84f2bbc5d8f869d}{CODE\+\_\+\+LENGTH}}+1]\+ = \{0\}}
+
+
+
+Input buffer for PIN digits. 
+
+One extra byte is reserved for the null terminator. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00123}{123}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{0\};}
+
+\end{DoxyCode}
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}, and \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00233}{reset\+\_\+code()}}.
+
+\Hypertarget{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!keypad@{keypad}}
+\index{keypad@{keypad}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{keypad}{keypad}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a0e6c3cc7e8c762ab0ca1fa2296d7bbfe} 
+Keypad keypad = Keypad(make\+Keymap(\doxymbox{\hyperlink{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}{keys}}), \doxymbox{\hyperlink{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}{row\+Pins}}, \doxymbox{\hyperlink{esp2__keypad_8ino_aa9fece7b062124080e4b2976f9a8b675}{col\+Pins}}, \doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}, \doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}})}
+
+
+
+Keypad instance handling scanning and debouncing. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00111}{111}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}.
+
+\Hypertarget{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!keys@{keys}}
+\index{keys@{keys}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a856e873a1d14012d57ddb813c4a1e40a} 
+char keys\+[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+\+[\doxymbox{\hyperlink{esp2__keypad_8ino_aefd90f1160eaa105bc910d4d7c46b815}{COLS}}]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'1'},\textcolor{charliteral}{'2'},\textcolor{charliteral}{'3'},\textcolor{charliteral}{'A'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'4'},\textcolor{charliteral}{'5'},\textcolor{charliteral}{'6'},\textcolor{charliteral}{'B'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'7'},\textcolor{charliteral}{'8'},\textcolor{charliteral}{'9'},\textcolor{charliteral}{'C'}\},}
+\DoxyCodeLine{\ \ \{\textcolor{charliteral}{'*'},\textcolor{charliteral}{'0'},\textcolor{charliteral}{'\#'},\textcolor{charliteral}{'D'}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Logical keypad layout. 
+
+Defines the character returned for each row/\+column intersection. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00076}{76}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \{\textcolor{charliteral}{'1'},\textcolor{charliteral}{'2'},\textcolor{charliteral}{'3'},\textcolor{charliteral}{'A'}\},}
+\DoxyCodeLine{00078\ \ \ \{\textcolor{charliteral}{'4'},\textcolor{charliteral}{'5'},\textcolor{charliteral}{'6'},\textcolor{charliteral}{'B'}\},}
+\DoxyCodeLine{00079\ \ \ \{\textcolor{charliteral}{'7'},\textcolor{charliteral}{'8'},\textcolor{charliteral}{'9'},\textcolor{charliteral}{'C'}\},}
+\DoxyCodeLine{00080\ \ \ \{\textcolor{charliteral}{'*'},\textcolor{charliteral}{'0'},\textcolor{charliteral}{'\#'},\textcolor{charliteral}{'D'}\}}
+\DoxyCodeLine{00081\ \};}
+
+\end{DoxyCode}
+\Hypertarget{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!kpEnabled@{kpEnabled}}
+\index{kpEnabled@{kpEnabled}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{kpEnabled}{kpEnabled}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a45e5fd1e566874b92cd64516fb7447f3} 
+bool kp\+Enabled = false}
+
+
+
+Indicates whether keypad input is currently enabled. 
+
+This flag is controlled via MQTT messages from the access controller. 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00133}{133}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+
+Referenced by \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00150}{callback()}}, and \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00265}{loop()}}.
+
+\Hypertarget{esp2__keypad_8ino_a41c34e432b12a511f9348547ddae11d4}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!MQTT\_HOST@{MQTT\_HOST}}
+\index{MQTT\_HOST@{MQTT\_HOST}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{MQTT\_HOST}{MQTT\_HOST}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a41c34e432b12a511f9348547ddae11d4} 
+char MQTT\+\_\+\+HOST\+[$\,$]\+ = "{}maqiatto.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker hostname. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00052}{52}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a31dacdc924feb376b49448eb843d053c}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!MQTT\_PASS@{MQTT\_PASS}}
+\index{MQTT\_PASS@{MQTT\_PASS}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PASS}{MQTT\_PASS}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a31dacdc924feb376b49448eb843d053c} 
+char MQTT\+\_\+\+PASS\+[$\,$]\+ = "{}potter"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00058}{58}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a993a7e0c0377e10146438ebe707f31d0}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!MQTT\_PORT@{MQTT\_PORT}}
+\index{MQTT\_PORT@{MQTT\_PORT}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{MQTT\_PORT}{MQTT\_PORT}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a993a7e0c0377e10146438ebe707f31d0} 
+uint16\+\_\+t MQTT\+\_\+\+PORT = 1883\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT broker port. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00054}{54}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a315cd313c3f6301b48d2f67e63bec2db}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!MQTT\_USER@{MQTT\_USER}}
+\index{MQTT\_USER@{MQTT\_USER}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{MQTT\_USER}{MQTT\_USER}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a315cd313c3f6301b48d2f67e63bec2db} 
+char MQTT\+\_\+\+USER\+[$\,$]\+ = "{}hectorfoss@gmail.\+com"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+MQTT username. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00056}{56}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!net@{net}}
+\index{net@{net}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a082cbde9dbf32731aabec6f0b8a7e5c0} 
+Wifi\+Mqtt\+Client net}
+
+
+
+Wi\+Fi + MQTT client wrapper. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00044}{44}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!rowPins@{rowPins}}
+\index{rowPins@{rowPins}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{rowPins}{rowPins}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a6d6753e0ae098b31e2f84d4024e361cf} 
+byte row\+Pins\+[\doxymbox{\hyperlink{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}{ROWS}}]\+ = \{16, 5, 4, 0\}}
+
+
+
+GPIO pins connected to keypad rows. 
+
+Order must match ROWS definition. D0, D1, D2, D3 
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00089}{89}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089\ \{16,\ 5,\ 4,\ 0\};\ }
+
+\end{DoxyCode}
+\Hypertarget{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!ROWS@{ROWS}}
+\index{ROWS@{ROWS}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{ROWS}{ROWS}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a829655a147df70dd4cc94eae40a2204e} 
+const byte ROWS = 4}
+
+
+
+Number of rows in the keypad matrix. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00066}{66}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_a0495958e0c537c1c5100ee272495435c}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!WIFI\_PASS@{WIFI\_PASS}}
+\index{WIFI\_PASS@{WIFI\_PASS}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{WIFI\_PASS}{WIFI\_PASS}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_a0495958e0c537c1c5100ee272495435c} 
+char WIFI\+\_\+\+PASS\+[$\,$]\+ = "{}mrbombasticcallmefantastic"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00049}{49}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+
+\Hypertarget{esp2__keypad_8ino_ae4ee394ecd24781bba5d0aaaab8e964a}\index{esp2\_keypad.ino@{esp2\_keypad.ino}!WIFI\_SSID@{WIFI\_SSID}}
+\index{WIFI\_SSID@{WIFI\_SSID}!esp2\_keypad.ino@{esp2\_keypad.ino}}
+\doxysubsubsection{\texorpdfstring{WIFI\_SSID}{WIFI\_SSID}}
+{\footnotesize\ttfamily \label{esp2__keypad_8ino_ae4ee394ecd24781bba5d0aaaab8e964a} 
+char WIFI\+\_\+\+SSID\+[$\,$]\+ = "{}Mathias2.\+4"{}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Wi\+Fi SSID. 
+
+
+
+Definition at line \doxymbox{\hyperlink{esp2__keypad_8ino_source_l00047}{47}} of file \doxymbox{\hyperlink{esp2__keypad_8ino_source}{esp2\+\_\+keypad.\+ino}}.
+

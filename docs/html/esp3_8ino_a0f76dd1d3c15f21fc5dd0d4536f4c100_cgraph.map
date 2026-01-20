@@ -1,0 +1,7 @@
+<map id="playTapSound" name="playTapSound">
+<area shape="rect" id="Node000001" title="Plays keypad tap sound." alt="" coords="5,31,117,56"/>
+<area shape="rect" id="Node000002" href="$esp3_8ino.html#a89ff5d59e14a11256f4dd5c82602f932" title="Starts playing a buzzer pattern." alt="" coords="165,5,261,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,31,151,26,152,31,118,37"/>
+<area shape="rect" id="Node000003" href="$esp3_8ino.html#a95513a5e9cc3b574afa284a38c77d6e7" title="Immediately stops any active buzzer sound." alt="" coords="166,55,261,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,50,153,55,152,60,117,55"/>
+</map>

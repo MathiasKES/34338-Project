@@ -1,15 +1,38 @@
 /**
  * @file esp3.ino
  * @brief Door actuator, buzzer, and LED controller with MQTT integration.
+ * @defgroup esp3 ESP3 - Door Actuator
+ * @ingroup esp3
  *
- * This firmware runs on an ESP-based Arduino-compatible board and is responsible for:
- * - Physically locking/unlocking the door using a servo motor
- * - Providing user feedback via LEDs and a buzzer
- * - Reacting to access decisions received over MQTT
- * - Supporting an administrative servo override mode
+ * @details
+ * This firmware runs on an ESP-based Arduino-compatible board and implements
+ * the final actuator stage of the access control system.
  *
- * It acts as the final actuator stage in a distributed access control system,
- * reacting to RFID and keypad decisions made elsewhere.
+ * Hardware components:
+ * - Servo motor for door locking mechanism
+ * - Status LEDs (red / green)
+ * - Piezo buzzer
+ *
+ * Functional responsibilities:
+ * - Locks and unlocks the door based on MQTT access decisions
+ * - Provides audible and visual feedback for access events
+ * - Automatically relocks the door after a configurable timeout
+ * - Supports an administrative servo override mode via MQTT
+ *
+ * This node does not make access decisions itself; it only reacts
+ * to authenticated results produced by the RFID and keypad nodes.
+ *
+ * @section esp3_functions Main functions
+ * - setup() - Hardware, WiFi, and MQTT initialization
+ * - loop()  - Actuator control, timeout handling, and buzzer state machine
+ *
+ * @section esp3_globals Global state
+ * - Access state and unlock timing
+ * - Servo position and override flags
+ * - Buzzer pattern state machine variables
+ *
+ * @section esp3_source Source code
+ * The full implementation is shown below.
  */
 
 #include <Servo.h>

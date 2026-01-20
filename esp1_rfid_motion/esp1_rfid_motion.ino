@@ -1,17 +1,40 @@
 /**
  * @file esp1_rfid_motion.ino
- * @brief RFID + PIN based door access controller with LCD, motion sensing, and MQTT backend.
+ * @brief RFID + PIN based access controller with LCD, motion sensing, and MQTT.
+ * @defgroup esp1 ESP1 - RFID & Motion
+ * @ingroup esp1
  *
- * This firmware runs on an ESP-based Arduino-compatible board. It integrates:
- * - MFRC522 RFID reader (RFID-RC522)
+ * @details
+ * This firmware runs on an ESP-based Arduino-compatible board and implements
+ * the first stage of a distributed door access control system.
+ *
+ * Hardware components:
+ * - MFRC522 RFID reader (RC522)
  * - I2C LCD display
  * - PIR motion sensor
- * - MQTT communication over WiFi
  *
- * The system performs RFID authentication followed by PIN verification,
- * displaying status messages on an LCD and managing display backlight
- * based on motion activity.
+ * Functional responsibilities:
+ * - Detects motion to manage LCD backlight and user interaction
+ * - Reads RFID tags and initiates authentication
+ * - Displays system and authentication status on the LCD
+ * - Communicates authentication requests and results via MQTT
+ *
+ * RFID authentication must succeed before the keypad stage is enabled.
+ *
+ * @section esp1_functions Main functions
+ * - setup() - Hardware, WiFi, and MQTT initialization
+ * - loop()  - Motion detection, RFID scanning, and MQTT handling
+ *
+ * @section esp1_globals Global state
+ * - Motion detection flags and timers
+ * - RFID authentication state
+ * - LCD backlight control variables
+ *
+ * @section esp1_source Source code
+ * The full implementation is shown below.
  */
+
+
 
 #include <Arduino.h>
 #include <string.h>
@@ -447,11 +470,11 @@ void handleRFID() {
 
   // Build JSON payload for access request
   StaticJsonDocument<64> data;
-  data["uid"] = uidString;
+  data["uid"] = uidString;  
   data["event"] = "RFID_Try";
 
   // Publish access request via MQTT
-  bool ok = net.publishJson("access/request", data); 
+  bool ok = net.publishJson("access/request", data);
   Serial.println(ok ? "MQTT publish OK" : "MQTT publish FAILED");
 
   // Properly halt card communication

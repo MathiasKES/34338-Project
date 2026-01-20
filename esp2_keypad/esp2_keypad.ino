@@ -1,15 +1,34 @@
 /**
  * @file esp2_keypad.ino
  * @brief Keypad-based PIN entry controller with MQTT backend integration.
+ * @defgroup esp2 ESP2 - Keypad
+ * @ingroup esp2
  *
- * This firmware runs on an ESP-based Arduino-compatible board and provides:
- * - 4x4 matrix keypad input using the Keypad library
- * - MQTT communication over WiFi
- * - PIN entry handling synchronized with an external access controller
+ * @details
+ * This firmware runs on an ESP-based Arduino-compatible board and implements
+ * the second stage of the access control system.
  *
- * The keypad is only enabled after successful RFID authentication
- * (signaled via MQTT). PIN entry progress and submission are reported
- * back to the backend using JSON-formatted MQTT messages.
+ * Hardware components:
+ * - 4x4 matrix keypad using the Keypad library
+ *
+ * Functional responsibilities:
+ * - Accepts PIN input from the user
+ * - Provides keypress feedback (beeps)
+ * - Publishes PIN entry progress and submissions via MQTT
+ *
+ * The keypad is only active after successful RFID authentication,
+ * which is signaled asynchronously via MQTT.
+ *
+ * @section esp2_functions Main functions
+ * - setup() - Keypad, WiFi, and MQTT initialization
+ * - loop()  - Key scanning, PIN handling, and MQTT processing
+ *
+ * @section esp2_globals Global state
+ * - PIN buffer and length tracking
+ * - Access enable/disable flags
+ *
+ * @section esp2_source Source code
+ * The full implementation is shown below.
  */
 
 #include <Arduino.h>
@@ -303,7 +322,7 @@ void loop() {
     Serial.println("Input cleared");
   }
 
-  // Ignore unsupported keys (A–D)
+  // Ignore unsupported keys (A-D)
   else {
     return;
   }
