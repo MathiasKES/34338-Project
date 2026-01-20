@@ -56,7 +56,7 @@ constexpr uint8_t RFID_SS_PIN  = 15;
 /** @brief RC522 Reset pin (D0 / GPIO16). */
 constexpr uint8_t RFID_RST_PIN = 16;
 
-/** @brief Motion sensor pin (D3 / GPIO0) */
+/** @brief Motion sensor pin (D3 / GPIO0). */
 constexpr uint8_t MOTION_PIN = 0;
 
 /** @brief I2C SDA pin for LCD (D2 / GPIO4). */
@@ -119,9 +119,10 @@ enum class AccessResult : uint8_t {
   Granted   /**< Access granted */
 };
 
-/** @brief Result of RFID authentication */
+/** @brief Result of RFID authentication. */
 AccessResult rfidAccess;
-/** @brief Result of PIN verification */
+
+/** @brief Result of PIN verification. */
 AccessResult accessGranted;
 
 /** @brief Indicates whether a status message is currently displayed. */
@@ -136,7 +137,11 @@ uint32_t showDisplayUntil = 0;
 /** @brief Indicates whether motion is currently considered active. */
 bool motionActive = false;
 
-/** @brief Masked PIN buffer shown on LCD (max 4 digits). */
+/**
+ * @brief Masked PIN buffer shown on LCD (max 4 digits + null terminator).
+ *
+ * Filled with '*' for entered digits and spaces for remaining slots.
+ */
 static char enteredPins[5] = "    ";
 
 // -----------------------------------------------------------------------------
@@ -151,7 +156,7 @@ static char enteredPins[5] = "    ";
  */
 void lcdPrintLine(const __FlashStringHelper* msg, uint8_t line) {
   lcd.setCursor(0, line);
-  lcd.print("                ");
+  lcd.print("                ");   // Overwrite entire row to remove old content
   lcd.setCursor(0, line);
   lcd.print(msg);
 }
@@ -164,7 +169,7 @@ void lcdPrintLine(const __FlashStringHelper* msg, uint8_t line) {
  */
 void lcdPrintLine(const char* msg, uint8_t line) {
   lcd.setCursor(0, line);
-  lcd.print("                ");
+  lcd.print("                ");   // Clear row to avoid leftover characters
   lcd.setCursor(0, line);
   lcd.print(msg);
 }
@@ -172,58 +177,78 @@ void lcdPrintLine(const char* msg, uint8_t line) {
 /**
  * @brief Forces the system back into locked idle state.
  *
- * Clears status flags, resets access state,
- * and restores default LCD message.
+ * Resets access state, clears temporary flags,
+ * and restores the default idle LCD message.
  */
 static void forceLock() {
-  textshown = false;
-  rfidAccess = AccessResult::Denied;
-  accessGranted = AccessResult::Denied;
-  lcdPrintLine(F("Scan RFID card"), 0);
+  textshown = false;                     // Exit message display mode
+  rfidAccess = AccessResult::Denied;     // Clear RFID authorization state
+  accessGranted = AccessResult::Denied;  // Clear PIN authorization state
+  lcdPrintLine(F("Scan RFID card"), 0);  // Restore idle prompt
 }
 
 /**
  * @brief Builds a masked PIN string for LCD display.
  *
+ * Converts a numeric PIN length into a visual representation
+ * using '*' characters and trailing spaces.
+ *
  * @param pinLength Number of digits entered so far.
  */
 void makeEnteredPins(uint8_t pinLength)
 {
+    // Clamp PIN length to display capacity (4 digits)
     if (pinLength > 4) {
         pinLength = 4;
     }
 
+    // Fill entered portion with masking characters
     memset(enteredPins, '*', pinLength);
+
+    // Fill remaining positions with spaces to clear old characters
     memset(enteredPins + pinLength, ' ', 4 - pinLength);
+
+    // Ensure string is null-terminated
     enteredPins[4] = '\0';
 }
 
 /**
  * @brief MQTT message callback handler.
  *
- * Handles:
- * - RFID access responses
- * - Keypad PIN verification responses
- * - Keypad visual feedback events
+ * Parses incoming JSON messages and dispatches logic based on topic:
+ * - RFID access decision
+ * - Keypad PIN validation result
+ * - Keypad keypress feedback
  *
- * @param topic MQTT topic string
- * @param payload Raw payload bytes
- * @param length Payload length
+ * @param topic MQTT topic string.
+ * @param payload Raw payload bytes.
+ * @param length Payload length.
  */
 void callback(char* topic, byte* payload, unsigned int length) {
+  // Ignore empty MQTT messages
   if (length == 0) return;
 
   StaticJsonDocument<512> doc;
+
+  // Deserialize JSON payload into document
   DeserializationError err = deserializeJson(doc, payload, length);
 
+  // Abort if JSON parsing fails
   if (err) {
     Serial.print("JSON parse failed: ");
     Serial.println(err.c_str());
     return;
   }
 
+  // ---------------------------------------------------------------------------
+  // RFID access response
+  // ---------------------------------------------------------------------------
   if (strcmp(topic, net.makeTopic("access/response").c_str()) == 0) {
+
+    // Timestamp when request was sent (provided by backend)
     uint32_t requestMs = doc["sent_ts_ms"] | 0;
+
+    // Compute round-trip delay to detect stale responses
     uint32_t deltaMs = millis() - requestMs;
 
     Serial.printf(
@@ -231,17 +256,20 @@ void callback(char* topic, byte* payload, unsigned int length) {
       deltaMs
     );
 
+    // Ignore responses that took too long to arrive
     if (deltaMs > DISPLAY_MS) {
       Serial.println("Took too long to respond");
       return;
     }
 
+    // Extract access decision from JSON payload
     rfidAccess = (doc["response"]["hasAccess"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
 
     Serial.println("UID match: waiting for PIN...");
 
+    // Handle denied RFID access immediately
     if (rfidAccess != AccessResult::Granted) {
       lcdPrintLine(F("Access Denied"), 0);
       textshown = true;
@@ -249,19 +277,26 @@ void callback(char* topic, byte* payload, unsigned int length) {
       return;
     }
 
+    // Prompt user to enter PIN after successful RFID
     lcdPrintLine(F("Enter PIN:"), 0);
-
     textshown = true;
     showTextUntil = millis() + PIN_TIME_MS;
     
   } 
+  // ---------------------------------------------------------------------------
+  // Keypad PIN verification response
+  // ---------------------------------------------------------------------------
   else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
+
+    // Ignore PIN responses if RFID was not authorized
     if (rfidAccess != AccessResult::Granted) return;
 
+    // Extract PIN validation result
     accessGranted = (doc["response"]["accessGranted"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
 
+    // Handle incorrect PIN
     if (accessGranted != AccessResult::Granted) {
       Serial.println("Access Denied");
       lcdPrintLine(F("Access Denied"), 0);
@@ -270,16 +305,25 @@ void callback(char* topic, byte* payload, unsigned int length) {
       return;
     }
 
+    // Handle successful authentication
     Serial.println("Access Granted");
     lcdPrintLine(F("Access Granted"), 0);
     textshown = true;
     showTextUntil = millis() + UNLOCK_TIME_MS;
 
   }
+  // ---------------------------------------------------------------------------
+  // Keypad visual feedback (keypress)
+  // ---------------------------------------------------------------------------
   else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
+
+    // Only show keypad feedback after successful RFID
     if (rfidAccess != AccessResult::Granted) return;
 
+    // Number of digits entered so far
     uint8_t pinLength = doc["data"]["pinlength"] | 0;
+
+    // Update masked PIN display
     makeEnteredPins(pinLength);
     lcdPrintLine(enteredPins, 1);
   }
@@ -287,6 +331,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 /**
  * @brief Checks whether the LCD backlight should remain active.
+ *
+ * Uses signed time comparison to safely handle millis() wraparound.
  *
  * @param now Current time in milliseconds.
  * @return true if display is active, false otherwise.
@@ -298,37 +344,45 @@ bool isDisplayActive(uint32_t now) {
 /**
  * @brief Handles motion-detected events.
  *
+ * Activates LCD backlight and refreshes display timeout.
+ *
  * @param now Current time in milliseconds.
  */
 void onMotionDetected(uint32_t now) {
   if (!motionActive) {
-    motionActive = true;
+    motionActive = true;       // Mark motion as active
     Serial.println(F("Motion detected"));
-    lcd.backlight();
+    lcd.backlight();           // Turn on LCD backlight
   }
 
+  // Extend backlight timeout while motion persists
   showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
 }
 
 /**
  * @brief Handles motion-idle state.
  *
+ * Turns off LCD backlight when motion has ceased
+ * and the timeout has expired.
+ *
  * @param now Current time in milliseconds.
  */
 void onMotionIdle(uint32_t now) {
   if (motionActive && !isDisplayActive(now)) {
-    motionActive = false;
-    lcd.noBacklight();
+    motionActive = false;      // Mark motion as inactive
+    lcd.noBacklight();         // Turn off LCD backlight
   }
 }
 
 /**
  * @brief Updates motion state based on PIR sensor input.
  *
+ * Dispatches to motion-detected or motion-idle handlers.
+ *
  * @param now Current time in milliseconds.
  */
 void updateMotionState(uint32_t now) {
-  const bool motion = digitalRead(MOTION_PIN);
+  const bool motion = digitalRead(MOTION_PIN);  // Read PIR sensor state
 
   if (motion) {
     onMotionDetected(now);
@@ -340,34 +394,44 @@ void updateMotionState(uint32_t now) {
 /**
  * @brief Converts an RFID UID to a hexadecimal string.
  *
+ * Each UID byte is encoded as two uppercase hexadecimal characters.
+ *
  * @param uid MFRC522 UID structure.
  * @param output Destination buffer.
  * @param outputSize Size of destination buffer.
  */
 void uidToHexString(const MFRC522::Uid& uid, char* output, size_t outputSize) {
+
+  // Ensure output buffer is large enough:
+  // 2 hex characters per byte + null terminator
   if (outputSize < (uid.size * 2 + 1)) {
-    output[0] = '\0';
+    output[0] = '\0';  // Fail safely with empty string
     return;
   }
 
+  // Convert each UID byte into two hex characters
   for (byte i = 0; i < uid.size; i++) {
     sprintf(&output[i * 2], "%02X", uid.uidByte[i]);
   }
 
+  // Explicitly terminate C-string
   output[uid.size * 2] = '\0';
 }
 
 /**
  * @brief Handles RFID card detection and request publishing.
  *
- * Reads the UID, displays connection status,
+ * Detects new cards, reads UID, updates LCD,
  * and sends an MQTT access request.
  */
 void handleRFID() {
+
+  // Exit if no new card is present
   if (!mfrc522.PICC_IsNewCardPresent()) {
     return;
   }
 
+  // Exit if card UID could not be read
   if (!mfrc522.PICC_ReadCardSerial()) {
     return;
   }
@@ -381,13 +445,16 @@ void handleRFID() {
   textshown = true;
   showTextUntil = millis() + DISPLAY_MS;
 
+  // Build JSON payload for access request
   StaticJsonDocument<64> data;
   data["uid"] = uidString;
   data["event"] = "RFID_Try";
 
+  // Publish access request via MQTT
   bool ok = net.publishJson("access/request", data); 
   Serial.println(ok ? "MQTT publish OK" : "MQTT publish FAILED");
 
+  // Properly halt card communication
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
 }
@@ -395,11 +462,11 @@ void handleRFID() {
 /**
  * @brief Arduino setup function.
  *
- * Initializes hardware, peripherals, LCD,
- * WiFi connection, and MQTT subscriptions.
+ * Initializes hardware peripherals, LCD, WiFi,
+ * MQTT client, and topic subscriptions.
  */
 void setup() {
-  delay(100);
+  delay(100); // Allow hardware to stabilize
   Serial.begin(115200);
 
   rfidAccess = AccessResult::Denied;
@@ -433,6 +500,7 @@ void setup() {
 
   net.setCallback(callback);
 
+  // Subscribe to required MQTT topics
   Serial.printf("access/response MQTT subscribe %s\n", 
     net.subscribe(net.makeTopic("access/response").c_str()) ? "OK" : "FAILED");
 
@@ -446,26 +514,32 @@ void setup() {
 /**
  * @brief Arduino main loop.
  *
- * Handles:
- * - MQTT processing
- * - Display timeout logic
+ * Executes non-blocking system logic:
+ * - MQTT client processing
+ * - Display timeout handling
  * - Motion-based backlight control
- * - RFID card detection
+ * - RFID polling when active
  */
 void loop() {
-  net.loop();
-  yield();
+  net.loop();     // Process MQTT traffic
+  yield();        // Allow background WiFi tasks
   
   const uint32_t now = millis();
 
+  // If a message is currently displayed, wait for timeout
   if (textshown) {
-    if ((int32_t)(now - showTextUntil) >= 0) forceLock();
+    if ((int32_t)(now - showTextUntil) >= 0) {
+      forceLock();            // Reset system when timeout expires
+    }
     delay(POLL_MS);
     return;
   }
 
+  // Update LCD backlight based on motion sensor
   updateMotionState(now);
 
-  if (isDisplayActive(now))
+  // Only allow RFID scans when display is active
+  if (isDisplayActive(now)) {
     handleRFID();
+  }
 }
