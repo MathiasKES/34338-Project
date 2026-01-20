@@ -1,3 +1,18 @@
+/**
+ * @file esp1_rfid_motion.ino
+ * @brief RFID + PIN based door access controller with LCD, motion sensing, and MQTT backend.
+ *
+ * This firmware runs on an ESP-based Arduino-compatible board. It integrates:
+ * - MFRC522 RFID reader (RFID-RC522)
+ * - I2C LCD display
+ * - PIR motion sensor
+ * - MQTT communication over WiFi
+ *
+ * The system performs RFID authentication followed by PIN verification,
+ * displaying status messages on an LCD and managing display backlight
+ * based on motion activity.
+ */
+
 #include <Arduino.h>
 #include <string.h>
 #include <ArduinoJson.h>
@@ -11,16 +26,24 @@
 
 // ---------------- Network configuration ----------------
 
+/** @brief WiFi + MQTT client wrapper */
 WifiMqttClient net;
 
+/** @brief WiFi SSID */
 constexpr char WIFI_SSID[] = "Mathias2.4";
+/** @brief WiFi password */
 constexpr char WIFI_PASS[] = "mrbombasticcallmefantastic";
 
+/** @brief MQTT broker hostname */
 constexpr char MQTT_HOST[] = "maqiatto.com";
+/** @brief MQTT broker port */
 constexpr uint16_t MQTT_PORT = 1883;
+/** @brief MQTT username */
 constexpr char MQTT_USER[] = "hectorfoss@gmail.com";
+/** @brief MQTT password */
 constexpr char MQTT_PASS[] = "potter";
 
+/** @brief Unique device identifier used in MQTT topics */
 constexpr char DEVICE_ID[] = "door1";
 
 // -----------------------------------------------------------------------------
@@ -62,13 +85,14 @@ constexpr uint8_t LCD_ADDRESS = 0x27;
 /** @brief Duration (ms) to display text before resetting. */
 constexpr uint32_t DISPLAY_MS = 3000;
 
-/** @brief Duration (ms) to display backlight before resetting. */
+/** @brief Duration (ms) to keep LCD backlight on after motion. */
 constexpr uint32_t DISPLAY_BACKLIGHT_MS = 5000;
 
+/** @brief Time window (ms) for entering PIN after RFID success. */
 constexpr uint32_t PIN_TIME_MS = 15000;
 
+/** @brief Door unlock display duration (ms). */
 constexpr uint32_t UNLOCK_TIME_MS = 5000;
-
 
 /** @brief Main loop polling delay (ms). */
 constexpr uint32_t POLL_MS    = 30;
@@ -95,22 +119,24 @@ enum class AccessResult : uint8_t {
   Granted   /**< Access granted */
 };
 
+/** @brief Result of RFID authentication */
 AccessResult rfidAccess;
+/** @brief Result of PIN verification */
 AccessResult accessGranted;
 
-/** @brief Indicates whether a result is currently being displayed. */
+/** @brief Indicates whether a status message is currently displayed. */
 bool textshown = false;
 
-/** @brief Timestamp (ms) when the display should reset to idle text. */
+/** @brief Timestamp (ms) when the displayed text should expire. */
 uint32_t showTextUntil = 0;
 
-/** @brief Timestamp (ms) when the display should reset to idle backlight. */
+/** @brief Timestamp (ms) when LCD backlight should turn off. */
 uint32_t showDisplayUntil = 0;
 
-/** @brief Boolean to keep display active for a duration */
+/** @brief Indicates whether motion is currently considered active. */
 bool motionActive = false;
 
-/** @brief Keep track of pin length from node-red */
+/** @brief Masked PIN buffer shown on LCD (max 4 digits). */
 static char enteredPins[5] = "    ";
 
 // -----------------------------------------------------------------------------
@@ -118,11 +144,11 @@ static char enteredPins[5] = "    ";
 // -----------------------------------------------------------------------------
 
 /**
- * @brief Clears LCD line 0 and prints a message.
+ * @brief Clears an LCD line and prints a flash-resident string.
  *
- * @param msg Flash-resident string to display (use F("...")).
+ * @param msg Flash string (use F("...")).
+ * @param line LCD row index.
  */
-
 void lcdPrintLine(const __FlashStringHelper* msg, uint8_t line) {
   lcd.setCursor(0, line);
   lcd.print("                ");
@@ -130,7 +156,12 @@ void lcdPrintLine(const __FlashStringHelper* msg, uint8_t line) {
   lcd.print(msg);
 }
 
-// Overload to also use msg
+/**
+ * @brief Clears an LCD line and prints a RAM-resident string.
+ *
+ * @param msg C-string to print.
+ * @param line LCD row index.
+ */
 void lcdPrintLine(const char* msg, uint8_t line) {
   lcd.setCursor(0, line);
   lcd.print("                ");
@@ -139,9 +170,10 @@ void lcdPrintLine(const char* msg, uint8_t line) {
 }
 
 /**
- * @brief Resets the system to the idle state.
+ * @brief Forces the system back into locked idle state.
  *
- * Clears the LCD, and stops textshown mode.
+ * Clears status flags, resets access state,
+ * and restores default LCD message.
  */
 static void forceLock() {
   textshown = false;
@@ -150,7 +182,11 @@ static void forceLock() {
   lcdPrintLine(F("Scan RFID card"), 0);
 }
 
-/** @brief Parse pins as char[5] */
+/**
+ * @brief Builds a masked PIN string for LCD display.
+ *
+ * @param pinLength Number of digits entered so far.
+ */
 void makeEnteredPins(uint8_t pinLength)
 {
     if (pinLength > 4) {
@@ -162,7 +198,18 @@ void makeEnteredPins(uint8_t pinLength)
     enteredPins[4] = '\0';
 }
 
-// Receive response from MQTT broker
+/**
+ * @brief MQTT message callback handler.
+ *
+ * Handles:
+ * - RFID access responses
+ * - Keypad PIN verification responses
+ * - Keypad visual feedback events
+ *
+ * @param topic MQTT topic string
+ * @param payload Raw payload bytes
+ * @param length Payload length
+ */
 void callback(char* topic, byte* payload, unsigned int length) {
   if (length == 0) return;
 
@@ -208,13 +255,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
     showTextUntil = millis() + PIN_TIME_MS;
     
   } 
-  // Unlock door on correct keypad response
   else if (strcmp(topic, net.makeTopic("access/keypad_response").c_str()) == 0) {
     if (rfidAccess != AccessResult::Granted) return;
-    // Check if it is an old message
 
-
-    // Print on LCD
     accessGranted = (doc["response"]["accessGranted"] | false)
       ? AccessResult::Granted
       : AccessResult::Denied;
@@ -236,31 +279,26 @@ void callback(char* topic, byte* payload, unsigned int length) {
   else if (strcmp(topic, net.makeTopic("keypad/beep").c_str()) == 0) {
     if (rfidAccess != AccessResult::Granted) return;
 
-    // Visual feedback for keypad tap
     uint8_t pinLength = doc["data"]["pinlength"] | 0;
-
-    // Update entered pins
     makeEnteredPins(pinLength);
-
     lcdPrintLine(enteredPins, 1);
   }
 }
 
 /**
- * @brief Checks if display is active
- * 
- * @param now Time (ms) to take difference against
- * @return true if display is active
- * @return false if display is inactive
+ * @brief Checks whether the LCD backlight should remain active.
+ *
+ * @param now Current time in milliseconds.
+ * @return true if display is active, false otherwise.
  */
 bool isDisplayActive(uint32_t now) {
   return (int32_t)(now - showDisplayUntil) < 0;
 }
 
 /**
- * @brief Handles motion detected event
- * 
- * @param now Time (ms) to take difference against
+ * @brief Handles motion-detected events.
+ *
+ * @param now Current time in milliseconds.
  */
 void onMotionDetected(uint32_t now) {
   if (!motionActive) {
@@ -269,14 +307,13 @@ void onMotionDetected(uint32_t now) {
     lcd.backlight();
   }
 
-  // Always refresh timeout while motion is present
   showDisplayUntil = now + DISPLAY_BACKLIGHT_MS;
 }
 
 /**
- * @brief Handles motion idle event
- * 
- * @param now Time (ms) to take difference against
+ * @brief Handles motion-idle state.
+ *
+ * @param now Current time in milliseconds.
  */
 void onMotionIdle(uint32_t now) {
   if (motionActive && !isDisplayActive(now)) {
@@ -286,9 +323,9 @@ void onMotionIdle(uint32_t now) {
 }
 
 /**
- * @brief Updates motion state based on sensor input
- * 
- * @param now Time (ms) to take difference against
+ * @brief Updates motion state based on PIR sensor input.
+ *
+ * @param now Current time in milliseconds.
  */
 void updateMotionState(uint32_t now) {
   const bool motion = digitalRead(MOTION_PIN);
@@ -300,10 +337,16 @@ void updateMotionState(uint32_t now) {
   }
 }
 
+/**
+ * @brief Converts an RFID UID to a hexadecimal string.
+ *
+ * @param uid MFRC522 UID structure.
+ * @param output Destination buffer.
+ * @param outputSize Size of destination buffer.
+ */
 void uidToHexString(const MFRC522::Uid& uid, char* output, size_t outputSize) {
-  // Each byte needs 2 hex chars + 1 null terminator at the end
   if (outputSize < (uid.size * 2 + 1)) {
-    output[0] = '\0';  // fail safely
+    output[0] = '\0';
     return;
   }
 
@@ -315,10 +358,10 @@ void uidToHexString(const MFRC522::Uid& uid, char* output, size_t outputSize) {
 }
 
 /**
- * @brief Handles RFID card detection and processing.
+ * @brief Handles RFID card detection and request publishing.
  *
- * Reads the card UID, checks authorization, displays result,
- * and resets the card state.
+ * Reads the UID, displays connection status,
+ * and sends an MQTT access request.
  */
 void handleRFID() {
   if (!mfrc522.PICC_IsNewCardPresent()) {
@@ -352,7 +395,8 @@ void handleRFID() {
 /**
  * @brief Arduino setup function.
  *
- * Initializes Serial, I2C, LCD, SPI and RFID reader.
+ * Initializes hardware, peripherals, LCD,
+ * WiFi connection, and MQTT subscriptions.
  */
 void setup() {
   delay(100);
@@ -381,13 +425,14 @@ void setup() {
     MQTT_PORT,
     MQTT_USER,
     MQTT_PASS,
-    DEVICE_ID, // door
-    "site1" // site
+    DEVICE_ID,
+    "site1"
   );
 
   Serial.println("MQTT ready");
 
   net.setCallback(callback);
+
   Serial.printf("access/response MQTT subscribe %s\n", 
     net.subscribe(net.makeTopic("access/response").c_str()) ? "OK" : "FAILED");
 
@@ -402,10 +447,10 @@ void setup() {
  * @brief Arduino main loop.
  *
  * Handles:
+ * - MQTT processing
  * - Display timeout logic
- * - RFID card detection and reading
- * - UID verification
- * - LCD updates
+ * - Motion-based backlight control
+ * - RFID card detection
  */
 void loop() {
   net.loop();
@@ -421,9 +466,6 @@ void loop() {
 
   updateMotionState(now);
 
-  // RFID only allowed while display is active
   if (isDisplayActive(now))
     handleRFID();
-
-  // delay(POLL_MS);
 }
