@@ -61,19 +61,20 @@ char keys[ROWS][COLS] = {
   {'*','0','#','D'}
 };
 
+
 /**
  * @brief GPIO pins connected to keypad rows.
  *
  * Order must match ROWS definition.
  */
-byte rowPins[ROWS] = {16, 5, 4, 0};
+byte rowPins[ROWS] = {16, 5, 4, 0}; /**< D0, D1, D2, D3 */
 
 /**
  * @brief GPIO pins connected to keypad columns.
  *
  * Order must match COLS definition.
  */
-byte colPins[COLS] = {2, 14, 12, 13};
+byte colPins[COLS] = {2, 14, 12, 13}; /**< D4, D5, D6, D7 */
 
 /*
  * Physical wiring reference:
