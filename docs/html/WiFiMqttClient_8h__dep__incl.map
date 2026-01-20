@@ -1,5 +1,5 @@
 <map id="lib/WiFiMqttClient/src/WiFiMqttClient.h" name="lib/WiFiMqttClient/src/WiFiMqttClient.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="325,5,482,45"/>
+<area shape="rect" id="Node000001" title="Lightweight WiFi + MQTT helper wrapper for ESP&#45;based Arduino systems." alt="" coords="325,5,482,45"/>
 <area shape="rect" id="Node000002" href="$esp1__rfid__motion_8ino.html" title="RFID + PIN based access controller with LCD, motion sensing, and MQTT." alt="" coords="5,93,175,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="322,52,159,96,158,91,321,46"/>
 <area shape="rect" id="Node000003" href="$esp2__keypad_8ino.html" title="Keypad&#45;based PIN entry controller with MQTT backend integration." alt="" coords="199,101,419,126"/>

@@ -14,7 +14,7 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="481,43,625,88,623,93,479,48"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="725,93,871,119"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="506,42,730,88,729,93,505,47"/>
-<area shape="rect" id="Node000009" href="$WiFiMqttClient_8h.html" title=" " alt="" coords="187,93,318,119"/>
+<area shape="rect" id="Node000009" href="$WiFiMqttClient_8h.html" title="Lightweight WiFi + MQTT helper wrapper for ESP&#45;based Arduino systems." alt="" coords="187,93,318,119"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="382,48,291,90,289,85,379,43"/>
 <area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="221,121,94,165,93,160,219,116"/>
 <area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="241,121,195,160,191,155,237,117"/>

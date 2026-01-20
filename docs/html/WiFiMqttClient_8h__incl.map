@@ -1,5 +1,5 @@
 <map id="lib/WiFiMqttClient/src/WiFiMqttClient.h" name="lib/WiFiMqttClient/src/WiFiMqttClient.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="165,5,322,45"/>
+<area shape="rect" id="Node000001" title="Lightweight WiFi + MQTT helper wrapper for ESP&#45;based Arduino systems." alt="" coords="165,5,322,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,89,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,48,90,91,88,86,195,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="114,93,234,119"/>

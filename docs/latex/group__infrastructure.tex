@@ -1,5 +1,15 @@
 \doxysection{Infrastructure – Wi\+Fi \& MQTT }
 \hypertarget{group__infrastructure}{}\label{group__infrastructure}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \doxymbox{\hyperlink{WiFiMqttClient_8cpp}{Wi\+Fi\+Mqtt\+Client.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementation of the \doxylink{classWifiMqttClient}{Wifi\+Mqtt\+Client} helper class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classWifiMqttClient}{Wifi\+Mqtt\+Client}}
+\begin{DoxyCompactList}\small\item\em Combined Wi\+Fi and MQTT client abstraction. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -11,8 +21,6 @@ void \doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670
 \begin{DoxyCompactList}\small\item\em Main service loop. \end{DoxyCompactList}\item 
 bool \doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{Wifi\+Mqtt\+Client::\+connected}} ()
 \begin{DoxyCompactList}\small\item\em Checks whether the MQTT client is currently connected. \end{DoxyCompactList}\item 
-String \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{Wifi\+Mqtt\+Client::\+make\+Topic}} (const char \texorpdfstring{$\ast$}{*}suffix) const
-\begin{DoxyCompactList}\small\item\em Constructs a fully qualified MQTT topic. \end{DoxyCompactList}\item 
 bool \doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{Wifi\+Mqtt\+Client::\+publish\+Json}} (const char \texorpdfstring{$\ast$}{*}topic\+Suffix, const Json\+Document \&data)
 \begin{DoxyCompactList}\small\item\em Publishes a JSON document to an MQTT topic. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{Wifi\+Mqtt\+Client::\+set\+Callback}} (MQTT\+\_\+\+CALLBACK\+\_\+\+SIGNATURE)
@@ -20,26 +28,21 @@ void \doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6b
 bool \doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{Wifi\+Mqtt\+Client::\+subscribe}} (const char \texorpdfstring{$\ast$}{*}topic)
 \begin{DoxyCompactList}\small\item\em Subscribes to a topic. \end{DoxyCompactList}\item 
 bool \doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{Wifi\+Mqtt\+Client::\+unsubscribe}} (const char \texorpdfstring{$\ast$}{*}topic)
-\begin{DoxyCompactList}\small\item\em Unsubscribes from a topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-static constexpr const char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}{DEVICE\+\_\+\+NAME}} = "{}ESP8266"{}
-\begin{DoxyCompactList}\small\item\em Human-\/readable device platform name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Unsubscribes from a topic. \end{DoxyCompactList}\item 
+String \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{Wifi\+Mqtt\+Client::\+make\+Topic}} (const char \texorpdfstring{$\ast$}{*}suffix) const
+\begin{DoxyCompactList}\small\item\em Constructs a fully qualified MQTT topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-This file provides the concrete implementation of the \doxylink{classWifiMqttClient}{Wifi\+Mqtt\+Client} class, which serves as a shared infrastructure component across all ESP nodes in the distributed door access control system.
-
-Responsibilities include:\+
+This header defines the \doxylink{classWifiMqttClient}{Wifi\+Mqtt\+Client} class, which encapsulates:\+
 \begin{DoxyItemize}
-\item Wi\+Fi connection handling on ESP8266
-\item MQTT connection establishment and automatic reconnection
-\item Construction of a consistent MQTT topic hierarchy
-\item Publishing JSON-\/formatted messages with device metadata
+\item Wi\+Fi connection management
+\item MQTT connection and reconnection logic
+\item Topic namespace handling (site /\+ device scoping)
+\item JSON-\/based MQTT publish helpers
 \end{DoxyItemize}
 
-The implementation is designed to be robust against temporary network failures and to simplify MQTT usage in embedded systems. 
+The class is designed to simplify MQTT usage in distributed embedded systems by providing a consistent base topic structure and robust connection handling. 
 
 \label{doc-func-members}
 \Hypertarget{group__infrastructure_doc-func-members}
@@ -98,7 +101,7 @@ Stores provided credentials, prepares base topic structure, configures Wi\+Fi an
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00058}{58}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00043}{43}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
 \Hypertarget{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!connected@{connected}}
 \index{connected@{connected}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
@@ -119,7 +122,7 @@ true if connected, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00123}{123}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00108}{108}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
 \Hypertarget{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!loop@{loop}}
 \index{loop@{loop}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
@@ -140,7 +143,7 @@ Must be called frequently from the Arduino \doxylink{group__infrastructure_ga04e
 
 Ensures Wi\+Fi and MQTT connections remain active and processes incoming MQTT messages. 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00102}{102}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00087}{87}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
 \Hypertarget{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!makeTopic@{makeTopic}}
 \index{makeTopic@{makeTopic}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
@@ -174,10 +177,9 @@ Constructed topic as an Arduino String.
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00212}{212}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00197}{197}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -220,10 +222,9 @@ true if publish succeeded, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00226}{226}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00211}{211}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -251,10 +252,9 @@ The callback is invoked when subscribed messages are received.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00259}{259}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00244}{244}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -293,7 +293,7 @@ true if subscription succeeded, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00269}{269}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00254}{254}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
 \Hypertarget{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!unsubscribe@{unsubscribe}}
 \index{unsubscribe@{unsubscribe}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
@@ -317,7 +317,7 @@ true if unsubscribe succeeded, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00280}{280}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00265}{265}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 
 \Hypertarget{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!WifiMqttClient@{WifiMqttClient}}
 \index{WifiMqttClient@{WifiMqttClient}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
@@ -333,24 +333,5 @@ Initializes internal state but does not establish any network connections.
 
 Initializes the Pub\+Sub\+Client instance with the internal Wi\+Fi\+Client. 
 
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00040}{40}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
-
-
-
-\label{doc-var-members}
-\Hypertarget{group__infrastructure_doc-var-members}
-\doxysubsection{Variable Documentation}
-\Hypertarget{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}\index{Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}!DEVICE\_NAME@{DEVICE\_NAME}}
-\index{DEVICE\_NAME@{DEVICE\_NAME}!Infrastructure – WiFi \& MQTT@{Infrastructure – WiFi \& MQTT}}
-\doxysubsubsection{\texorpdfstring{DEVICE\_NAME}{DEVICE\_NAME}}
-{\footnotesize\ttfamily \label{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027} 
-const char\texorpdfstring{$\ast$}{*} DEVICE\+\_\+\+NAME = "{}ESP8266"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
-
-
-
-Human-\/readable device platform name. 
-
-Included in published MQTT metadata. 
-
-Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00033}{33}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
+Definition at line \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source_l00025}{25}} of file \doxymbox{\hyperlink{WiFiMqttClient_8cpp_source}{Wi\+Fi\+Mqtt\+Client.\+cpp}}.
 

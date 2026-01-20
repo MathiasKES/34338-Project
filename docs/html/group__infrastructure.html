@@ -92,6 +92,16 @@ $(function(){initNavTree('group__infrastructure.html','',''); });
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:WiFiMqttClient_2Ecpp" id="r_WiFiMqttClient_2Ecpp"><td class="memItemLeft">file &#160;</td><td class="memItemRight"><a class="el" href="WiFiMqttClient_8cpp.html">WiFiMqttClient.cpp</a></td></tr>
+<tr class="memdesc:WiFiMqttClient_8cpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of the <a class="el" href="classWifiMqttClient.html" title="Combined WiFi and MQTT client abstraction.">WifiMqttClient</a> helper class. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:WifiMqttClient" id="r_WifiMqttClient"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classWifiMqttClient.html">WifiMqttClient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combined WiFi and MQTT client abstraction.  <a href="classWifiMqttClient.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga872626d68ec2e2ba41e96c4e19d076e0" id="r_ga872626d68ec2e2ba41e96c4e19d076e0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ga872626d68ec2e2ba41e96c4e19d076e0">WifiMqttClient::WifiMqttClient</a> ()</td></tr>
@@ -102,8 +112,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga04e3b999a0c4ac9f49405d6c8e4670a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main service loop.  <br /></td></tr>
 <tr class="memitem:ga4fbe6219def4d0941a8578fda848d9b4" id="r_ga4fbe6219def4d0941a8578fda848d9b4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga4fbe6219def4d0941a8578fda848d9b4">WifiMqttClient::connected</a> ()</td></tr>
 <tr class="memdesc:ga4fbe6219def4d0941a8578fda848d9b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the MQTT client is currently connected.  <br /></td></tr>
-<tr class="memitem:gab64506a345407ad92a59dbf0db1f435c" id="r_gab64506a345407ad92a59dbf0db1f435c"><td class="memItemLeft">String&#160;</td><td class="memItemRight"><a class="el" href="#gab64506a345407ad92a59dbf0db1f435c">WifiMqttClient::makeTopic</a> (const char *suffix) const</td></tr>
-<tr class="memdesc:gab64506a345407ad92a59dbf0db1f435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a fully qualified MQTT topic.  <br /></td></tr>
 <tr class="memitem:gaca9071775e7243e2361b6729da853e7a" id="r_gaca9071775e7243e2361b6729da853e7a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gaca9071775e7243e2361b6729da853e7a">WifiMqttClient::publishJson</a> (const char *topicSuffix, const JsonDocument &amp;data)</td></tr>
 <tr class="memdesc:gaca9071775e7243e2361b6729da853e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes a JSON document to an MQTT topic.  <br /></td></tr>
 <tr class="memitem:gac9ab08082d9cff38e1d5014d9a1e6bb7" id="r_gac9ab08082d9cff38e1d5014d9a1e6bb7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac9ab08082d9cff38e1d5014d9a1e6bb7">WifiMqttClient::setCallback</a> (MQTT_CALLBACK_SIGNATURE)</td></tr>
@@ -112,21 +120,17 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga260431b529371e5e56c2de0db62d7de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to a topic.  <br /></td></tr>
 <tr class="memitem:gab7cbcec29a4d2bc48e549ec4029923be" id="r_gab7cbcec29a4d2bc48e549ec4029923be"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gab7cbcec29a4d2bc48e549ec4029923be">WifiMqttClient::unsubscribe</a> (const char *topic)</td></tr>
 <tr class="memdesc:gab7cbcec29a4d2bc48e549ec4029923be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes from a topic.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga0ddf5deef4d80297032714cae8ccf027" id="r_ga0ddf5deef4d80297032714cae8ccf027"><td class="memItemLeft">static constexpr const char *&#160;</td><td class="memItemRight"><a class="el" href="#ga0ddf5deef4d80297032714cae8ccf027">DEVICE_NAME</a> = &quot;ESP8266&quot;</td></tr>
-<tr class="memdesc:ga0ddf5deef4d80297032714cae8ccf027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable device platform name.  <br /></td></tr>
+<tr class="memitem:gab64506a345407ad92a59dbf0db1f435c" id="r_gab64506a345407ad92a59dbf0db1f435c"><td class="memItemLeft">String&#160;</td><td class="memItemRight"><a class="el" href="#gab64506a345407ad92a59dbf0db1f435c">WifiMqttClient::makeTopic</a> (const char *suffix) const</td></tr>
+<tr class="memdesc:gab64506a345407ad92a59dbf0db1f435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a fully qualified MQTT topic.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file provides the concrete implementation of the <a class="el" href="classWifiMqttClient.html" title="Combined WiFi and MQTT client abstraction.">WifiMqttClient</a> class, which serves as a shared infrastructure component across all ESP nodes in the distributed door access control system.</p>
-<p>Responsibilities include:</p><ul>
-<li>WiFi connection handling on ESP8266</li>
-<li>MQTT connection establishment and automatic reconnection</li>
-<li>Construction of a consistent MQTT topic hierarchy</li>
-<li>Publishing JSON-formatted messages with device metadata</li>
+<div class="textblock"><p>This header defines the <a class="el" href="classWifiMqttClient.html" title="Combined WiFi and MQTT client abstraction.">WifiMqttClient</a> class, which encapsulates:</p><ul>
+<li>WiFi connection management</li>
+<li>MQTT connection and reconnection logic</li>
+<li>Topic namespace handling (site / device scoping)</li>
+<li>JSON-based MQTT publish helpers</li>
 </ul>
-<p>The implementation is designed to be robust against temporary network failures and to simplify MQTT usage in embedded systems. </p>
+<p>The class is designed to simplify MQTT usage in distributed embedded systems by providing a consistent base topic structure and robust connection handling. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="gad6d9197bee60e1c9035dd4c246c5549b" name="gad6d9197bee60e1c9035dd4c246c5549b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad6d9197bee60e1c9035dd4c246c5549b">&#9670;&#160;</a></span>begin()</h2>
@@ -207,7 +211,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00058">58</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00043">43</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +236,7 @@ Variables</h2></td></tr>
 <dd>
 true if connected, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00123">123</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00108">108</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,7 +263,7 @@ true if connected, false otherwise. </dd></dl>
 </ul>
 <p>Ensures WiFi and MQTT connections remain active and processes incoming MQTT messages. </p>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00102">102</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00087">87</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>
@@ -296,7 +300,7 @@ true if connected, false otherwise. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Constructed topic as an Arduino String. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00212">212</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00197">197</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -344,7 +348,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if publish succeeded, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00226">226</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00211">211</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -378,7 +382,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00259">259</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00244">244</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -420,7 +424,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if subscription succeeded, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00269">269</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00254">254</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +453,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if unsubscribe succeeded, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00280">280</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00265">265</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,35 +476,7 @@ Here is the call graph for this function:</div>
 <p>Initializes internal state but does not establish any network connections.</p>
 <p>Initializes the PubSubClient instance with the internal WiFiClient. </p>
 
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00040">40</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
-
-</div>
-</div>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
-<a id="ga0ddf5deef4d80297032714cae8ccf027" name="ga0ddf5deef4d80297032714cae8ccf027"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ddf5deef4d80297032714cae8ccf027">&#9670;&#160;</a></span>DEVICE_NAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* DEVICE_NAME = &quot;ESP8266&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Human-readable device platform name. </p>
-<p>Included in published MQTT metadata. </p>
-
-<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00033">33</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WiFiMqttClient_8cpp_source.html#l00025">25</a> of file <a class="el" href="WiFiMqttClient_8cpp_source.html">WiFiMqttClient.cpp</a>.</p>
 
 </div>
 </div>

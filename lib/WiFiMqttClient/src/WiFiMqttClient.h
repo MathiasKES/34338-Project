@@ -1,7 +1,11 @@
 /**
- * @file WifiMqttClient.h
+ * @file WiFiMqttClient.h
  * @brief Lightweight WiFi + MQTT helper wrapper for ESP-based Arduino systems.
  *
+ * @defgroup infrastructure Infrastructure – WiFi & MQTT
+ * @{
+ *
+ * @details
  * This header defines the WifiMqttClient class, which encapsulates:
  * - WiFi connection management
  * - MQTT connection and reconnection logic
@@ -11,6 +15,7 @@
  * The class is designed to simplify MQTT usage in distributed embedded systems
  * by providing a consistent base topic structure and robust connection handling.
  */
+
 
 #pragma once
 

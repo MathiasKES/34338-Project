@@ -6,284 +6,269 @@
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ WiFiMqttClient.cpp}}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ the\ WifiMqttClient\ helper\ class.}}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00004}00004\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ @defgroup\ infrastructure\ Infrastructure\ –\ WiFi\ \&\ MQTT}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ @\{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00007}00007\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00008}00008\ \textcolor{comment}{\ *\ @details}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ This\ file\ provides\ the\ concrete\ implementation\ of\ the\ WifiMqttClient\ class,}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ which\ serves\ as\ a\ shared\ infrastructure\ component\ across\ all\ ESP\ nodes}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00011}00011\ \textcolor{comment}{\ *\ in\ the\ distributed\ door\ access\ control\ system.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00012}00012\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00013}00013\ \textcolor{comment}{\ *\ Responsibilities\ include:}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00014}00014\ \textcolor{comment}{\ *\ -\/\ WiFi\ connection\ handling\ on\ ESP8266}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00015}00015\ \textcolor{comment}{\ *\ -\/\ MQTT\ connection\ establishment\ and\ automatic\ reconnection}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00016}00016\ \textcolor{comment}{\ *\ -\/\ Construction\ of\ a\ consistent\ MQTT\ topic\ hierarchy}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00017}00017\ \textcolor{comment}{\ *\ -\/\ Publishing\ JSON-\/formatted\ messages\ with\ device\ metadata}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00018}00018\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00019}00019\ \textcolor{comment}{\ *\ The\ implementation\ is\ designed\ to\ be\ robust\ against\ temporary}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00020}00020\ \textcolor{comment}{\ *\ network\ failures\ and\ to\ simplify\ MQTT\ usage\ in\ embedded\ systems.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00021}00021\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{WiFiMqttClient_8h}{WiFiMqttClient.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <ESP8266WiFi.h>}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00026}00026\ \textcolor{comment}{//\ \#include\ <esp\_system.h>}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ @ingroup\ infrastructure}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{WiFiMqttClient_8h}{WiFiMqttClient.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <ESP8266WiFi.h>}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00011}00011\ \textcolor{comment}{//\ \#include\ <esp\_system.h>}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00013}00013\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00014}00014\ \textcolor{comment}{\ *\ @brief\ Human-\/readable\ device\ platform\ name.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00016}00016\ \textcolor{comment}{\ *\ Included\ in\ published\ MQTT\ metadata.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00017}00017\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00018}\doxymbox{\hyperlink{WiFiMqttClient_8cpp_a0ddf5deef4d80297032714cae8ccf027}{00018}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \doxymbox{\hyperlink{WiFiMqttClient_8cpp_a0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}}\ =\ \textcolor{stringliteral}{"{}ESP8266"{}};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00020}00020\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00021}00021\ \textcolor{comment}{\ *\ @brief\ Default\ constructor.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00022}00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00023}00023\ \textcolor{comment}{\ *\ Initializes\ the\ PubSubClient\ instance\ with\ the\ internal\ WiFiClient.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00024}00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00025}\doxymbox{\hyperlink{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}{00025}}\ \doxymbox{\hyperlink{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}{WifiMqttClient::WifiMqttClient}}()}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00026}00026\ \ \ :\ mqtt(wifiClient)\ \{\}}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00027}00027\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00028}00028\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ @brief\ Human-\/readable\ device\ platform\ name.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ @brief\ Initializes\ WiFi\ and\ MQTT\ configuration.}}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00030}00030\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ Included\ in\ published\ MQTT\ metadata.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00032}00032\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00033}\doxymbox{\hyperlink{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}{00033}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \doxymbox{\hyperlink{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}}\ =\ \textcolor{stringliteral}{"{}ESP8266"{}};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00034}00034\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00035}00035\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00036}00036\ \textcolor{comment}{\ *\ @brief\ Default\ constructor.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00037}00037\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00038}00038\ \textcolor{comment}{\ *\ Initializes\ the\ PubSubClient\ instance\ with\ the\ internal\ WiFiClient.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00039}00039\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00040}\doxymbox{\hyperlink{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}{00040}}\ \doxymbox{\hyperlink{group__infrastructure_ga872626d68ec2e2ba41e96c4e19d076e0}{WifiMqttClient::WifiMqttClient}}()}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00041}00041\ \ \ :\ mqtt(wifiClient)\ \{\}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00042}00042\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00043}00043\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00044}00044\ \textcolor{comment}{\ *\ @brief\ Initializes\ WiFi\ and\ MQTT\ configuration.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00045}00045\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00046}00046\ \textcolor{comment}{\ *\ Stores\ provided\ credentials,\ prepares\ base\ topic\ structure,}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00047}00047\ \textcolor{comment}{\ *\ configures\ WiFi\ and\ MQTT\ clients,\ and\ performs\ initial\ connections.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00048}00048\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00049}00049\ \textcolor{comment}{\ *\ @param\ wifiSsid\ WiFi\ network\ SSID.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00050}00050\ \textcolor{comment}{\ *\ @param\ wifiPass\ WiFi\ network\ password.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00051}00051\ \textcolor{comment}{\ *\ @param\ mqttHost\ MQTT\ broker\ hostname.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00052}00052\ \textcolor{comment}{\ *\ @param\ mqttPort\ MQTT\ broker\ port.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00053}00053\ \textcolor{comment}{\ *\ @param\ mqttUser\ MQTT\ username.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00054}00054\ \textcolor{comment}{\ *\ @param\ mqttPass\ MQTT\ password.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00055}00055\ \textcolor{comment}{\ *\ @param\ deviceId\ Device\ identifier\ used\ in\ topic\ hierarchy.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00056}00056\ \textcolor{comment}{\ *\ @param\ site\ Site\ identifier\ used\ in\ topic\ hierarchy.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00057}00057\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00058}\doxymbox{\hyperlink{group__infrastructure_gad6d9197bee60e1c9035dd4c246c5549b}{00058}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_gad6d9197bee60e1c9035dd4c246c5549b}{WifiMqttClient::begin}}(}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00059}00059\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ wifiSsid,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00060}00060\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ wifiPass,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00061}00061\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttHost,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00062}00062\ \ \ uint16\_t\ mqttPort,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00063}00063\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttUser,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00064}00064\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttPass,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00065}00065\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ deviceId,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00066}00066\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ site}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00067}00067\ )\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00068}00068\ \ \ \textcolor{comment}{//\ Store\ configuration\ parameters}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00069}00069\ \ \ this-\/>wifiSsid\ \ =\ wifiSsid;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00070}00070\ \ \ this-\/>wifiPass\ \ =\ wifiPass;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00071}00071\ \ \ this-\/>mqttHost\ \ =\ mqttHost;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00072}00072\ \ \ this-\/>mqttPort\ \ =\ mqttPort;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00073}00073\ \ \ this-\/>mqttUser\ \ =\ mqttUser;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00074}00074\ \ \ this-\/>mqttPass\ \ =\ mqttPass;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00075}00075\ \ \ this-\/>deviceId\ \ =\ deviceId;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00076}00076\ \ \ this-\/>site\ \ \ \ \ \ =\ site;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00077}00077\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00078}00078\ \ \ \textcolor{comment}{//\ Retrieve\ unique\ chip\ identifier\ for\ client\ ID\ generation}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00079}00079\ \ \ chipId\ =\ ESP.getChipId();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00080}00080\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00081}00081\ \ \ \textcolor{comment}{//\ Construct\ base\ MQTT\ topic:\ <user>/<site>/<device>}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00082}00082\ \ \ baseTopic\ =\ String(mqttUser)\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ site\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ deviceId;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00083}00083\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00084}00084\ \ \ \textcolor{comment}{//\ Configure\ WiFi\ and\ MQTT\ clients}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00085}00085\ \ \ WiFi.mode(WIFI\_STA);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00086}00086\ \ \ mqtt.setServer(mqttHost,\ mqttPort);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00087}00087\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00088}00088\ \ \ \textcolor{comment}{//\ Increase\ MQTT\ buffer\ to\ support\ JSON\ payloads}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00089}00089\ \ \ mqtt.setBufferSize(1024);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00090}00090\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00091}00091\ \ \ \textcolor{comment}{//\ Perform\ initial\ connections}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00092}00092\ \ \ connectWifi();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00093}00093\ \ \ connectMqtt();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00094}00094\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00095}00095\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00096}00096\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00097}00097\ \textcolor{comment}{\ *\ @brief\ Main\ service\ loop.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00098}00098\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00099}00099\ \textcolor{comment}{\ *\ Ensures\ WiFi\ and\ MQTT\ connections\ remain\ active}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00100}00100\ \textcolor{comment}{\ *\ and\ processes\ incoming\ MQTT\ messages.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00101}00101\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00102}\doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}{00102}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}{WifiMqttClient::loop}}()\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00103}00103\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00104}00104\ \ \ \textcolor{comment}{//\ Reconnect\ WiFi\ if\ connection\ was\ lost}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00105}00105\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00106}00106\ \ \ \ \ connectWifi();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00107}00107\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00108}00108\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00109}00109\ \ \ \textcolor{comment}{//\ Reconnect\ MQTT\ if\ disconnected}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00110}00110\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00111}00111\ \ \ \ \ connectMqtt();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00112}00112\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00113}00113\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00114}00114\ \ \ \textcolor{comment}{//\ Process\ MQTT\ client\ state\ machine}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00115}00115\ \ \ mqtt.loop();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00116}00116\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00117}00117\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00118}00118\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00119}00119\ \textcolor{comment}{\ *\ @brief\ Checks\ whether\ the\ MQTT\ client\ is\ connected.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00120}00120\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00121}00121\ \textcolor{comment}{\ *\ @return\ true\ if\ connected,\ false\ otherwise.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00122}00122\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00123}\doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{00123}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{WifiMqttClient::connected}}()\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00124}00124\ \ \ \textcolor{keywordflow}{return}\ mqtt.connected();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00125}00125\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00126}00126\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00127}00127\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00128}00128\ \textcolor{comment}{\ *\ @brief\ Establishes\ a\ WiFi\ connection.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00129}00129\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00130}00130\ \textcolor{comment}{\ *\ Blocks\ until\ connected\ or\ timeout\ occurs.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00131}00131\ \textcolor{comment}{\ *\ Safe\ to\ call\ repeatedly.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00132}00132\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00133}00133\ \textcolor{keywordtype}{void}\ WifiMqttClient::connectWifi()\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00134}00134\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00135}00135\ \ \ \ \ Serial.println();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00136}00136\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}===\ WiFi:\ connect\ start\ ==="{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00137}00137\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}SSID:\ "{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00138}00138\ \ \ \ \ Serial.println(wifiSsid);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00139}00139\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{comment}{//\ Abort\ if\ already\ connected}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ ==\ WL\_CONNECTED)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00142}00142\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00143}00143\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}WiFi\ mode:\ "{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00144}00144\ \ \ \ \ Serial.println(WIFI\_STA\ ?\ \textcolor{stringliteral}{"{}STA"{}}\ :\ \textcolor{stringliteral}{"{}UNKNOWN"{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00145}00145\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00146}00146\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Calling\ WiFi.begin()"{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00147}00147\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{comment}{//\ Start\ WiFi\ connection\ attempt}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00149}00149\ \ \ \ \ WiFi.begin(wifiSsid,\ wifiPass);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00150}00150\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00152}00152\ \ \ \ \ uint8\_t\ dots\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00153}00153\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ connected\ or\ timeout}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{while}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00156}00156\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00157}00157\ \ \ \ \ \ \ dots++;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00158}00158\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00159}00159\ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ newline\ every\ 16\ dots\ for\ readability}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00160}00160\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dots\ \%\ 16\ ==\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ Serial.println();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00162}00162\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00163}00163\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00164}00164\ \ \ \ \ \ \ \textcolor{comment}{//\ Abort\ after\ 15\ seconds\ to\ avoid\ permanent\ blocking}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00165}00165\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (millis()\ -\/\ start\ >\ 15000)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ Serial.println();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}WiFi\ connect\ timeout\ (15s)"{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00169}00169\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ Stores\ provided\ credentials,\ prepares\ base\ topic\ structure,}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00032}00032\ \textcolor{comment}{\ *\ configures\ WiFi\ and\ MQTT\ clients,\ and\ performs\ initial\ connections.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00033}00033\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00034}00034\ \textcolor{comment}{\ *\ @param\ wifiSsid\ WiFi\ network\ SSID.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00035}00035\ \textcolor{comment}{\ *\ @param\ wifiPass\ WiFi\ network\ password.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00036}00036\ \textcolor{comment}{\ *\ @param\ mqttHost\ MQTT\ broker\ hostname.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00037}00037\ \textcolor{comment}{\ *\ @param\ mqttPort\ MQTT\ broker\ port.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00038}00038\ \textcolor{comment}{\ *\ @param\ mqttUser\ MQTT\ username.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00039}00039\ \textcolor{comment}{\ *\ @param\ mqttPass\ MQTT\ password.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00040}00040\ \textcolor{comment}{\ *\ @param\ deviceId\ Device\ identifier\ used\ in\ topic\ hierarchy.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00041}00041\ \textcolor{comment}{\ *\ @param\ site\ Site\ identifier\ used\ in\ topic\ hierarchy.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00042}00042\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00043}\doxymbox{\hyperlink{group__infrastructure_gad6d9197bee60e1c9035dd4c246c5549b}{00043}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_gad6d9197bee60e1c9035dd4c246c5549b}{WifiMqttClient::begin}}(}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00044}00044\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ wifiSsid,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00045}00045\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ wifiPass,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00046}00046\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttHost,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00047}00047\ \ \ uint16\_t\ mqttPort,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00048}00048\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttUser,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00049}00049\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mqttPass,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00050}00050\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ deviceId,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00051}00051\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ site}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00052}00052\ )\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00053}00053\ \ \ \textcolor{comment}{//\ Store\ configuration\ parameters}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00054}00054\ \ \ this-\/>wifiSsid\ \ =\ wifiSsid;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00055}00055\ \ \ this-\/>wifiPass\ \ =\ wifiPass;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00056}00056\ \ \ this-\/>mqttHost\ \ =\ mqttHost;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00057}00057\ \ \ this-\/>mqttPort\ \ =\ mqttPort;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00058}00058\ \ \ this-\/>mqttUser\ \ =\ mqttUser;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00059}00059\ \ \ this-\/>mqttPass\ \ =\ mqttPass;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00060}00060\ \ \ this-\/>deviceId\ \ =\ deviceId;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00061}00061\ \ \ this-\/>site\ \ \ \ \ \ =\ site;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00063}00063\ \ \ \textcolor{comment}{//\ Retrieve\ unique\ chip\ identifier\ for\ client\ ID\ generation}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00064}00064\ \ \ chipId\ =\ ESP.getChipId();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00066}00066\ \ \ \textcolor{comment}{//\ Construct\ base\ MQTT\ topic:\ <user>/<site>/<device>}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00067}00067\ \ \ baseTopic\ =\ String(mqttUser)\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ site\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ deviceId;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00069}00069\ \ \ \textcolor{comment}{//\ Configure\ WiFi\ and\ MQTT\ clients}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00070}00070\ \ \ WiFi.mode(WIFI\_STA);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00071}00071\ \ \ mqtt.setServer(mqttHost,\ mqttPort);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00073}00073\ \ \ \textcolor{comment}{//\ Increase\ MQTT\ buffer\ to\ support\ JSON\ payloads}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00074}00074\ \ \ mqtt.setBufferSize(1024);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00076}00076\ \ \ \textcolor{comment}{//\ Perform\ initial\ connections}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00077}00077\ \ \ connectWifi();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00078}00078\ \ \ connectMqtt();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00080}00080\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00081}00081\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00082}00082\ \textcolor{comment}{\ *\ @brief\ Main\ service\ loop.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00083}00083\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00084}00084\ \textcolor{comment}{\ *\ Ensures\ WiFi\ and\ MQTT\ connections\ remain\ active}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00085}00085\ \textcolor{comment}{\ *\ and\ processes\ incoming\ MQTT\ messages.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00086}00086\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00087}\doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}{00087}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_ga04e3b999a0c4ac9f49405d6c8e4670a0}{WifiMqttClient::loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00089}00089\ \ \ \textcolor{comment}{//\ Reconnect\ WiFi\ if\ connection\ was\ lost}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00090}00090\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00091}00091\ \ \ \ \ connectWifi();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00092}00092\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00094}00094\ \ \ \textcolor{comment}{//\ Reconnect\ MQTT\ if\ disconnected}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00095}00095\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00096}00096\ \ \ \ \ connectMqtt();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00097}00097\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00099}00099\ \ \ \textcolor{comment}{//\ Process\ MQTT\ client\ state\ machine}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00100}00100\ \ \ mqtt.loop();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00102}00102\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00103}00103\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00104}00104\ \textcolor{comment}{\ *\ @brief\ Checks\ whether\ the\ MQTT\ client\ is\ connected.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00105}00105\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00106}00106\ \textcolor{comment}{\ *\ @return\ true\ if\ connected,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00107}00107\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00108}\doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{00108}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_ga4fbe6219def4d0941a8578fda848d9b4}{WifiMqttClient::connected}}()\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00109}00109\ \ \ \textcolor{keywordflow}{return}\ mqtt.connected();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00110}00110\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00111}00111\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00112}00112\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00113}00113\ \textcolor{comment}{\ *\ @brief\ Establishes\ a\ WiFi\ connection.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00114}00114\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00115}00115\ \textcolor{comment}{\ *\ Blocks\ until\ connected\ or\ timeout\ occurs.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00116}00116\ \textcolor{comment}{\ *\ Safe\ to\ call\ repeatedly.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00117}00117\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00118}00118\ \textcolor{keywordtype}{void}\ WifiMqttClient::connectWifi()\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00120}00120\ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00121}00121\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}===\ WiFi:\ connect\ start\ ==="{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00122}00122\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}SSID:\ "{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00123}00123\ \ \ \ \ Serial.println(wifiSsid);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{comment}{//\ Abort\ if\ already\ connected}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ ==\ WL\_CONNECTED)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00128}00128\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}WiFi\ mode:\ "{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00129}00129\ \ \ \ \ Serial.println(WIFI\_STA\ ?\ \textcolor{stringliteral}{"{}STA"{}}\ :\ \textcolor{stringliteral}{"{}UNKNOWN"{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00131}00131\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Calling\ WiFi.begin()"{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ Start\ WiFi\ connection\ attempt}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00134}00134\ \ \ \ \ WiFi.begin(wifiSsid,\ wifiPass);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00135}00135\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00137}00137\ \ \ \ \ uint8\_t\ dots\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ connected\ or\ timeout}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{while}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00141}00141\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00142}00142\ \ \ \ \ \ \ dots++;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00144}00144\ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ newline\ every\ 16\ dots\ for\ readability}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00145}00145\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dots\ \%\ 16\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00147}00147\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00149}00149\ \ \ \ \ \ \ \textcolor{comment}{//\ Abort\ after\ 15\ seconds\ to\ avoid\ permanent\ blocking}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00150}00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (millis()\ -\/\ start\ >\ 15000)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}WiFi\ connect\ timeout\ (15s)"{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00154}00154\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00156}00156\ \ \ \ \ \ \ delay(500);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00157}00157\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00158}00158\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00159}00159\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00160}00160\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00161}00161\ \textcolor{comment}{\ *\ @brief\ Establishes\ an\ MQTT\ connection.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00162}00162\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00163}00163\ \textcolor{comment}{\ *\ Blocks\ until\ connected.\ Generates\ a\ unique}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00164}00164\ \textcolor{comment}{\ *\ client\ ID\ based\ on\ device\ and\ chip\ identifiers.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00165}00165\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00166}00166\ \textcolor{keywordtype}{void}\ WifiMqttClient::connectMqtt()\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00168}00168\ \ \ \textcolor{comment}{//\ Retry\ until\ MQTT\ connection\ succeeds}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00169}00169\ \ \ \textcolor{keywordflow}{while}\ (!mqtt.connected())\ \{}
 \DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00170}00170\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00171}00171\ \ \ \ \ \ \ delay(500);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00172}00172\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00173}00173\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00174}00174\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00175}00175\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00176}00176\ \textcolor{comment}{\ *\ @brief\ Establishes\ an\ MQTT\ connection.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00177}00177\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00178}00178\ \textcolor{comment}{\ *\ Blocks\ until\ connected.\ Generates\ a\ unique}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00179}00179\ \textcolor{comment}{\ *\ client\ ID\ based\ on\ device\ and\ chip\ identifiers.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00180}00180\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00181}00181\ \textcolor{keywordtype}{void}\ WifiMqttClient::connectMqtt()\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00182}00182\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00183}00183\ \ \ \textcolor{comment}{//\ Retry\ until\ MQTT\ connection\ succeeds}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00184}00184\ \ \ \textcolor{keywordflow}{while}\ (!mqtt.connected())\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00185}00185\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//\ Construct\ unique\ MQTT\ client\ ID}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00187}00187\ \ \ \ \ String\ clientId\ =}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00188}00188\ \ \ \ \ \ \ String(\doxymbox{\hyperlink{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}})\ +\ \textcolor{stringliteral}{"{}\_"{}}\ +}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00189}00189\ \ \ \ \ \ \ deviceId\ +}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00190}00190\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\_"{}}\ +}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00191}00191\ \ \ \ \ \ \ String((uint32\_t)chipId,\ HEX);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00192}00192\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00193}00193\ \ \ \ \ \textcolor{comment}{//\ Attempt\ MQTT\ connection\ using\ credentials}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00194}00194\ \ \ \ \ mqtt.connect(clientId.c\_str(),\ mqttUser,\ mqttPass);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00195}00195\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00196}00196\ \ \ \ \ \textcolor{comment}{//\ Wait\ before\ retrying\ on\ failure}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00197}00197\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00198}00198\ \ \ \ \ \ \ delay(2000);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00199}00199\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00200}00200\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00201}00201\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00202}00202\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00203}00203\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00204}00204\ \textcolor{comment}{\ *\ @brief\ Constructs\ a\ fully\ qualified\ MQTT\ topic.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00205}00205\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00206}00206\ \textcolor{comment}{\ *\ Appends\ a\ suffix\ to\ the\ base\ topic:}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00207}00207\ \textcolor{comment}{\ *\ \ \ <user>/<site>/<deviceId>/<suffix>}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00208}00208\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00209}00209\ \textcolor{comment}{\ *\ @param\ suffix\ Topic\ suffix.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00210}00210\ \textcolor{comment}{\ *\ @return\ Constructed\ topic\ as\ an\ Arduino\ String.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00211}00211\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00212}\doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{00212}}\ String\ \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{WifiMqttClient::makeTopic}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ suffix)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00213}00213\ \ \ \textcolor{keywordflow}{return}\ baseTopic\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ suffix;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00214}00214\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00215}00215\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00216}00216\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00217}00217\ \textcolor{comment}{\ *\ @brief\ Publishes\ a\ JSON\ document\ to\ an\ MQTT\ topic.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00218}00218\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00219}00219\ \textcolor{comment}{\ *\ Wraps\ the\ provided\ JSON\ data\ in\ a\ standard\ envelope}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00220}00220\ \textcolor{comment}{\ *\ containing\ device\ metadata\ and\ a\ timestamp.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00221}00221\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00222}00222\ \textcolor{comment}{\ *\ @param\ topicSuffix\ Topic\ suffix\ appended\ to\ the\ base\ topic.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00223}00223\ \textcolor{comment}{\ *\ @param\ data\ JSON\ document\ containing\ application\ payload.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00224}00224\ \textcolor{comment}{\ *\ @return\ true\ if\ publish\ succeeded,\ false\ otherwise.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00225}00225\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00226}\doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{00226}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{WifiMqttClient::publishJson}}(}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00227}00227\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topicSuffix,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00228}00228\ \ \ \textcolor{keyword}{const}\ JsonDocument\&\ data}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00229}00229\ )\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00230}00230\ \ \ StaticJsonDocument<256>\ envelope;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00231}00231\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00232}00232\ \ \ \textcolor{comment}{//\ Embed\ device\ metadata}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00233}00233\ \ \ JsonObject\ device\ =\ envelope.createNestedObject(\textcolor{stringliteral}{"{}device"{}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00234}00234\ \ \ device[\textcolor{stringliteral}{"{}id"{}}]\ \ \ \ \ \ \ =\ deviceId;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00235}00235\ \ \ device[\textcolor{stringliteral}{"{}platform"{}}]\ =\ \doxymbox{\hyperlink{group__infrastructure_ga0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00236}00236\ \ \ device[\textcolor{stringliteral}{"{}chip\_id"{}}]\ \ =\ String((uint32\_t)chipId,\ HEX);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00237}00237\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00238}00238\ \ \ \textcolor{comment}{//\ Attach\ timestamp\ and\ payload}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00239}00239\ \ \ envelope[\textcolor{stringliteral}{"{}sent\_ts\_ms"{}}]\ =\ millis();}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00240}00240\ \ \ envelope[\textcolor{stringliteral}{"{}data"{}}]\ \ \ \ \ \ \ =\ data;}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00241}00241\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00242}00242\ \ \ \textcolor{comment}{//\ Serialize\ JSON\ into\ a\ temporary\ buffer}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00243}00243\ \ \ \textcolor{keywordtype}{char}\ buffer[512];}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00244}00244\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ serializeJson(envelope,\ buffer);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00245}00245\ }
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00246}00246\ \ \ \textcolor{comment}{//\ Publish\ serialized\ payload}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00247}00247\ \ \ \textcolor{keywordflow}{return}\ mqtt.publish(}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00248}00248\ \ \ \ \ \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{makeTopic}}(topicSuffix).c\_str(),}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00249}00249\ \ \ \ \ buffer,}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00250}00250\ \ \ \ \ len}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00251}00251\ \ \ );}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00252}00252\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00253}00253\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00254}00254\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00255}00255\ \textcolor{comment}{\ *\ @brief\ Sets\ the\ MQTT\ message\ callback.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00256}00256\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00257}00257\ \textcolor{comment}{\ *\ @param\ MQTT\_CALLBACK\_SIGNATURE\ Callback\ function\ pointer.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00258}00258\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00259}\doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{00259}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{WifiMqttClient::setCallback}}(MQTT\_CALLBACK\_SIGNATURE)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00260}00260\ \ \ mqtt.setCallback(\doxymbox{\hyperlink{group__esp1_gac3a129f66dc859e2b7279565f4e1de78}{callback}});}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00261}00261\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00262}00262\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00263}00263\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00264}00264\ \textcolor{comment}{\ *\ @brief\ Subscribes\ to\ an\ MQTT\ topic.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00265}00265\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00266}00266\ \textcolor{comment}{\ *\ @param\ topic\ Full\ MQTT\ topic\ string.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00267}00267\ \textcolor{comment}{\ *\ @return\ true\ if\ subscription\ succeeded,\ false\ otherwise.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00268}00268\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00269}\doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{00269}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{WifiMqttClient::subscribe}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topic)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00270}00270\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00271}00271\ \ \ \textcolor{keywordflow}{return}\ mqtt.subscribe(topic);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00272}00272\ \}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00273}00273\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00274}00274\ \textcolor{comment}{/**}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00275}00275\ \textcolor{comment}{\ *\ @brief\ Unsubscribes\ from\ an\ MQTT\ topic.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00276}00276\ \textcolor{comment}{\ *}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00277}00277\ \textcolor{comment}{\ *\ @param\ topic\ Full\ MQTT\ topic\ string.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00278}00278\ \textcolor{comment}{\ *\ @return\ true\ if\ unsubscribe\ succeeded,\ false\ otherwise.}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00279}00279\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00280}\doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{00280}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{WifiMqttClient::unsubscribe}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topic)\ \{}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00281}00281\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00282}00282\ \ \ \textcolor{keywordflow}{return}\ mqtt.unsubscribe(topic);}
-\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00283}00283\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ Construct\ unique\ MQTT\ client\ ID}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00172}00172\ \ \ \ \ String\ clientId\ =}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00173}00173\ \ \ \ \ \ \ String(\doxymbox{\hyperlink{WiFiMqttClient_8cpp_a0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}})\ +\ \textcolor{stringliteral}{"{}\_"{}}\ +}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00174}00174\ \ \ \ \ \ \ deviceId\ +}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00175}00175\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\_"{}}\ +}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00176}00176\ \ \ \ \ \ \ String((uint32\_t)chipId,\ HEX);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{comment}{//\ Attempt\ MQTT\ connection\ using\ credentials}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00179}00179\ \ \ \ \ mqtt.connect(clientId.c\_str(),\ mqttUser,\ mqttPass);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{comment}{//\ Wait\ before\ retrying\ on\ failure}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00183}00183\ \ \ \ \ \ \ delay(2000);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00184}00184\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00185}00185\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00186}00186\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00187}00187\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00188}00188\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00189}00189\ \textcolor{comment}{\ *\ @brief\ Constructs\ a\ fully\ qualified\ MQTT\ topic.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00190}00190\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00191}00191\ \textcolor{comment}{\ *\ Appends\ a\ suffix\ to\ the\ base\ topic:}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00192}00192\ \textcolor{comment}{\ *\ \ \ <user>/<site>/<deviceId>/<suffix>}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00193}00193\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00194}00194\ \textcolor{comment}{\ *\ @param\ suffix\ Topic\ suffix.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00195}00195\ \textcolor{comment}{\ *\ @return\ Constructed\ topic\ as\ an\ Arduino\ String.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00196}00196\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00197}\doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{00197}}\ String\ \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{WifiMqttClient::makeTopic}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ suffix)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00198}00198\ \ \ \textcolor{keywordflow}{return}\ baseTopic\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ suffix;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00199}00199\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00200}00200\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00201}00201\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00202}00202\ \textcolor{comment}{\ *\ @brief\ Publishes\ a\ JSON\ document\ to\ an\ MQTT\ topic.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00203}00203\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00204}00204\ \textcolor{comment}{\ *\ Wraps\ the\ provided\ JSON\ data\ in\ a\ standard\ envelope}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00205}00205\ \textcolor{comment}{\ *\ containing\ device\ metadata\ and\ a\ timestamp.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00206}00206\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00207}00207\ \textcolor{comment}{\ *\ @param\ topicSuffix\ Topic\ suffix\ appended\ to\ the\ base\ topic.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00208}00208\ \textcolor{comment}{\ *\ @param\ data\ JSON\ document\ containing\ application\ payload.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00209}00209\ \textcolor{comment}{\ *\ @return\ true\ if\ publish\ succeeded,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00210}00210\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00211}\doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{00211}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_gaca9071775e7243e2361b6729da853e7a}{WifiMqttClient::publishJson}}(}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00212}00212\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topicSuffix,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00213}00213\ \ \ \textcolor{keyword}{const}\ JsonDocument\&\ data}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00214}00214\ )\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00215}00215\ \ \ StaticJsonDocument<256>\ envelope;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00217}00217\ \ \ \textcolor{comment}{//\ Embed\ device\ metadata}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00218}00218\ \ \ JsonObject\ device\ =\ envelope.createNestedObject(\textcolor{stringliteral}{"{}device"{}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00219}00219\ \ \ device[\textcolor{stringliteral}{"{}id"{}}]\ \ \ \ \ \ \ =\ deviceId;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00220}00220\ \ \ device[\textcolor{stringliteral}{"{}platform"{}}]\ =\ \doxymbox{\hyperlink{WiFiMqttClient_8cpp_a0ddf5deef4d80297032714cae8ccf027}{DEVICE\_NAME}};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00221}00221\ \ \ device[\textcolor{stringliteral}{"{}chip\_id"{}}]\ \ =\ String((uint32\_t)chipId,\ HEX);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00223}00223\ \ \ \textcolor{comment}{//\ Attach\ timestamp\ and\ payload}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00224}00224\ \ \ envelope[\textcolor{stringliteral}{"{}sent\_ts\_ms"{}}]\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00225}00225\ \ \ envelope[\textcolor{stringliteral}{"{}data"{}}]\ \ \ \ \ \ \ =\ data;}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00227}00227\ \ \ \textcolor{comment}{//\ Serialize\ JSON\ into\ a\ temporary\ buffer}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00228}00228\ \ \ \textcolor{keywordtype}{char}\ buffer[512];}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00229}00229\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ serializeJson(envelope,\ buffer);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00231}00231\ \ \ \textcolor{comment}{//\ Publish\ serialized\ payload}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00232}00232\ \ \ \textcolor{keywordflow}{return}\ mqtt.publish(}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00233}00233\ \ \ \ \ \doxymbox{\hyperlink{group__infrastructure_gab64506a345407ad92a59dbf0db1f435c}{makeTopic}}(topicSuffix).c\_str(),}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00234}00234\ \ \ \ \ buffer,}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00235}00235\ \ \ \ \ len}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00236}00236\ \ \ );}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00237}00237\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00238}00238\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00239}00239\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00240}00240\ \textcolor{comment}{\ *\ @brief\ Sets\ the\ MQTT\ message\ callback.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00241}00241\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00242}00242\ \textcolor{comment}{\ *\ @param\ MQTT\_CALLBACK\_SIGNATURE\ Callback\ function\ pointer.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00243}00243\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00244}\doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{00244}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{group__infrastructure_gac9ab08082d9cff38e1d5014d9a1e6bb7}{WifiMqttClient::setCallback}}(MQTT\_CALLBACK\_SIGNATURE)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00245}00245\ \ \ mqtt.setCallback(\doxymbox{\hyperlink{group__esp1_gac3a129f66dc859e2b7279565f4e1de78}{callback}});}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00246}00246\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00247}00247\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00248}00248\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00249}00249\ \textcolor{comment}{\ *\ @brief\ Subscribes\ to\ an\ MQTT\ topic.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00250}00250\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00251}00251\ \textcolor{comment}{\ *\ @param\ topic\ Full\ MQTT\ topic\ string.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00252}00252\ \textcolor{comment}{\ *\ @return\ true\ if\ subscription\ succeeded,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00253}00253\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00254}\doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{00254}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_ga260431b529371e5e56c2de0db62d7de2}{WifiMqttClient::subscribe}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topic)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00255}00255\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00256}00256\ \ \ \textcolor{keywordflow}{return}\ mqtt.subscribe(topic);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00257}00257\ \}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00258}00258\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00259}00259\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00260}00260\ \textcolor{comment}{\ *\ @brief\ Unsubscribes\ from\ an\ MQTT\ topic.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00261}00261\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00262}00262\ \textcolor{comment}{\ *\ @param\ topic\ Full\ MQTT\ topic\ string.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00263}00263\ \textcolor{comment}{\ *\ @return\ true\ if\ unsubscribe\ succeeded,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00264}00264\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00265}\doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{00265}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{group__infrastructure_gab7cbcec29a4d2bc48e549ec4029923be}{WifiMqttClient::unsubscribe}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ topic)\ \{}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00266}00266\ \ \ \textcolor{keywordflow}{if}\ (!mqtt.connected())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00267}00267\ \ \ \textcolor{keywordflow}{return}\ mqtt.unsubscribe(topic);}
+\DoxyCodeLine{\Hypertarget{WiFiMqttClient_8cpp_source_l00268}00268\ \}}
 
 \end{DoxyCode}
