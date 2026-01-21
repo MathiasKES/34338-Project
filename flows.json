@@ -8,6 +8,158 @@
         "env": []
     },
     {
+        "id": "26b653590059d1c8",
+        "type": "group",
+        "z": "d38d189f7f657b08",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "ce0737ea0937cc84",
+            "77b937cf1b2a1a12",
+            "2f3a0d46718f1aee",
+            "97e7d33b50beb0e5",
+            "4207bfe86b41bd5d",
+            "6722c422f537fdd1"
+        ],
+        "x": 174,
+        "y": 479,
+        "w": 932,
+        "h": 142
+    },
+    {
+        "id": "4ccb8e13071831d4",
+        "type": "group",
+        "z": "d38d189f7f657b08",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "024c435261f66f83",
+            "4be4aa2aa7320079",
+            "1ad48fb2de55120d",
+            "5a3ba415b3e13d68"
+        ],
+        "x": 174,
+        "y": 739,
+        "w": 932,
+        "h": 142
+    },
+    {
+        "id": "ca78f1c8d0762d26",
+        "type": "group",
+        "z": "d38d189f7f657b08",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "7d7e746cc0f36f89",
+            "99164f089998faf4",
+            "bc3bcd924c8e506f",
+            "3a69f01ef76a8fc4"
+        ],
+        "x": 174,
+        "y": 639,
+        "w": 932,
+        "h": 82
+    },
+    {
+        "id": "017d72164531d6b4",
+        "type": "group",
+        "z": "d38d189f7f657b08",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "ae7e046d02c03fa1",
+            "d49e723c8859a81b",
+            "ac67bdc36ed909d2",
+            "34dc293395dd4b91",
+            "54d3f303e42a1c5a"
+        ],
+        "x": 174,
+        "y": 259,
+        "w": 932,
+        "h": 202
+    },
+    {
+        "id": "b68cbce68474419c",
+        "type": "group",
+        "z": "d38d189f7f657b08",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "672b587de06ee3a7",
+            "46fecf8697e1103b",
+            "0775898a7541984f",
+            "3d54cd38ec0f6619",
+            "dff073317c9ea6e3",
+            "842dcc62f8d4293a",
+            "18b40e7d9932a6a7"
+        ],
+        "x": 174,
+        "y": 99,
+        "w": 932,
+        "h": 142
+    },
+    {
+        "id": "6722c422f537fdd1",
+        "type": "junction",
+        "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
+        "x": 1080,
+        "y": 580,
+        "wires": [
+            [
+                "d648671e630d6f73"
+            ]
+        ]
+    },
+    {
+        "id": "18b40e7d9932a6a7",
+        "type": "junction",
+        "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
+        "x": 1080,
+        "y": 140,
+        "wires": [
+            [
+                "d648671e630d6f73"
+            ]
+        ]
+    },
+    {
         "id": "2a97809dab94d9f0",
         "type": "mqtt-broker",
         "name": "MQTT",
@@ -39,9 +191,113 @@
         "sessionExpiry": ""
     },
     {
+        "id": "2f7254fecbfebe24",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "226980dd150d9f04",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "127d7b469491a29b",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "2f7254fecbfebe24",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "226980dd150d9f04",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "a729211b9b0f52bc",
+        "type": "ui-group",
+        "name": "Admin Control",
+        "page": "127d7b469491a29b",
+        "width": "1",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "4c799b1f3ab9b23e",
+        "type": "ui-group",
+        "name": "Log",
+        "page": "127d7b469491a29b",
+        "width": "3",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "ce0737ea0937cc84",
         "type": "mqtt in",
         "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
         "name": "Keypad code received",
         "topic": "hectorfoss@gmail.com/site1/door1/keypad/submit",
         "qos": "2",
@@ -51,8 +307,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 320,
-        "y": 360,
+        "x": 300,
+        "y": 520,
         "wires": [
             [
                 "77b937cf1b2a1a12"
@@ -63,12 +319,13 @@
         "id": "77b937cf1b2a1a12",
         "type": "json",
         "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
         "name": "",
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 510,
-        "y": 360,
+        "x": 470,
+        "y": 520,
         "wires": [
             [
                 "2f3a0d46718f1aee"
@@ -79,19 +336,21 @@
         "id": "2f3a0d46718f1aee",
         "type": "function",
         "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
         "name": "Check if UID matches keycode",
-        "func": "const CODE = msg.payload?.data?.code;\nconst UID = flow.get(\"currentGrantedUID\");\nconst allowlist = flow.get(\"allowlist\");\n\n// Defensive checks\nif (!UID) {\n    node.warn(\"No currentGrantedUID in flow context\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nif (!CODE) {\n    node.warn(\"No keypad code provided\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nconsole.log(\"Entered KeyPad Code:\", CODE);\nconsole.log(\"Checking UID:\", UID);\n\nif (!allowlist || typeof allowlist !== \"object\") {\n    node.error(\"Allowlist not loaded or invalid\", msg);\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\n// Check if UID exists and code matches\nconst expectedCode = allowlist[UID];\n\nmsg.payload.response = {\n    accessGranted: typeof expectedCode === \"string\" && expectedCode === String(CODE)\n};\n\nconsole.log(msg);\nconsole.log(\"currentGrantedUID: \"+UID);\n\n// Reset UID\nflow.set(\"currentGrantedUID\", null);\n\nreturn msg;\n",
+        "func": "const CODE = msg.payload?.data?.code;\nconst UID = flow.get(\"currentGrantedUID\");\nconst allowlist = flow.get(\"allowlist\");\n\n// Defensive checks\nif (!UID) {\n    node.warn(\"No currentGrantedUID in flow context\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nif (!CODE) {\n    node.warn(\"No keypad code provided\");\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\nconsole.log(\"Entered KeyPad Code:\", CODE);\nconsole.log(\"Checking UID:\", UID);\n\nif (!allowlist || typeof allowlist !== \"object\") {\n    node.error(\"Allowlist not loaded or invalid\", msg);\n    msg.payload.response = { hasAccess: false };\n    return msg;\n}\n\n// Check if UID exists and code matches\nconst expectedCode = allowlist[UID];\n\nmsg.payload.response = {\n    uid: UID,\n    accessGranted: typeof expectedCode === \"string\" && expectedCode === String(CODE)\n};\n\nconsole.log(msg);\nconsole.log(\"currentGrantedUID: \"+UID);\n\n// Reset UID\nflow.set(\"currentGrantedUID\", null);\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"currentGrantedUID\", null)",
         "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\nflow.set(\"currentGrantedUID\", null)",
         "libs": [],
-        "x": 730,
-        "y": 360,
+        "x": 690,
+        "y": 520,
         "wires": [
             [
-                "97e7d33b50beb0e5"
+                "97e7d33b50beb0e5",
+                "4207bfe86b41bd5d"
             ]
         ]
     },
@@ -99,6 +358,7 @@
         "id": "ae7e046d02c03fa1",
         "type": "mqtt in",
         "z": "d38d189f7f657b08",
+        "g": "017d72164531d6b4",
         "name": "RFID UID Received",
         "topic": "hectorfoss@gmail.com/site1/door1/access/request",
         "qos": "2",
@@ -108,7 +368,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 310,
+        "x": 290,
         "y": 300,
         "wires": [
             [
@@ -120,6 +380,7 @@
         "id": "d49e723c8859a81b",
         "type": "json",
         "z": "d38d189f7f657b08",
+        "g": "017d72164531d6b4",
         "name": "",
         "property": "payload",
         "action": "obj",
@@ -136,6 +397,7 @@
         "id": "ac67bdc36ed909d2",
         "type": "function",
         "z": "d38d189f7f657b08",
+        "g": "017d72164531d6b4",
         "name": "Check if UID has permission",
         "func": "const allowlist = flow.get(\"allowlist\");\n\nconst UID = msg.payload.data.uid;\n\n// Check if UID in db\nmsg.payload.response = {\n    hasAccess: Object.prototype.hasOwnProperty.call(allowlist, UID)\n};\n\nconsole.log(\"Scanned UID is in allowlist\");\n\nflow.set(\"currentGrantedUID\", UID);\n\nreturn msg;\n",
         "outputs": 1,
@@ -148,7 +410,8 @@
         "y": 300,
         "wires": [
             [
-                "34dc293395dd4b91"
+                "34dc293395dd4b91",
+                "54d3f303e42a1c5a"
             ]
         ]
     },
@@ -156,6 +419,7 @@
         "id": "34dc293395dd4b91",
         "type": "mqtt out",
         "z": "d38d189f7f657b08",
+        "g": "017d72164531d6b4",
         "name": "Send response",
         "topic": "hectorfoss@gmail.com/site1/door1/access/response",
         "qos": "2",
@@ -166,7 +430,7 @@
         "correl": "",
         "expiry": "",
         "broker": "2a97809dab94d9f0",
-        "x": 960,
+        "x": 1000,
         "y": 300,
         "wires": []
     },
@@ -174,6 +438,7 @@
         "id": "7d7e746cc0f36f89",
         "type": "mqtt in",
         "z": "d38d189f7f657b08",
+        "g": "ca78f1c8d0762d26",
         "name": "Keypad tap",
         "topic": "hectorfoss@gmail.com/site1/door1/keypad/tap",
         "qos": "2",
@@ -183,8 +448,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 290,
-        "y": 420,
+        "x": 270,
+        "y": 680,
         "wires": [
             [
                 "99164f089998faf4"
@@ -195,12 +460,13 @@
         "id": "99164f089998faf4",
         "type": "json",
         "z": "d38d189f7f657b08",
+        "g": "ca78f1c8d0762d26",
         "name": "",
         "property": "payload",
         "action": "obj",
         "pretty": false,
         "x": 510,
-        "y": 420,
+        "y": 680,
         "wires": [
             [
                 "bc3bcd924c8e506f"
@@ -211,6 +477,7 @@
         "id": "bc3bcd924c8e506f",
         "type": "function",
         "z": "d38d189f7f657b08",
+        "g": "ca78f1c8d0762d26",
         "name": "Save pin length",
         "func": "const PIN_LENGTH = msg.payload?.data?.pinlength;\n\n// Don't beep if unchanged pin length\nif (PIN_LENGTH == flow.get(\"pinlength\")) return;\n\nflow.set(\"pinlength\", PIN_LENGTH);\n\nconsole.log(\"Pin Length: \" + PIN_LENGTH);\n\nreturn msg;",
         "outputs": 1,
@@ -220,7 +487,7 @@
         "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\nflow.set(\"pinlength\", 0);",
         "libs": [],
         "x": 680,
-        "y": 420,
+        "y": 680,
         "wires": [
             [
                 "3a69f01ef76a8fc4"
@@ -231,6 +498,7 @@
         "id": "97e7d33b50beb0e5",
         "type": "mqtt out",
         "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
         "name": "Send access response",
         "topic": "hectorfoss@gmail.com/site1/door1/access/keypad_response",
         "qos": "2",
@@ -242,13 +510,14 @@
         "expiry": "",
         "broker": "2a97809dab94d9f0",
         "x": 980,
-        "y": 360,
+        "y": 520,
         "wires": []
     },
     {
         "id": "672b587de06ee3a7",
         "type": "file in",
         "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
         "name": "Read allowlist",
         "filename": "/home/mathias/.node-red/allowlist.json",
         "filenameType": "str",
@@ -257,8 +526,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 460,
-        "y": 180,
+        "x": 480,
+        "y": 200,
         "wires": [
             [
                 "46fecf8697e1103b"
@@ -269,12 +538,13 @@
         "id": "46fecf8697e1103b",
         "type": "json",
         "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
         "name": "Convert file read to JSON",
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 690,
-        "y": 180,
+        "x": 710,
+        "y": 200,
         "wires": [
             [
                 "3d54cd38ec0f6619"
@@ -285,6 +555,7 @@
         "id": "0775898a7541984f",
         "type": "inject",
         "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
         "name": "On startup",
         "props": [],
         "repeat": "",
@@ -293,7 +564,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 290,
-        "y": 180,
+        "y": 200,
         "wires": [
             [
                 "672b587de06ee3a7"
@@ -304,6 +575,7 @@
         "id": "3d54cd38ec0f6619",
         "type": "function",
         "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
         "name": "Set flow var allowlist",
         "func": "flow.set(\"allowlist\", msg.payload);\nreturn null;",
         "outputs": 1,
@@ -312,8 +584,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 180,
+        "x": 980,
+        "y": 200,
         "wires": [
             []
         ]
@@ -322,6 +594,7 @@
         "id": "3a69f01ef76a8fc4",
         "type": "mqtt out",
         "z": "d38d189f7f657b08",
+        "g": "ca78f1c8d0762d26",
         "name": "Send beep",
         "topic": "hectorfoss@gmail.com/site1/door1/keypad/beep",
         "qos": "2",
@@ -332,43 +605,15 @@
         "correl": "",
         "expiry": "",
         "broker": "2a97809dab94d9f0",
-        "x": 950,
-        "y": 420,
+        "x": 1010,
+        "y": 680,
         "wires": []
-    },
-    {
-        "id": "856ad9d36cfbd1bd",
-        "type": "inject",
-        "z": "d38d189f7f657b08",
-        "name": "Admin control",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "hectorfoss@gmail.com/site1/door1/admin",
-        "payload": "{\"data\":{\"adminServoControl\":false}}",
-        "payloadType": "json",
-        "x": 290,
-        "y": 520,
-        "wires": [
-            [
-                "4be4aa2aa7320079"
-            ]
-        ]
     },
     {
         "id": "4be4aa2aa7320079",
         "type": "function",
         "z": "d38d189f7f657b08",
+        "g": "4ccb8e13071831d4",
         "name": "Toggle adminServoControl",
         "func": "const varName = \"adminServoControl\";\n\nflow.set(varName, !flow.get(varName));\n\nmsg.payload.data.adminServoControl = flow.get(varName)\n\nconsole.log(\"Admin control: \" + msg.payload.data.adminServoControl);\n\nreturn msg;",
         "outputs": 1,
@@ -377,8 +622,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"adminServoControl\", false);",
         "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\nflow.set(\"adminServoControl\", false);",
         "libs": [],
-        "x": 630,
-        "y": 520,
+        "x": 580,
+        "y": 780,
         "wires": [
             [
                 "1ad48fb2de55120d",
@@ -390,6 +635,7 @@
         "id": "1ad48fb2de55120d",
         "type": "mqtt out",
         "z": "d38d189f7f657b08",
+        "g": "4ccb8e13071831d4",
         "name": "Send admin control status",
         "topic": "hectorfoss@gmail.com/site1/door1/admin/servo_control",
         "qos": "2",
@@ -400,14 +646,15 @@
         "correl": "",
         "expiry": "",
         "broker": "2a97809dab94d9f0",
-        "x": 990,
-        "y": 520,
+        "x": 950,
+        "y": 780,
         "wires": []
     },
     {
         "id": "5a3ba415b3e13d68",
         "type": "debug",
         "z": "d38d189f7f657b08",
+        "g": "4ccb8e13071831d4",
         "name": "var adminServoControl",
         "active": true,
         "tosidebar": false,
@@ -417,8 +664,191 @@
         "targetType": "msg",
         "statusVal": "payload",
         "statusType": "auto",
-        "x": 900,
-        "y": 600,
+        "x": 960,
+        "y": 840,
         "wires": []
+    },
+    {
+        "id": "024c435261f66f83",
+        "type": "ui-button",
+        "z": "d38d189f7f657b08",
+        "g": "4ccb8e13071831d4",
+        "group": "a729211b9b0f52bc",
+        "name": "",
+        "label": "Manual Servo Control",
+        "order": 1,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "{\"data\":{\"adminServoControl\":false}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 300,
+        "y": 780,
+        "wires": [
+            [
+                "4be4aa2aa7320079"
+            ]
+        ]
+    },
+    {
+        "id": "54d3f303e42a1c5a",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "g": "017d72164531d6b4",
+        "name": "Log entry",
+        "func": "function formatNow() {\n    const d = new Date(Date.now());\n\n    const pad = (n, width = 2) => String(n).padStart(width, '0');\n\n    const hours = pad(d.getHours());\n    const minutes = pad(d.getMinutes());\n    const seconds = pad(d.getSeconds());\n    const milliseconds = pad(d.getMilliseconds(), 3);\n\n    const day = pad(d.getDate());\n    const month = pad(d.getMonth() + 1); // months are 0-based\n    const year = d.getFullYear();\n\n    return `${hours}:${minutes}:${seconds}.${milliseconds} ${day}/${month}/${year}`;\n}\n\n\nconst event = msg.payload?.data?.event;\nconst uid = msg.payload?.data?.uid;\nconst auth = msg.payload?.response?.hasAccess ? \"Accepted\" : \"Denied\";\n\nconst ts = formatNow();\n\nmsg.payload = {\n    \"event\": event, \n    \"uid\": uid,\n    \"auth\": auth,\n    \"timestamp\": ts\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n//flow.set(\"log\", \"\");",
+        "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\n//flow.set(\"log\", \"\");",
+        "libs": [],
+        "x": 880,
+        "y": 420,
+        "wires": [
+            [
+                "d648671e630d6f73"
+            ]
+        ]
+    },
+    {
+        "id": "d648671e630d6f73",
+        "type": "ui-table",
+        "z": "d38d189f7f657b08",
+        "group": "4c799b1f3ab9b23e",
+        "name": "",
+        "label": "Events",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "maxrows": "12",
+        "passthru": false,
+        "autocols": false,
+        "showSearch": true,
+        "deselect": true,
+        "selectionType": "none",
+        "columns": [
+            {
+                "title": "Event",
+                "key": "event",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "UID",
+                "key": "uid",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Authentication",
+                "key": "auth",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Timestamp",
+                "key": "timestamp",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            }
+        ],
+        "mobileBreakpoint": "sm",
+        "mobileBreakpointType": "defaults",
+        "action": "append",
+        "className": "",
+        "x": 1210,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4207bfe86b41bd5d",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "g": "26b653590059d1c8",
+        "name": "Log entry",
+        "func": "function formatNow() {\n    const d = new Date(Date.now());\n\n    const pad = (n, width = 2) => String(n).padStart(width, '0');\n\n    const hours = pad(d.getHours());\n    const minutes = pad(d.getMinutes());\n    const seconds = pad(d.getSeconds());\n    const milliseconds = pad(d.getMilliseconds(), 3);\n\n    const day = pad(d.getDate());\n    const month = pad(d.getMonth() + 1); // months are 0-based\n    const year = d.getFullYear();\n\n    return `${hours}:${minutes}:${seconds}.${milliseconds} ${day}/${month}/${year}`;\n}\n\n\nconst event = msg.payload?.data?.event;\nconst uid = msg.payload?.response?.uid;\nconst auth = msg.payload?.response?.accessGranted ? \"Accepted\" : \"Denied\";\n\nconst ts = formatNow();\n\nmsg.payload = {\n    \"event\": event, \n    \"uid\": uid,\n    \"auth\": auth,\n    \"timestamp\": ts\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n//flow.set(\"log\", \"\");",
+        "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\n//flow.set(\"log\", \"\");",
+        "libs": [],
+        "x": 860,
+        "y": 580,
+        "wires": [
+            [
+                "6722c422f537fdd1"
+            ]
+        ]
+    },
+    {
+        "id": "dff073317c9ea6e3",
+        "type": "inject",
+        "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
+        "name": "Reset event log",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "842dcc62f8d4293a"
+            ]
+        ]
+    },
+    {
+        "id": "842dcc62f8d4293a",
+        "type": "function",
+        "z": "d38d189f7f657b08",
+        "g": "b68cbce68474419c",
+        "name": "Send empty list",
+        "func": "msg.payload = [];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "18b40e7d9932a6a7"
+            ]
+        ]
     }
 ]
