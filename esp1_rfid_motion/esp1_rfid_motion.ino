@@ -107,9 +107,6 @@ constexpr uint32_t PIN_TIME_MS = 15000;
 /** @brief Door unlock display duration (ms). */
 constexpr uint32_t UNLOCK_TIME_MS = 5000;
 
-/** @brief Main loop polling delay (ms). */
-constexpr uint32_t POLL_MS    = 30;
-
 // -----------------------------------------------------------------------------
 // Global objects
 // -----------------------------------------------------------------------------
@@ -544,7 +541,6 @@ void loop() {
     if ((int32_t)(now - showTextUntil) >= 0) {
       forceLock();            // Reset system when timeout expires
     }
-    delay(POLL_MS);
     return;
   }
 
