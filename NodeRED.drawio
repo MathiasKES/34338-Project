@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0" version="29.3.4">
+  <diagram name="Side-1" id="xZNTbT9QgM9ZKqdffypT">
+    <mxGraphModel dx="1142" dy="1097" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FQkMAPL30IwTNK65-gka-24" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1.005;exitY=0.68;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitPerimeter=0;" target="FQkMAPL30IwTNK65-gka-2" value="MQTT publish response&amp;nbsp;&amp;nbsp;">
+          <mxGeometry relative="1" x="0.0031" y="-7" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;div&gt;&lt;br&gt;1. Receive payload&lt;/div&gt;&lt;div&gt;2. Fetch of Allowlist&lt;/div&gt;&lt;div&gt;3. Logical checks&lt;/div&gt;&lt;div&gt;4. Decide action response&lt;/div&gt;" vertex="1">
+          <mxGeometry height="116" width="246" x="504" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="99" width="142" x="900" y="378" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="MQTT Broker" vertex="1">
+          <mxGeometry height="60" width="120" x="911" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-6" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="FQkMAPL30IwTNK65-gka-4" value="MQTT publish JSON-payloads">
+          <mxGeometry relative="1" x="0.1648" y="-5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="100" width="263" x="138" y="378" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-7" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;exitX=0.013;exitY=0.428;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;exitPerimeter=0;" target="FQkMAPL30IwTNK65-gka-4" value="MQTT Subscribe">
+          <mxGeometry relative="1" x="0.0453" y="-13" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="426" y="324" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-19" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.006;entryY=0.687;entryDx=0;entryDy=0;entryPerimeter=0;" target="FQkMAPL30IwTNK65-gka-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-20" connectable="0" parent="FQkMAPL30IwTNK65-gka-19" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="MQTT publish JSON-payloads" vertex="1">
+          <mxGeometry relative="1" x="0.2178" y="-2" as="geometry">
+            <mxPoint x="-22" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="MQTT Broker" vertex="1">
+          <mxGeometry height="60" width="120" x="205" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-9" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;dashPattern=8 8;" target="FQkMAPL30IwTNK65-gka-2" value="MQTT Subscribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;b&gt;ESP #1&lt;/b&gt;&lt;/div&gt;&lt;div&gt;RFID reader&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="146" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;b&gt;ESP #2&lt;/b&gt;&lt;/div&gt;&lt;div&gt;KeyPad&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="270" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Input&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="138" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="Output" vertex="1">
+          <mxGeometry height="31" width="95" x="889" y="378" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;fontSize=20;" value="Node-RED" vertex="1">
+          <mxGeometry height="32" width="143" x="555.5" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;b&gt;ESP #3&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Servo (The Lock)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="912" y="409" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-23" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;dashed=1;dashPattern=8 8;entryX=0.999;entryY=0.428;entryDx=0;entryDy=0;entryPerimeter=0;" target="FQkMAPL30IwTNK65-gka-11" value="MQTT Subscribe">
+          <mxGeometry relative="1" x="-0.0914" y="-12" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="756" y="261" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" value="&lt;div&gt;&lt;b&gt;Local Machine&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;UID allowlist&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="567" y="378" as="geometry" />
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-27" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="FQkMAPL30IwTNK65-gka-26" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="597" y="314" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FQkMAPL30IwTNK65-gka-28" edge="1" parent="1" source="FQkMAPL30IwTNK65-gka-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.623;entryY=1.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="FQkMAPL30IwTNK65-gka-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
