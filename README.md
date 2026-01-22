@@ -24,6 +24,7 @@ The pin maps of ESP2866MOD:
 https://lastminuteengineers.com/esp8266-pinout-reference/
 
 ## Doxygen
-The homepage of doxygen can be accessed through: 
-
-**[docs/html/index.html](docs/html/index.html)**
+The homepage of doxygen can be accessed:
+**[Locally](docs/html/index.html)**
+or
+**[Remotely](https://mathiaskes.github.io/34338-Project/html/)**
